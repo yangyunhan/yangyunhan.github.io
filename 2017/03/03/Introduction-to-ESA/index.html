@@ -101,15 +101,23 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-03-03</span>
-            <span class="time">10:51:06</span>
+            <span class="time">11:03:45</span>
           </span>
           
         </div>
         <!-- Tags -->
         
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/reading/">#reading</a>
+
+
+          </div>
+        
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="Introduction-to-ESA"><a href="#Introduction-to-ESA" class="headerlink" title="Introduction to ESA"></a>Introduction to ESA</h1><p>@(ESA论文阅读笔记)[马克飞象|Markdown]</p>
+          <p>@(ESA论文阅读笔记)[马克飞象|Markdown]</p>
 <p><strong>ESA</strong>：Explicit Semantic Analysis， a novel method that represents the meaning of texts in high-dimensional space of concepts derived from Wikipedia.</p>
 <ul>
 <li><strong>显性表达文本</strong> ：以此作为基于维基百科的概念的权重向量；</li>
@@ -118,37 +126,31 @@
 <li><strong>更易理解</strong>：由于利用了自然概念，ESA模型更易被人理解。</li>
 </ul>
 <hr>
-<p>[TOC]</p>
-<hr>
 <h2 id="Computing-Semantic-Relatedness-using-Wikipedia-based-Explicit-Semantic-Analysis"><a href="#Computing-Semantic-Relatedness-using-Wikipedia-based-Explicit-Semantic-Analysis" class="headerlink" title="Computing Semantic Relatedness using Wikipedia-based Explicit Semantic Analysis"></a>Computing Semantic Relatedness using Wikipedia-based Explicit Semantic Analysis</h2><p><a href="file:///D:/文档/literature/Computing%20Semantic%20Relatedness%20using%20Wikipedia-based%20Explicit%20Semantic%20Analysis.pdf" target="_blank" rel="external"><code>文献1</code></a></p>
-<p>Author : <strong>Evgeniy Gabrilovich</strong> and <strong>Shaul Markovitch</strong><br>Department of Computer Science Technion—–Israel Institute of Technology, 32000 Haifa, Israel<br>IJCAI-07</p>
-<hr>
-<p>###理论介绍</p>
-<p>####三个贡献：</p>
+<p>Author : <strong>Evgeniy Gabrilovich</strong> and <strong>Shaul Markovitch</strong><br>Institute : Department of Computer Science Technion—–Israel Institute of Technology, 32000 Haifa, Israel<br>Meeting : IJCAI-07</p>
+<p>1 理论介绍<br>1.1三个贡献：</p>
 <ul>
 <li>提出一种新的方法：用<strong>自然概念表达</strong>自然语言文本语义；</li>
 <li>针对<strong>单词</strong>和<strong>文本</strong>，提出一个<strong>统一的计算相关性的方式</strong>；</li>
 <li>用ESA模型计算的结果要优于现有的方法</li>
 <li><strong>容易理解</strong></li>
 </ul>
-<p>####目的：<br><strong>Represent texts</strong> as a <strong>weighted mixture</strong> of a predetermined set of <strong>natural concepts</strong>, which are defined by humans themselves and can be easily explained.</p>
-<p>####选择用Wikepedia的原因：</p>
+<p>1.2目的：<br><strong>Represent texts</strong> as a <strong>weighted mixture</strong> of a predetermined set of <strong>natural concepts</strong>, which are defined by humans themselves and can be easily explained.</p>
+<p>1.3选择用Wikepedia的原因：</p>
 <ul>
 <li>发展稳定的基础上，词典深度、广度一直在增加</li>
 <li>目前是网络上最大的知识库</li>
 <li>准确性与大不列颠相似</li>
 </ul>
-<hr>
-<p>####转化</p>
+<p>1.4转化</p>
 <ul>
 <li>构建<strong>语义解释器（semantic interpreter）</strong>：将自然语言的片段映射到维基百科概念（Wikipedia concepts）的加权序列，并按照维基百科概念与输入文本的相关性对维基百科所有概念（concepts）进行排序——将文本的语义转化为文本与维基百科概念的亲密性（affinity）的表示。</li>
 <li>计算语义相关性转化为两个向量的相似性比较。</li>
 <li>维基百科概念（concepts）被表示为词向量，用TFIDF分配权重——词与概念（concepts）的关联强度。</li>
 </ul>
-<hr>
-<p>####实现过程</p>
+<p>1.5实现过程</p>
 <ul>
-<li>输入文本$T = {w_i }$，$<v_i>$表示TFIDF向量，是Wi的权重，$<k_j>$是Cj的倒排索引矩阵，量化了Wi与维基百科概念Cj ${c_j\in c_1,c_2……c_N}$（N为维基百科所有概念的数目）连接强度</k_j></v_i></li>
+<li>输入文本\(T = {w_i }\)，$<v_i>$表示TFIDF向量，是Wi的权重，$<k_j>$是Cj的倒排索引矩阵，量化了Wi与维基百科概念Cj ${c_j\in c_1,c_2……c_N}$（N为维基百科所有概念的数目）连接强度</k_j></v_i></li>
 <li>T的语义表示向量（semantic interpretation vector）长度为N，T中单词与每个维基百科概念（concepts）的关联强度为$\sum _w<em>i</em>\in _T v_i \cdot k_j.$</li>
 <li>计算两个文本的相似度就可以用余弦相似度进行比较</li>
 </ul>
