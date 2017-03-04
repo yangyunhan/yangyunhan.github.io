@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-03-03</span>
-            <span class="time">11:22:45</span>
+            <span class="time">11:26:11</span>
           </span>
           
         </div>
@@ -128,7 +128,7 @@
 <hr>
 <h2 id="Computing-Semantic-Relatedness-using-Wikipedia-based-Explicit-Semantic-Analysis"><a href="#Computing-Semantic-Relatedness-using-Wikipedia-based-Explicit-Semantic-Analysis" class="headerlink" title="Computing Semantic Relatedness using Wikipedia-based Explicit Semantic Analysis"></a>Computing Semantic Relatedness using Wikipedia-based Explicit Semantic Analysis</h2><p><a href="file:///D:/文档/literature/Computing%20Semantic%20Relatedness%20using%20Wikipedia-based%20Explicit%20Semantic%20Analysis.pdf" target="_blank" rel="external"><code>文献1</code></a></p>
 <p>Author : <strong>Evgeniy Gabrilovich</strong> and <strong>Shaul Markovitch</strong><br>Institute : Department of Computer Science Technion—–Israel Institute of Technology, 32000 Haifa, Israel<br>Meeting : IJCAI-07</p>
-<p>1 理论介绍<br>1.1三个贡献：</p>
+<h3 id="理论介绍"><a href="#理论介绍" class="headerlink" title="理论介绍"></a>理论介绍</h3><p>1.1三个贡献：</p>
 <ul>
 <li>提出一种新的方法：用<strong>自然概念表达</strong>自然语言文本语义；</li>
 <li>针对<strong>单词</strong>和<strong>文本</strong>，提出一个<strong>统一的计算相关性的方式</strong>；</li>
@@ -150,7 +150,7 @@
 </ul>
 <p>1.5实现过程</p>
 <ul>
-<li>输入文本T = {w_i }，$<v_i>$表示TFIDF向量，是Wi的权重，$<k_j>$是Cj的倒排索引矩阵，量化了Wi与维基百科概念Cj ${c_j\in c_1,c_2……c_N}$（N为维基百科所有概念的数目）连接强度</k_j></v_i></li>
+<li>输入文本T = {w_i }，$#60v_i$#62表示TFIDF向量，是Wi的权重，$<k_j>$是Cj的倒排索引矩阵，量化了Wi与维基百科概念Cj ${c_j\in c_1,c_2……c_N}$（N为维基百科所有概念的数目）连接强度</k_j></li>
 <li>T的语义表示向量（semantic interpretation vector）长度为N，T中单词与每个维基百科概念（concepts）的关联强度为$\sum _w<em>i</em>\in _T v_i \cdot k_j.$</li>
 <li>计算两个文本的相似度就可以用余弦相似度进行比较</li>
 </ul>
