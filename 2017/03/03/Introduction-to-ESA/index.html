@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-03-03</span>
-            <span class="time">11:09:58</span>
+            <span class="time">11:16:26</span>
           </span>
           
         </div>
@@ -150,14 +150,13 @@
 </ul>
 <p>1.5实现过程</p>
 <ul>
-<li>输入文本$$T = {w_i }，$<v_i>$表示TFIDF向量，是Wi的权重，$<k_j>$是Cj的倒排索引矩阵，量化了Wi与维基百科概念Cj ${c_j\in c_1,c_2……c_N}$（N为维基百科所有概念的数目）连接强度</k_j></v_i></li>
+<li>输入文本T = {w_i }，$<v_i>$表示TFIDF向量，是Wi的权重，$<k_j>$是Cj的倒排索引矩阵，量化了Wi与维基百科概念Cj ${c_j\in c_1,c_2……c_N}$（N为维基百科所有概念的数目）连接强度</k_j></v_i></li>
 <li>T的语义表示向量（semantic interpretation vector）长度为N，T中单词与每个维基百科概念（concepts）的关联强度为$\sum _w<em>i</em>\in _T v_i \cdot k_j.$</li>
 <li>计算两个文本的相似度就可以用余弦相似度进行比较</li>
 </ul>
-<hr>
-<center><img src="./图1.png" alt="Alt text"></center><br><center>图1 Semantic interpreter</center>
+<center><img src="/D:\文档\literature\diversity of citation context\Introduction to ESA/图1.png" alt="Alt text"></center><br><center>图1 Semantic interpreter</center>
 
-<hr>
+
 <center><img src="./表1.png" alt="Alt text"></center><br><center>表1 对于单个词（“设备”和“投资者”）最相关的10个维基百科概念</center>
 
 <hr>
