@@ -1,0 +1,348 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="the first impression of jQuery">
+  
+  <title>jQuery（一） [ May be a new world ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2017/03/16/A-citation-is-not-a-citation/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        A citation is not a citation
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">May be a new world</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>jQuery（一）</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2017-04-28</span>
+      
+        <span id = "post-title-updated">Updated at 2017-04-28</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/notebook/">notebook</a>
+      
+      </span>
+      
+    </p>
+    
+    <p>再一打开网站，吓了自己一跳，原来已经过去一个多月了。。。<br>在坑里跌倒就要在坑里爬起来，So，我又回来了</p>
+<p>1、javascript，Netscape公司开发，弊端：复杂的文档对象模型（DOM）、不一致的浏览器实现和便捷的开发、调试工具的缺乏。<br>2、2012年写的书《锋利的jQuery》说当时流行的javascript程序库有：</p>
+<ul>
+<li><a href="http://www.prototypejs.org/" target="_blank" rel="external">Prototype</a><br>可以看作是把很多好的、有用的JavaScript的方法组合在一起而形成的JavaScript库。使用者可以在需要的时候随时将其中的几段代码抽出来放进自己的脚本里。缺点：从整体上对面向对象的编程思想把握得不是很到位，导致了其结构的松散。</li>
+<li><a href="http://dojotoolkit.org/" target="_blank" rel="external">Dojo</a><br>提供了离线存储的API、生成图标的组件、基于SVG/VML的矢量图形库和Comet支持等，适合企业级应用。缺点：学习曲线陡，文档不齐全，API不稳定。</li>
+<li><a href="http://developer.yahoo.com/yui" target="_blank" rel="external">YUI</a><br>封装了一系列丰富的功能如DOM操作和Ajax应用等，还包括几个核心的CSS文件，文档完备，代码编写规范。</li>
+<li><a href="http://www.extjs.com/" target="_blank" rel="external">Ext JS</a><br>简称Ext，利用包括jQuery在内的多种JavaScript框架作为基础库，Ext作为界面的扩展库使用。缺点：侧重于界面，本身比较臃肿，并非完全免费。</li>
+<li><a href="http://mootools.net/" target="_blank" rel="external">MooTools</a><br>模块化思想优秀，核心代码只有8KB，完全贯彻面向对象的编程思想，语法简单直观，文档完整。</li>
+<li><a href="http://jquery.com" target="_blank" rel="external">jQuery</a><br>轻量级的库，拥有强大的选择器，出色的DOM操作、可靠的事件处理、完善的兼容性和链式操作等功能。</li>
+</ul>
+<p>3、&lt;!DOCTYPE&gt;<br>&lt;!DOCTYPE&gt;声明不是HTML标签，位于位于HTML文档中的第一行，处于 <html>标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。在 HTML 4.01 中，&lt;!DOCTYPE&gt; 声明引用 DTD，因为 HTML 4.01 基于 SGML。DTD 规定了标记语言的规则，这样浏览器才能正确地呈现内容。<br>| 标签       | HTML5 |   HTML 4.01 / XHTML 1.0    | XHTML 1.1 |<br>|            |       |Transitional|Strict|Frameset|           |<br>| :—-      | :—: | :———:|:—-:|:——:| :——-: |<br>|<acronym>   |No|Yes|Yes|Yes|Yes|<br>|<applet>    |No||No||No|<br>|<area>      |||||No|<br>|<article |yes|||||="" |<aside="">     |Yes|||||<br>|<audio>     |Yes|||||<br>|<basefont>  ||Yes||Yes||<br>|<bdi>       |Yes|||||<br>|<bdo>       |||||No|<br>|<canvas>    |Yes|||||<br>|<center>    ||Yes||Yes||<br>|<col>       |||||No|<br>|<colgroup>  |||||No|<br>|<command>   |Yes||||<br>|<datalist>  |Yes|||||<br>|<del>       |||||No|<br>|<details>   |Yes|||||<br>|<dir>       ||Yes||Yes||<br>|<embed>     |Yes|||||<br>|<figcaption>|Yes|||||<br>|<font>      ||Yes||Yes||<br>|<footer>    |Yes|||||<br>|<frame>     ||||Yes||<br>|<frameset>  ||||Yes||<br>|<header>    |Yes|||||<br>|<iframe>    |||No||No|<br>|<ins>       |||||No|<br>|<keygen>    |Yes|||||<br>|<map>       |||||No|<br>|<mark>      |Yes|||||<br>|<menu>      |||No||No|<br>|<meter>     |Yes|||||<br>|<nav>       |Yes|||||<br>|<noframes>  ||Yes||Yes||<br>|<output>    |Yes|||||<br>|<progress>  |Yes|||||<br>|<rp>        |Yes|||||<br>|<rt>        |Yes|||||<br>|<ruby>      |Yes|||||<br>|<s>         |||No||No|<br>|<section>   |Yes|||||<br>|<source>    |Yes|||||<br>|<strike>    ||Yes||Yes||<br>|<summary>   |Yes|||||<br>|<tbody>     |||||No|<br>|<tfoot>     |||||No|<br>|<thead>     |||||No|<br>|<time>      |Yes|||||<br>|<track>     ||||||<br>|<tt>        |Yes|||||<br>|<u>         ||Yes||Yes||<br>|<video>     |Yes|||||<br>|<wbr>       |Yes|||||</video></u></tt></time></thead></tfoot></tbody></summary></strike></section></s></ruby></rt></rp></progress></output></noframes></nav></meter></menu></mark></map></ins></iframe></header></frameset></footer></font></figcaption></dir></details></del></datalist></colgroup></center></canvas></bdo></bdi></audio></article></applet></acronym></html></p>
+<blockquote>
+<p>理想情况当然是严格的DTD，但对于我们大多数刚接触web标准的设计师来说，过渡的DTD(XHTML 1.0 Transitional)是目前理想选择(包括本站，使用的也是过渡型DTD)。因为这种DTD还允许我们使用表现层的标识、元素和属性，也比较容易通过W3C的代码校验。</p>
+</blockquote>
+<p>4、window.onload必须等网页中所有的内容加载完毕后（图片库）才能执行，不能编写多个<br>$(document).ready()网页中所有DOM结构绘制完毕后执行，可能DOM元素关联的东西并没有加载完，可以编写多个。未加载完的图片的属性不一定有效，用jQuery中load()方法，会在元素的onload事件中绑定一个处理函数。如果处理函数绑定给window对象，则会在所有内容（包括窗口、框架、对象和图像等）加载完毕后触发，如果处理函数绑定在元素上，则会在元素的内容加载完毕后触发。<br>5、jQuery转为DOM：var $cr = $(“#cr”);//jQuery对象<br>var cr = $cr[0]//DOM对象，或$cr.get(0)<br>DOM转为jQuery：var cr = document.getElementById(“cr”);//DOM对象<br>var $cr = $(cr);<br>6、实践：同意某网站的规章制度<br><code>&lt;input type = &#39;checkbox&#39; id=&#39;cr&#39;&gt;&lt;label for=&quot;cr&quot;&gt;I agree with it.&lt;/label&gt;</code></p>
+<p><label>标签为input元素定义标注，<label>标签的for属性应当与相关元素的id属性相同。<br>7、如果jQuery在其他库之前导入，可直接使用，若在其他库之后导入，则需要调用<code>jQuery.noConflict()</code>将变量的控制权移交给其他JavaScript库。</label></label></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2017/03/16/A-citation-is-not-a-citation/" class="next">Next post A citation is not a citation &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description">start from zero</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
