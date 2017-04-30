@@ -37,6 +37,15 @@
 <body>
 <div class="side-navigate hide-area">
   
+    <div class="item prev">
+      <a href="/2017/04/30/jQuery（二）/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        jQuery（二）
+      </div>
+    </div>
+  
   
     <div class="item next">
       <a href="/2017/03/16/A-citation-is-not-a-citation/">
@@ -122,7 +131,7 @@
     <p class="page-title-sub">
       <span id = "post-title-date">撰写于 2017-04-28</span>
       
-        <span id = "post-title-updated">修改于 2017-04-28</span>
+        <span id = "post-title-updated">修改于 2017-04-30</span>
       
       
       <span id = "post-title-categories">分类
@@ -161,7 +170,9 @@
 <blockquote>
 <p>理想情况当然是严格的DTD，但对于我们大多数刚接触web标准的设计师来说，过渡的DTD(XHTML 1.0 Transitional)是目前理想选择(包括本站，使用的也是过渡型DTD)。因为这种DTD还允许我们使用表现层的标识、元素和属性，也比较容易通过W3C的代码校验。</p>
 </blockquote>
-<p>4、window.onload必须等网页中所有的内容加载完毕后（图片库）才能执行，不能编写多个<br>$(document).ready()网页中所有DOM结构绘制完毕后执行，可能DOM元素关联的东西并没有加载完，可以编写多个。未加载完的图片的属性不一定有效，用jQuery中load()方法，会在元素的onload事件中绑定一个处理函数。如果处理函数绑定给window对象，则会在所有内容（包括窗口、框架、对象和图像等）加载完毕后触发，如果处理函数绑定在元素上，则会在元素的内容加载完毕后触发。<br>5、jQuery转为DOM：var $cr = $(“#cr”);//jQuery对象<br>var cr = $cr[0]//DOM对象，或$cr.get(0)<br>DOM转为jQuery：var cr = document.getElementById(“cr”);//DOM对象<br>var $cr = $(cr);<br>6、实践：同意某网站的规章制度<br><code>&lt;input type = &#39;checkbox&#39; id=&#39;cr&#39;&gt;&lt;label for=&quot;cr&quot;&gt;I agree with it.&lt;/label&gt;</code></p>
+<p>4、window.onload必须等网页中所有的内容加载完毕后（图片库）才能执行，不能编写多个<br>$(document).ready()网页中所有DOM结构绘制完毕后执行，可能DOM元素关联的东西并没有加载完，可以编写多个。未加载完的图片的属性不一定有效，用jQuery中load()方法，会在元素的onload事件中绑定一个处理函数。如果处理函数绑定给window对象，则会在所有内容（包括窗口、框架、对象和图像等）加载完毕后触发，如果处理函数绑定在元素上，则会在元素的内容加载完毕后触发。<br>5、jQuery转为DOM：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $cr = $(<span class="string">"#cr"</span>);<span class="comment">//jQuery对象</span></div><div class="line"><span class="keyword">var</span> cr = $cr[<span class="number">0</span>]<span class="comment">//DOM对象，或$cr.get(0)</span></div></pre></td></tr></table></figure></p>
+<p>DOM转为jQuery：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cr = <span class="built_in">document</span>.getElementById(<span class="string">"cr"</span>);<span class="comment">//DOM对象</span></div><div class="line"><span class="keyword">var</span> $cr = $(cr);</div></pre></td></tr></table></figure></p>
+<p>6、实践：同意某网站的规章制度<br><code>&lt;input type = &#39;checkbox&#39; id=&#39;cr&#39;&gt;&lt;label for=&quot;cr&quot;&gt;I agree with it.&lt;/label&gt;</code></p>
 <p><label>标签为input元素定义标注，<label>标签的for属性应当与相关元素的id属性相同。<br>7、如果jQuery在其他库之前导入，可直接使用，若在其他库之后导入，则需要调用<code>jQuery.noConflict()</code>将变量的控制权移交给其他JavaScript库。</label></label></p>
 
   </article>
@@ -176,6 +187,8 @@
 
   
 <nav id="pagination">
+  
+    <a href="/2017/04/30/jQuery（二）/" class="prev">&larr; 上一篇 jQuery（二）</a>
   
 
   
