@@ -16,9 +16,9 @@
   
   
   
-    <meta name="description" content="师兄分享了一篇论文给我，让我见识到一个研究者的境界。他与其他学者共著的文章3年内有95篇文献，近一年有44篇引文。作者把这95篇文献一篇一篇读过来，发现引文的质量很差，并且改进了预估引文量的指标。原来的评价指标类似h指数、影响因子等等，当作者仔细考虑到引用动机时，发现95篇引文中，只有三篇是有引用意义的。一篇应用了原始文献中的方法，另两篇将原文中的方法拿来做基准方法进行比较。即使只有三篇，他...">
+    <meta name="description" content="1、是啥form元素的method属性用来指定发送form的http方法。使用get时，form数据集被附加到form元素的action属性所制定的url后面，生成url：user.do?loginId=abc，get仅仅是拼接一个URL，然后直接向服务区请求数据，需要提交给服务器的数据集包含在URL中。并且，如果在action的值中为url地址增加参数，后台无法接受这个参数，只能得到表单中...">
   
-  <title>A citation is not a citation [ May be a new world ]</title>
+  <title>form的method,我该选谁？ [ May be a new world ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -37,22 +37,13 @@
 <body>
 <div class="side-navigate hide-area">
   
-    <div class="item prev">
-      <a href="/2017/04/28/jQuery（一）/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        jQuery（一）
-      </div>
-    </div>
-  
   
     <div class="item next">
-      <a href="/2017/03/14/三栏布局认识与感悟/">
+      <a href="/2017/05/10/jQuery（四）/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        三栏布局认识与感悟
+        jQuery（四）
       </div>
     </div>
   
@@ -127,11 +118,11 @@
       
       
   <article id="post">
-    <h1>A citation is not a citation</h1>
+    <h1>form的method,我该选谁？</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2017-03-16</span>
+      <span id = "post-title-date">Created at 2017-05-10</span>
       
-        <span id = "post-title-updated">Updated at 2017-03-16</span>
+        <span id = "post-title-updated">Updated at 2017-05-10</span>
       
       
       <span id = "post-title-categories">Category
@@ -139,24 +130,28 @@
       
         
         
-        <a href="/categories/research/">research</a>
+        <a href="/categories/skill/">skill</a>
       
       </span>
       
-      
-      <span id = "post-title-tags">
-      Tag
-      
-      
-        
-        
-        <a href="/tags/reading/">reading</a>
-      
-      </span>
       
     </p>
     
-    <p>师兄分享了一篇论文给我，让我见识到一个研究者的境界。他与其他学者共著的文章3年内有95篇文献，近一年有44篇引文。作者把这95篇文献一篇一篇读过来，发现引文的质量很差，并且改进了预估引文量的指标。<br>原来的评价指标类似h指数、影响因子等等，当作者仔细考虑到引用动机时，发现95篇引文中，只有三篇是有引用意义的。一篇应用了原始文献中的方法，另两篇将原文中的方法拿来做基准方法进行比较。即使只有三篇，他们所得到的结论也没有理解到原始文献中的用意。但是没有好坏或者正误之分。所以，作者通过读95篇文献，选出了真正有引用意义的文献，给原始指标加了一个惩罚项，只计算了被作者筛选出的文献。用原始评价标准如h-index计算原始文献作者的影响力得到的值为117，如果用该方法则是30。足以见到两种方法的差距。<br>这篇文献，我读了两遍，效率很低，不过也还是有思考的。最大的感悟是我不适合搞研究，不会将研究做到如此细致的程度。二是，直到现在，我也认为这样做的成本过大。在跟师兄讨论这个做法的意义时，也发现了两种思想的差异。一是以科研为目的的，那么精准性被看的很重要，成本次之。另外一种大概是这个社会的准则，达到主要目的，尽量少的消耗成本。<br><a href="https://liorpachter.wordpress.com/2017/01/18/a-citation-is-not-a-citation-is-not-a-citation/" target="_blank" rel="external">A citation is not a citation</a></p>
+    <p>1、是啥<br>form元素的method属性用来指定发送form的http方法。<br>使用get时，form数据集被附加到form元素的action属性所制定的url后面，生成url：user.do?loginId=abc，get仅仅是拼接一个URL，然后直接向服务区请求数据，需要提交给服务器的数据集包含在URL中。并且，如果在action的值中为url地址增加参数，后台无法接受这个参数，只能得到表单中的参数，所以可能会缺失数据；<br>使用post时，form数据集被包装在请求的body中并被发送，生成url: user.do，post会把form的数据集，即login=abc这个键值对包装在请求的body中，发给服务器，然后向服务器请求数据，在action的值中为url地址增加参数，后台可以接收，即post方法接收action参数和表单参数。<br>2、还有啥区别</p>
+<ul>
+<li>安全性<br>get：提交信息显示在URL上，进而出现在浏览器的历史记录中，格式是<code>variable?value&amp;variable?value...</code>——更安全；<br>post: 将表单内容放置到HTML表头header中一起传送给服务器端交由action属性所指的程序处理，该程序会通过标准输入（stdin）方式，将表单数据读出处理；</li>
+<li>编码<br>get: 只能向服务器发送ASCLL字符，post可以发送整个ISO 10646中的字符。<br>enctype属性有区别，该属性有两个值，默认为application/x-www-form-urlencoded（在发送前编码所有字符）；另一个是multipart/form-data（用于文件上传）只能用于post.</li>
+<li>提交数据的长度<br>IE限制URL长度为2083个字符，超出限制，提交form不会有反应——get方式受限。<br>Get 方式传输的数据量非常小，一般限制在 2 KB 左右，但是执行效率却比 Post 方法好；而 Post 方式传递的数据量相对较大，它是等待服务器来读取数据，不过也有字节限制，这是为了避免对服务器用大量数据进行恶意攻击，根据微软方面的说法，微软对用 Request.Form() 可接收的最大数据有限制，IIS 4 中为 80 KB 字节，IIS 5 中为 100 KB 字节。</li>
+<li>引用<br>可用URL引用一个get的结果页面，post的结果不能。<br>3、选谁</li>
+<li><p>当且仅当form是幂等的时候，使用get。（幂等：多次相同的请求产生的副作用，和一次请求的副作用相同。） </p>
+</li>
+<li><p>如果提交请求纯粹只是从服务器端获取数据而不是进行其他操作，并且多次提交不会有明显的副作用，应该使用get。比如：搜索引擎的查询(<a href="http://www.google.com/search?q=abc)和分页(user.do?page=1)；如果提交这个请求会产生其他操作和影响，就应该使用post。" target="_blank" rel="external">http://www.google.com/search?q=abc)和分页(user.do?page=1)；如果提交这个请求会产生其他操作和影响，就应该使用post。</a><br>比如：修改服务器上数据库中的数据；发送一封邮件；删除一个文件等</p>
+</li>
+<li>若符合下列任一情况，则用post方法：<br>a.请求的结果有持续性的副作用，例如：数据库内添加新的数据行。<br>b.若使用get方法，则表单上收集的数据可能让URL过长。<br>c.要传送的数据不是采用ASCII编码。</li>
+<li>若符合下列任一情况，则用get方法：<br>a.请求是为了查找资源，html表单数据仅用来搜索。<br>b.请求结果无持续性的副作用。<br>c.收集的数据及html表单内的输入字段名称的总长不超过1024个字符。<br>4、还有点小迷糊</li>
+<li>[浏览器差异]<br>IE6:URL长度限制为2083个字符；post之后，刷新页面不会自动重新post数据，会出现警告。<br>IE7和IE6相同。<br>Firefox：刷新页面不会自动重新post数据会出现警告。</li>
+<li>对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。Request从几个集合取数据是有顺序的，从前到后的顺序依次是 QueryString,Form,最后是ServerVariables。Request对象按照这样的顺序依次搜索这几个集合中的变量，如果有符合的就中止，后面的就不管了。</li>
+</ul>
 
   </article>
   <div class="random-toc-area">
@@ -171,13 +166,11 @@
   
 <nav id="pagination">
   
-    <a href="/2017/04/28/jQuery（一）/" class="prev">&larr; Prev post jQuery（一）</a>
-  
 
   
 
   
-    <a href="/2017/03/14/三栏布局认识与感悟/" class="next">Next post 三栏布局认识与感悟 &rarr;</a>
+    <a href="/2017/05/10/jQuery（四）/" class="next">Next post jQuery（四） &rarr;</a>
   
 </nav>
 
