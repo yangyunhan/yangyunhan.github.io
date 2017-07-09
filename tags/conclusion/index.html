@@ -1,6 +1,8 @@
 
 
 
+  
+
 
 
 
@@ -16,10 +18,9 @@
   
   
   
-    <meta name="description" content="1、css:white-space:如何处理元素内的空白可能的值：normal：默认，空白被忽略pre：空白被保留nowrap：文本不换行，在同一行继续，直到遇到标签pre-wrap：保留空白符序列，正常换行pre-line：合并空白符序列，但保留换行符inherit：从父元素继承white-space的值
-应用：与width、text-overflow、overflow一起使文本在一行内显...">
+    <meta name="description" content="start from zero">
   
-  <title>做网站的那些tips [ May be a new world ]</title>
+  <title>Tag: conclusion [ May be a new world ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -38,15 +39,6 @@
 <body>
 <div class="side-navigate hide-area">
   
-  
-    <div class="item next">
-      <a href="/2017/05/10/form的method-我该选谁？/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        form的method,我该选谁？
-      </div>
-    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -118,81 +110,129 @@
     <div id="content-inner">
       
       
-  <article id="post">
-    <h1>做网站的那些tips</h1>
-    <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2017-07-08</span>
-      
-        <span id = "post-title-updated">Updated at 2017-07-10</span>
-      
-      
-      <span id = "post-title-categories">Category
-      
-      
-        
-        
-        <a href="/categories/skill/">skill</a>
-      
-      </span>
-      
-      
-      <span id = "post-title-tags">
-      Tag
-      
-      
-        
-        
-        <a href="/tags/conclusion/">conclusion</a>
-      
-      </span>
-      
-    </p>
+  <div id="tag">
+    <h1>conclusion</h1>
     
-    <p>1、css:white-space:如何处理元素内的空白<br>可能的值：<br>normal：默认，空白被忽略<br>pre：空白被保留<br>nowrap：文本不换行，在同一行继续，直到遇到<br>标签<br>pre-wrap：保留空白符序列，正常换行<br>pre-line：合并空白符序列，但保留换行符<br>inherit：从父元素继承white-space的值</p>
-<p>应用：与width、text-overflow、overflow一起使文本在一行内显示，超出则加省略号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;如果描述超出100像素，则会隐藏，添加省略号&lt;/p&gt;</div><div class="line">p&#123;width: 100px;overflow: hidden;white-space: nowrap;text-overflow:ellopsis;&#125;</div></pre></td></tr></table></figure></p>
-<p>支持低版本的opera的办法：o-text-overflow: ellipsis;</p>
-<p>关联：word-wrap:允许长单词或URL地址换行到下一行<br>可能的值：<br>normal：只在允许的断字点换行（浏览器保持默认处理）<br>break-word：在长单词或URL地址内部进行换行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p.test&#123;word-wrap:break-word;&#125;</div></pre></td></tr></table></figure></p>
-<p>注意点：</p>
-<ul>
-<li>（IE浏览器）连续的英文字符和阿拉伯数字,使用word-wrap : break-word;或者word-break:break-all;实现强制断行</li>
-<li>（Firefox浏览器）连续的英文字符和阿拉伯数字的断行,Firefox的所有版本的没有解决这个问题,只有让超出边界的字符隐藏或者给容器添加滚动条 .a{word-break:break-all; width:200px; overflow:auto;}.(Firefox浏览器)使用 table-layout:fixed;强制table的宽度,内层td,th采用word- break : break-all;或者word-wrap : break-word ;换行，使用overflow:hidden;隐藏超出内容，这里overflow:auto;无法起作用</li>
-</ul>
-<p>2、transtision:过渡，复合属性,不需要javascript就可以实现简单的动画效果，包含：</p>
-<ul>
-<li>transition-property：过渡属性，默认为all</li>
-<li>transition-duration：过渡持续时间，默认为0s，必需值不能为0，与delay一样是时间，只有一个时间时，是duration</li>
-<li>transition-timing-function：过渡函数，默认为ease函数</li>
-<li>transition-delay：过渡延迟时间，默认为0s<br>注：IE9不支持，safari3.1-6\IOS3.2-6.1\android2.1-4.3需要添加-webkit前缀<br>更多的设置和了解，参考博客：<a href="http://www.cnblogs.com/xiaohuochai/p/5347930.html" target="_blank" rel="external">http://www.cnblogs.com/xiaohuochai/p/5347930.html</a></li>
-</ul>
-<p>3、z-index:元素的堆叠顺序，越高与用户越近，在定位元素上奏效（position:absolute）</p>
-<p>4、标签<strike></strike>给文本加删除线,缩写为<s></s>，html5中已经不支持这个标签了。</p>
-<p>5、图片不显示，可能是路径出错了”../images/…”</p>
-
-  </article>
-  <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
-  <div class="random-toc">
-    <h2>Table of Content</h2>
+      
+      
+        
+      
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+        
+          
+        
+      
+      
+      <div class="post-title-item">
+  
+  <a href="/2017/07/08/做网站的那些tips/">
+  
+    做网站的那些tips
+  
+  </a>
+  <p class="page-title-sub">
+    <span id = "post-title-date">7-8</span>
+    
+    <span id = "post-title-categories">Category
+    
+    
+      
+      
+      <a href="/categories/skill/">skill</a>
+    
+    </span>
+    
+    
+    <span id = "post-title-tags">
+    Tag
+    
+    
+      
+      
+      <a href="/tags/conclusion/">conclusion</a>
+    
+    </span>
+    
+    
+      <br>
+      
+      
+    
+  </p>
+  
+</div>
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+        
+      
+      
+    
+      
+      
+        
+      
+      
     
   </div>
-</div>
 
   
-<nav id="pagination">
-  
-
-  
-
-  
-    <a href="/2017/05/10/form的method-我该选谁？/" class="next">Next post form的method,我该选谁？ &rarr;</a>
-  
-</nav>
-
-  <!-- JiaThis Button BEGIN -->
-
-<!-- JiaThis Button END -->
-
 
       
       
@@ -316,8 +356,8 @@ var unsplashConfig = {"gravity":"north"};
 var turnoffBackgroundImage = false;
 
 
-
   turnoffBackgroundImage = true;
+
 
 
 var backgroundColor = "34495E";
