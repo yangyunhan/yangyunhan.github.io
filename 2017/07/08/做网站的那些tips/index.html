@@ -16,8 +16,8 @@
   
   
   
-    <meta name="description" content="1、css:white-space:如何处理元素内的空白可能的值：normal：默认，空白被忽略pre：空白被保留nowrap：文本不换行，在同一行继续，直到遇到标签pre-wrap：保留空白符序列，正常换行pre-line：合并空白符序列，但保留换行符inherit：从父元素继承white-space的值
-应用：与width、text-overflow、overflow一起使文本在一行内显...">
+    <meta name="description" content="把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。
+1、css...">
   
   <title>做网站的那些tips [ May be a new world ]</title>
   
@@ -37,6 +37,15 @@
 
 <body>
 <div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2017/07/18/小公举/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        小公举
+      </div>
+    </div>
   
   
     <div class="item next">
@@ -121,12 +130,12 @@
   <article id="post">
     <h1>做网站的那些tips</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2017-07-08</span>
+      <span id = "post-title-date">撰写于 2017-07-08</span>
       
-        <span id = "post-title-updated">Updated at 2017-07-10</span>
+        <span id = "post-title-updated">修改于 2017-07-19</span>
       
       
-      <span id = "post-title-categories">Category
+      <span id = "post-title-categories">分类
       
       
         
@@ -137,7 +146,7 @@
       
       
       <span id = "post-title-tags">
-      Tag
+      标签
       
       
         
@@ -148,7 +157,8 @@
       
     </p>
     
-    <p>1、css:white-space:如何处理元素内的空白<br>可能的值：<br>normal：默认，空白被忽略<br>pre：空白被保留<br>nowrap：文本不换行，在同一行继续，直到遇到<br>标签<br>pre-wrap：保留空白符序列，正常换行<br>pre-line：合并空白符序列，但保留换行符<br>inherit：从父元素继承white-space的值</p>
+    <p>把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。</p>
+<p>1、css:white-space:如何处理元素内的空白<br>可能的值：<br>normal：默认，空白被忽略<br>pre：空白被保留<br>nowrap：文本不换行，在同一行继续，直到遇到<br>标签<br>pre-wrap：保留空白符序列，正常换行<br>pre-line：合并空白符序列，但保留换行符<br>inherit：从父元素继承white-space的值</p>
 <p>应用：与width、text-overflow、overflow一起使文本在一行内显示，超出则加省略号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;如果描述超出100像素，则会隐藏，添加省略号&lt;/p&gt;</div><div class="line">p&#123;width: 100px;overflow: hidden;white-space: nowrap;text-overflow:ellopsis;&#125;</div></pre></td></tr></table></figure></p>
 <p>支持低版本的opera的办法：o-text-overflow: ellipsis;</p>
 <p>关联：word-wrap:允许长单词或URL地址换行到下一行<br>可能的值：<br>normal：只在允许的断字点换行（浏览器保持默认处理）<br>break-word：在长单词或URL地址内部进行换行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p.test&#123;word-wrap:break-word;&#125;</div></pre></td></tr></table></figure></p>
@@ -166,14 +176,28 @@
 </ul>
 <p>3、z-index:元素的堆叠顺序，越高与用户越近，在定位元素上奏效（position:absolute）</p>
 <p>4、标签<strike></strike>给文本加删除线,缩写为<s></s>，html5中已经不支持这个标签了。</p>
-<p>5、图片不显示，可能是路径出错了”../images/…”</p>
+<p>5、图片不显示，可能是css文件中的路径出错了”../images/…”</p>
+<p>6、css3:transform:改变，转换，有x、y之分。属性包含：</p>
+<ul>
+<li>transform:rotate()：旋转，单位是”deg”-度。</li>
+<li>transform:skew()：倾斜，单位相同。</li>
+<li>transform:scale()：正值放大，负值缩小，值是缩放比例值。</li>
+<li>transform:translate()：位移，单位是px。</li>
+</ul>
+<p>7、数据类型</p>
+<ul>
+<li>null:</li>
+<li>undefined:</li>
+</ul>
+<p>8、mouseover:jQuery的事件，鼠标进入某个元素或其子元素时触发。<br>mouseout:jQuery事件，鼠标在离开某个元素或其子元素时触发。<br>onmouseover:html属性<br>hover:相当于mouseenter+mouseleave，鼠标只有进入到某个元素时才触发。</p>
+<p>9、</p>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
+    <h2>目录</h2>
     
   </div>
 </div>
@@ -181,11 +205,13 @@
   
 <nav id="pagination">
   
-
+    <a href="/2017/07/18/小公举/" class="prev">&larr; 上一篇 小公举</a>
   
 
   
-    <a href="/2017/05/10/form的method-我该选谁？/" class="next">Next post form的method,我该选谁？ &rarr;</a>
+
+  
+    <a href="/2017/05/10/form的method-我该选谁？/" class="next">下一篇 form的method,我该选谁？ &rarr;</a>
   
 </nav>
 
