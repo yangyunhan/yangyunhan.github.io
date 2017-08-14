@@ -1,0 +1,368 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="1、标签的rel属性规定当前文档与被链接文档之间的关系，只有”stylesheet”值得到了所有浏览器的支持，其他值只得到了部分的支持。没有”stylesheet”的指明，样式表不起作用。”stylesheet”表示外部样式表。
+2、animation与关键帧
+3、”ch”表示一个0字符的宽度，000000是6ch。
+4、text-align:justify实现两端对齐文本效果，前提是文本多...">
+  
+  <title>tips of irlab's website [ May be a new world ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2017/07/18/小公举/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        小公举
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">May be a new world</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>tips of irlab's website</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2017-07-28</span>
+      
+        <span id = "post-title-updated">Updated at 2017-08-11</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/conclusion/">conclusion</a>
+      
+      </span>
+      
+    </p>
+    
+    <p>1、<link>标签的rel属性规定当前文档与被链接文档之间的关系，只有”stylesheet”值得到了所有浏览器的支持，其他值只得到了部分的支持。没有”stylesheet”的指明，样式表不起作用。”stylesheet”表示外部样式表。</p>
+<p>2、animation与关键帧</p>
+<p>3、”ch”表示一个0字符的宽度，000000是6ch。</p>
+<p>4、text-align:justify实现两端对齐文本效果，前提是文本多于两行，如果文本只有一行或者是最后一行，则强行变成两行并隐藏，这样第一行才会有效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;p class=&quot;center&quot;&gt;我是两端对齐文字两端对齐文字&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</div><div class="line"></div><div class="line">.center&#123;</div><div class="line">text-align:justify;</div><div class="line">&#125;</div><div class="line"></div><div class="line">span&#123;</div><div class="line">display:inline-block;</div><div class="line">width:100%;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>5、text-overflow:ellipsis当对象内文本溢出时显示省略标记</p>
+<p>6、line-height与verticla-align<br>vertical-align对块状元素不起作用？<br><a href="http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/</a></p>
+<p>7、cursor:pointer规定设定网页浏览时用户鼠标指针的样式为一只伸出食指的手。</p>
+<p>8、版权符号：alt键+169，松开alt键</p>
+<p>9、<code>&lt;meta http-equiv=&quot;X-UA-COMPATIBLE&quot; content=&quot;IE=Edge&quot;&gt;</code><br>强制IE8采用低版本方式渲染，<code>IE=edge</code>告诉IE使用最新的引擎渲染网页</p>
+<p>10、<a>标签的target属性规定打开链接时用什么目标打开，在新窗口中打开是target=_blank，在父窗口中打开是target=_parent，在当前窗口中打开是target=_self，在顶层窗口中打开是target=_top。</a></p>
+<p>11、word-wrap与word-break<br>word-wrap:break-word.是否允许浏览器在单词内进行断句，为防止当一个字符串太长而找不到自然断句点时产生溢出现象。<br>他会先尝试挪到下一行，看下一行的宽度够不够，不够的话就进行单词内断句。<br>word-break:break-all.怎么样进行单词内的断句。<br>断句方式粗暴，不会尝试把长单词挪到下一行，而是直接进行单词内的断句，更省空间。</p>
+<p>12、盒子左边向左指的三角形：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.ir-paper-item::after&#123;</div><div class="line">	color: #8e8e8e;</div><div class="line">	content: &apos;&apos;;</div><div class="line">	border-with: 8px 12px;</div><div class="line">	border-style: solid;</div><div class="line">	border-color: transparent #fff transparent transparent;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>13、<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ScrollChange.prototype.init = function () &#123;</div><div class="line">        this.contentHeight = (function () &#123;</div><div class="line">            var heightArr = [];</div><div class="line">            for(var i=0;i&lt;this.contentList.length;i++)&#123;</div><div class="line">                heightArr.push($(this.contentList[i]).offset().top);</div><div class="line">            &#125;</div><div class="line">            return heightArr;</div><div class="line">        &#125;.bind(this))();</div><div class="line">        this.bindEvents();//???</div><div class="line">    &#125;;</div></pre></td></tr></table></figure></p>
+<p>14、javascript逻辑运算符”||”和”&amp;&amp;”:<br>“||”：只要”||”前面为false，不管”||”后面是true还是false，都返回”||”后面的值；只要”||”前面为true，不管”||”后面是true还是false，都返回”||”前面的值。<br>“&amp;&amp;”：只要”&amp;&amp;”前面是false，无论”&amp;&amp;”后面是true还是false，结果都将返回”&amp;&amp;”前面的值；只要”&amp;&amp;”前面是true，无论”&amp;&amp;”后面是true还是false，结果都将返回”&amp;&amp;”后面的值。</p>
+<p>15、<ins>与<u>的差别不知道是啥<br><ins>定义了文档的其余部分之外的插入文本；<br><u>代表有下划线<br>两个效果一样哇</u></ins></u></ins></p>
+<p>16、<address>标签在每行结尾添加<br>可以保留需要的样式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;address&gt;</div><div class="line">	&lt;strong&gt;Twitter, Inc.&lt;/strong&gt;&lt;br&gt;</div><div class="line">	1300 Market Street, Suite 900&lt;br&gt;</div><div class="line">	San Francisco, CA 94103&lt;br&gt;</div><div class="line">	&lt;abbr title=&quot;Phone&quot;&gt;P:&lt;/abbr&gt; (123) 456-7890</div><div class="line">&lt;/address&gt;</div><div class="line"></div><div class="line">&lt;address&gt;</div><div class="line">	&lt;strong&gt;Full Name&lt;/strong&gt;&lt;br&gt;</div><div class="line">	&lt;a href=&quot;mailto:#&quot;&gt;first.last@example.com&lt;/a&gt;</div><div class="line">&lt;/address&gt;</div></pre></td></tr></table></figure></address></p>
+<p>17、代码块<br><code></code>包裹内联样式的代码片段<br>代码中的尖括号需要转义：<code>&lt;code&gt;&amp;lt;section&amp;gt;&lt;/code&gt;</code><br><kbd></kbd>标记用户通过键盘输入的内容<code>&lt;kbd&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;,&lt;/kdb&gt;&lt;/kdb&gt;</code></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2017/07/18/小公举/" class="next">Next post 小公举 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description">start from zero</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('/uploads/IMG_5354.JPG/__width__/h/__height__');
+    
+      backgroundImages.push('/uploads/IMG_3914.JPG/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":2};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
