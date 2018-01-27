@@ -16,9 +16,10 @@
   
   
   
-    <meta name="description" content="我的恐惧是：懒惰+拖延症+无主见">
+    <meta name="description" content="clientX,clientY,screenX,screenY,offsetX,offsetY他们是鼠标事件对象的几个属性，只有鼠标事件发生时才会有意义。
+clientX：当鼠标事件发生时（以下都有这句），鼠标相对于浏览器（浏览器的有效区域）x轴的位置；clientY就是y轴的位置。screenX：鼠标相对于显示器屏幕x轴的位置；screenY是显示屏屏幕y轴的位置。y值通常与client不...">
   
-  <title>街机游戏clone。。。 [ 如果可以一直哈哈哈…… ]</title>
+  <title>街机游戏clone。。。 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -36,6 +37,15 @@
 
 <body>
 <div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        订阅阅读器测试（Subscribe reader test）
+      </div>
+    </div>
   
   
     <div class="item next">
@@ -56,7 +66,7 @@
         
         <a onClick="openUserCard()">
           <img id="avatar" src="/uploads/avatar.jpg"/>
-          <div id="homelink">如果可以一直哈哈哈……</div>
+          <div id="homelink">该叫什么好</div>
         </a>
       </div>
       <div id="menu-list">
@@ -125,10 +135,40 @@
         <span id = "post-title-updated">Updated at 2017-11-22</span>
       
       
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/tips/">tips</a>
+      
+      </span>
       
     </p>
     
-    
+    <ul>
+<li>clientX,clientY,screenX,screenY,offsetX,offsetY<br>他们是鼠标事件对象的几个属性，只有鼠标事件发生时才会有意义。<blockquote>
+<p>clientX：当鼠标事件发生时（以下都有这句），鼠标相对于浏览器（浏览器的有效区域）x轴的位置；clientY就是y轴的位置。<br>screenX：鼠标相对于显示器屏幕x轴的位置；screenY是显示屏屏幕y轴的位置。y值通常与client不同<br>offsetX：鼠标相对于事件源x轴的位置；offsetY是y轴的位置。某个元素上相对于该元素0，0的距离。</p>
+</blockquote>
+</li>
+</ul>
+<p>插播：<code>&lt;span style = &quot;white-space:pre&quot;&gt;&lt;/span&gt;</code>这个css的white-space属性设置如何处理元素内的空白。<code>pre</code>表示空白会被浏览器保留，行为方式像HTML中的<code>&lt;pre&gt;</code>标签。</p>
+<ul>
+<li>处理键盘输入的插件：<a href="https://github.com/marquete/kibo" target="_blank" rel="external">https://github.com/marquete/kibo</a><br>键码对照表：<a href="https://segmentfault.com/a/1190000005828048" target="_blank" rel="external">https://segmentfault.com/a/1190000005828048</a></li>
+<li>requestAnimationFrame<br>不需设置时间间隔，与浏览器的刷新频率相同，不会导致过度绘制出现的第三帧丢失。而且它采用系统时间间隔，更准确且流畅。</li>
+</ul>
+
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
@@ -141,6 +181,8 @@
 
   
 <nav id="pagination">
+  
+    <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/" class="prev">&larr; Prev post 订阅阅读器测试（Subscribe reader test）</a>
   
 
   
