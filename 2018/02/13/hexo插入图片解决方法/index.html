@@ -124,12 +124,12 @@
   <article id="post">
     <h1>hexo插入图片解决方法</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2018-02-13</span>
+      <span id = "post-title-date">撰写于 2018-02-13</span>
       
-        <span id = "post-title-updated">Updated at 2018-02-13</span>
+        <span id = "post-title-updated">修改于 2018-02-13</span>
       
       
-      <span id = "post-title-categories">Category
+      <span id = "post-title-categories">分类
       
       
         
@@ -140,7 +140,7 @@
       
       
       <span id = "post-title-tags">
-      Tag
+      标签
       
       
         
@@ -157,16 +157,17 @@
 <li>修改主页配置文件<code>_config.yml</code>中的<code>post_asset_folder</code>这个选项的值为<code>true</code>。<br><img src="/2018/02/13/hexo插入图片解决方法/catalog.png" alt="hexo目录"></li>
 <li>在<code>hexo</code>目录下（上图）执行命令<code>npm install hexo-asset-image --save</code>，目的：下载安装一个可以上传本地图片的插件。该插件源自于某位大牛：<a href="https://github.com/CodeFalling/hexo-asset-image" target="_blank" rel="external">github</a></li>
 <li>安装后，运行<code>hexo new &quot;new-poster-name&quot;生成博文时，</code>/source/_posts<code>文件夹内除了</code>new-poster-name.md`文件还有一个同名的文件夹</li>
-<li>想要上传的图片复制到这个<code>new-poster-name</code>文件夹中，然后在<code>new-poster-name.md</code>中引入图片：<code>![你想要输入的替代文字](new-poster-name/图片名.jpg)</code>。将<code>new-poster-name</code>替换为你要创建的博文的名字。</li>
+<li><p>想要上传的图片复制到这个<code>new-poster-name</code>文件夹中，然后在<code>new-poster-name.md</code>中引入图片：<code>![你想要输入的替代文字](new-poster-name/图片名.jpg)</code>。将<code>new-poster-name</code>替换为你要创建的博文的名字。</p>
+<p>在添加图片成功的页面中打开开发者模式，找到相应的图片代码，发现他的来源地址包含github、日期和路径。（之前是本地的地址）<br>转载自：<a href="http://blog.csdn.net/sugar_rainbow/article/details/57415705" target="_blank" rel="external">Nuub的博文</a></p>
+</li>
 </ul>
-<p>在添加图片成功的页面中打开开发者模式，找到相应的图片代码，发现他的来源地址包含github、日期和路径。（之前是本地的地址）</p>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
+    <h2>目录</h2>
     
   </div>
 </div>
@@ -178,7 +179,7 @@
   
 
   
-    <a href="/2018/02/13/MyRead-application-loading/" class="next">Next post MyRead loading &rarr;</a>
+    <a href="/2018/02/13/MyRead-application-loading/" class="next">下一篇 MyRead loading &rarr;</a>
   
 </nav>
 
