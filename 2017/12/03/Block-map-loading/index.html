@@ -39,6 +39,15 @@
 <body>
 <div class="side-navigate hide-area">
   
+    <div class="item prev">
+      <a href="/2018/02/13/MyRead-loading/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        MyRead loading
+      </div>
+    </div>
+  
   
     <div class="item next">
       <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/">
@@ -122,12 +131,12 @@
   <article id="post">
     <h1>Block map loading...</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2017-12-03</span>
+      <span id = "post-title-date">撰写于 2017-12-03</span>
       
-        <span id = "post-title-updated">Updated at 2018-01-17</span>
+        <span id = "post-title-updated">修改于 2018-01-27</span>
       
       
-      <span id = "post-title-categories">Category
+      <span id = "post-title-categories">分类
       
       
         
@@ -138,7 +147,7 @@
       
       
       <span id = "post-title-tags">
-      Tag
+      标签
       
       
         
@@ -154,13 +163,20 @@
 </ul>
 <p>与Gulp/Grunt（优化前端的开发流程的工具）相比，WebPack是一种模块化解决方案。<br>Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。<br>(Grunt和Gulp的工作流程)[D:\软件\blog\source_posts\grunt和gulp的工作流程.png]<br>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。他的处理速度更快更直接，能打包更多不同类型的文件。<br>(Webpack工作方式)[D:\软件\blog\source_posts\webpack工作方式.png]<br>可以生成Source Maps（使调试更容易）：帮助找到写错的位置。<br>config文件中配置项：devtool<br>(devtool配置项)[D:\软件\blog\source_posts\devtool.png]</p>
 <p>正如上表所述，上述选项由上到下打包速度越来越快，不过同时也具有越来越多的负面作用，较快的打包速度的后果就是对打包后的文件的的执行有一定影响。<br>对小到中型的项目中，eval-source-map是一个很好的选项，再次强调你只应该开发阶段使用它.</p>
+<ul>
+<li><p>Side Navigation<br><a href="https://www.w3schools.com/howto/howto_js_sidenav.asp" target="_blank" rel="external">https://www.w3schools.com/howto/howto_js_sidenav.asp</a></p>
+</li>
+<li><p>取得元素计算过后的样式<br>window.getComputedStyle()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleBar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'options-box'</span>);</div><div class="line">        <span class="keyword">let</span> navStyle = <span class="built_in">window</span>.getComputedStyle(nav, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">let</span> mapLeft = <span class="built_in">document</span>.getElementById(<span class="string">'map'</span>);</div><div class="line">        <span class="keyword">let</span> currentMapLeft = <span class="built_in">window</span>.getComputedStyle(mapLeft, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">let</span> mapLeftCon = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line">        <span class="keyword">let</span> currentMapLeftCon = <span class="built_in">window</span>.getComputedStyle(mapLeftCon, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(<span class="built_in">window</span>.screen.width &lt; <span class="number">576</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (navStyle.display === <span class="string">'none'</span>)&#123;</div><div class="line">                nav.style.cssText = <span class="string">"display: block"</span></div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                nav.style.cssText = <span class="string">"display: none"</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (currentMapLeft.marginLeft === <span class="string">'302px'</span> &amp;&amp;</div><div class="line">                currentMapLeftCon.marginLeft === <span class="string">'302px'</span>)&#123;</div><div class="line">                mapLeft.style.cssText = <span class="string">"margin-left: 0px"</span>;</div><div class="line">                mapLeftCon.style.cssText = <span class="string">"margin-left: 0px"</span>;</div><div class="line"></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentMapLeft.marginLeft === <span class="string">'0'</span> &amp;&amp;</div><div class="line">                currentMapLeftCon.marginLeft === <span class="string">'0'</span>)&#123;</div><div class="line">                mapLeft.style.cssText = <span class="string">"margin-left: 302px"</span>;</div><div class="line">                mapLeftCon.style.cssText = <span class="string">"margin-left: 302px"</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            nav.style.cssText = <span class="string">"display: block"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
+    <h2>目录</h2>
     
   </div>
 </div>
@@ -168,11 +184,13 @@
   
 <nav id="pagination">
   
-
+    <a href="/2018/02/13/MyRead-loading/" class="prev">&larr; 上一篇 MyRead loading</a>
   
 
   
-    <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/" class="next">Next post 订阅阅读器测试（Subscribe reader test） &rarr;</a>
+
+  
+    <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/" class="next">下一篇 订阅阅读器测试（Subscribe reader test） &rarr;</a>
   
 </nav>
 
