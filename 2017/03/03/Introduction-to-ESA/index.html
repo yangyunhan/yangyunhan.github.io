@@ -193,17 +193,17 @@
 <li>T的语义表示向量（semantic interpretation vector）长度为N，T中单词与每个维基百科概念（concepts）的关联强度为$\sum _w<em>i</em>\in _T v_i \cdot k_j.$</li>
 <li>计算两个文本的相似度就可以用余弦相似度进行比较</li>
 </ul>
-<center><img src="D:/软件/blog/public/img/eas1.png" alt="Alt text"></center><br><center>图1 Semantic interpreter</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/D:/软件/blog/public/img/eas1.png" alt="Alt text"></center><br><center>图1 Semantic interpreter</center>
 
 
-<center><img src="./表1.png" alt="Alt text"></center><br><center>表1 对于单个词（“设备”和“投资者”）最相关的10个维基百科概念</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/./表1.png" alt="Alt text"></center><br><center>表1 对于单个词（“设备”和“投资者”）最相关的10个维基百科概念</center>
 
 <hr>
-<center><img src="./表2.png" alt="Alt text"></center><br><center>表2 对于段落来说，能够把较为模糊的概念表现出来</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/./表2.png" alt="Alt text"></center><br><center>表2 对于段落来说，能够把较为模糊的概念表现出来</center>
 
 <hr>
 <p>能够通过考虑在它们的上下文中的模糊词来执行词义解码</p>
-<center><img src="./表3.png" alt="Alt text"></center><br><center>表3 包含模糊词“bank”和“jaguar”的短语的向量中的第一个条目</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/./表3.png" alt="Alt text"></center><br><center>表3 包含模糊词“bank”和“jaguar”的短语的向量中的第一个条目</center>
 
 <hr>
 <p>###实证评价</p>
@@ -211,7 +211,7 @@
 <p>评估词相关性：<br>WordSimilarity-353 collection 2，包含353个词对，每对有13-16个人类判断，使用斯皮尔曼比较计算得分与人类判断的相关性。<br>评估文档相似性：<br>澳大利亚广播公司的新闻邮件服务的50个文档集合，每1225对有8-12人判断，使用皮尔逊线性相关系数比较计算得分与人类判断的相关性。</p>
 <hr>
 <p>####实验结果</p>
-<center><img src="./表4.png" alt="Alt text"></center><br><center>表4 应用ESA估计单个词的相关性结果</center><br>两种ESA技术比以前的研究有实质性改进，比最近引入的基于维基百科的其他方法有更好的结果。<br><br>——————–<br><center><img src="./表5.png" alt="Alt text"></center><br><center>表5 应用ESA计算整个文档的相关性结果</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/./表4.png" alt="Alt text"></center><br><center>表4 应用ESA估计单个词的相关性结果</center><br>两种ESA技术比以前的研究有实质性改进，比最近引入的基于维基百科的其他方法有更好的结果。<br><br>——————–<br><center><img src="/2017/03/03/Introduction-to-ESA/./表5.png" alt="Alt text"></center><br><center>表5 应用ESA计算整个文档的相关性结果</center>
 
 <hr>
 <p>###与相关研究的比较<br>量化文本的语义相关性是计算语言学很多基本任务的基础，包括词义消歧、信息检索、词和文本聚类和误差校正。<br>先前工作追求的三个主要方向：</p>
@@ -260,7 +260,7 @@
 <p>####研究目的<br>新的方法：显式语义路径挖掘（Explicit Semantic Path Mining, ESPM），利用维基百科丰富的链接和分类关系，识别维基百科分类树上的优化的<strong>语义路径</strong>，而不是语义概念向量。<br>例如，对于之前的输入，可以生成语义路径 <code>Politics -&gt; Politics by country -&gt; Politics of Iraq -&gt; Iraqi nationalism</code>;<br>另一个例子：<br>输入是<code>Construction of world&#39;s biggest optical telescope starts with a bang</code>,ESPM会在维基百科分类树上找到语义路径<code>Science -&gt; Scientific instruments -&gt; Astronomical</code>。<br>使用<strong>ODP数据</strong>评估显示ESPM是一种有效的算法，用于探索给定文本的深度分类知识，对<em>文本挖掘和检索任务</em>可能是重要的。</p>
 <hr>
 <p>####实现过程<br>维基百科有面向用户的分层类别定义。顶级类别由专业编辑定义，包括26个类，页面作者和其他贡献者定义底层类别。语义路径就是第一级到较低级别的多个链接的连接。</p>
-<center><img src="./2图1.png" alt="Alt text"></center><br><center>图1 ESPM过程（相关的维基百科页面为树上的分类路径“投票”）</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/./2图1.png" alt="Alt text"></center><br><center>图1 ESPM过程（相关的维基百科页面为树上的分类路径“投票”）</center>
 
 <hr>
 <p>1.给定输入文本，用ESA生成概念向量$V_T={ P(w_1|text), P(w_2|text),……P(w_n|text)}$，P是文本与维基百科概念（concepts）的相关度。<br>2.用$V_T$中n个概念（concepts）为维基百科分类树上的节点的重要性和概念“投票”。有两个前提：</p>
@@ -314,7 +314,7 @@
 <li>计算ESA概念向量E中每个维基百科概念与具有k个概念维度的文本维基百科向量I中的每个概念的相似性，与权重相加赋给ESA向量。RescoredESA向量$V_R = [r_1, r_2, ……, r_n]$, 而$r_i = \frac{e<em>i+\alpha(\frac{\sum^k</em>{j=1}LS(C<em>{Ei},C</em>{Ij})}{k})}{1+\alpha}$，$LS(C<em>{Ei}, C</em>{Ij})$是E向量与I向量之间的链接相似性，k是向量I中概念的数目。α用于平均链接相似性和原始ESA概念得分的平滑参数。（链接相似性：基于它们包含的传入传出链接计算两个概念之间的相似性，基于四种类型：交集大小、联合大小、归一化链接距离和链接向量相似性）。</li>
 </ul>
 <hr>
-<center><img src="./3图1.jpg" alt="Alt text"></center><br><center>图1 rescoringESA 概念得分的图示</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/./3图1.jpg" alt="Alt text"></center><br><center>图1 rescoringESA 概念得分的图示</center>
 
 <hr>
 <p>###实验与结果</p>
@@ -327,11 +327,11 @@
 </ul>
 <p>文本分类方法：最大熵（ME）、贝叶斯（NB）、支持向量机（SVM）和BalancedWinnow（BW）。</p>
 <p>####实验结果<br>没有参数调整（$\alpha = 1, \gamma = 1$）：</p>
-<center><img src="./3表1.png" alt="Alt text"><br></center><br><center>表1 所有年代引文推荐的元路径</center><br>最大熵、贝叶斯、支持向量机的文本分类效果：Concat(BOW+RescoredESA) &gt; BOW &gt; InText &gt; RescoredESA &gt; ESA；<br>对于BalancedWinnow来说：Concat(BOW + RescoredESA) &gt; BOW &gt; InText &gt; ESA &gt; RescoredESA。<br><br>—————–<br>有参数调整：<br>$\alpha$是平均链接相似性和原始ESA分数之间的平滑参数，$\alpha$越大，平均链接相似性对于最终分数来说越重要。<br><center><img src="./3图2.png" alt="Alt text"></center><br><center>图2 不同$\alpha$值RescoredESA值的F测量值</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/./3表1.png" alt="Alt text"><br></center><br><center>表1 所有年代引文推荐的元路径</center><br>最大熵、贝叶斯、支持向量机的文本分类效果：Concat(BOW+RescoredESA) &gt; BOW &gt; InText &gt; RescoredESA &gt; ESA；<br>对于BalancedWinnow来说：Concat(BOW + RescoredESA) &gt; BOW &gt; InText &gt; ESA &gt; RescoredESA。<br><br>—————–<br>有参数调整：<br>$\alpha$是平均链接相似性和原始ESA分数之间的平滑参数，$\alpha$越大，平均链接相似性对于最终分数来说越重要。<br><center><img src="/2017/03/03/Introduction-to-ESA/./3图2.png" alt="Alt text"></center><br><center>图2 不同$\alpha$值RescoredESA值的F测量值</center>
 
 <hr>
 <p>有参数调整：<br>$\gamma$调整词袋模型向量和RescoredESA向量在连接向量中的重要性：$BOW+\gamma \cdot RescoredESA$。</p>
-<center><img src="./1482377062340.png" alt="Alt text"><br></center><br><center>图3 在不同$\gamma$值下的Concat(BOW+RescoredESA)效果的F测量值</center>
+<center><img src="/2017/03/03/Introduction-to-ESA/./1482377062340.png" alt="Alt text"><br></center><br><center>图3 在不同$\gamma$值下的Concat(BOW+RescoredESA)效果的F测量值</center>
 
 <hr>
 <p>###结果与讨论<br>注释文本文档：联合使用BOW和RescoredESA时，效果可以胜过BOW和其他向量类型，但RescoredESA本身效果并不比BOW更好</p>
