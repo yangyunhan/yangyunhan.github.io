@@ -133,12 +133,12 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   <article id="post">
     <h1>MyRead loading</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-02-13</span>
+      <span id = "post-title-date">Created at 2018-02-13</span>
       
-        <span id = "post-title-updated">修改于 2018-02-13</span>
+        <span id = "post-title-updated">Updated at 2018-02-13</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -149,7 +149,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -173,15 +173,15 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 <p><strong> 工作原理 </strong> ： 数据位于父组件中，并向下传递给子组件。虽然数据位于父组件中，但是父组件和子组件都可以使用数据。然而，如果必须更新数据的话，则只有父组件应该进行更新。如果子组件需要更改数据，它会将更新的数据发送给父组件，由父组件完成更改。父组件执行更改后，会将更新的数据传递给子组件。</p>
 <p><strong> 题外话：函数式编程</strong></p>
 <p>React基于的是大量的函数式编程的技巧。重要的函数式编程有<code>.map()</code>和<code>.filter()</code>方法。</p>
-<pre><code>- `.map()`适用于数组，该方法返回新的数组，它没有修改原始数组。
-- `.filter()`适用于数组，该方法也返回新的数组，返回通过检验的项目。
+<pre><code>1 `.map()`适用于数组，该方法返回新的数组，它没有修改原始数组。
+2 `.filter()`适用于数组，该方法也返回新的数组，返回通过检验的项目。
 </code></pre>
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#react"><span class="toc-text">react</span></a></li></ol>
   </div>
 </div>
@@ -189,13 +189,13 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   
 <nav id="pagination">
   
-    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; 上一篇 hexo插入图片解决方法</a>
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; Prev post hexo插入图片解决方法</a>
   
 
   
 
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">下一篇 值得记住的那些markdown语法 &rarr;</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">Next post 值得记住的那些markdown语法 &rarr;</a>
   
 </nav>
 
