@@ -16,9 +16,13 @@
   
   
   
-    <meta name="description" content="所有的jQuery应写在$(document).ready(function(){})中！！！1、表单元素&lt;input&gt;标签，单标签，它的属性value，是input元素的值，会显示在元素上，如果是按钮、提交元素，则按钮上的值直接在该value属性中赋值，而name是input元素的名字，可以通过该属性找到该元素或标签。另，按钮若通过&lt;button&gt;标签设置，则在双标...">
+    <meta name="description" content="背景  ： 上传到hexo搭建的博客里的图片显示不出来，看着太难过了。想找配置文件修改一下，还真是看不懂。。。还好没费太多劲就找到了别人分享的解决办法。解决之后，想每一篇都用些图片呢。。。
+ 步骤  ：
+
+修改主页配置文件_config.yml中的post_asset_folder这个选项的值为true。
+在hexo目录下（上图）执行命令npm install hexo-asset-imag...">
   
-  <title>jQuery（二） [ 该叫什么好 ]</title>
+  <title>hexo插入图片解决方法 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -37,22 +41,13 @@
 <body>
 <div class="side-navigate hide-area">
   
-    <div class="item prev">
-      <a href="/2017/05/02/jQuery（三）/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        jQuery（三）
-      </div>
-    </div>
-  
   
     <div class="item next">
-      <a href="/2017/04/28/jQuery（一）/">
+      <a href="/2018/02/13/MyRead-application-loading/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        jQuery（一）
+        MyRead loading
       </div>
     </div>
   
@@ -127,11 +122,11 @@
       
       
   <article id="post">
-    <h1>jQuery（二）</h1>
+    <h1>hexo插入图片解决方法</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2017-04-30</span>
+      <span id = "post-title-date">Created at 2018-02-13</span>
       
-        <span id = "post-title-updated">Updated at 2017-05-02</span>
+        <span id = "post-title-updated">Updated at 2018-02-13</span>
       
       
       <span id = "post-title-categories">Category
@@ -150,22 +145,21 @@
       
         
         
-        <a href="/tags/notebook/">notebook</a>
+        <a href="/tags/tips-hexo/">tips hexo</a>
       
       </span>
       
     </p>
     
-    <p>所有的jQuery应写在<code>$(document).ready(function(){})</code>中！！！<br>1、表单元素<br><code>&lt;input&gt;</code>标签，单标签，它的属性<code>value</code>，是input元素的值，会显示在元素上，如果是按钮、提交元素，则按钮上的值直接在该value属性中赋值，而name是input元素的名字，可以通过该属性找到该元素或标签。另，按钮若通过<code>&lt;button&gt;</code>标签设置，则在双标签内设置按钮上显示的值：<code>&lt;button&gt;按钮&lt;/button&gt;</code>;”重置”按钮不必设置value，直接有个<code>input</code>标签的类型：<code>&lt;input type=&quot;reset&quot; /&gt;</code>。<br><code>&lt;form&gt;</code>标签的action属性，是向某个地方提交表单数据。<br>2、传统的getElementById()和getElementsByTagName()函数在选取元素的时候，元素本身必须是已经存在的，jQuery不一定，因为<code>$(&#39;#tt&#39;)</code>获取的永远是对象，即使网页上没有此元素。因此在用jQuery检查某元素在网页上是否存在时，不能使用以下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>($(<span class="string">"#tt"</span>))&#123;</div><div class="line"><span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>而应该根据获取到元素的长度来判断：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>($(<span class="string">"#tt"</span>).length&gt;<span class="number">0</span>)&#123;</div><div class="line"><span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>3、选择器<br><code>$(div:parent).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>的意思是改变含有子元素（包括文本元素）的div元素的背景色。<br><code>$(div:hidden).show(3000)</code>显示隐藏的div元素。<code>:hidden</code>选取所有不可见的元素，包括<code>&lt;input type=&quot;hidden&quot;/&gt;</code>,<code>&lt;div style=&quot;display:none;&quot;&gt;</code>和<code>&lt;div style=&quot;visibility:hidden;&quot;&gt;</code>等元素。如果只想选input元素，则可以使用<code>$(&quot;input:hidden&quot;)</code>。<br><code>$(&#39;div[title|=&quot;en&quot;]&#39;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>改变属性title等于en或以en为前缀（该字符串后跟一个连字符‘-’）的元素的背景色。<br><code>$(&#39;div[title~=&quot;uk&quot;]&#39;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>改变属性title用空格分隔的值中包含字符uk的元素的背景色。<br><code>$(&quot;div.one :nth-child(2)&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>:改变每个class为one的<div>父元素下的第2个子元素的背景色；<code>$(&quot;div.one:nth-child(2)&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>:改变div的第二个、类名为one的子元素的背景色。<br><code>$(&quot;div :nth-child(2)&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>改变div下的第二个子元素的背景色；<code>$(&quot;div:nth-child(2)&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>改变第二个div和div下的第二个子元素。<br><code>$(&quot;#form1 :input&quot;).length</code>选取所有input、textarea、select和button元素；<code>$(&quot;#form1 input&quot;).length</code>选取所有input元素<br>4、选择器中含有“.”、“#”、“(”、“]”等特殊字符，用转义字符“\”进行转义；旧版本的jQuery代码中属性值前面有“@”符号。<br>5、toggle()方法：被选元素的轮流click事件，切换被选元素的hide()与show()方法。<br>*在select-list实例中尝试失败<br>6、选择器扩展：</div></p>
+    <p><strong> 背景 </strong> ： 上传到hexo搭建的博客里的图片显示不出来，看着太难过了。想找配置文件修改一下，还真是看不懂。。。还好没费太多劲就找到了别人分享的解决办法。解决之后，想每一篇都用些图片呢。。。</p>
+<p><strong> 步骤 </strong> ：</p>
 <ul>
-<li><a href="http://plugins.jquery.com/project/moreSelectors" target="_blank" rel="external">MoreSelectors for</a> jQuery提供的插件:可以匹配颜色（.color）、匹配表格中的列（:colIndex）、匹配获取焦点的元素等等（:focus）。</li>
-<li><a href="http://plugins.jquery.com/project/xpath" target="_blank" rel="external">Basic XPath</a>：jQuery提供的插件，降低了选择器匹配的效率。</li>
-<li><a href="http://simonwillison.net/2003/Mar/25/getElementsBySelector/" target="_blank" rel="external">document.getElementsBySelector()</a>作用是通过选择器来获取文档元素。</li>
-<li><a href="http://dean.edwards.name/my/cssQuery/" target="_blank" rel="external">cssQuery()</a>查找元素的脚本，支持一些jQuery尚不支持的选择器：<code>E:link</code>、<code>E:nth-last-child</code>、<code>E:root</code>、<code>E:lang(fr)</code>、<code>E:arget</code>、<code>E[foo|=&quot;bar&quot;]</code>等。</li>
-<li><a href="http://www.w3.org/TR/selectors-appi/" target="_blank" rel="external">querySelectorAll()</a><br>实现通过CSS选择器来获取元素的。</li>
+<li>修改主页配置文件<code>_config.yml</code>中的<code>post_asset_folder</code>这个选项的值为<code>true</code>。<br><img src="/2018/02/13/hexo插入图片解决方法/catalog.png" alt="hexo目录"></li>
+<li>在<code>hexo</code>目录下（上图）执行命令<code>npm install hexo-asset-image --save</code>，目的：下载安装一个可以上传本地图片的插件。该插件源自于某位大牛：<a href="https://github.com/CodeFalling/hexo-asset-image" target="_blank" rel="external">github</a></li>
+<li>安装后，运行<code>hexo new &quot;new-poster-name&quot;生成博文时，</code>/source/_posts<code>文件夹内除了</code>new-poster-name.md`文件还有一个同名的文件夹</li>
+<li>想要上传的图片复制到这个<code>new-poster-name</code>文件夹中，然后在<code>new-poster-name.md</code>中引入图片：<code>![你想要输入的替代文字](new-poster-name/图片名.jpg)</code>。将<code>new-poster-name</code>替换为你要创建的博文的名字。</li>
 </ul>
+<p>在添加图片成功的页面中打开开发者模式，找到相应的图片代码，发现他的来源地址包含github、日期和路径。（之前是本地的地址）</p>
 
   </article>
   <div class="random-toc-area">
@@ -180,13 +174,11 @@
   
 <nav id="pagination">
   
-    <a href="/2017/05/02/jQuery（三）/" class="prev">&larr; Prev post jQuery（三）</a>
-  
 
   
 
   
-    <a href="/2017/04/28/jQuery（一）/" class="next">Next post jQuery（一） &rarr;</a>
+    <a href="/2018/02/13/MyRead-application-loading/" class="next">Next post MyRead loading &rarr;</a>
   
 </nav>
 
