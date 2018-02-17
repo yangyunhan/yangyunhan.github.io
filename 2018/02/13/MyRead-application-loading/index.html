@@ -133,12 +133,12 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   <article id="post">
     <h1>MyRead loading</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2018-02-13</span>
+      <span id = "post-title-date">撰写于 2018-02-13</span>
       
-        <span id = "post-title-updated">Updated at 2018-02-14</span>
+        <span id = "post-title-updated">修改于 2018-02-17</span>
       
       
-      <span id = "post-title-categories">Category
+      <span id = "post-title-categories">分类
       
       
         
@@ -149,7 +149,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
       
       
       <span id = "post-title-tags">
-      Tag
+      标签
       
       
         
@@ -172,15 +172,33 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 </blockquote>
 <p><strong> 工作原理 </strong> ： 数据位于父组件中，并向下传递给子组件。虽然数据位于父组件中，但是父组件和子组件都可以使用数据。然而，如果必须更新数据的话，则只有父组件应该进行更新。如果子组件需要更改数据，它会将更新的数据发送给父组件，由父组件完成更改。父组件执行更改后，会将更新的数据传递给子组件。</p>
 <p><strong> 题外话：函数式编程</strong></p>
+<blockquote>
+<p>函数式编程的概念：以函数作为主要载体的编程方式，用函数去拆解、抽象一般的表达式。</p>
+</blockquote>
+<p>&emsp;&emsp;典型的函数式编程有闭包（保留局部变量不被释放）、高阶函数（函数既可以作为参数又可以作为另一个函数的返回值使用）、柯里化（给定函数的部分参数，生成一个接受其他参数的新函数）、组合（合并多个函数，创造一个新函数）。</p>
+<p>相关博文：<a href="http://developer.51cto.com/art/201703/535299.htm" target="_blank" rel="external">51CTO</a><br><a href="https://zhuanlan.zhihu.com/p/21714695" target="_blank" rel="external">Starkwang</a><br><small>第二篇博文中涉及知识点<code>slice</code>，<code>splice</code>和<code>split</code>的区分。</small></p>
 <p>React基于的是大量的函数式编程的技巧。重要的函数式编程有<code>.map()</code>和<code>.filter()</code>方法。</p>
 <p>1 <code>.map()</code>适用于数组，该方法返回新的数组，它没有修改原始数组。<br>2 <code>.filter()</code>适用于数组，该方法也返回新的数组，返回通过检验的项目。</p>
+<p><strong> 与其他框架的根本区别</strong> ： React没有使用字符串模板，而是使用JavaScript对象来构建用户界面。React元素是轻量级JavaScript对象，而非实际的DOM节点。使用元素描述页面应该是什么样子，然后交给React来实际操作DOM，甚至可以创建自定义元素，也就是“组件”，利用它们来整齐地封装元素和行为。这些组件（可以重复利用的代码段，最终负责返回要渲染到网页上的HTML）是React的基本单位。</p>
+<p><code>React</code>是JavaScript的扩展（即JavaScript库），没有内置在浏览器中。<code>ReactDOM</code>只是使用<code>react</code>库的一种方式。在<code>react</code>中，决定要渲染什么的过程与实际渲染完全脱钩。这种脱钩使我们可以在本地设备的服务器上甚至是在VR环境中渲染事物。</p>
+<ol>
+<li><small>Class是HTML属性的名称，一旦浏览器解析完毕，并将其转换为真正的DOM，节点DOM属性名称就是className。而创建React元素时，是在描述DOM节点，而非HTML字符串</small><br>2.<small>VirtualDOM：创建的不是真正的DOM元素，而只是描述真正DOM节点的对象。在调用<code>React.createElement</code>时，没有在DOM中创建任何东西。只有执行render后，浏览器才会创建真正的DOM元素。</small><br>3.JSX是JavaScript的语法扩展，它的源代码本质上调用了<code>createElement</code>函数。JSX只能返回一个元素。</li>
+</ol>
+<p><strong>webpack</strong> ： web项目构建工具。用此来打包程序，创建react应用。</p>
+<p><strong> React应用构建步骤 </strong>：<br>1.<code>npm install -g create-react-app</code>；<br>2.<code>create-react-app contacts</code>(contacts是react应用的名称)；<br><img src="/2018/02/13/MyRead-application-loading/webpack.png" alt="react安装包"><br><small>&emsp;&emsp;react应用创建过程中安装了三个包：<code>react</code>、<code>reactDOM</code>、<code>react-scripts</code>，其中<code>react-scripts</code>安装了Babel使我们可以使用最新的JavaScript语法以及JSX。安装webpack进行生成和构建。安装webpack-dev-server，使其具有自动重新加载行为</small></p>
+<p><strong>无状态函数式组件</strong> ： 当所有组件都拥有一个<code>render</code>方法，实际上可以使用常规的旧函数来创建组件，但是不使用this访问组件的props，而是将props作为函数的第一个参数。也省去了render函数，直接使用return。<br>&emsp;&emsp;好处是：1.接收props作为参数；2.返回UI的描述；3.不存在this关键字，不担心这个函数会被什么环境所调用。</p>
+<p><strong>状态管理</strong> ： 添加状态就是向组件中添加状态属性，其值是一个对象，表示组件的状态。每个键和值表示该组件的一部分特定状态。它能让大脑分开两个重要又复杂的概念：一是组件看起来是什么样，第二，应用当前的状态是什么。由于这种区分UI或应用的外观，只是一个关于应用状态的函数。借助React，只需考虑的是应用的状态是什么，以及UI如何根据状态做出改变。</p>
+<p>&emsp;&emsp;state放在constructor()外面意味着它是类字段，是对语言做出新更改的提议，暂时不受JavaScript支持，但是在Babel的强大转译功能下，可以使用。</p>
+<p>使用React构建UI组件的关键优势之一：如果要重新渲染页面，我们只需考虑更新状态。每次有更新时，我们不需要知道到底是页面的哪个部分变化了。不需要判断如何有效地重新渲染页面。React会对比之前的输出和新的输出，判断哪些改变了，并为我们做出决策。这种判断之前的输出和新的输出之间哪些变化了的流程称为<strong>一致性比较</strong>。</p>
+<p>不能直接更新状态，如果直接改变状态的话，React无法知道你的组件状态实际发生了变化。所以用setState方法，可传递一个函数或对象。</p>
+<p><strong>PropTypes</strong> ： 是一个软件包，使我们能够在一开始就定义想要看到的数据类型，如果不是我们预期的类型，PropTypes将提醒我们。</p>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
+    <h2>目录</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#react"><span class="toc-text">react</span></a></li></ol>
   </div>
 </div>
@@ -188,13 +206,13 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   
 <nav id="pagination">
   
-    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; Prev post hexo插入图片解决方法</a>
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; 上一篇 hexo插入图片解决方法</a>
   
 
   
 
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">Next post 值得记住的那些markdown语法 &rarr;</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">下一篇 值得记住的那些markdown语法 &rarr;</a>
   
 </nav>
 
