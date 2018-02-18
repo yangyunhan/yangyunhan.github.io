@@ -135,7 +135,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
     <p class="page-title-sub">
       <span id = "post-title-date">撰写于 2018-02-13</span>
       
-        <span id = "post-title-updated">修改于 2018-02-17</span>
+        <span id = "post-title-updated">修改于 2018-02-18</span>
       
       
       <span id = "post-title-categories">分类
@@ -192,6 +192,37 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 <p>使用React构建UI组件的关键优势之一：如果要重新渲染页面，我们只需考虑更新状态。每次有更新时，我们不需要知道到底是页面的哪个部分变化了。不需要判断如何有效地重新渲染页面。React会对比之前的输出和新的输出，判断哪些改变了，并为我们做出决策。这种判断之前的输出和新的输出之间哪些变化了的流程称为<strong>一致性比较</strong>。</p>
 <p>不能直接更新状态，如果直接改变状态的话，React无法知道你的组件状态实际发生了变化。所以用setState方法，可传递一个函数或对象。</p>
 <p><strong>PropTypes</strong> ： 是一个软件包，使我们能够在一开始就定义想要看到的数据类型，如果不是我们预期的类型，PropTypes将提醒我们。</p>
+<p><strong>受控组件</strong> ： React的表单通过React的受控组件来管理，受控组件是渲染表单的组件。表单状态的来源位于组件状态内，而非DOM内。<br>&emsp;&emsp;优势：1.支持即时输入验证；2.它们允许你有条件地禁用或启用表单按钮；3.它们限制了输入的格式；</p>
+<p><strong>对象解构</strong> ： render方法经常访问状态对象和属性对象。因为属性和状态只是JavaScript对象，可以用ES6功能将它们拆分为单个变量，而不是每次都将他们当作<code>this.state.query</code>和<code>this.props.contacts</code>，这种拆分流程叫做对象解构。</p>
+<p><strong>获取或管理数据库中的数据</strong> ： 不能在render方法中发送AJAX请求，因为render方法不能有副作用。它仅用于渲染，不应在render方法中获取数据。它不能发出AJAX请求或执行具有异步性质的任何操作，只能接收props并返回对此UI的描述。所以有了生命周期事件（lifecycle events）的概念，是每个组件具有的特殊方法。允许我们在组件生命的某些时间运行自定义行为。</p>
+<ul>
+<li><code>componentWillMount</code>：在DOM插入之前立即调用；</li>
+<li><code>componentDidMount</code>：在DOM插入之后立即调用；</li>
+<li><code>componentWillUnmount</code>: 在组件从DOM移除之前立即调用；</li>
+<li><code>componentWillReceiveProps</code>： 在组件从即将接收全新的props时调用。</li>
+</ul>
+<p><img src="/2018/02/13/MyRead-application-loading/生命周期函数.png" alt="生命周期事件"></p>
+<p><img src="/2018/02/13/MyRead-application-loading/react生命周期.png" alt="位于组件生命周期不同阶段的React生命周期事件列表"></p>
+<p><strong>单页面应用</strong>：浏览器不需要向服务器请求新页面，而由JavaScript处理页面之间的转换。所以服务器只发送一个初始页面。React Router是使用React构建单页面应用的一个工具，是React库。</p>
+<p>&emsp;&emsp;单页面应用可以有多种工作方式。单页面应用的一种加载方式是一次性下载整个网站的内容。这样，当你浏览网站时，一切内容已经出现在浏览器中，不需要刷新页面。单页面应用的另一种工作方式是下载渲染用户请求的页面所需的所有内容。当用户浏览到新页面时，仅对请求的内容发出异步 JavaScript 请求。</p>
+<p>&emsp;&emsp;优质单页面应用的另一个关键因素是由 URL 控制页面内容。单页面应用互动性非常高，用户希望能够仅使用 URL 就能回到特定的状态。为何这一点很重要？Bookmarkability（书签功能，很确定的是这还不是一个单词）！当你将网站添加到书签中，该书签仅仅是 URL，并没有记录该页面的状态。</p>
+<p>安装命令<code>npm install --save react-router-dom</code></p>
+<p>需要组件：</p>
+<ul>
+<li><strong>BrowserRouter</strong>：监听URL的变化，当URL变更时，它使浏览器显示相应的页面。将<code>&lt;BrowserRouter&gt;&lt;/BrowserRouter&gt;</code>包裹上整个应用。</li>
+</ul>
+<p>React Router的源码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> propTypes = &#123;</div><div class="line">    <span class="attr">basename</span>: PropTypes.string,</div><div class="line">    <span class="attr">forceRefresh</span>: PropTypes.bool,</div><div class="line">    <span class="attr">getUserConfirmation</span>: PropTypes.func,</div><div class="line">    <span class="attr">keyLength</span>: PropTypes.number,</div><div class="line">    <span class="attr">children</span>: PropTypes.node</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  history = createHistory(<span class="keyword">this</span>.props)</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> &lt;Router history=&#123;this.history&#125; children=&#123;this.props.children&#125;  /&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;当你使用 BrowserRouter 时，其实真正的是在渲染 Router 组件并将向其传递 history 属性。history 来自 <a href="https://github.com/ReactTraining/history" target="_blank" rel="external">history 库</a>（也是由 React Training 构建的）。该库的整个目标是抽象化不同环境中的区别，并提供最少的 API 来使你管理历史记录堆、导航、确认导航，并在会话之间保持状态。</p>
+<p>&emsp;&emsp;简而言之，当你使用 BrowserRouter 时，你是在创建 history 对象，该对象将监听 URL 中的变化，并使你的应用知道这些变化。</p>
+<ul>
+<li><strong>Link</strong>: 使用户能够在应用中进行导航。当用户点击<a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js" target="_blank" rel="external">Link</a>组件时，它会通知BrowserRouter，使它更新URL，它还具备可访问性。使用键盘在应用中导航，仍可以正常工作。右键打开新窗口的功能也仍然有用。需要一个to属性，使用真实的URL。to属性可以是简单的字符串，如</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=<span class="string">"/about"</span>&gt;About&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;链接有时候需要稍微复杂下，而不仅仅只是个字符串。例如，可以传递查询参数或链接到页面的特定部分。如果要将状态传递给新的路由，该怎么办？要考虑这些情形，你可以向 Link 的 to 属性传递对象，而不是字符串，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=&#123;&#123;</div><div class="line">  <span class="attr">pathname</span>: <span class="string">'/courses'</span>,</div><div class="line">  <span class="attr">search</span>: <span class="string">'?sort=name'</span>,</div><div class="line">  <span class="attr">hash</span>: <span class="string">'#the-hash'</span>,</div><div class="line">  <span class="attr">state</span>: &#123; <span class="attr">fromDashboard</span>: <span class="literal">true</span> &#125;</div><div class="line">&#125;&#125;&gt;</div><div class="line">  Courses</div><div class="line">&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Route</strong>： 接受一个路径，匹配（也可能不匹配）当前的URL，如果匹配则Route渲染一些UI，不匹配则不渲染。属性path、render（给组件添加属性）或component。完全路径匹配在path前加exact，否则是不完全匹配。</li>
+</ul>
 
   </article>
   <div class="random-toc-area">
