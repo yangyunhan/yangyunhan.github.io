@@ -134,12 +134,12 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   <article id="post">
     <h1>MyRead loading</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2018-02-13</span>
+      <span id = "post-title-date">撰写于 2018-02-13</span>
       
-        <span id = "post-title-updated">Updated at 2018-02-20</span>
+        <span id = "post-title-updated">修改于 2018-02-21</span>
       
       
-      <span id = "post-title-categories">Category
+      <span id = "post-title-categories">分类
       
       
         
@@ -150,7 +150,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
       
       
       <span id = "post-title-tags">
-      Tag
+      标签
       
       
         
@@ -166,28 +166,25 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 <li><em>命令式代码和声明式代码</em>：通过不断控制旋钮来调节温度和告诉汽车我希望达到的温度，由它来为我调节。即我们明确的告诉Javascript做什么，如何做；不编写所有步骤获得结果，而是声明要完成的操作，JavaScript帮我们执行他。</li>
 </ul>
 </li>
-<li><strong>React本质</strong>:只需声明状态和标记，React会执行命令式工作，使DOM与应用同步，React是声明式的。</li>
-</ol>
-<p><small>&emsp;&emsp;之前有用于管理应用状态变化的技术，是使用数据绑定。当应用某处的数据发生变化时，这些变化也会自动反应在应用中的其他方面。但是，应用中拥有该数据的任何部分，都可以更改该数据。随着应用规模增长，这种技术让人很难确定某个位置的数据变更是如何自动而隐式地影响着应用的其他部分。相比之下，React使用更明确的数据管理方式：在组件间向下传递数据，这使跟踪状态变更以及理解它对应用中其他部分造成的影响变得十分容易。称为单向数据流：数据单向从父组件流向子组件。</small></p>
-<p><img src="/2018/02/13/MyRead-application-loading/react.png" alt="框架图"></p>
+<li><p><strong>React本质</strong>:只需声明状态和标记，React会执行命令式工作，使DOM与应用同步，React是声明式的。</p>
+<p> <small>&emsp;&emsp;之前有用于管理应用状态变化的技术，是使用数据绑定。当应用某处的数据发生变化时，这些变化也会自动反应在应用中的其他方面。但是，应用中拥有该数据的任何部分，都可以更改该数据。随着应用规模增长，这种技术让人很难确定某个位置的数据变更是如何自动而隐式地影响着应用的其他部分。相比之下，React使用更明确的数据管理方式：在组件间向下传递数据，这使跟踪状态变更以及理解它对应用中其他部分造成的影响变得十分容易。称为单向数据流：数据单向从父组件流向子组件。</small></p>
+<p> <img src="/2018/02/13/MyRead-application-loading/react.png" alt="框架图"></p>
 <blockquote>
 <p>&emsp;&emsp;其他框架中的数据绑定：Angular 和 Ember 等前端框架使用双向数据绑定。在双向数据绑定中，数据在整个应用中保持同步，无论是在何处更新的。如果模型更改了数据，数据会在视图中更新。如果用户在视图中更改了数据，数据会在模型中更新。双向数据绑定听起来非常强大，但是会让应用很难判断数据实际上是否更新了，以及是在何处更新的。</p>
 </blockquote>
-<ol>
+</li>
 <li><p><strong> 工作原理 </strong> ： 数据位于父组件中，并向下传递给子组件。虽然数据位于父组件中，但是父组件和子组件都可以使用数据。然而，如果必须更新数据的话，则只有父组件应该进行更新。如果子组件需要更改数据，它会将更新的数据发送给父组件，由父组件完成更改。父组件执行更改后，会将更新的数据传递给子组件。</p>
 </li>
 <li><p><strong> 题外话：函数式编程</strong></p>
-</li>
-</ol>
 <blockquote>
 <p>函数式编程的概念：以函数作为主要载体的编程方式，用函数去拆解、抽象一般的表达式。</p>
 </blockquote>
-<p>&emsp;&emsp;典型的函数式编程有闭包（保留局部变量不被释放）、高阶函数（函数既可以作为参数又可以作为另一个函数的返回值使用）、柯里化（给定函数的部分参数，生成一个接受其他参数的新函数）、组合（合并多个函数，创造一个新函数）。</p>
-<p>&emsp;&emsp;相关博文：<a href="http://developer.51cto.com/art/201703/535299.htm" target="_blank" rel="external">51CTO</a>;<a href="https://zhuanlan.zhihu.com/p/21714695" target="_blank" rel="external">Starkwang</a>(<small>第二篇博文中涉及知识点<code>slice</code>，<code>splice</code>和<code>split</code>的区分。</small>)</p>
-<p>&emsp;&emsp;React基于的是大量的函数式编程的技巧。重要的函数式编程有<code>.map()</code>和<code>.filter()</code>方法。</p>
+<p> &emsp;&emsp;典型的函数式编程有闭包（保留局部变量不被释放）、高阶函数（函数既可以作为参数又可以作为另一个函数的返回值使用）、柯里化（给定函数的部分参数，生成一个接受其他参数的新函数）、组合（合并多个函数，创造一个新函数）。</p>
+<p> &emsp;&emsp;相关博文：<a href="http://developer.51cto.com/art/201703/535299.htm" target="_blank" rel="external">51CTO</a>;<a href="https://zhuanlan.zhihu.com/p/21714695" target="_blank" rel="external">Starkwang</a>(<small>第二篇博文中涉及知识点<code>slice</code>，<code>splice</code>和<code>split</code>的区分。</small>)</p>
+<p> &emsp;&emsp;React基于的是大量的函数式编程的技巧。重要的函数式编程有<code>.map()</code>和<code>.filter()</code>方法。</p>
 <pre><code>1. `.map()`适用于数组，该方法返回新的数组，它没有修改原始数组。
 2. `.filter()`适用于数组，该方法也返回新的数组，返回通过检验的项目。
-</code></pre><ol>
+</code></pre></li>
 <li><p><strong>与其他框架的根本区别</strong> ： React没有使用字符串模板，而是使用JavaScript对象来构建用户界面。React元素是轻量级JavaScript对象，而非实际的DOM节点。使用元素描述页面应该是什么样子，然后交给React来实际操作DOM，甚至可以创建自定义元素，也就是“组件”，利用它们来整齐地封装元素和行为。这些组件（可以重复利用的代码段，最终负责返回要渲染到网页上的HTML）是React的基本单位。</p>
 </li>
 <li><p><strong>ReactDOM</strong> : React是JavaScript的扩展（即JavaScript库），没有内置在浏览器中。<code>ReactDOM</code>只是使用<code>react</code>库的一种方式。在<code>react</code>中，决定要渲染什么的过程与实际渲染完全脱钩。这种脱钩使我们可以在本地设备的服务器上甚至是在VR环境中渲染事物。</p>
@@ -197,19 +194,16 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 </li>
 <li><p><strong>webpack</strong> ： web项目构建工具。用此来打包程序，创建react应用。</p>
 </li>
-<li><p><strong> React应用构建步骤 </strong>：<br> 1.<code>npm install -g create-react-app</code>；<br> 2.<code>create-react-app contacts</code>(contacts是react应用的名称)；<br><img src="/2018/02/13/MyRead-application-loading/webpack.png" alt="react安装包"><br><small>&emsp;&emsp;react应用创建过程中安装了三个包：<code>react</code>、<code>reactDOM</code>、<code>react-scripts</code>，其中<code>react-scripts</code>安装了Babel使我们可以使用最新的JavaScript语法以及JSX。安装webpack进行生成和构建。安装webpack-dev-server，使其具有自动重新加载行为</small></p>
+<li><p><strong> React应用构建步骤 </strong>：<br> 1.<code>npm install -g create-react-app</code>；<br> 2.<code>create-react-app contacts</code>(contacts是react应用的名称)；<br> <img src="/2018/02/13/MyRead-application-loading/webpack.png" alt="react安装包"><br> <small>&emsp;&emsp;react应用创建过程中安装了三个包：<code>react</code>、<code>reactDOM</code>、<code>react-scripts</code>，其中<code>react-scripts</code>安装了Babel使我们可以使用最新的JavaScript语法以及JSX。安装webpack进行生成和构建。安装webpack-dev-server，使其具有自动重新加载行为</small></p>
 </li>
 <li><p><strong>无状态函数式组件</strong> ： 当所有组件都拥有一个<code>render</code>方法，实际上可以使用常规的旧函数来创建组件，但是不使用this访问组件的props，而是将props作为函数的第一个参数。也省去了render函数，直接使用return。</p>
+<p> &emsp;&emsp;好处是：1.接收props作为参数；2.返回UI的描述；3.不存在this关键字，不担心这个函数会被什么环境所调用。</p>
 </li>
-</ol>
-<p>&emsp;&emsp;好处是：1.接收props作为参数；2.返回UI的描述；3.不存在this关键字，不担心这个函数会被什么环境所调用。</p>
-<ol>
-<li><strong>状态管理</strong> ： 添加状态就是向组件中添加状态属性，其值是一个对象，表示组件的状态。每个键和值表示该组件的一部分特定状态。它能让大脑分开两个重要又复杂的概念：一是组件看起来是什么样，第二，应用当前的状态是什么。由于这种区分UI或应用的外观，只是一个关于应用状态的函数。借助React，只需考虑的是应用的状态是什么，以及UI如何根据状态做出改变。</li>
-</ol>
+<li><p><strong>状态管理</strong> ： 添加状态就是向组件中添加状态属性，其值是一个对象，表示组件的状态。每个键和值表示该组件的一部分特定状态。它能让大脑分开两个重要又复杂的概念：一是组件看起来是什么样，第二，应用当前的状态是什么。由于这种区分UI或应用的外观，只是一个关于应用状态的函数。借助React，只需考虑的是应用的状态是什么，以及UI如何根据状态做出改变。</p>
 <p>&emsp;&emsp;state放在constructor()外面意味着它是类字段，是对语言做出新更改的提议，暂时不受JavaScript支持，但是在Babel的强大转译功能下，可以使用。</p>
 <p>&emsp;&emsp;使用React构建UI组件的关键优势之一：如果要重新渲染页面，我们只需考虑更新状态。每次有更新时，我们不需要知道到底是页面的哪个部分变化了。不需要判断如何有效地重新渲染页面。React会对比之前的输出和新的输出，判断哪些改变了，并为我们做出决策。这种判断之前的输出和新的输出之间哪些变化了的流程称为<strong>一致性比较</strong>。</p>
 <p>&emsp;&emsp;不能直接更新状态，如果直接改变状态的话，React无法知道你的组件状态实际发生了变化。所以用setState方法，可传递一个函数或对象。</p>
-<ol>
+</li>
 <li><p><strong>PropTypes</strong> ： 是一个软件包，使我们能够在一开始就定义想要看到的数据类型，如果不是我们预期的类型，PropTypes将提醒我们。</p>
 </li>
 <li><p><strong>受控组件</strong> ： React的表单通过React的受控组件来管理，受控组件是渲染表单的组件。表单状态的来源位于组件状态内，而非DOM内。<br>&emsp;&emsp;优势：1.支持即时输入验证；2.它们允许你有条件地禁用或启用表单按钮；3.它们限制了输入的格式；</p>
@@ -217,8 +211,6 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 <li><p><strong>对象解构</strong> ： render方法经常访问状态对象和属性对象。因为属性和状态只是JavaScript对象，可以用ES6功能将它们拆分为单个变量，而不是每次都将他们当作<code>this.state.query</code>和<code>this.props.contacts</code>，这种拆分流程叫做对象解构。</p>
 </li>
 <li><p><strong>获取或管理数据库中的数据</strong> ： 不能在render方法中发送AJAX请求，因为render方法不能有副作用。它仅用于渲染，不应在render方法中获取数据。它不能发出AJAX请求或执行具有异步性质的任何操作，只能接收props并返回对此UI的描述。所以有了生命周期事件（lifecycle events）的概念，是每个组件具有的特殊方法。允许我们在组件生命的某些时间运行自定义行为。</p>
-</li>
-</ol>
 <ul>
 <li><code>componentWillMount</code>：在DOM插入之前立即调用；</li>
 <li><code>componentDidMount</code>：在DOM插入之后立即调用；</li>
@@ -227,9 +219,8 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 </ul>
 <p><img src="/2018/02/13/MyRead-application-loading/生命周期函数.png" alt="生命周期事件"></p>
 <p><img src="/2018/02/13/MyRead-application-loading/react生命周期.png" alt="位于组件生命周期不同阶段的React生命周期事件列表"></p>
-<ol>
-<li><strong>单页面应用</strong>：浏览器不需要向服务器请求新页面，而由JavaScript处理页面之间的转换。所以服务器只发送一个初始页面。React Router是使用React构建单页面应用的一个工具，是React库。</li>
-</ol>
+</li>
+<li><p><strong>单页面应用</strong>：浏览器不需要向服务器请求新页面，而由JavaScript处理页面之间的转换。所以服务器只发送一个初始页面。React Router是使用React构建单页面应用的一个工具，是React库。</p>
 <p>&emsp;&emsp;单页面应用可以有多种工作方式。单页面应用的一种加载方式是一次性下载整个网站的内容。这样，当你浏览网站时，一切内容已经出现在浏览器中，不需要刷新页面。单页面应用的另一种工作方式是下载渲染用户请求的页面所需的所有内容。当用户浏览到新页面时，仅对请求的内容发出异步 JavaScript 请求。</p>
 <p>&emsp;&emsp;优质单页面应用的另一个关键因素是由 URL 控制页面内容。单页面应用互动性非常高，用户希望能够仅使用 URL 就能回到特定的状态。为何这一点很重要？Bookmarkability（书签功能，很确定的是这还不是一个单词）！当你将网站添加到书签中，该书签仅仅是 URL，并没有记录该页面的状态。</p>
 <p>&emsp;&emsp;安装命令<code>npm install --save react-router-dom</code></p>
@@ -237,7 +228,8 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 <ul>
 <li><strong>BrowserRouter</strong>：监听URL的变化，当URL变更时，它使浏览器显示相应的页面。将<code>&lt;BrowserRouter&gt;&lt;/BrowserRouter&gt;</code>包裹上整个应用。</li>
 </ul>
-<p>&emsp;&emsp;React Router的源码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> propTypes = &#123;</div><div class="line">    <span class="attr">basename</span>: PropTypes.string,</div><div class="line">    <span class="attr">forceRefresh</span>: PropTypes.bool,</div><div class="line">    <span class="attr">getUserConfirmation</span>: PropTypes.func,</div><div class="line">    <span class="attr">keyLength</span>: PropTypes.number,</div><div class="line">    <span class="attr">children</span>: PropTypes.node</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  history = createHistory(<span class="keyword">this</span>.props)</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> &lt;Router history=&#123;this.history&#125; children=&#123;this.props.children&#125;  /&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;React Router的源码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> propTypes = &#123;</div><div class="line">	<span class="attr">basename</span>: PropTypes.string,</div><div class="line">	<span class="attr">forceRefresh</span>: PropTypes.bool,</div><div class="line">	<span class="attr">getUserConfirmation</span>: PropTypes.func,</div><div class="line">	<span class="attr">keyLength</span>: PropTypes.number,</div><div class="line">	<span class="attr">children</span>: PropTypes.node</div><div class="line">&#125;</div><div class="line"></div><div class="line">history = createHistory(<span class="keyword">this</span>.props)</div><div class="line"></div><div class="line">render() &#123;</div><div class="line">	<span class="keyword">return</span> &lt;Router history=&#123;this.history&#125; children=&#123;this.props.children&#125;  /&gt;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>&emsp;&emsp;当你使用 BrowserRouter 时，其实真正的是在渲染 Router 组件并将向其传递 history 属性。history 来自 <a href="https://github.com/ReactTraining/history" target="_blank" rel="external">history 库</a>（也是由 React Training 构建的）。该库的整个目标是抽象化不同环境中的区别，并提供最少的 API 来使你管理历史记录堆、导航、确认导航，并在会话之间保持状态。</p>
 <p>&emsp;&emsp;简而言之，当你使用 BrowserRouter 时，你是在创建 history 对象，该对象将监听 URL 中的变化，并使你的应用知道这些变化。</p>
 <ul>
@@ -245,17 +237,20 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=<span class="string">"/about"</span>&gt;About&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
 <p>&emsp;&emsp;链接有时候需要稍微复杂下，而不仅仅只是个字符串。例如，可以传递查询参数或链接到页面的特定部分。如果要将状态传递给新的路由，该怎么办？要考虑这些情形，你可以向 Link 的 to 属性传递对象，而不是字符串，如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=&#123;&#123;</div><div class="line">  <span class="attr">pathname</span>: <span class="string">'/courses'</span>,</div><div class="line">  <span class="attr">search</span>: <span class="string">'?sort=name'</span>,</div><div class="line">  <span class="attr">hash</span>: <span class="string">'#the-hash'</span>,</div><div class="line">  <span class="attr">state</span>: &#123; <span class="attr">fromDashboard</span>: <span class="literal">true</span> &#125;</div><div class="line">&#125;&#125;&gt;</div><div class="line">  Courses</div><div class="line">&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=&#123;&#123;</div><div class="line"><span class="attr">pathname</span>: <span class="string">'/courses'</span>,</div><div class="line"><span class="attr">search</span>: <span class="string">'?sort=name'</span>,</div><div class="line"><span class="attr">hash</span>: <span class="string">'#the-hash'</span>,</div><div class="line"><span class="attr">state</span>: &#123; <span class="attr">fromDashboard</span>: <span class="literal">true</span> &#125;</div><div class="line">&#125;&#125;&gt;</div><div class="line">Courses</div><div class="line">&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
 <ul>
 <li><strong>Route</strong>： 接受一个路径，匹配（也可能不匹配）当前的URL，如果匹配则Route渲染一些UI，不匹配则不渲染。属性path、render（给组件添加属性）或component。完全路径匹配在path前加exact，否则是不完全匹配。</li>
 </ul>
-<h2 id="实践应用：图书跟踪应用，代码。"><a href="#实践应用：图书跟踪应用，代码。" class="headerlink" title="实践应用：图书跟踪应用，代码。"></a>实践应用：图书跟踪应用，<a href="https://github.com/yangyunhan/Myreads" target="_blank" rel="external">代码</a>。</h2>
+</li>
+</ol>
+<h2 id="实践应用：图书跟踪应用，代码。"><a href="#实践应用：图书跟踪应用，代码。" class="headerlink" title="实践应用：图书跟踪应用，代码。"></a>实践应用：图书跟踪应用，<a href="https://github.com/yangyunhan/Myreads" target="_blank" rel="external">代码</a>。</h2><p><strong>export</strong> : 导出函数、模块语法。相关博客：<a href="https://www.cnblogs.com/libin-1/p/7127481.html" target="_blank" rel="external">最骚的就是你</a></p>
+
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
+    <h2>目录</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理论知识：React"><span class="toc-text">理论知识：React</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实践应用：图书跟踪应用，代码。"><span class="toc-text">实践应用：图书跟踪应用，代码。</span></a></li></ol>
   </div>
 </div>
@@ -263,13 +258,13 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   
 <nav id="pagination">
   
-    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; Prev post hexo插入图片解决方法</a>
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; 上一篇 hexo插入图片解决方法</a>
   
 
   
 
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">Next post 值得记住的那些markdown语法 &rarr;</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">下一篇 值得记住的那些markdown语法 &rarr;</a>
   
 </nav>
 
