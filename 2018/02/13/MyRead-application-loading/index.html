@@ -134,12 +134,12 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   <article id="post">
     <h1>MyRead loading</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-02-13</span>
+      <span id = "post-title-date">Created at 2018-02-13</span>
       
-        <span id = "post-title-updated">修改于 2018-02-21</span>
+        <span id = "post-title-updated">Updated at 2018-02-28</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -150,7 +150,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -220,7 +220,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 <p><img src="/2018/02/13/MyRead-application-loading/生命周期函数.png" alt="生命周期事件"></p>
 <p><img src="/2018/02/13/MyRead-application-loading/react生命周期.png" alt="位于组件生命周期不同阶段的React生命周期事件列表"></p>
 </li>
-<li><p><strong>单页面应用</strong>：浏览器不需要向服务器请求新页面，而由JavaScript处理页面之间的转换。所以服务器只发送一个初始页面。React Router是使用React构建单页面应用的一个工具，是React库。</p>
+<li><p><strong>单页面应用(SPA)</strong>：浏览器不需要向服务器请求新页面，而由JavaScript处理页面之间的转换。所以服务器只发送一个初始页面。React Router是使用React构建单页面应用的一个工具，是React库。</p>
 <p>&emsp;&emsp;单页面应用可以有多种工作方式。单页面应用的一种加载方式是一次性下载整个网站的内容。这样，当你浏览网站时，一切内容已经出现在浏览器中，不需要刷新页面。单页面应用的另一种工作方式是下载渲染用户请求的页面所需的所有内容。当用户浏览到新页面时，仅对请求的内容发出异步 JavaScript 请求。</p>
 <p>&emsp;&emsp;优质单页面应用的另一个关键因素是由 URL 控制页面内容。单页面应用互动性非常高，用户希望能够仅使用 URL 就能回到特定的状态。为何这一点很重要？Bookmarkability（书签功能，很确定的是这还不是一个单词）！当你将网站添加到书签中，该书签仅仅是 URL，并没有记录该页面的状态。</p>
 <p>&emsp;&emsp;安装命令<code>npm install --save react-router-dom</code></p>
@@ -239,18 +239,30 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 <p>&emsp;&emsp;链接有时候需要稍微复杂下，而不仅仅只是个字符串。例如，可以传递查询参数或链接到页面的特定部分。如果要将状态传递给新的路由，该怎么办？要考虑这些情形，你可以向 Link 的 to 属性传递对象，而不是字符串，如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=&#123;&#123;</div><div class="line"><span class="attr">pathname</span>: <span class="string">'/courses'</span>,</div><div class="line"><span class="attr">search</span>: <span class="string">'?sort=name'</span>,</div><div class="line"><span class="attr">hash</span>: <span class="string">'#the-hash'</span>,</div><div class="line"><span class="attr">state</span>: &#123; <span class="attr">fromDashboard</span>: <span class="literal">true</span> &#125;</div><div class="line">&#125;&#125;&gt;</div><div class="line">Courses</div><div class="line">&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
 <ul>
-<li><strong>Route</strong>： 接受一个路径，匹配（也可能不匹配）当前的URL，如果匹配则Route渲染一些UI，不匹配则不渲染。属性path、render（给组件添加属性）或component。完全路径匹配在path前加exact，否则是不完全匹配。</li>
+<li><p><strong>Route</strong>： 接受一个路径，匹配（也可能不匹配）当前的URL，如果匹配则Route渲染一些UI，不匹配则不渲染。属性path、render（给组件添加属性）或component。完全路径匹配在path前加exact，否则是不完全匹配。</p>
+</li>
+<li><p>SPA架构总结：<a href="https://segmentfault.com/a/1190000000607661" target="_blank" rel="external">戴嘉华</a></p>
+<h2 id="实践应用：图书跟踪应用，代码。"><a href="#实践应用：图书跟踪应用，代码。" class="headerlink" title="实践应用：图书跟踪应用，代码。"></a>实践应用：图书跟踪应用，<a href="https://github.com/yangyunhan/Myreads" target="_blank" rel="external">代码</a>。</h2></li>
 </ul>
 </li>
+<li><p><strong>export</strong> : 导出函数、模块语法。相关博客：<a href="https://www.cnblogs.com/libin-1/p/7127481.html" target="_blank" rel="external">最骚的就是你</a></p>
+</li>
+<li><p><strong>Array.prototype.slice.call(arguments)</strong>:将具有length属性的对象转化成数组，除了IE下的节点集合。<br>相关博文<a href="https://www.cnblogs.com/littledu/archive/2012/05/19/2508672.html" target="_blank" rel="external">肥杜</a></p>
+</li>
+<li><p><strong>js中的prototype</strong>：返回对象类型原型的引用。相关博文：<a href="http://www.cnblogs.com/yjf512/archive/2011/06/03/2071914.html" target="_blank" rel="external">叶剑峰</a></p>
+</li>
+<li><p><strong>call、apply、bind用法</strong>：用来重定义this这个对象。bind返回的是一个新的函数，必须调用它才会被执行。三个函数的第一个参数都是this，后面的参数：call直接放进去，用逗号隔开；apply所有参数放到一个数组里；bind除了返回的是函数外，其他和call一样。博文：<a href="https://www.cnblogs.com/Shd-Study/archive/2017/03/16/6560808.html" target="_blank" rel="external">小莫_yu</a></p>
+</li>
+<li><p><strong>React无状态组件</strong>：没有状态的时候，使用无状态组件更好。这篇博文<a href="https://www.jianshu.com/p/bf643a328e10" target="_blank" rel="external">继续海阔天空</a>中提到了具体的好处：class并无必要；没有this关键字；被迫使用最好的方法；高信噪比；代码自动补全；很容易找出臃肿的组件和低劣的数据结构；便于理解；便于测试；优秀的性能表现。</p>
+</li>
 </ol>
-<h2 id="实践应用：图书跟踪应用，代码。"><a href="#实践应用：图书跟踪应用，代码。" class="headerlink" title="实践应用：图书跟踪应用，代码。"></a>实践应用：图书跟踪应用，<a href="https://github.com/yangyunhan/Myreads" target="_blank" rel="external">代码</a>。</h2><p><strong>export</strong> : 导出函数、模块语法。相关博客：<a href="https://www.cnblogs.com/libin-1/p/7127481.html" target="_blank" rel="external">最骚的就是你</a></p>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理论知识：React"><span class="toc-text">理论知识：React</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实践应用：图书跟踪应用，代码。"><span class="toc-text">实践应用：图书跟踪应用，代码。</span></a></li></ol>
   </div>
 </div>
@@ -258,13 +270,13 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   
 <nav id="pagination">
   
-    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; 上一篇 hexo插入图片解决方法</a>
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; Prev post hexo插入图片解决方法</a>
   
 
   
 
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">下一篇 值得记住的那些markdown语法 &rarr;</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">Next post 值得记住的那些markdown语法 &rarr;</a>
   
 </nav>
 
