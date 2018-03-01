@@ -1,8 +1,6 @@
 
 
 
-  
-
 
 
 
@@ -18,9 +16,14 @@
   
   
   
-    <meta name="description" content="我的恐惧是：懒惰+拖延症+无主见">
+    <meta name="description" content="居中问题：
+水平居中
+内联模式的文本：text-align: center，适用于inline，inline-block，inline-table，inline-flex
+块级别的元素：margin: 0 auto
+多个块级别的元素：
+多个块级别的元素在同一行：块级别元素间是inline-block，这一行的text-align设置为center。出现的效果是这一行水平居中，内容高度不一致；...">
   
-  <title>标签: reading [ 该叫什么好 ]</title>
+  <title>css的那些事 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -39,6 +42,15 @@
 <body>
 <div class="side-navigate hide-area">
   
+  
+    <div class="item next">
+      <a href="/2018/02/24/前端框架/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        前端框架
+      </div>
+    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -110,242 +122,107 @@
     <div id="content-inner">
       
       
-  <div id="tag">
-    <h1>reading</h1>
-    
+  <article id="post">
+    <h1>css的那些事</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">撰写于 2018-03-01</span>
+      
+        <span id = "post-title-updated">修改于 2018-03-01</span>
+      
+      
+      <span id = "post-title-categories">分类
       
       
         
-          
         
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
       
       
-      <div class="post-title-item">
-  
-  <a href="/2017/03/16/A-citation-is-not-a-citation/">
-  
-    A citation is not a citation
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">3-16</span>
-    
-    <span id = "post-title-categories">分类
-    
-    
-      
-      
-      <a href="/categories/research/">research</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/reading/">reading</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
+      <span id = "post-title-tags">
+      标签
       
       
         
-      
-      
-    
-      
-      
         
-          
-        
+        <a href="/tags/tips/">tips</a>
       
+      </span>
       
-      <div class="post-title-item">
-  
-  <a href="/2017/03/03/Introduction-to-ESA/">
-  
-    Introduction to ESA
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">3-3</span>
+    </p>
     
-    <span id = "post-title-categories">分类
-    
-    
-      
-      
-      <a href="/categories/research/">research</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/reading/">reading</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
+    <h3 id="居中问题："><a href="#居中问题：" class="headerlink" title="居中问题："></a>居中问题：</h3><ul>
+<li>水平居中<ul>
+<li>内联模式的文本：<code>text-align: center</code>，适用于inline，inline-block，inline-table，inline-flex</li>
+<li>块级别的元素：<code>margin: 0 auto</code></li>
+<li>多个块级别的元素：<ul>
+<li>多个块级别的元素在同一行：块级别元素间是inline-block，这一行的text-align设置为center。出现的效果是这一行水平居中，内容高度不一致；采用flex布局，<code>justify-content: center</code>可使这一行元素水平居中，内容高度一致。</li>
+<li>多个块级别的元素垂直排列，使用<code>margin:0 auto</code>可使它们水平居中。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>垂直居中<ul>
+<li>内联元素：<ul>
+<li>单行文本：<ul>
+<li>高度不确定，设置<code>padding-top</code>与<code>padding-bottom</code>一致；</li>
+<li>设置<code>line-height</code>等于盒子的高度</li>
+</ul>
+</li>
+<li>多行文本：<ul>
+<li>padding好用的情况下可使用；</li>
+<li>不好用的原因可能文本是一个表格单元。这时可以使用<code>vertical-align: middle</code>设置。</li>
+<li>flex布局，<code>justify-content: center</code>和<code>flex-direction: column</code>。</li>
+<li>其他方法都不好用的情况下，在这个元素前面加一个<code>::before</code>，设置它的display与显示元素一致为inline-block，vertical-align为middle。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>块级别的元素：<ul>
+<li>如果知道高度：使用<code>position: absolute</code>设置高度。</li>
+<li>未知高度：使用<code>position: absolute</code>、<code>top: 50%</code>和<code>transform: translateY(-50%);</code></li>
+<li>使用flex布局：<code>justify-content: center;flex-direction: column</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>水平垂直居中：<ul>
+<li>知道宽度和高度：<code>position: absolute</code></li>
+<li>未知宽度和高度：<code>position: absolute; top: 50%; left:50%;transform: translate(-50%,-50%);</code></li>
+<li>使用flex布局：<code>justify-content: center;align-items: center</code></li>
+<li>使用grid布局：<code>html{display: grid} span{margin: auto}</code><br>来自教程：<a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="external">CSS-TRICKS</a></li>
+</ul>
+</li>
+</ul>
+<p>在布局中遇到内联元素与嵌套元素有缝隙时，考虑vertical-align和line-height之间的关系。他们都基于HTML5。看了张鑫旭的文章用了很久，具体例子就不贴了，给出链接：<a href="www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/">张鑫旭-vertical-align与line-height</a>；<a href="http://www.zhangxinxu.com/wordpress/2009/11/css行高line-height的一些深入理解及应用/" target="_blank" rel="external">张鑫旭-对line-hight的理解</a></p>
+<p>grid是网络布局，相关博客<a href="http://blog.csdn.net/hj7jay/article/details/70670467" target="_blank" rel="external">CSDN-Joker_Ye</a>;<br><a href="http://cssgridgarden.com/" target="_blank" rel="external">有趣的教程</a></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#居中问题："><span class="toc-text">居中问题：</span></a></li></ol>
   </div>
+</div>
 
   
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/02/24/前端框架/" class="next">下一篇 前端框架 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
 
       
       
@@ -469,6 +346,8 @@ var unsplashConfig = {"gravity":"north"};
 var turnoffBackgroundImage = false;
 
 
+
+  turnoffBackgroundImage = true;
 
 
 var backgroundColor = "34495E";
