@@ -134,12 +134,12 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   <article id="post">
     <h1>MyRead loading</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2018-02-13</span>
+      <span id = "post-title-date">撰写于 2018-02-13</span>
       
-        <span id = "post-title-updated">Updated at 2018-02-28</span>
+        <span id = "post-title-updated">修改于 2018-03-01</span>
       
       
-      <span id = "post-title-categories">Category
+      <span id = "post-title-categories">分类
       
       
         
@@ -150,7 +150,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
       
       
       <span id = "post-title-tags">
-      Tag
+      标签
       
       
         
@@ -255,14 +255,31 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 </li>
 <li><p><strong>React无状态组件</strong>：没有状态的时候，使用无状态组件更好。这篇博文<a href="https://www.jianshu.com/p/bf643a328e10" target="_blank" rel="external">继续海阔天空</a>中提到了具体的好处：class并无必要；没有this关键字；被迫使用最好的方法；高信噪比；代码自动补全；很容易找出臃肿的组件和低劣的数据结构；便于理解；便于测试；优秀的性能表现。</p>
 </li>
+<li><p><strong>设计react组件样式的四种方式</strong>：</p>
+<ul>
+<li><p>inline styling：当只是添加一小部分样式属性</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> divStyle = &#123;</div><div class="line">	<span class="attr">margin</span>: <span class="string">'40px'</span>,</div><div class="line">	<span class="attr">border</span>: <span class="string">'5px solid pink'</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> pStyle = &#123;</div><div class="line">	<span class="attr">fontSize</span>: <span class="string">'15px'</span>,</div><div class="line">	<span class="attr">textAlign</span>: <span class="string">'center'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Box = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	&lt;div style=&#123;divStyle&#125;&gt;</div><div class="line">		&lt;p style=&#123;pStyle&#125;&gt;Get started with inline style&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Box;</div></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://github.com/styled-components/styled-components" target="_blank" rel="external">style-component</a>：是一个库，当在同一个文件中要重用样式属性的时候。使用前，需要先安装依赖包。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Div = styled.div<span class="string">`</span></div><div class="line">	margin: 40px;</div><div class="line">	border: 5px outset pink;</div><div class="line">	&amp;:hover &#123;</div><div class="line">		background-color: yellow;</div><div class="line">	&#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Paragraph = styled.p<span class="string">`</span></div><div class="line">	font-size: 15px;</div><div class="line">	text-align: center;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> OutsetBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	&lt;Div&gt;</div><div class="line">		&lt;Paragraph&gt;Get started with styled-components 💅&lt;/Paragraph&gt;</div><div class="line">	&lt;/Div&gt;</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> OutsetBox;</div></pre></td></tr></table></figure>
+</li>
+<li><p>CSS Modules：当应用更复杂时，与CSS Stylesheet相似，这样更像组件的形式。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'./DashedBox.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> DashedBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	&lt;div className=&#123;styles.container&#125;&gt;</div><div class="line">		&lt;p className=&#123;styles.content&#125;&gt;Get started with CSS Modules style&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DashedBox;</div></pre></td></tr></table></figure>
+</li>
+<li><p>CSS Stylesheet：当应用更复杂时，不能使用简单的方式，比如存在媒体查询时。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./DottedBox.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> DottedBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	&lt;div className="DottedBox"&gt;</div><div class="line">		&lt;p className="DottedBox_content"&gt;Get started with CSS styling&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DottedBox;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
 </ol>
+<p>参考博文<a href="https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822" target="_blank" rel="external">Agata Krzywda</a></p>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
+    <h2>目录</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理论知识：React"><span class="toc-text">理论知识：React</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实践应用：图书跟踪应用，代码。"><span class="toc-text">实践应用：图书跟踪应用，代码。</span></a></li></ol>
   </div>
 </div>
@@ -270,13 +287,13 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   
 <nav id="pagination">
   
-    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; Prev post hexo插入图片解决方法</a>
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; 上一篇 hexo插入图片解决方法</a>
   
 
   
 
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">Next post 值得记住的那些markdown语法 &rarr;</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">下一篇 值得记住的那些markdown语法 &rarr;</a>
   
 </nav>
 
