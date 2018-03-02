@@ -156,6 +156,7 @@
 <p>这个方法被禁用了，也就是内部有更新了，而hexo的某些插件还引用了这个方法。所以第一，要先更新相关的插件，然后去掉对这个方法的引用。怎么知道要更新的插件是谁，这是原来遇到相似问题的人在hexo作者github上翻到的相关问题中找到了，对应了一个<code>hexo-fs</code>插件。所以先更新<code>npm install hexo-fs --save</code>.<br>第二，找到引用了这个方法的位置。<br><code>hexo clean --debug</code>这个命令可以帮助我们定位问题所在。样子：<br><a href="hexo方法弃用问题/hexo_debug.png">hexo clean –debug</a></p>
 <p>所以是错误出现的上一行有问题，是引用了这个方法的所在。在<code>node_modules/hexo-deploye-git/node_modules/hexo-fs/lib/fs.js</code>中，注释掉它，这个问题就不会出现了。</p>
 <p>贴出这个讲的很明白的博客：<a href="http://rangerzhou.top/2017/07/27/Hexo%E5%8D%9A%E5%AE%A2%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" target="_blank" rel="noopener">RangerZhou</a></p>
+<p>然后错误没有解决，我尝试<code>ping github.com</code>发现总是请求超时。等我再次使用git和hexo的时候已经好了，一脸茫然。。</p>
 
   </article>
   <div class="random-toc-area">
