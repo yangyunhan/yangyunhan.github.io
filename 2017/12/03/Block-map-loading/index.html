@@ -130,12 +130,12 @@
   <article id="post">
     <h1>Block map loading...</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2017-12-03</span>
+      <span id = "post-title-date">Created at 2017-12-03</span>
       
-        <span id = "post-title-updated">修改于 2018-02-26</span>
+        <span id = "post-title-updated">Updated at 2018-02-26</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -146,7 +146,7 @@
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -164,12 +164,12 @@
 <p>解决方案就是使用闭包。我们将创建一个内部作用域，以便在我们添加事件监听的时候存住num的值。其实有很多种方法可以实现这个效果 – 闭包是其中很好的一种。</p>
 <p><strong>闭包的用处</strong>：1.可以在函数外部读取函数内部的变量；2.可以将这些变量的值在内存中持久化</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.innerHTML = <span class="string">''</span>;</div><div class="line"><span class="keyword">var</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="comment">// 循环遍历数组中的每一个数</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line"><span class="comment">// 这是数组循环中当前的数值...</span></div><div class="line"><span class="keyword">var</span> num = nums[i];</div><div class="line"><span class="comment">// 我们为这个数创建了一个 DOM 元素</span></div><div class="line"><span class="keyword">var</span> elem = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">elem.textContent = num;</div><div class="line"><span class="comment">// ... 然后当我们点击 (click) 的时候，提示这个数字</span></div><div class="line">elem.addEventListener(<span class="string">'click'</span>, (<span class="function"><span class="keyword">function</span>(<span class="params">numCopy</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(numCopy);</div><div class="line">    &#125;;</div><div class="line">&#125;)(num));</div><div class="line"><span class="built_in">document</span>.body.appendChild(elem);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>讲闭包较好的一篇博客：<a href="http://lipeng1667.github.io/2016/12/20/closure-in-js/" target="_blank" rel="external">Michael Lee</a></p>
+<p>讲闭包较好的一篇博客：<a href="http://lipeng1667.github.io/2016/12/20/closure-in-js/" target="_blank" rel="noopener">Michael Lee</a></p>
 <p>个人理解出现上述问题是因为函数只是定义了，并没有被调用。当它调用时，内部循环已经完成了，所以一直出现循环中最后的值。为解决上述问题，就是要函数立马被执行，所以出现了立即执行函数。</p>
-<p>*相关博文：<a href="http://lipeng1667.github.io/2016/12/20/IIFE-in-js/" target="_blank" rel="external">Michael Lee</a></p>
+<p>*相关博文：<a href="http://lipeng1667.github.io/2016/12/20/IIFE-in-js/" target="_blank" rel="noopener">Michael Lee</a></p>
 <p><strong>面条式代码</strong>：将事物连接到一起时，很容易杂乱。应用最终就是将一段段代码连接到一起。当将一段段代码与其他代码连到一起后，就没法移动任何代码了。</p>
-<p><strong>MVC</strong>：<br>MVC/MVVM/MVP/MV*等等解决的是同一个问题，即将我们的模型与视图分开来。<br>MVC较深入的博文：<a href="https://www.cnblogs.com/Hackson/p/7055695.html" target="_blank" rel="external">cnblogs-Hackson</a></p>
-<p><a href="http://backbonejs.org/" target="_blank" rel="external">Backbone</a>:</p>
+<p><strong>MVC</strong>：<br>MVC/MVVM/MVP/MV*等等解决的是同一个问题，即将我们的模型与视图分开来。<br>MVC较深入的博文：<a href="https://www.cnblogs.com/Hackson/p/7055695.html" target="_blank" rel="noopener">cnblogs-Hackson</a></p>
+<p><a href="http://backbonejs.org/" target="_blank" rel="noopener">Backbone</a>:</p>
 <p>在jquery函数中分别定义变量data、view和octopus。其中，M指Model模型，view内部又有init设置内容和render函数更新视图。render内部用到了script模板。octopus负责将模型和视图联系在一起，模型和视图从来没有相互直接沟通，octopus是它们之间的唯一连接桥梁。整个代码的入口就是octopus，从octopus的init函数接入view的init。在octopus中的函数在对视图进行改变后需调用视图的render函数，如果是调用了模型，则直接返回数据。</p>
 <p>路由器：可以跟踪URL的状态，在某种程度上像视图一样，用户可以看到URL并与其进行交互。路由器通常用于跟踪应用的状态。</p>
 <p><strong>Knockout.js</strong>:Model；View；ViewModel；声明式绑定：与MVC的区别就是它没有在章鱼模式或ViewModel中编写大量代码以抓取部分视图，而是采用了相反的方式，以绑定的形式将逻辑写入DOM中，实现视图和ViewModel之间的连接，而无须手动编写；自动UI刷新：Knockout会检测模型数据，发生更改时，Knockout会自动刷新视图，被称为双向绑定；依赖项跟踪：有时，模型数据取决于其他模型数据（模型之间的依赖关系），并自动跟踪这些依赖项进行相应的更新。</p>
@@ -199,10 +199,10 @@
 </script></p>
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#闭包和事件侦听程序"><span class="toc-text">闭包和事件侦听程序</span></a></li></ol>
   </div>
 </div>
@@ -210,13 +210,13 @@
   
 <nav id="pagination">
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="prev">&larr; 上一篇 值得记住的那些markdown语法</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="prev">&larr; Prev post 值得记住的那些markdown语法</a>
   
 
   
 
   
-    <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/" class="next">下一篇 订阅阅读器测试（Subscribe reader test） &rarr;</a>
+    <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/" class="next">Next post 订阅阅读器测试（Subscribe reader test） &rarr;</a>
   
 </nav>
 

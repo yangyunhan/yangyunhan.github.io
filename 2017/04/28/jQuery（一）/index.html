@@ -129,12 +129,12 @@
   <article id="post">
     <h1>jQuery（一）</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2017-04-28</span>
+      <span id = "post-title-date">Created at 2017-04-28</span>
       
-        <span id = "post-title-updated">修改于 2017-04-30</span>
+        <span id = "post-title-updated">Updated at 2017-04-30</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -145,7 +145,7 @@
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -159,12 +159,12 @@
     <p>再一打开网站，吓了自己一跳，原来已经过去一个多月了。。。<br>在坑里跌倒就要在坑里爬起来，So，我又回来了</p>
 <p>1、javascript，Netscape公司开发，弊端：复杂的文档对象模型（DOM）、不一致的浏览器实现和便捷的开发、调试工具的缺乏。<br>2、2012年写的书《锋利的jQuery》说当时流行的javascript程序库有：</p>
 <ul>
-<li><a href="http://www.prototypejs.org/" target="_blank" rel="external">Prototype</a><br>可以看作是把很多好的、有用的JavaScript的方法组合在一起而形成的JavaScript库。使用者可以在需要的时候随时将其中的几段代码抽出来放进自己的脚本里。缺点：从整体上对面向对象的编程思想把握得不是很到位，导致了其结构的松散。</li>
-<li><a href="http://dojotoolkit.org/" target="_blank" rel="external">Dojo</a><br>提供了离线存储的API、生成图标的组件、基于SVG/VML的矢量图形库和Comet支持等，适合企业级应用。缺点：学习曲线陡，文档不齐全，API不稳定。</li>
-<li><a href="http://developer.yahoo.com/yui" target="_blank" rel="external">YUI</a><br>封装了一系列丰富的功能如DOM操作和Ajax应用等，还包括几个核心的CSS文件，文档完备，代码编写规范。</li>
-<li><a href="http://www.extjs.com/" target="_blank" rel="external">Ext JS</a><br>简称Ext，利用包括jQuery在内的多种JavaScript框架作为基础库，Ext作为界面的扩展库使用。缺点：侧重于界面，本身比较臃肿，并非完全免费。</li>
-<li><a href="http://mootools.net/" target="_blank" rel="external">MooTools</a><br>模块化思想优秀，核心代码只有8KB，完全贯彻面向对象的编程思想，语法简单直观，文档完整。</li>
-<li><a href="http://jquery.com" target="_blank" rel="external">jQuery</a><br>轻量级的库，拥有强大的选择器，出色的DOM操作、可靠的事件处理、完善的兼容性和链式操作等功能。</li>
+<li><a href="http://www.prototypejs.org/" target="_blank" rel="noopener">Prototype</a><br>可以看作是把很多好的、有用的JavaScript的方法组合在一起而形成的JavaScript库。使用者可以在需要的时候随时将其中的几段代码抽出来放进自己的脚本里。缺点：从整体上对面向对象的编程思想把握得不是很到位，导致了其结构的松散。</li>
+<li><a href="http://dojotoolkit.org/" target="_blank" rel="noopener">Dojo</a><br>提供了离线存储的API、生成图标的组件、基于SVG/VML的矢量图形库和Comet支持等，适合企业级应用。缺点：学习曲线陡，文档不齐全，API不稳定。</li>
+<li><a href="http://developer.yahoo.com/yui" target="_blank" rel="noopener">YUI</a><br>封装了一系列丰富的功能如DOM操作和Ajax应用等，还包括几个核心的CSS文件，文档完备，代码编写规范。</li>
+<li><a href="http://www.extjs.com/" target="_blank" rel="noopener">Ext JS</a><br>简称Ext，利用包括jQuery在内的多种JavaScript框架作为基础库，Ext作为界面的扩展库使用。缺点：侧重于界面，本身比较臃肿，并非完全免费。</li>
+<li><a href="http://mootools.net/" target="_blank" rel="noopener">MooTools</a><br>模块化思想优秀，核心代码只有8KB，完全贯彻面向对象的编程思想，语法简单直观，文档完整。</li>
+<li><a href="http://jquery.com" target="_blank" rel="noopener">jQuery</a><br>轻量级的库，拥有强大的选择器，出色的DOM操作、可靠的事件处理、完善的兼容性和链式操作等功能。</li>
 </ul>
 <p>3、&lt;!DOCTYPE&gt;<br>&lt;!DOCTYPE&gt;声明不是HTML标签，位于位于HTML文档中的第一行，处于 <html>标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。在 HTML 4.01 中，&lt;!DOCTYPE&gt; 声明引用 DTD，因为 HTML 4.01 基于 SGML。DTD 规定了标记语言的规则，这样浏览器才能正确地呈现内容。<br>| 标签       | HTML5 |   HTML 4.01 / XHTML 1.0    | XHTML 1.1 |<br>|            |       |Transitional|Strict|Frameset|           |<br>| :—-      | :—: | :———:|:—-:|:——:| :——-: |<br>|<acronym>   |No|Yes|Yes|Yes|Yes|<br>|<applet>    |No||No||No|<br>|<area>      |||||No|<br>|<article |yes|||||="" |<aside="">     |Yes|||||<br>|<audio>     |Yes|||||<br>|<basefont>  ||Yes||Yes||<br>|<bdi>       |Yes|||||<br>|<bdo>       |||||No|<br>|<canvas>    |Yes|||||<br>|<center>    ||Yes||Yes||<br>|<col>       |||||No|<br>|<colgroup>  |||||No|<br>|<command>   |Yes||||<br>|<datalist>  |Yes|||||<br>|<del>       |||||No|<br>|<details>   |Yes|||||<br>|<dir>       ||Yes||Yes||<br>|<embed>     |Yes|||||<br>|<figcaption>|Yes|||||<br>|<font>      ||Yes||Yes||<br>|<footer>    |Yes|||||<br>|<frame>     ||||Yes||<br>|<frameset>  ||||Yes||<br>|<header>    |Yes|||||<br>|<iframe>    |||No||No|<br>|<ins>       |||||No|<br>|<keygen>    |Yes|||||<br>|<map>       |||||No|<br>|<mark>      |Yes|||||<br>|<menu>      |||No||No|<br>|<meter>     |Yes|||||<br>|<nav>       |Yes|||||<br>|<noframes>  ||Yes||Yes||<br>|<output>    |Yes|||||<br>|<progress>  |Yes|||||<br>|<rp>        |Yes|||||<br>|<rt>        |Yes|||||<br>|<ruby>      |Yes|||||<br>|<s>         |||No||No|<br>|<section>   |Yes|||||<br>|<source>    |Yes|||||<br>|<strike>    ||Yes||Yes||<br>|<summary>   |Yes|||||<br>|<tbody>     |||||No|<br>|<tfoot>     |||||No|<br>|<thead>     |||||No|<br>|<time>      |Yes|||||<br>|<track>     ||||||<br>|<tt>        |Yes|||||<br>|<u>         ||Yes||Yes||<br>|<video>     |Yes|||||<br>|<wbr>       |Yes|||||</video></u></tt></time></thead></tfoot></tbody></summary></strike></section></s></ruby></rt></rp></progress></output></noframes></nav></meter></menu></mark></map></ins></iframe></header></frameset></footer></font></figcaption></dir></details></del></datalist></colgroup></center></canvas></bdo></bdi></audio></article></applet></acronym></html></p>
 <blockquote>
@@ -177,10 +177,10 @@
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     
   </div>
 </div>
@@ -188,13 +188,13 @@
   
 <nav id="pagination">
   
-    <a href="/2017/04/30/jQuery（二）/" class="prev">&larr; 上一篇 jQuery（二）</a>
+    <a href="/2017/04/30/jQuery（二）/" class="prev">&larr; Prev post jQuery（二）</a>
   
 
   
 
   
-    <a href="/2017/03/16/A-citation-is-not-a-citation/" class="next">下一篇 A citation is not a citation &rarr;</a>
+    <a href="/2017/03/16/A-citation-is-not-a-citation/" class="next">Next post A citation is not a citation &rarr;</a>
   
 </nav>
 

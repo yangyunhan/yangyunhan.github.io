@@ -130,12 +130,12 @@
   <article id="post">
     <h1>做网站的那些tips</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2017-07-08</span>
+      <span id = "post-title-date">Created at 2017-07-08</span>
       
-        <span id = "post-title-updated">修改于 2017-07-21</span>
+        <span id = "post-title-updated">Updated at 2017-07-21</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -146,7 +146,7 @@
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -172,7 +172,7 @@
 <li>transition-property：过渡属性，默认为all</li>
 <li>transition-duration：过渡持续时间，默认为0s，必需值不能为0，与delay一样是时间，只有一个时间时，是duration</li>
 <li>transition-timing-function：过渡函数，默认为ease函数</li>
-<li>transition-delay：过渡延迟时间，默认为0s<br>注：IE9不支持，safari3.1-6\IOS3.2-6.1\android2.1-4.3需要添加-webkit前缀<br>更多的设置和了解，参考博客：<a href="http://www.cnblogs.com/xiaohuochai/p/5347930.html" target="_blank" rel="external">http://www.cnblogs.com/xiaohuochai/p/5347930.html</a></li>
+<li>transition-delay：过渡延迟时间，默认为0s<br>注：IE9不支持，safari3.1-6\IOS3.2-6.1\android2.1-4.3需要添加-webkit前缀<br>更多的设置和了解，参考博客：<a href="http://www.cnblogs.com/xiaohuochai/p/5347930.html" target="_blank" rel="noopener">http://www.cnblogs.com/xiaohuochai/p/5347930.html</a></li>
 </ul>
 <p>3、z-index:元素的堆叠顺序，越高与用户越近，在定位元素上奏效（position:absolute）</p>
 <p>4、标签<strike></strike>给文本加删除线,缩写为<s></s>，html5中已经不支持这个标签了。</p>
@@ -199,7 +199,7 @@
 </ul>
 <p>但是可以通过一些方法解决上述作用域问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">//省略var修饰符，使用全局变量代替局部变量</div><div class="line">function foo1()&#123;</div><div class="line">	site = &quot;CodePlayer 1&quot;;</div><div class="line">	setInterval(&apos;alert(site);&apos;,5000);</div><div class="line">	&#125;</div><div class="line">foo1();</div><div class="line"></div><div class="line">//不使用变量，直接传递变量的值</div><div class="line">function foo2()&#123;</div><div class="line">	var site = &quot;CodePlayer 2&quot;;</div><div class="line">	setInterval(&apos;alert(&quot;&apos; + site + &apos;&quot;);&apos;,5000);</div><div class="line">	&#125;</div><div class="line">foo2();</div><div class="line"></div><div class="line">//延长作用域链，使其能够访问到该函数作用域</div><div class="line">function foo3()&#123;</div><div class="line">	var site = &quot;CodePlayer 3&quot;;</div><div class="line">	setInterval(function()&#123;</div><div class="line">		alert(site);</div><div class="line">		&#125;,5000);</div><div class="line">		&#125;</div><div class="line">foo3();</div><div class="line"></div><div class="line">//调用指定的函数，并给函数传递相应的参数</div><div class="line">function callback(msg)&#123;</div><div class="line">	alert(msg);</div><div class="line">	&#125;</div><div class="line">function foo4()&#123;</div><div class="line">	var site = &quot;CodePlayer 4&quot;;</div><div class="line">	setInterval(callback, 5000, site);</div><div class="line">	&#125;</div><div class="line">foo4();</div></pre></td></tr></table></figure></p>
 <p>即该函数的第一个参数不能是布局变量。</p>
-<p>clearInterval()则是取消自动执行函数或代码，接收一个参数，是setInterval()返回的标识符ID，所以在设置setInterval时，可以指定一个变量来接受返回值（var int=self.setInterval(“clock()”,50)），该变量可直接作为clearInterval()的参数。<br>注：该知识点来自于：<a href="http://www.365mini.com/page/javascript-setinterval.htm" target="_blank" rel="external">http://www.365mini.com/page/javascript-setinterval.htm</a></p>
+<p>clearInterval()则是取消自动执行函数或代码，接收一个参数，是setInterval()返回的标识符ID，所以在设置setInterval时，可以指定一个变量来接受返回值（var int=self.setInterval(“clock()”,50)），该变量可直接作为clearInterval()的参数。<br>注：该知识点来自于：<a href="http://www.365mini.com/page/javascript-setinterval.htm" target="_blank" rel="noopener">http://www.365mini.com/page/javascript-setinterval.htm</a></p>
 <p>10、<code>background:url(&quot;../images/hot.gif&quot;) no-repeat scroll 0 0 transparent</code><br>background-attachment:scroll|fixed|inherit<br>background-position:背景图片的移动方向，正值向右，负值向左，第一个数字是水平方向，第二个数字是垂直方向。</p>
 <p>11、css的border与outline<br>border:元素主要的边框属性，包括border-width,border-style,border-color，统一设置各边框的格式。border-style的属性有soliddotted(实线)，dashed(点状)，double(双线)，默认值为none；border-width只有当border-style不为none时才有效，不能设置为负值，值可以是thin,medium,thick，也可以是数值，默认为medium；border-color只有当border-style的值不为none,hidden，默认值是transparent。<br>outline:轮廓。在元素边框外围绘制的一条包围元素的线，包括outline-color,outline-style,outline-width，不占页面空间，也不一定是矩形。除了IE以外的浏览器都直接支持outline。只有规定了!DOCUMENT之后的IE8以上版本的浏览器才支持outline。取值类型和默认值与border一致，outline-width与outline-color只有当outline-style不为none时才有效。<br>两者的区别：outline不占空间，不会增加额外的width或者height；outline有可能是非矩形的。</p>
 <p>12、宽度值width:元素宽；innerWidth：包含padding的宽度；outerWidth：包含padding+border的宽度；outerWidth(true)包含padding+border+margin的宽度。</p>
@@ -214,15 +214,15 @@
 <p>15、jQuery中绑定事件有五种方法，以click事件为例<br>a)target.click(function(){});<br>b)target.bind(“click”,function(){});<br>c)target.live(“click”,function(){});<br>d)$(selector).delegate(childSelector,”click”,data,function(){});<br>e)$(selector).on(event,childSelector,data,function)<br>a方法和普通js的用法差不多，只是少了一个on。live的基本功能同bind一样，只是bind方法只能给当前存在的元素绑定事件，对于事后采用js等方式新生成的元素无效，live方法弥补了bind方法的缺陷，可以对后生成的元素也可以绑定相应的事件。live方法的原因归结在“事件委托”上，其处理机制是把时间绑定在DOM树的根节点上，而不是直接绑定在某个元素上。由于只有在事件发生的时候，live方法才会去检测绑定事件的对象是否存在，所以live方法可以实现后来新增的元素也可实现事件的绑定。相比之下，bind会在事件在绑定阶段就会判断绑定事件的元素是否存在，而且只针对当前元素进行绑定，而不是绑定到父节点上。<br>根据上面的分析，live的好处真是很大，那么为什么还要使用bind方法呢？之所以jquery要保留bind方法而不是采用live方法去替代bind，也是因为live在某些情况下是不能够完全替代bind的。主要的不同如下：<br>（1）bind方法可以绑定任何JavaScript的事件，而live方法在jQuery1.3的时候只支持click, dblclick, keydown, keypress, keyup,mousedown, mousemove, mouseout, mouseover, 和 mouseup.在jQuery 1.4.1中，甚至也支持 focus 和 blue 事件了（映射到更合适，并且可以冒泡的focusin和focusout上）。另外，在jQuery 1.4.1中，也能支持hover（映射到”mouseenter mouseleave”）。<br>（2）live()并不完全支持通过DOM遍历的方法找到的元素。取而代之的是，应当总是在一个选择器后面直接使用.live()方法。<br>（3）当一个元素采用live方法进行事件的绑定的时候，如果想阻止事件的传递或冒泡，就要在函数中return false,仅仅调用stopPropagation()是无法实现阻止事件的传递或者冒泡的<br>jQuery1.9版本以下支持live方法，jQuery1.9及其以上版本删除了此方法，用on()方法来代替。<br>d)delegate()为指定元素（被选元素的子元素）添加一个或多个事件处理程序，并规定当这些事发生时运行的函数，使用delegate()方法的事件处理程序适用于当前或未来的元素。使用undelegate()函数删除通过delegate()绑定的事件，适用于jQuery1.4.2及其以上版本。<br>e)on()为指定的元素，添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。使用on()方法的事件处理程序适用于当前或未来的元素。适用于jquery1.7及其以上版本，jquery1.7版本出现之后用于替代bind(),live()绑定事件方式。</p>
 <p>16、如果选择器的函数不支持，可能是一开始引入的jquery文件中不包含对函数的支持。</p>
 <p>17、<a>标签的可选属性rel和rev表示源文件与目标文档之间正式的关系和方向。<br>rel:源文件到目标文件的关系<br>rev:目标文档到源文档的关系<br>可同时使用</a></p>
-<p>18、clear：清除浮动，不允许元素某一侧或两侧有浮动对象。一般都写both，left,right值用来实现垂直环绕布局。更详细的解释和例子参考：<br><a href="http://www.zhangxinxu.com/wordpress/2014/06/understand-css-clear-left-right-and-use/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2014/06/understand-css-clear-left-right-and-use/</a></p>
-<p>19、jQuery.stop():停止当前匹配元素上正在运行的动画，默认停止当前正在运行的动画。参数：<br>queueName:需要停止动画的队列名称，默认为”fx”；<br>clearQueue:是否清空队列中的所有动画，默认值为false;<br>jumpToEnd:指示是否直接完成当前动画，默认值为false。<br>详情参见：<a href="http://www.365mini.com/page/jquery-stop.htm" target="_blank" rel="external">http://www.365mini.com/page/jquery-stop.htm</a></p>
+<p>18、clear：清除浮动，不允许元素某一侧或两侧有浮动对象。一般都写both，left,right值用来实现垂直环绕布局。更详细的解释和例子参考：<br><a href="http://www.zhangxinxu.com/wordpress/2014/06/understand-css-clear-left-right-and-use/" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/2014/06/understand-css-clear-left-right-and-use/</a></p>
+<p>19、jQuery.stop():停止当前匹配元素上正在运行的动画，默认停止当前正在运行的动画。参数：<br>queueName:需要停止动画的队列名称，默认为”fx”；<br>clearQueue:是否清空队列中的所有动画，默认值为false;<br>jumpToEnd:指示是否直接完成当前动画，默认值为false。<br>详情参见：<a href="http://www.365mini.com/page/jquery-stop.htm" target="_blank" rel="noopener">http://www.365mini.com/page/jquery-stop.htm</a></p>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     
   </div>
 </div>
@@ -230,13 +230,13 @@
   
 <nav id="pagination">
   
-    <a href="/2017/07/18/小公举/" class="prev">&larr; 上一篇 小公举</a>
+    <a href="/2017/07/18/小公举/" class="prev">&larr; Prev post 小公举</a>
   
 
   
 
   
-    <a href="/2017/05/10/form的method-我该选谁？/" class="next">下一篇 form的method,我该选谁？ &rarr;</a>
+    <a href="/2017/05/10/form的method-我该选谁？/" class="next">Next post form的method,我该选谁？ &rarr;</a>
   
 </nav>
 

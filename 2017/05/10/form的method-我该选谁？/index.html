@@ -129,12 +129,12 @@
   <article id="post">
     <h1>form的method,我该选谁？</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2017-05-10</span>
+      <span id = "post-title-date">Created at 2017-05-10</span>
       
-        <span id = "post-title-updated">修改于 2017-05-10</span>
+        <span id = "post-title-updated">Updated at 2017-05-10</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -154,7 +154,7 @@
 <li>引用<br>可用URL引用一个get的结果页面，post的结果不能。<br>3、选谁</li>
 <li><p>当且仅当form是幂等的时候，使用get。（幂等：多次相同的请求产生的副作用，和一次请求的副作用相同。） </p>
 </li>
-<li><p>如果提交请求纯粹只是从服务器端获取数据而不是进行其他操作，并且多次提交不会有明显的副作用，应该使用get。比如：搜索引擎的查询(<a href="http://www.google.com/search?q=abc)和分页(user.do?page=1)；如果提交这个请求会产生其他操作和影响，就应该使用post。" target="_blank" rel="external">http://www.google.com/search?q=abc)和分页(user.do?page=1)；如果提交这个请求会产生其他操作和影响，就应该使用post。</a><br>比如：修改服务器上数据库中的数据；发送一封邮件；删除一个文件等</p>
+<li><p>如果提交请求纯粹只是从服务器端获取数据而不是进行其他操作，并且多次提交不会有明显的副作用，应该使用get。比如：搜索引擎的查询(<a href="http://www.google.com/search?q=abc)和分页(user.do?page=1)；如果提交这个请求会产生其他操作和影响，就应该使用post。" target="_blank" rel="noopener">http://www.google.com/search?q=abc)和分页(user.do?page=1)；如果提交这个请求会产生其他操作和影响，就应该使用post。</a><br>比如：修改服务器上数据库中的数据；发送一封邮件；删除一个文件等</p>
 </li>
 <li>若符合下列任一情况，则用post方法：<br>a.请求的结果有持续性的副作用，例如：数据库内添加新的数据行。<br>b.若使用get方法，则表单上收集的数据可能让URL过长。<br>c.要传送的数据不是采用ASCII编码。</li>
 <li>若符合下列任一情况，则用get方法：<br>a.请求是为了查找资源，html表单数据仅用来搜索。<br>b.请求结果无持续性的副作用。<br>c.收集的数据及html表单内的输入字段名称的总长不超过1024个字符。<br>4、还有点小迷糊</li>
@@ -164,10 +164,10 @@
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     
   </div>
 </div>
@@ -175,13 +175,13 @@
   
 <nav id="pagination">
   
-    <a href="/2017/07/08/做网站的那些tips/" class="prev">&larr; 上一篇 做网站的那些tips</a>
+    <a href="/2017/07/08/做网站的那些tips/" class="prev">&larr; Prev post 做网站的那些tips</a>
   
 
   
 
   
-    <a href="/2017/05/10/jQuery（四）/" class="next">下一篇 jQuery（四） &rarr;</a>
+    <a href="/2017/05/10/jQuery（四）/" class="next">Next post jQuery（四） &rarr;</a>
   
 </nav>
 

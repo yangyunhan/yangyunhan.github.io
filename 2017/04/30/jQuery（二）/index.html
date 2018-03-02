@@ -129,12 +129,12 @@
   <article id="post">
     <h1>jQuery（二）</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2017-04-30</span>
+      <span id = "post-title-date">Created at 2017-04-30</span>
       
-        <span id = "post-title-updated">修改于 2017-05-02</span>
+        <span id = "post-title-updated">Updated at 2017-05-02</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -145,7 +145,7 @@
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -160,19 +160,19 @@
 <p>而应该根据获取到元素的长度来判断：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>($(<span class="string">"#tt"</span>).length&gt;<span class="number">0</span>)&#123;</div><div class="line"><span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>3、选择器<br><code>$(div:parent).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>的意思是改变含有子元素（包括文本元素）的div元素的背景色。<br><code>$(div:hidden).show(3000)</code>显示隐藏的div元素。<code>:hidden</code>选取所有不可见的元素，包括<code>&lt;input type=&quot;hidden&quot;/&gt;</code>,<code>&lt;div style=&quot;display:none;&quot;&gt;</code>和<code>&lt;div style=&quot;visibility:hidden;&quot;&gt;</code>等元素。如果只想选input元素，则可以使用<code>$(&quot;input:hidden&quot;)</code>。<br><code>$(&#39;div[title|=&quot;en&quot;]&#39;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>改变属性title等于en或以en为前缀（该字符串后跟一个连字符‘-’）的元素的背景色。<br><code>$(&#39;div[title~=&quot;uk&quot;]&#39;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>改变属性title用空格分隔的值中包含字符uk的元素的背景色。<br><code>$(&quot;div.one :nth-child(2)&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>:改变每个class为one的<div>父元素下的第2个子元素的背景色；<code>$(&quot;div.one:nth-child(2)&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>:改变div的第二个、类名为one的子元素的背景色。<br><code>$(&quot;div :nth-child(2)&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>改变div下的第二个子元素的背景色；<code>$(&quot;div:nth-child(2)&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;)</code>改变第二个div和div下的第二个子元素。<br><code>$(&quot;#form1 :input&quot;).length</code>选取所有input、textarea、select和button元素；<code>$(&quot;#form1 input&quot;).length</code>选取所有input元素<br>4、选择器中含有“.”、“#”、“(”、“]”等特殊字符，用转义字符“\”进行转义；旧版本的jQuery代码中属性值前面有“@”符号。<br>5、toggle()方法：被选元素的轮流click事件，切换被选元素的hide()与show()方法。<br>*在select-list实例中尝试失败<br>6、选择器扩展：</div></p>
 <ul>
-<li><a href="http://plugins.jquery.com/project/moreSelectors" target="_blank" rel="external">MoreSelectors for</a> jQuery提供的插件:可以匹配颜色（.color）、匹配表格中的列（:colIndex）、匹配获取焦点的元素等等（:focus）。</li>
-<li><a href="http://plugins.jquery.com/project/xpath" target="_blank" rel="external">Basic XPath</a>：jQuery提供的插件，降低了选择器匹配的效率。</li>
-<li><a href="http://simonwillison.net/2003/Mar/25/getElementsBySelector/" target="_blank" rel="external">document.getElementsBySelector()</a>作用是通过选择器来获取文档元素。</li>
-<li><a href="http://dean.edwards.name/my/cssQuery/" target="_blank" rel="external">cssQuery()</a>查找元素的脚本，支持一些jQuery尚不支持的选择器：<code>E:link</code>、<code>E:nth-last-child</code>、<code>E:root</code>、<code>E:lang(fr)</code>、<code>E:arget</code>、<code>E[foo|=&quot;bar&quot;]</code>等。</li>
-<li><a href="http://www.w3.org/TR/selectors-appi/" target="_blank" rel="external">querySelectorAll()</a><br>实现通过CSS选择器来获取元素的。</li>
+<li><a href="http://plugins.jquery.com/project/moreSelectors" target="_blank" rel="noopener">MoreSelectors for</a> jQuery提供的插件:可以匹配颜色（.color）、匹配表格中的列（:colIndex）、匹配获取焦点的元素等等（:focus）。</li>
+<li><a href="http://plugins.jquery.com/project/xpath" target="_blank" rel="noopener">Basic XPath</a>：jQuery提供的插件，降低了选择器匹配的效率。</li>
+<li><a href="http://simonwillison.net/2003/Mar/25/getElementsBySelector/" target="_blank" rel="noopener">document.getElementsBySelector()</a>作用是通过选择器来获取文档元素。</li>
+<li><a href="http://dean.edwards.name/my/cssQuery/" target="_blank" rel="noopener">cssQuery()</a>查找元素的脚本，支持一些jQuery尚不支持的选择器：<code>E:link</code>、<code>E:nth-last-child</code>、<code>E:root</code>、<code>E:lang(fr)</code>、<code>E:arget</code>、<code>E[foo|=&quot;bar&quot;]</code>等。</li>
+<li><a href="http://www.w3.org/TR/selectors-appi/" target="_blank" rel="noopener">querySelectorAll()</a><br>实现通过CSS选择器来获取元素的。</li>
 </ul>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     
   </div>
 </div>
@@ -180,13 +180,13 @@
   
 <nav id="pagination">
   
-    <a href="/2017/05/02/jQuery（三）/" class="prev">&larr; 上一篇 jQuery（三）</a>
+    <a href="/2017/05/02/jQuery（三）/" class="prev">&larr; Prev post jQuery（三）</a>
   
 
   
 
   
-    <a href="/2017/04/28/jQuery（一）/" class="next">下一篇 jQuery（一） &rarr;</a>
+    <a href="/2017/04/28/jQuery（一）/" class="next">Next post jQuery（一） &rarr;</a>
   
 </nav>
 
