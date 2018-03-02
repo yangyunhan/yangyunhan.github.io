@@ -2,8 +2,6 @@
 
 
 
-  
-
 
 
 
@@ -18,9 +16,12 @@
   
   
   
-    <meta name="description" content="我的恐惧是：懒惰+拖延症+无主见">
+    <meta name="description" content="今天在跟新博文的时候遇到了问题，一脸茫然，解决完之后依旧一脸茫然。。。
+不过一开始在hexo出现的警告是没了的，问题源自于不能连接到github相应的库了。
+首先我查了在hexo上显示的错误是啥意思，报错样子：warning
+这个方法被禁用了，也就是内部有更新了，而hexo的某些插件还引用了这个方法。所以第一，要先更新相关的插件，然后去掉对这个方法的引用。怎么知道要更新的插件是谁，这是原来遇...">
   
-  <title>Category: accumulate [ 该叫什么好 ]</title>
+  <title>hexo问题集锦 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -39,6 +40,15 @@
 <body>
 <div class="side-navigate hide-area">
   
+  
+    <div class="item next">
+      <a href="/2018/02/24/前端框架/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        前端框架
+      </div>
+    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -78,7 +88,7 @@
           </li>
         
           
-            <li class="active">
+            <li>
           
             <a href="/categories">Categories</a>
             
@@ -110,242 +120,68 @@
     <div id="content-inner">
       
       
-  <article id="page">
-    
+  <article id="post">
+    <h1>hexo问题集锦</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-02</span>
       
-    
+        <span id = "post-title-updated">Updated at 2018-03-02</span>
       
-    
       
-        <h1 class="center-title">
-          Category
-          
-        </h1>
-      
-    
-    <ul class="category-list">
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/research/">research</a>
-        
-          <span class="category-list-count">2</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/skill/">skill</a>
-        
-          <span class="category-list-count">22</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a class="active" href="/categories/accumulate/">accumulate</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-    </ul>
-    
+      <span id = "post-title-categories">Category
       
       
         
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
       
       
-    
+      <span id = "post-title-tags">
+      Tag
       
       
         
-      
-      
-    
-      
-      
         
+        <a href="/tags/tips/">tips</a>
       
+      </span>
       
+    </p>
     
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-          
-        
-      
-      
-      <div class="post-title-item">
-  
-  <a href="/2017/07/18/小公举/">
-  
-    小公举
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">7-18</span>
-    
-    <span id = "post-title-categories">Category
-    
-    
-      
-      
-      <a href="/categories/accumulate/">accumulate</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    Tag
-    
-    
-      
-      
-      <a href="/tags/tools/">tools</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
+    <p>今天在跟新博文的时候遇到了问题，一脸茫然，解决完之后依旧一脸茫然。。。</p>
+<p>不过一开始在hexo出现的警告是没了的，问题源自于不能连接到github相应的库了。</p>
+<p>首先我查了在hexo上显示的错误是啥意思，报错样子：<br><a href="hexo问题集锦/warning.png">warning</a></p>
+<p>这个方法被禁用了，也就是内部有更新了，而hexo的某些插件还引用了这个方法。所以第一，要先更新相关的插件，然后去掉对这个方法的引用。怎么知道要更新的插件是谁，这是原来遇到相似问题的人在hexo作者github上翻到的相关问题中找到了，对应了一个<code>hexo-fs</code>插件。所以先更新<code>npm install hexo-fs --save</code>.<br>第二，找到引用了这个方法的位置。<br><code>hexo clean --debug</code>这个命令可以帮助我们定位问题所在。样子：<br><a href="hexo问题集锦/hexo_debug.png">hexo clean –debug</a></p>
+<p>所以是错误出现的上一行有问题，是引用了这个方法的所在。在<code>node_modules/hexo-deploye-git/node_modules/hexo-fs/lib/fs.js</code>中，注释掉它，这个问题就不会出现了。</p>
+<p>贴出这个讲的很明白的博客：<a href="http://rangerzhou.top/2017/07/27/Hexo%E5%8D%9A%E5%AE%A2%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" target="_blank" rel="noopener">RangerZhou</a></p>
+
   </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
 
   
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/02/24/前端框架/" class="next">Next post 前端框架 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
 
       
       
@@ -469,6 +305,8 @@ var unsplashConfig = {"gravity":"north"};
 var turnoffBackgroundImage = false;
 
 
+
+  turnoffBackgroundImage = true;
 
 
 var backgroundColor = "34495E";
