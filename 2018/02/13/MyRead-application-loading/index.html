@@ -138,12 +138,12 @@ React本质 : 只需声明状态和标记，React会...">
   <article id="post">
     <h1>MyRead loading</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2018-02-13</span>
+      <span id = "post-title-date">撰写于 2018-02-13</span>
       
-        <span id = "post-title-updated">Updated at 2018-03-04</span>
+        <span id = "post-title-updated">修改于 2018-03-05</span>
       
       
-      <span id = "post-title-categories">Category
+      <span id = "post-title-categories">分类
       
       
         
@@ -154,7 +154,7 @@ React本质 : 只需声明状态和标记，React会...">
       
       
       <span id = "post-title-tags">
-      Tag
+      标签
       
       
         
@@ -191,6 +191,7 @@ React本质 : 只需声明状态和标记，React会...">
 </blockquote>
 <pre><code>&amp;emsp;&amp;emsp;典型的函数式编程有闭包（保留局部变量不被释放）、高阶函数（函数既可以作为参数又可以作为另一个函数的返回值使用）、柯里化（给定函数的部分参数，生成一个接受其他参数的新函数）、组合（合并多个函数，创造一个新函数）。
 
+
 &amp;emsp;&amp;emsp;相关博文：
     1. [51CTO](http://developer.51cto.com/art/201703/535299.htm);
     2. [Starkwang](https://zhuanlan.zhihu.com/p/21714695)(&lt;small&gt;
@@ -216,12 +217,17 @@ React本质 : 只需声明状态和标记，React会...">
 </ul>
 </li>
 <li><p><strong> React应用构建步骤 </strong>：</p>
-<p>  1.<code>npm install -g create-react-app</code>；</p>
-<p>  2.<code>create-react-app contacts</code>(contacts是react应用的名称)；</p>
+<ol>
+<li><p><code>npm install -g create-react-app</code>；</p>
+</li>
+<li><p><code>create-react-app contacts</code>(contacts是react应用的名称)；</p>
+</li>
+</ol>
 </li>
 </ul>
-<p><img src="/2018/02/13/MyRead-application-loading/webpack.png" alt="react安装包"><br>    <small>&emsp;&emsp;react应用创建过程中安装了三个包：<code>react</code>、<code>reactDOM</code>、<code>react-scripts</code>，其中<code>react-scripts</code>安装了Babel使我们可以使用最新的JavaScript语法以及JSX。安装webpack进行生成和构建。安装webpack-dev-server，使其具有自动重新加载行为</small></p>
-<ul>
+<p><img src="/2018/02/13/MyRead-application-loading/webpack.png" alt="react安装包"></p>
+<pre><code>&lt;small&gt;&amp;emsp;&amp;emsp;react应用创建过程中安装了三个包：`react`、`reactDOM`、`react-scripts`，其中`react-scripts`安装了Babel使我们可以使用最新的JavaScript语法以及JSX。安装webpack进行生成和构建。安装webpack-dev-server，使其具有自动重新加载行为&lt;/small&gt;
+</code></pre><ul>
 <li><p><strong>无状态函数式组件</strong> ： </p>
 <p>  &emsp;&emsp;当所有组件都拥有一个<code>render</code>方法，实际上可以使用常规的旧函数来创建组件，但是不使用this访问组件的props，而是将props作为函数的第一个参数。也省去了render函数，直接使用return。</p>
 <p>  &emsp;&emsp;好处是：</p>
@@ -242,15 +248,16 @@ React本质 : 只需声明状态和标记，React会...">
 </li>
 <li><p><strong>受控组件</strong> ： </p>
 <p>  &emsp;&emsp;React的表单通过React的受控组件来管理，受控组件是渲染表单的组件。表单状态的来源位于组件状态内，而非DOM内。</p>
+<p>  &emsp;&emsp;优势：</p>
+<ul>
+<li><p>支持即时输入验证；</p>
+</li>
+<li><p>它们允许你有条件地禁用或启用表单按钮；</p>
+</li>
+<li><p>它们限制了输入的格式；</p>
 </li>
 </ul>
-<p>&emsp;&emsp;优势：</p>
-<pre><code>- 支持即时输入验证；
-
-- 它们允许你有条件地禁用或启用表单按钮；
-
-- 它们限制了输入的格式；
-</code></pre><ul>
+</li>
 <li><p><strong>对象解构</strong> ：</p>
 <p>  &emsp;&emsp;render方法经常访问状态对象和属性对象。因为属性和状态只是JavaScript对象，可以用ES6功能将它们拆分为单个变量，而不是每次都将他们当作<code>this.state.query</code>和<code>this.props.contacts</code>，这种拆分流程叫做对象解构。</p>
 </li>
@@ -287,7 +294,9 @@ React本质 : 只需声明状态和标记，React会...">
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> propTypes = &#123;</div><div class="line">		<span class="attr">basename</span>: PropTypes.string,</div><div class="line">		<span class="attr">forceRefresh</span>: PropTypes.bool,</div><div class="line">		<span class="attr">getUserConfirmation</span>: PropTypes.func,</div><div class="line">		<span class="attr">keyLength</span>: PropTypes.number,</div><div class="line">		<span class="attr">children</span>: PropTypes.node</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	history = createHistory(<span class="keyword">this</span>.props)</div><div class="line"></div><div class="line">	render() &#123;</div><div class="line">		<span class="keyword">return</span> &lt;Router history=&#123;this.history&#125; children=&#123;this.props.children&#125;  /&gt;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <pre><code>&amp;emsp;&amp;emsp;当你使用 BrowserRouter 时，其实真正的是在渲染 Router 组件并将向其传递 history 属性。history 来自 [history 库](https://github.com/ReactTraining/history)（也是由 React Training 构建的）。该库的整个目标是抽象化不同环境中的区别，并提供最少的 API 来使你管理历史记录堆、导航、确认导航，并在会话之间保持状态。
 
+
 &amp;emsp;&amp;emsp;简而言之，当你使用 BrowserRouter 时，你是在创建 history 对象，该对象将监听 URL 中的变化，并使你的应用知道这些变化。
+
 
 - **Link**: 使用户能够在应用中进行导航。当用户点击[Link](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js)组件时，它会通知BrowserRouter，使它更新URL，它还具备可访问性。使用键盘在应用中导航，仍可以正常工作。右键打开新窗口的功能也仍然有用。需要一个to属性，使用真实的URL。to属性可以是简单的字符串，如
 </code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=<span class="string">"/about"</span>&gt;About&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
@@ -297,10 +306,9 @@ React本质 : 只需声明状态和标记，React会...">
 
 - SPA架构总结：[戴嘉华](https://segmentfault.com/a/1190000000607661)
 </code></pre><h4 id="实践应用：图书跟踪应用，代码。"><a href="#实践应用：图书跟踪应用，代码。" class="headerlink" title="实践应用：图书跟踪应用，代码。"></a>实践应用：图书跟踪应用，<a href="https://github.com/yangyunhan/Myreads" target="_blank" rel="noopener">代码</a>。</h4><ul>
-<li><strong>export</strong> : 导出函数、模块语法。</li>
-</ul>
-<p>&emsp;&emsp;相关博客：<a href="https://www.cnblogs.com/libin-1/p/7127481.html" target="_blank" rel="noopener">最骚的就是你</a></p>
-<ul>
+<li><p><strong>export</strong> : 导出函数、模块语法。</p>
+<p>  &emsp;&emsp;相关博客：<a href="https://www.cnblogs.com/libin-1/p/7127481.html" target="_blank" rel="noopener">最骚的就是你</a></p>
+</li>
 <li><p><strong>Array.prototype.slice.call(arguments)</strong>:</p>
 <p>  &emsp;&emsp;将具有length属性的对象转化成数组，除了IE下的节点集合。</p>
 <p>  &emsp;&emsp;相关博文<a href="https://www.cnblogs.com/littledu/archive/2012/05/19/2508672.html" target="_blank" rel="noopener">肥杜</a></p>
@@ -346,10 +354,10 @@ React本质 : 只需声明状态和标记，React会...">
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
+    <h2>目录</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理论知识：React"><span class="toc-text">理论知识：React</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实践应用：图书跟踪应用，代码。"><span class="toc-text">实践应用：图书跟踪应用，代码。</span></a></li></ol></li></ol></li></ol>
   </div>
 </div>
@@ -357,13 +365,13 @@ React本质 : 只需声明状态和标记，React会...">
   
 <nav id="pagination">
   
-    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; Prev post hexo插入图片解决方法</a>
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; 上一篇 hexo插入图片解决方法</a>
   
 
   
 
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">Next post 值得记住的那些markdown语法 &rarr;</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">下一篇 值得记住的那些markdown语法 &rarr;</a>
   
 </nav>
 
