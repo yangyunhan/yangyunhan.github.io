@@ -136,7 +136,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
     <p class="page-title-sub">
       <span id = "post-title-date">Created at 2018-02-13</span>
       
-        <span id = "post-title-updated">Updated at 2018-03-03</span>
+        <span id = "post-title-updated">Updated at 2018-03-04</span>
       
       
       <span id = "post-title-categories">Category
@@ -168,11 +168,11 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 </li>
 <li><p><strong>React本质</strong>:只需声明状态和标记，React会执行命令式工作，使DOM与应用同步，React是声明式的。</p>
 <p> <small>&emsp;&emsp;之前有用于管理应用状态变化的技术，是使用数据绑定。当应用某处的数据发生变化时，这些变化也会自动反应在应用中的其他方面。但是，应用中拥有该数据的任何部分，都可以更改该数据。随着应用规模增长，这种技术让人很难确定某个位置的数据变更是如何自动而隐式地影响着应用的其他部分。相比之下，React使用更明确的数据管理方式：在组件间向下传递数据，这使跟踪状态变更以及理解它对应用中其他部分造成的影响变得十分容易。称为单向数据流：数据单向从父组件流向子组件。</small></p>
-<p> <img src="/2018/02/13/MyRead-application-loading/react.png" alt="框架图"></p>
-<blockquote>
-<p>&emsp;&emsp;其他框架中的数据绑定：Angular 和 Ember 等前端框架使用双向数据绑定。在双向数据绑定中，数据在整个应用中保持同步，无论是在何处更新的。如果模型更改了数据，数据会在视图中更新。如果用户在视图中更改了数据，数据会在模型中更新。双向数据绑定听起来非常强大，但是会让应用很难判断数据实际上是否更新了，以及是在何处更新的。</p>
-</blockquote>
 </li>
+</ol>
+<p><img src="/2018/02/13/MyRead-application-loading/react.png" alt="框架图"></p>
+<pre><code>&gt;&amp;emsp;&amp;emsp;其他框架中的数据绑定：Angular 和 Ember 等前端框架使用双向数据绑定。在双向数据绑定中，数据在整个应用中保持同步，无论是在何处更新的。如果模型更改了数据，数据会在视图中更新。如果用户在视图中更改了数据，数据会在模型中更新。双向数据绑定听起来非常强大，但是会让应用很难判断数据实际上是否更新了，以及是在何处更新的。
+</code></pre><ol>
 <li><p><strong> 工作原理 </strong> ： 数据位于父组件中，并向下传递给子组件。虽然数据位于父组件中，但是父组件和子组件都可以使用数据。然而，如果必须更新数据的话，则只有父组件应该进行更新。如果子组件需要更改数据，它会将更新的数据发送给父组件，由父组件完成更改。父组件执行更改后，会将更新的数据传递给子组件。</p>
 </li>
 <li><p><strong> 题外话：函数式编程</strong></p>
@@ -194,7 +194,7 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 </li>
 <li><p><strong>webpack</strong> ： web项目构建工具。用此来打包程序，创建react应用。</p>
 </li>
-<li><p><strong> React应用构建步骤 </strong>：<br> 1.<code>npm install -g create-react-app</code>；<br> 2.<code>create-react-app contacts</code>(contacts是react应用的名称)；<br> <img src="/2018/02/13/MyRead-application-loading/webpack.png" alt="react安装包"><br> <small>&emsp;&emsp;react应用创建过程中安装了三个包：<code>react</code>、<code>reactDOM</code>、<code>react-scripts</code>，其中<code>react-scripts</code>安装了Babel使我们可以使用最新的JavaScript语法以及JSX。安装webpack进行生成和构建。安装webpack-dev-server，使其具有自动重新加载行为</small></p>
+<li><p><strong> React应用构建步骤 </strong>：<br> 1.<code>npm install -g create-react-app</code>；<br> 2.<code>create-react-app contacts</code>(contacts是react应用的名称)；<br><img src="/2018/02/13/MyRead-application-loading/webpack.png" alt="react安装包"><br> <small>&emsp;&emsp;react应用创建过程中安装了三个包：<code>react</code>、<code>reactDOM</code>、<code>react-scripts</code>，其中<code>react-scripts</code>安装了Babel使我们可以使用最新的JavaScript语法以及JSX。安装webpack进行生成和构建。安装webpack-dev-server，使其具有自动重新加载行为</small></p>
 </li>
 <li><p><strong>无状态函数式组件</strong> ： 当所有组件都拥有一个<code>render</code>方法，实际上可以使用常规的旧函数来创建组件，但是不使用this访问组件的props，而是将props作为函数的第一个参数。也省去了render函数，直接使用return。</p>
 <p> &emsp;&emsp;好处是：1.接收props作为参数；2.返回UI的描述；3.不存在this关键字，不担心这个函数会被什么环境所调用。</p>
@@ -217,9 +217,11 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
 <li><code>componentWillUnmount</code>: 在组件从DOM移除之前立即调用；</li>
 <li><code>componentWillReceiveProps</code>： 在组件从即将接收全新的props时调用。</li>
 </ul>
+</li>
+</ol>
 <p><img src="/2018/02/13/MyRead-application-loading/生命周期函数.png" alt="生命周期事件"></p>
 <p><img src="/2018/02/13/MyRead-application-loading/react生命周期.png" alt="位于组件生命周期不同阶段的React生命周期事件列表"></p>
-</li>
+<ol>
 <li><p><strong>单页面应用(SPA)</strong>：浏览器不需要向服务器请求新页面，而由JavaScript处理页面之间的转换。所以服务器只发送一个初始页面。React Router是使用React构建单页面应用的一个工具，是React库。</p>
 <p>&emsp;&emsp;单页面应用可以有多种工作方式。单页面应用的一种加载方式是一次性下载整个网站的内容。这样，当你浏览网站时，一切内容已经出现在浏览器中，不需要刷新页面。单页面应用的另一种工作方式是下载渲染用户请求的页面所需的所有内容。当用户浏览到新页面时，仅对请求的内容发出异步 JavaScript 请求。</p>
 <p>&emsp;&emsp;优质单页面应用的另一个关键因素是由 URL 控制页面内容。单页面应用互动性非常高，用户希望能够仅使用 URL 就能回到特定的状态。为何这一点很重要？Bookmarkability（书签功能，很确定的是这还不是一个单词）！当你将网站添加到书签中，该书签仅仅是 URL，并没有记录该页面的状态。</p>
@@ -267,21 +269,19 @@ React本质:只需声明状态和标记，React会执行命令式工作，使DOM
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'./DashedBox.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> DashedBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	&lt;div className=&#123;styles.container&#125;&gt;</div><div class="line">		&lt;p className=&#123;styles.content&#125;&gt;Get started with CSS Modules style&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DashedBox;</div></pre></td></tr></table></figure>
 </li>
 <li><p>CSS Stylesheet：当应用更复杂时，不能使用简单的方式，比如存在媒体查询时。</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./DottedBox.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> DottedBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	&lt;div className="DottedBox"&gt;</div><div class="line">		&lt;p className="DottedBox_content"&gt;Get started with CSS styling&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DottedBox;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./DottedBox.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> DottedBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	&lt;div className="DottedBox"&gt;</div><div class="line">		&lt;p className="DottedBox_content"&gt;Get started with CSS styling&lt;/p&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DottedBox;</div></pre></td></tr></table></figure>
+<p>参考博文<a href="https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822" target="_blank" rel="noopener">Agata Krzywda</a></p>
 </li>
 </ul>
 </li>
-</ol>
-<p>参考博文<a href="https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822" target="_blank" rel="noopener">Agata Krzywda</a></p>
-<ol>
 <li><p><code>noscript</code>标签：在不支持JavaScript的浏览器中显示替代的内容。Facebook通过此达到更好的用户体验。<br>博文<a href="https://www.cnblogs.com/iamkun/p/6534447.html" target="_blank" rel="noopener">朱昆的博客</a></p>
 </li>
-<li><p><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><br><code>shrink-to-fit=no</code>是为了让网页的宽度自动适应手机屏幕的宽度，并在iOS9中起作用。</p>
+<li><p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;</code><br><code>shrink-to-fit=no</code>是为了让网页的宽度自动适应手机屏幕的宽度，并在iOS9中起作用。</p>
 </li>
 </ol>
-<p><meta name="theme-color" content="#000000">设置状态栏的颜色，可使Android版Chrome在访问状态栏时自动变色。<br>相关博文：<a href="https://www.jianshu.com/p/3ef0124e02e0" target="_blank" rel="noopener">饥人谷_Bayes</a></p>
+<p><code>&lt;meta name=&quot;theme-color&quot; content=&quot;#000000&quot;&gt;</code>设置状态栏的颜色，可使Android版Chrome在访问状态栏时自动变色。<br>相关博文：<a href="https://www.jianshu.com/p/3ef0124e02e0" target="_blank" rel="noopener">饥人谷_Bayes</a></p>
 <ol>
-<li><p><link rel="shortcut icon">:规定当前文档与被链接文档之间的关系，只有<code>stylesheet</code>得到了所有浏览器的支持。</p>
+<li><p><code>&lt;link rel=&quot;shortcut icon&quot;&gt;</code>:规定当前文档与被链接文档之间的关系，只有<code>stylesheet</code>得到了所有浏览器的支持。</p>
 </li>
 <li><p>在获取DOM或HTML元素的时候，常常会碰到取元素或者属性的时候。看到了Attribute和Property的不同和用法。Attribute是DOM节点自带的属性，如id，class，title，align等等。Property是DOM元素作为对象所附加的内容。</p>
 </li>
