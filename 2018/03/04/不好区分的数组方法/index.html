@@ -2,8 +2,6 @@
 
 
 
-  
-
 
 
 
@@ -18,9 +16,11 @@
   
   
   
-    <meta name="description" content="我的恐惧是：懒惰+拖延症+无主见">
+    <meta name="description" content="一、原生JS forEach()、map()、jQuery中的$.each()、$.map()
+
+forEach()循环遍历数组中的每一项。123456789//forEacharray.forEach(callback(currentValue, index, array)&#123;    //do something&#125;, this) //或者array.forEach(cal...">
   
-  <title>Category: research [ 该叫什么好 ]</title>
+  <title>不好区分的数组方法 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -39,6 +39,15 @@
 <body>
 <div class="side-navigate hide-area">
   
+  
+    <div class="item next">
+      <a href="/2018/03/02/hexo方法弃用问题/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        hexo问题集锦
+      </div>
+    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -78,7 +87,7 @@
           </li>
         
           
-            <li class="active">
+            <li>
           
             <a href="/categories">Categories</a>
             
@@ -110,295 +119,66 @@
     <div id="content-inner">
       
       
-  <article id="page">
-    
+  <article id="post">
+    <h1>不好区分的数组方法</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-04</span>
       
-        <h1 class="center-title">
-          Category
-          
-        </h1>
+        <span id = "post-title-updated">Updated at 2018-03-04</span>
       
-    
       
-    
-      
-    
-    <ul class="category-list">
-      
-        <li class="category-list-item">
-        
-          <a class="active" href="/categories/research/">research</a>
-        
-          <span class="category-list-count">2</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/skill/">skill</a>
-        
-          <span class="category-list-count">24</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/accumulate/">accumulate</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-    </ul>
-    
+      <span id = "post-title-categories">Category
       
       
         
-          
         
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
       
       
-      <div class="post-title-item">
-  
-  <a href="/2017/03/16/A-citation-is-not-a-citation/">
-  
-    A citation is not a citation
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">3-16</span>
-    
-    <span id = "post-title-categories">Category
-    
-    
-      
-      
-      <a href="/categories/research/">research</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    Tag
-    
-    
-      
-      
-      <a href="/tags/reading/">reading</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
+      <span id = "post-title-tags">
+      Tag
       
       
         
-      
-      
-    
-      
-      
         
+        <a href="/tags/tips/">tips</a>
       
+      </span>
       
+    </p>
     
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-          
-        
-      
-      
-      <div class="post-title-item">
-  
-  <a href="/2017/03/03/Introduction-to-ESA/">
-  
-    Introduction to ESA
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">3-3</span>
-    
-    <span id = "post-title-categories">Category
-    
-    
-      
-      
-      <a href="/categories/research/">research</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    Tag
-    
-    
-      
-      
-      <a href="/tags/reading/">reading</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
+    <p>一、原生JS forEach()、map()、jQuery中的$.each()、$.map()</p>
+<ul>
+<li>forEach()循环遍历数组中的每一项。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//forEach</span></div><div class="line">array.forEach(callback(currentValue, index, array)&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;, <span class="keyword">this</span>)</div><div class="line"> </div><div class="line"><span class="comment">//或者</span></div><div class="line">array.forEach(callback(currentValue, index, array)&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></li>
+</ul>
+
   </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
 
   
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/03/02/hexo方法弃用问题/" class="next">Next post hexo问题集锦 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
 
       
       
@@ -522,6 +302,8 @@ var unsplashConfig = {"gravity":"north"};
 var turnoffBackgroundImage = false;
 
 
+
+  turnoffBackgroundImage = true;
 
 
 var backgroundColor = "34495E";
