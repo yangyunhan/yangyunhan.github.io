@@ -130,12 +130,12 @@
   <article id="post">
     <h1>Block map loading...</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2017-12-03</span>
+      <span id = "post-title-date">Created at 2017-12-03</span>
       
-        <span id = "post-title-updated">修改于 2018-02-26</span>
+        <span id = "post-title-updated">Updated at 2018-03-06</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -146,7 +146,7 @@
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -187,10 +187,69 @@
 <p><strong>题外话：JavaScript模板引擎</strong>：<br>简介：将HTML结构从包含它们的内容中分离的方法，这样就可以把大段的HTML操作从JS里分离开了。在html文件中<script>标签中使用。<code>&lt;script type=&quot;text/template&quot;&gt;&lt;/script&gt;</code>。通俗理解是一个放置模板的地方，并不显示在页面上，可以看作一个容器。之后用js取模板的内容，正则匹配出所有内容，用其他东西替换，再放置到另一个容器中。<br>相关博文：<a href="http://blog.csdn.net/thirteenfloor/article/details/55097802">萧十三楼</a>；<br><a href="https://www.cnblogs.com/huansky/p/6073104.html">huansky</a></p>
 <p>近年来，js模板引擎出现很多种类，如：baiduTemplate(百度)、artTemplate（腾讯）、juicer（淘宝）、doT、tmpl、handlebars、easyTemplate(Freemarker模板风格)、underscoretemplate、mustache、kissytemplate、jTemplates、EJS、laytpl、Jade templating、最简单的模板引擎等等。（来自博文：<a href="https://www.cnblogs.com/EasonJim/p/6228034.html">Jim</a>）。<br>关于他们之间的差别和比较可参考博文<a href="http://web.jobbole.com/84420/#">伯乐在线</a>；<a href="https://www.cnblogs.com/52fhy/p/5393673.html">飞鸿影</a>；<a href="http://blog.csdn.net/meikidd/article/details/8931904">CSDN-meikidd</a></p>
 <p><strong>题外话</strong>：localStorage.clear可以清除浏览器本地中的数据</p>
-<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a><strong>webpack</strong></h3><p>与Gulp/Grunt（优化前端的开发流程的工具）相比，WebPack是一种模块化解决方案。<br>Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。<br>(Grunt和Gulp的工作流程)[D:\软件\blog\source_posts\grunt和gulp的工作流程.png]<br>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。他的处理速度更快更直接，能打包更多不同类型的文件。<br>(Webpack工作方式)[D:\软件\blog\source_posts\webpack工作方式.png]<br>可以生成Source Maps（使调试更容易）：帮助找到写错的位置。<br>config文件中配置项：devtool<br>(devtool配置项)[D:\软件\blog\source_posts\devtool.png]</p>
-<p>正如上表所述，上述选项由上到下打包速度越来越快，不过同时也具有越来越多的负面作用，较快的打包速度的后果就是对打包后的文件的的执行有一定影响。<br>对小到中型的项目中，eval-source-map是一个很好的选项，再次强调你只应该开发阶段使用它.</p>
+<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a><strong>webpack</strong></h3><ul>
+<li><p>简介<br>  &emsp;&emsp;WebPack是模块打包机，分析项目结构，找到JavaScript模块及其他浏览器不能直接运行的拓展语言，将其打包为合适的格式供浏览器使用。模块化概念盛行，各种各样的扩展语言和各种预处理器或是依赖包提高开发效率的同时，使利用它们开发的文件需要额外的处理才能让浏览器识别，手动处理很繁琐，所以出现了这样的工具。</p>
+</li>
+<li><p>Gulp/Grunt（优化前端的开发流程的工具）相比：</p>
+<p>  &emsp;&emsp;Gulp/Grunt是一种能够优化前端的开发流程的工具，WebPack是一种模块化解决方案。</p>
+<p>  &emsp;&emsp;Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。</p>
+</li>
+</ul>
+<p>![Grunt和Gulp的工作流程][D:\软件\blog\source_posts\grunt和gulp的工作流程.png]<br>    &emsp;&emsp;Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。他的处理速度更快更直接，能打包更多不同类型的文件。</p>
+<pre><code>&amp;emsp;&amp;emsp;在配置webpack时参考的博文：[简书-zhangwang](https://www.jianshu.com/p/42e11515c10f)
+</code></pre><p><img src="/webpack工作方式.png" alt="webpack工作方式"></p>
 <ul>
-<li><p>Side Navigation<br><a href="https://www.w3schools.com/howto/howto_js_sidenav.asp">https://www.w3schools.com/howto/howto_js_sidenav.asp</a></p>
+<li><p>优点：</p>
+<ul>
+<li><p>模块化</p>
+<p>&emsp;&emsp;一切都是模块，只有通过合适的loaders，它们都可以被当作模块被处理。</p>
+</li>
+<li><p>可以生成Source Maps（使调试更容易）：帮助找到写错的位置。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/devtool.png" alt="devtool配置项"></p>
+<pre><code>&amp;emsp;&amp;emsp;正如上表所述，上述选项由上到下打包速度越来越快，不过同时也具有越来越多的负面作用，较快的打包速度的后果就是对打包后的文件的的执行有一定影响。
+
+&amp;emsp;&amp;emsp;对小到中型的项目中，eval-source-map是一个很好的选项，再次强调你只应该开发阶段使用它.
+</code></pre><ul>
+<li><p>loader</p>
+<p>  &emsp;&emsp;是在打包构建过程中用来处理源文件的（JSX，Scss，Less），一次处理一个。</p>
+<p>  &emsp;&emsp;对于样式表，有两种处理方式：<code>css-loader</code>和<code>style-loader</code>，二者处理的任务不同，css-loader使你能够使用类似@import 和 url(…)的方法实现 require()的功能,style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。</p>
+<p>  &emsp;&emsp;CSS module被称为CSS modules的技术意在把JS的模块化思想带入CSS中来，通过CSS模块，所有的类名，动画名默认都只作用于当前模块。Webpack对CSS模块化提供了非常好的支持，可以直接把CSS的类名传递到组件的代码中。</p>
+</li>
+<li><p>插件Plugins</p>
+<p>  &emsp;&emsp;用来拓展webpack功能，插件不直接操作单个文件，直接作用于整个构建过程。</p>
+<p>  常用的插件：</p>
+<ul>
+<li><p>HtmlWebpackPlugin：依据一个简单的index.html模板，生成一个自动引用你打包后的JS文件的新index.html，创建一个build文件夹存放最终的输出文件。</p>
+</li>
+<li><p>Hot Module Replacement (HMR): 允许在修改组件代码后，自动刷新实时预览修改后的效果。需要对模块进行额外的配置，在js模块中执行一个webpack提供的api才能实现热加载。如果是React模块，使用Babel(Babel中的react-transform-hrm插件可以在不对React模块进行额外的配置的前提下让HMR正常工作)可以方便的实现热加载。(<small>Babel和webpack是独立的工具；二者可以一起工作，都可以通过插件拓展功能。</small>)</p>
+<ul>
+<li>配置方法： 在webpack配置文件中添加HMR插件(new webpack.HotModuleReplacementPlugin())；在Webpack Dev Server中添加“hot”参数；</li>
+</ul>
+<p>在发布阶段<code>webpack.production.config.js</code>中：</p>
+</li>
+<li><p>OccurenceOrderPlugin: 为组件分配ID，通过这个插件webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID</p>
+</li>
+<li><p>UglifyJsPlugin：压缩JS代码；</p>
+</li>
+<li><p>ExtractTextPlugin：分离CSS和JS文件</p>
+</li>
+<li><p>clean-webpack-plugin: 如果使用缓存去存储不同内容版本的文件，则可以使用这个插件去除目标文件中的残余文件。</p>
+</li>
+<li><p>ProvidePlugin: 这是在项目中用到了另一个插件，可以在里面定制要使用的库，如jQuery，knockout等等</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">            <span class="attr">ko</span>: <span class="string">'knockout'</span>,</div><div class="line">            <span class="attr">$</span>: <span class="string">'jquery'</span>,</div><div class="line">            <span class="attr">axios</span>: <span class="string">'axios'</span></div><div class="line">        &#125;)</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;上述知识点来源于<a href="https://www.jianshu.com/p/42e11515c10f">参考博文</a></p>
+<p>&emsp;&emsp;webpack4正式发布了，不必配置文件，通过选择mode类型来选择生产或开发模式。<a href="https://baijiahao.baidu.com/s?id=1593463639501622465&amp;wfr=spider&amp;for=pc">相关材料</a></p>
+<ul>
+<li><p>Side Navigation</p>
+<p>  &emsp;&emsp;<a href="https://www.w3schools.com/howto/howto_js_sidenav.asp">参考博文</a></p>
 </li>
 <li><p>取得元素计算过后的样式<br>window.getComputedStyle()</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleBar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'options-box'</span>);</div><div class="line">        <span class="keyword">let</span> navStyle = <span class="built_in">window</span>.getComputedStyle(nav, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">let</span> mapLeft = <span class="built_in">document</span>.getElementById(<span class="string">'map'</span>);</div><div class="line">        <span class="keyword">let</span> currentMapLeft = <span class="built_in">window</span>.getComputedStyle(mapLeft, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">let</span> mapLeftCon = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line">        <span class="keyword">let</span> currentMapLeftCon = <span class="built_in">window</span>.getComputedStyle(mapLeftCon, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(<span class="built_in">window</span>.screen.width &lt; <span class="number">576</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (navStyle.display === <span class="string">'none'</span>)&#123;</div><div class="line">                nav.style.cssText = <span class="string">"display: block"</span></div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                nav.style.cssText = <span class="string">"display: none"</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (currentMapLeft.marginLeft === <span class="string">'302px'</span> &amp;&amp;</div><div class="line">                currentMapLeftCon.marginLeft === <span class="string">'302px'</span>)&#123;</div><div class="line">                mapLeft.style.cssText = <span class="string">"margin-left: 0px"</span>;</div><div class="line">                mapLeftCon.style.cssText = <span class="string">"margin-left: 0px"</span>;</div><div class="line"></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentMapLeft.marginLeft === <span class="string">'0'</span> &amp;&amp;</div><div class="line">                currentMapLeftCon.marginLeft === <span class="string">'0'</span>)&#123;</div><div class="line">                mapLeft.style.cssText = <span class="string">"margin-left: 302px"</span>;</div><div class="line">                mapLeftCon.style.cssText = <span class="string">"margin-left: 302px"</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            nav.style.cssText = <span class="string">"display: block"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
@@ -199,10 +258,10 @@
 </script></p>
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#闭包和事件侦听程序"><span class="toc-text">闭包和事件侦听程序</span></a></li></ol>
   </div>
 </div>
@@ -210,13 +269,13 @@
   
 <nav id="pagination">
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="prev">&larr; 上一篇 值得记住的那些markdown语法</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="prev">&larr; Prev post 值得记住的那些markdown语法</a>
   
 
   
 
   
-    <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/" class="next">下一篇 订阅阅读器测试（Subscribe reader test） &rarr;</a>
+    <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/" class="next">Next post 订阅阅读器测试（Subscribe reader test） &rarr;</a>
   
 </nav>
 
