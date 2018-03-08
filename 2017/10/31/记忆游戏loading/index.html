@@ -136,7 +136,7 @@ setTimeout
     <p class="page-title-sub">
       <span id = "post-title-date">Created at 2017-10-31</span>
       
-        <span id = "post-title-updated">Updated at 2018-03-07</span>
+        <span id = "post-title-updated">Updated at 2018-03-08</span>
       
       
       <span id = "post-title-categories">Category
@@ -222,8 +222,20 @@ setTimeout
     - [](http://blog.csdn.net/xiaozhuxmen/article/details/52014901)
     - [](http://www.codeweblog.com/how-browsers-work-%E4%B8%AD%E6%96%87%E7%89%88/)
 </code></pre><ul>
-<li><strong>前端自动化工作流</strong></li>
-<li><strong>用gulp搭建es6环境</strong></li>
+<li><p><strong>用gulp搭建es6环境</strong></p>
+<ul>
+<li><p>gulp.src(globs[,options])匹配文件源</p>
+</li>
+<li><p>gulp.dest(path[,options])写文件，输出文件，如果文件不存在，则自动创建</p>
+</li>
+<li><p>gulp.task(name[,deps],fn)定义一个任务</p>
+</li>
+<li><p>gulp.watch(glob[,opts],tasks)监控文件变化</p>
+</li>
+<li><p>gulp文档：<a href="https://www.gulpjs.com.cn/docs/writing-a-plugin/" target="_blank" rel="noopener">https://www.gulpjs.com.cn/docs/writing-a-plugin/</a></p>
+</li>
+</ul>
+</li>
 <li><p>js刷新页面的几种方法（亲测有效）</p>
 <ul>
 <li><p>reload方法，强迫浏览器刷新当前页面，从客户端缓存里取当前页面</p>
@@ -266,8 +278,12 @@ setTimeout
 </ul>
 </li>
 </ul>
-<p>最终效果：<a href="https://github.com/yangyunhan/memory-game" target="_blank" rel="noopener">https://github.com/yangyunhan/memory-game</a></p>
-<p>待修改：动画效果 插件sweetalert</p>
+<ul>
+<li><p>最终效果：<a href="https://github.com/yangyunhan/memory-game" target="_blank" rel="noopener">https://github.com/yangyunhan/memory-game</a></p>
+</li>
+<li><p>待修改：动画效果插件：sweetalert 这个插件使用了最新的css特性和js特性，一般需要webpack做编译，在这个项目里使用gulp构建的前端工作自动流，暂时放弃引入。</p>
+</li>
+</ul>
 
   </article>
   <div class="random-toc-area">
