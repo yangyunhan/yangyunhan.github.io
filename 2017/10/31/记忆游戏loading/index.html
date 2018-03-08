@@ -226,14 +226,45 @@ setTimeout
 <li><strong>用gulp搭建es6环境</strong></li>
 <li><p>js刷新页面的几种方法（亲测有效）</p>
 <ul>
+<li><p>reload方法，强迫浏览器刷新当前页面，从客户端缓存里取当前页面</p>
+<ul>
 <li>window.location.reload();</li>
-<li>history.go(0)</li>
-<li>location = location</li>
-<li>location.assign(location)</li>
-<li>location.replace(location)</li>
+<li>window.location.reload(true);</li>
+</ul>
+</li>
+<li><p>location = location;这个可以刷新页面，等同于location=location.href</p>
+</li>
+<li><p>assign方法，加载新的文档</p>
+<ul>
+<li>location.assign(location);</li>
+</ul>
+</li>
+<li><p>replace方法，指定URL替换当前缓存在历史里的项目，使用后不能通过前进、后退来访问已经被替换的url。</p>
+<ul>
+<li>location.replace(location);</li>
+</ul>
+</li>
+<li><p>幼稚的我以为location可以分为三种，其实有535种。。</p>
+<ul>
+<li><p><a href="http://www.phpied.com/files/location-location/location-location.html" target="_blank" rel="noopener">http://www.phpied.com/files/location-location/location-location.html</a></p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/location" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/Window/location</a></p>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>引用类型的值，如数组和对象，不能用<code>==</code>或<code>===</code>进行比较，得到的结果都是false。应转化为基本类型值再进行比较，如引用.toString()方法。</li>
+<li><p>js数组强大的功能：splice，可以删除，添加和替换。</p>
+<ul>
+<li><p>删除，指明两个参数：要删除的位置和项数</p>
+</li>
+<li><p>添加，指明三个参数：要添加的位置，0，要添加的内容</p>
+</li>
+<li><p>替换，指明三个参数：要添加的位置，要删除的项数，要添加上的项数</p>
+</li>
+</ul>
+</li>
 </ul>
 <p>最终效果：<a href="https://github.com/yangyunhan/memory-game" target="_blank" rel="noopener">https://github.com/yangyunhan/memory-game</a></p>
 <p>待修改：动画效果 插件sweetalert</p>
