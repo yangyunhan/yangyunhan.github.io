@@ -279,6 +279,10 @@
 <li><p>非数值转换为数值</p>
 <ul>
 <li><p>Number()可用于任何数据类型。Boolean被转换为1和0；null–0；undefined–NaN；字符串–直接转、浮点数、十进制、0、NaN；对象–先调用valueOf()方法，然后依照前面的规则转换。效果同一元加操作符。</p>
+<ul>
+<li>一元+操作符的转换在遇到长度为2以上的数组的时候结果的NaN，数组长度为空、0、1都为0.</li>
+<li><code>console.log(+[undefined])</code>结果为0.</li>
+</ul>
 </li>
 <li><p>parseInt()[由于Number()处理字符串比较复杂]，更多的看是否符合数值模式，会忽略字符串前面的空格。第一个字符不是数字或负号，则返回NaN；parseInt()返回NaN(Number()对空字符返回0)；后面的字符被忽略；可以识别出进制，但是在ES3和ES5中对八进制样式的字符转换存在差别，所以它提供了第二个参数。</p>
 </li>
@@ -345,6 +349,8 @@
 <li><p>数组类型对象：</p>
 <ul>
 <li><p>先进先出FIFO：push与shift，pop与unshift；</p>
+</li>
+<li><p>reverse返回反转后的该数组； sort返回排序后的该数组；concat返回粘贴的新数组；slice返回取出的部分新的数组；splice返回删除元素组成的数组；pop和shift返回删除的值；push和unshift返回数组新的长度。</p>
 </li>
 <li><p>归并方法reduce()与reduceRight()，接收函数和一个初始值。函数又接收4个参数（前一项，后一项，索引，数组本身）。</p>
 </li>
