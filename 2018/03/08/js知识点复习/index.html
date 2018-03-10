@@ -17,11 +17,11 @@
   
   
     <meta name="description" content="JavaScript实现
+  &emsp;&emsp;JavaScript由3个部分组成：
 
-&emsp;&emsp;JavaScript由3个部分组成：
-- 核心（ECMAScript）：不依赖web浏览器，是语言基础。Web浏览器是它实现的宿主环境之一，提供它的实现和扩展。其他宿主环境Node（服务器JavaScript平台）和Adobe Flash；2017年6月，ES8或ES2017发布。主要新功能：
+核心（ECMAScript）：不依赖web浏览器，是语言基础。Web浏览器是它实现的宿主环境之一，提供它的实现和扩展。其他宿主环境Node（服务器JavaScript平台）和Adobe Flash；2017年6月，ES8或ES2017发布。主要新功能：
 
-    - 字符串填充：str.padSta...">
+字符串填充：str.padStart(tar...">
   
   <title>js知识点复习 [ 该叫什么好 ]</title>
   
@@ -143,30 +143,34 @@
     </p>
     
     <ul>
-<li>JavaScript实现</li>
+<li><p>JavaScript实现</p>
+<p>  &emsp;&emsp;JavaScript由3个部分组成：</p>
+<ul>
+<li><p>核心（ECMAScript）：不依赖web浏览器，是语言基础。Web浏览器是它实现的宿主环境之一，提供它的实现和扩展。其他宿主环境Node（服务器JavaScript平台）和Adobe Flash；2017年6月，ES8或ES2017发布。主要新功能：</p>
+<ul>
+<li><p>字符串填充：<code>str.padStart(targetLength [, padString])</code>;<code>str.padEnd(targetLength[, padString])</code></p>
+</li>
+<li><p>Object.value和Object.entries：以与<code>for in</code>循环所提供的顺序相同的顺序返回给定对象自己的枚举属性值/对的数组。IE不支持</p>
+</li>
+<li><p>Object.getOwnPropertyDescriptors：返回指定对象的所有属性描述符。可配置、枚举、读写、设置。IE未知支持状态</p>
+</li>
+<li><p>功能参数列表和调用中的逗号不会引发错误</p>
+</li>
+<li><p>异步功能，工作方式与生成器相似但不会转换为生成器。？？IE未知支持状态。</p>
+</li>
+<li><p>共享内存和原子：共享存储器时，多个线程可以在内存中读取和写入相同的数据。 原子操作确保可预测的值被写入和读取，在下一个操作开始之前完成操作，并且操作不被中断。？？火狐支持。</p>
+</li>
+<li><p>博文来自于<a href="http://blog.csdn.net/lihefei_coder/article/details/75068578" target="_blank" rel="noopener">http://blog.csdn.net/lihefei_coder/article/details/75068578</a></p>
+</li>
 </ul>
-<p>&emsp;&emsp;JavaScript由3个部分组成：</p>
-<pre><code>- 核心（ECMAScript）：不依赖web浏览器，是语言基础。Web浏览器是它实现的宿主环境之一，提供它的实现和扩展。其他宿主环境Node（服务器JavaScript平台）和Adobe Flash；2017年6月，ES8或ES2017发布。主要新功能：
-
-    - 字符串填充：str.padStart(targetLength [, padString]);str.padEnd(targetLength[, padString])
-
-    - Object.value和Object.entries：以与for in循环所提供的顺序相同的顺序返回给定对象自己的枚举属性值/对的数组。IE不支持
-
-    - Object.getOwnPropertyDescriptors：返回指定对象的所有属性描述符。可配置、枚举、读写、设置。IE未知支持状态
-
-    - 功能参数列表和调用中的逗号不会引发错误
-
-    - 异步功能，工作方式与生成器相似但不会转换为生成器。？？IE未知支持状态。
-
-    - 共享内存和原子：共享存储器时，多个线程可以在内存中读取和写入相同的数据。 原子操作确保可预测的值被写入和读取，在下一个操作开始之前完成操作，并且操作不被中断。？？火狐支持。
-
-    - 博文来自于[http://blog.csdn.net/lihefei_coder/article/details/75068578](http://blog.csdn.net/lihefei_coder/article/details/75068578)
-
-- 文档对象模型（DOM）：针对 XML 但经过扩展用于 HTML 的应用程序编程接口，把整个页面映射为一个多层节点结构。HTML或 XML页面中的每个组成部分都是某种类型的节点，这些节点又包含着不同类型的数据。为了跨平台。DOM有3级，映射文档结构--&gt;视图、事件、样式、遍历和范围--&gt;加载、保存、验证文档。
-
-- 浏览器对象模型（BOM）：控制浏览器显示的页面以为的部分，处理浏览器窗口和框架。没有标准，但基本的windows、Navigator都有，它的扩展有location、screen、cookies、XMLHttoRequest/ActiveXObject对象。
-</code></pre><ul>
-<li><p><script>元素</p>
+</li>
+<li><p>文档对象模型（DOM）：针对 XML 但经过扩展用于 HTML 的应用程序编程接口，把整个页面映射为一个多层节点结构。HTML或 XML页面中的每个组成部分都是某种类型的节点，这些节点又包含着不同类型的数据。为了跨平台。DOM有3级，映射文档结构–&gt;视图、事件、样式、遍历和范围–&gt;加载、保存、验证文档。</p>
+</li>
+<li><p>浏览器对象模型（BOM）：控制浏览器显示的页面以为的部分，处理浏览器窗口和框架。没有标准，但基本的windows、Navigator都有，它的扩展有location、screen、cookies、XMLHttoRequest/ActiveXObject对象。</p>
+</li>
+</ul>
+</li>
+<li><p><code>&lt;script&gt;</code>元素</p>
 <ul>
 <li><p>async：立即下载脚本，适用于外部脚本文件。不保证按照指定顺序执行。</p>
 </li>
@@ -191,7 +195,7 @@
 </li>
 </ul>
 </li>
-<li><p><noscript>元素：包含浏览器不支持的脚本，平稳退化。</p>
+<li><p><code>&lt;noscript&gt;</code>元素：包含浏览器不支持的脚本，平稳退化。</p>
 </li>
 <li><p>基本概念</p>
 <ul>
@@ -203,20 +207,15 @@
 </li>
 <li><p>5种简单/基本数据类型：Undefined、Null、Boolean、Number、String和1种复杂数据类型：Object。不允许自己创建类型。区分用操作符typeof，不是函数。特殊情况：</p>
 <ul>
-<li><p><strong>typeof null;</strong> //object, null是空指针对象</p>
-<p>typeof null === “object”//true<br>typeof null === Object//false</p>
+<li><p><strong>typeof null;</strong> //object, null是空指针对象<br>  typeof null === “object”//true<br>  typeof null === Object//false</p>
 </li>
-<li><p><strong>typeof undefined</strong> //undefined</p>
-<p>typeof undefined === undefined //false<br>typeof undefined === “undefined” //true</p>
+<li><p><strong>typeof undefined</strong> //undefined<br>  typeof undefined === undefined //false<br>  typeof undefined === “undefined” //true</p>
 </li>
-<li><p><strong>typeof Number</strong> //function</p>
-<p>typeof Number === “function”//true<br>typeof Number === Function//false, === function //被当成没写完的函数</p>
+<li><p><strong>typeof Number</strong> //function<br>  typeof Number === “function”//true<br>  typeof Number === Function//false<br>  typeof Number === function //被当成没写完的函数</p>
 </li>
-<li><p><strong>typeof String </strong>//function</p>
-<p>typeof String === “function”//true</p>
+<li><p><strong>typeof String </strong>//function<br>  typeof String === “function”//true</p>
 </li>
-<li><p><strong>typeof Boolean</strong>//function</p>
-<p>typeof Boolean === “function”//true</p>
+<li><p><strong>typeof Boolean</strong>//function<br>  typeof Boolean === “function”//true</p>
 </li>
 <li><p>使用typeof区分函数和其他对象</p>
 </li>
@@ -244,8 +243,8 @@
 </li>
 <li><p>区分大小写，True和False只是标识符</p>
 </li>
-<li><p>所有类型值都有与这两个Boolean值等价的值，使用Boolean()<br><img src="js知识点复习/boolean转换规则.png" alt="Boolean转换规则"></p>
-<p>也就是说所有数据类型都可以转换为false：0,’’,false,null,undefined,NaN.</p>
+<li><p>所有类型值都有与这两个Boolean值等价的值，使用Boolean()<br><img src="/2018/03/08/js知识点复习/boolean转换规则.png" alt="Boolean转换规则"></p>
+<p>也就是说所有数据类型都可以转换为false：0, ‘’, false, null, undefined, NaN.</p>
 </li>
 </ul>
 </li>
@@ -255,28 +254,20 @@
 </li>
 <li><p>保存浮点数值会转换为整数值，浮点数最高精度17位小数，算数计算精度不如整数。</p>
 <ul>
-<li><p>0.1+0.2=0.30…04；</p>
-</li>
-<li><p>0.1+0.7=0.777..9;</p>
-</li>
-<li><p>0.2+0.4=0.600…01;</p>
-</li>
-<li><p>0.2+0.7=0.8999..99;</p>
-</li>
-<li><p>0.3+0.6=0.899..99;</p>
-</li>
+<li>0.1 + 0.2 = 0.30…04；</li>
+<li>0.1 + 0.7 = 0.777..9;</li>
+<li>0.2 + 0.4 = 0.600…01;</li>
+<li>0.2 + 0.7 = 0.8999..99;</li>
+<li>0.3 + 0.6 = 0.899..99;</li>
 </ul>
 </li>
 <li><p>最小值Number.MIN_VALUE=5e-324;最大值Number.MAX_VALUE=1.7…e+308;超出范围转换为Infinity/-Infinity，不能参与计算。isFinite()判断数值是不是有穷的。Number.NEGATIVE_INFINITY保存-Infinity，Number.POSITIVE_INFINITY保存Infinity。</p>
 </li>
 <li><p>NaN，非数值。表示一个本来要返回数值的操作数未返回数值的情况，防止抛出错误。涉及NaN的操作返回NaN，与任何值都不想等，包括本身。isNaN()确定参数是否“不是数值”。接收到参数后尝试将这个值转换为数值，不能转换则返回true。</p>
 <ul>
-<li><p>0/0=NaN；</p>
-</li>
-<li><p>正数/0=Infinity；</p>
-</li>
-<li><p>负数/0=-Infinity；</p>
-</li>
+<li>0/0 = NaN；</li>
+<li>正数/0 = Infinity；</li>
+<li>负数/0=-Infinity；</li>
 </ul>
 </li>
 <li><p>非数值转换为数值</p>
@@ -328,51 +319,70 @@
 </ul>
 </li>
 </ul>
-<pre><code>- 访问变量有按值传递和按引用传递，而参数只能按值传递。
+<ul>
+<li><p>访问变量有按值传递和按引用传递，而参数只能按值传递。</p>
+<p>  举例：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">     obj.name = <span class="string">"Nicholas"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(person);</div><div class="line">alert(person.name); <span class="comment">/*"Nicholas"*/</span></div></pre></td></tr></table></figure>
+<p>   &emsp;&emsp;和</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    obj.name = <span class="string">"Nicholas"</span>;</div><div class="line">    obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">    obj.name = <span class="string">"Greg"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(person);</div><div class="line">alert(person.name); <span class="comment">//"Nicholas"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>&emsp;&emsp;typeof检测变量时可以检测出具体的基本数据类型还是object。在检测函数的时候，会有些特殊情况。</li>
+</ul>
+<p><img src="/2018/03/08/js知识点复习/typeof检测函数.png" alt="typeof检测函数"></p>
+<ul>
+<li><p>基本类型值保存在栈内存中；引用类型值保存在堆内存中。</p>
+</li>
+<li><p>最常用的垃圾收集机制是标记清除</p>
+</li>
+<li><p>数组类型对象：</p>
+<ul>
+<li><p>先进先出FIFO：push与shift，pop与unshift；</p>
+</li>
+<li><p>归并方法reduce()与reduceRight()，接收函数和一个初始值。函数又接收4个参数（前一项，后一项，索引，数组本身）。</p>
+</li>
+</ul>
+</li>
+<li><p>Date类型</p>
+<ul>
+<li><p>创建日期对象var now = new Date()//Fri Mar 09 2018 10:49:22 GMT+0800 (中国标准时间)</p>
+</li>
+<li><p>创建指定的日期对象：</p>
+<ul>
+<li><p>Date.parse():接受字符串参数，返回相应日期的毫秒数。返回UTC格式的话：var someDate = new Date(Date.parse(“May 25, 2004”));</p>
+</li>
+<li><p>Date.UTC():接受参数不一样，年份，基于0的月份，日期、小时数、分钟和秒。且参数是数字。返回UTC格式的话在外面套new Date.</p>
+</li>
+<li><p>构造函数可以使用两种方法的参数。</p>
+</li>
+<li><p>ES5提供了Date.now()</p>
+</li>
+<li><p>Date类型的valueOf()方法返回日期的毫秒表示</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基本包装类型：</p>
+<ul>
+<li><p>为了便于操作基本类型值， ECMAScript 还提供了 3 个特殊的引用类型： Boolean、 Number 和String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。实际上，每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象。基本类型值不是对象，但确实有方法。</p>
+</li>
+<li><p>引用类型与基本包装类型的主要区别就是对象的生存期。使用 new 操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。这意味着我们不能在运行时为基本类型值添加属性和方法。</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1 = <span class="string">"some text"</span>;</div><div class="line">s1.color = <span class="string">"red"</span>;</div><div class="line">alert(s1.color); <span class="comment">/*undefined*/</span></div></pre></td></tr></table></figure>
+<p>   &emsp;&emsp;当然，可以显式地调用 Boolean、 Number 和 String 来创建基本包装类型的对象。不过，应该在绝对必要的情况下再这样做，因为这种做法很容易让人分不清自己是在处理基本类型还是引用类型的值。对基本包装类型的实例调用 typeof 会返回”object”，而且所有基本包装类型的对象都会被转换为布尔值 true。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> falseObject = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> result = falseObject &amp;&amp; <span class="literal">true</span>;</div><div class="line">alert(result); <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;falseObject是对象，会被转换成true。</p>
+<ul>
+<li><p>操作数组的方法：concat()、slice()、splice()；操作基本类型中字符串的方法：concat()、slice()、substr()、substring()</p>
+</li>
+<li></li>
+</ul>
 
-举例：
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">	obj.name = <span class="string">"Nicholas"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(person);</div><div class="line">alert(person.name); <span class="comment">/*"Nicholas"*/</span></div></pre></td></tr></table></figure>
-<p>和<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">obj.name = <span class="string">"Nicholas"</span>;</div><div class="line">obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">obj.name = <span class="string">"Greg"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(person);</div><div class="line">alert(person.name); <span class="comment">//"Nicholas"</span></div></pre></td></tr></table></figure></p>
-<pre><code>- typeof检测变量时可以检测出具体的基本数据类型还是object。在检测函数的时候，会有些特殊情况。
-</code></pre><p><img src="js知识点复习/typeof检测函数.png" alt="typeof检测函数"></p>
-<pre><code>- 基本类型值保存在栈内存中；引用类型值保存在堆内存中。
-
-- 最常用的垃圾收集机制是标记清除
-
-- 数组类型对象：
-
-    - 先进先出FIFO：push与shift，pop与unshift；
-
-    - 归并方法reduce()与reduceRight()，接收函数和一个初始值。函数又接收4个参数（前一项，后一项，索引，数组本身）。
-
-- Date类型
-
-    - 创建日期对象var now = new Date()//Fri Mar 09 2018 10:49:22 GMT+0800 (中国标准时间)
-
-    - 创建指定的日期对象：
-
-        - Date.parse():接受字符串参数，返回相应日期的毫秒数。返回UTC格式的话：var someDate = new Date(Date.parse(&quot;May 25, 2004&quot;));
-
-        - Date.UTC():接受参数不一样，年份，基于0的月份，日期、小时数、分钟和秒。且参数是数字。返回UTC格式的话在外面套new Date.
-
-        - 构造函数可以使用两种方法的参数。
-
-        - ES5提供了Date.now()
-
-        - Date类型的valueOf()方法返回日期的毫秒表示
-
-- 基本包装类型：
-
-    - 为了便于操作基本类型值， ECMAScript 还提供了 3 个特殊的引用类型： Boolean、 Number 和String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。实际上，每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象。基本类型值不是对象，但确实有方法。
-
-    - 引用类型与基本包装类型的主要区别就是对象的生存期。使用 new 操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。这意味着我们不能在运行时为基本类型值添加属性和方法。
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1 = <span class="string">"some text"</span>;</div><div class="line">s1.color = <span class="string">"red"</span>;</div><div class="line">alert(s1.color); <span class="comment">/*undefined*/</span></div></pre></td></tr></table></figure>
-<pre><code>- 当然，可以显式地调用 Boolean、 Number 和 String 来创建基本包装类型的对象。不过，应该在绝对必要的情况下再这样做，因为这种做法很容易让人分不清自己是在处理基本类型还是引用类型的值。对基本包装类型的实例调用 typeof 会返回&quot;object&quot;，而且所有基本包装类型的对象都会被转换为布尔值 true。
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> falseObject = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> result = falseObject &amp;&amp; <span class="literal">true</span>;</div><div class="line">alert(result); <span class="comment">//true</span></div></pre></td></tr></table></figure>
-<pre><code>- falseObject是对象，会被转换成true。
-
-- 操作数组的方法：concat()、slice()、splice()；操作基本类型中字符串的方法：concat()、slice()、substr()、substring()
-</code></pre></script></p></li></ul>
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
