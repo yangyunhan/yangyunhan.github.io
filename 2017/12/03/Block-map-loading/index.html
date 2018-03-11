@@ -16,8 +16,9 @@
   
   
   
-    <meta name="description" content="闭包和事件侦听程序问题：假如我们要为数组中的每个元素分别创建一个 dom 元素。单击任一个 dom 元素，它会使用 alert() 提示其对应数字。简单的方法是使用 for 循环遍历列表元素。单击时，会提示我们在迭代数组每个元素时的 num 值。
-12345678910111213141516171819// 清屏document.body.innerHTML = '';document.b...">
+    <meta name="description" content="闭包和事件侦听程序&emsp;&emsp;问题：
+&emsp;&emsp;假如我们要为数组中的每个元素分别创建一个dom元素。单击任一个dom元素，它会使用alert()提示其对应数字。简单的方法是使用 for 循环遍历列表元素。单击时，会提示我们在迭代数组每个元素时的 num 值。
+12345678910111213141516171819// 清屏document.body.innerH...">
   
   <title>Block map loading... [ 该叫什么好 ]</title>
   
@@ -49,11 +50,11 @@
   
   
     <div class="item next">
-      <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/">
+      <a href="/2017/10/31/记忆游戏loading/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        订阅阅读器测试（Subscribe reader test）
+        记忆游戏loading...
       </div>
     </div>
   
@@ -130,12 +131,12 @@
   <article id="post">
     <h1>Block map loading...</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2017-12-03</span>
+      <span id = "post-title-date">撰写于 2017-12-03</span>
       
-        <span id = "post-title-updated">Updated at 2018-03-09</span>
+        <span id = "post-title-updated">修改于 2018-03-11</span>
       
       
-      <span id = "post-title-categories">Category
+      <span id = "post-title-categories">分类
       
       
         
@@ -146,7 +147,7 @@
       
       
       <span id = "post-title-tags">
-      Tag
+      标签
       
       
         
@@ -157,80 +158,162 @@
       
     </p>
     
-    <h2 id="闭包和事件侦听程序"><a href="#闭包和事件侦听程序" class="headerlink" title="闭包和事件侦听程序"></a>闭包和事件侦听程序</h2><p><strong>问题</strong>：假如我们要为数组中的每个元素分别创建一个 dom 元素。单击任一个 dom 元素，它会使用 alert() 提示其对应数字。简单的方法是使用 for 循环遍历列表元素。单击时，会提示我们在迭代数组每个元素时的 num 值。</p>
+    <h3 id="闭包和事件侦听程序"><a href="#闭包和事件侦听程序" class="headerlink" title="闭包和事件侦听程序"></a>闭包和事件侦听程序</h3><p>&emsp;&emsp;<strong>问题</strong>：</p>
+<p>&emsp;&emsp;假如我们要为数组中的每个元素分别创建一个dom元素。单击任一个dom元素，它会使用alert()提示其对应数字。简单的方法是使用 for 循环遍历列表元素。单击时，会提示我们在迭代数组每个元素时的 num 值。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 清屏</span></div><div class="line"><span class="built_in">document</span>.body.innerHTML = <span class="string">''</span>;</div><div class="line"><span class="built_in">document</span>.body.style.background=<span class="string">"white"</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="comment">// 让我们循环遍历数组中的所有数字</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">	<span class="comment">// 这是循环中当前的数字</span></div><div class="line">	<span class="keyword">var</span> num = nums[i];</div><div class="line">	<span class="comment">// 我们为这个数字创建一个DOM元素</span></div><div class="line">	<span class="keyword">var</span> elem = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">	elem.textContent = num;</div><div class="line">	<span class="comment">// ... 然后当点击 (click) 的时候，使用 alert() 提示这个数字</span></div><div class="line">	elem.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		alert(num);</div><div class="line">	&#125;);</div><div class="line">	<span class="comment">// 最后，我们把这个 dom 元素插入到 document 中去。</span></div><div class="line">	<span class="built_in">document</span>.body.appendChild(elem);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>实际上发生了什么？</p>
+<p>&emsp;&emsp;实际上发生了什么？</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line"></div><div class="line"><span class="comment">// 这个变量在我们进行迭代时 一直在改变 !</span></div><div class="line"><span class="comment">//  第一个值是1，接着是2，最后是3</span></div><div class="line"><span class="keyword">var</span> num = nums[i];</div><div class="line"></div><div class="line"><span class="comment">// 点击时...</span></div><div class="line">elem.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// ... 在点击的时候提示num的值!</span></div><div class="line">    alert(num);</div><div class="line"></div><div class="line">    <span class="comment">// 很明显，我们提示 num 变量的值</span></div><div class="line">    <span class="comment">// 它在内部函数(指的是 addEventListener 中的匿名函数)的外面被定义。</span></div><div class="line">    <span class="comment">// 每个内部函数都指向同一个 'num' 变量… 而 'num' 变量在每一次的迭代中都发生了变化，</span></div><div class="line">    <span class="comment">// 在循环的最后它被定义为3。无论何时，点击事件调用的匿名函数都会引用同一个 'num' 变量(现在它等于3)</span></div><div class="line"></div><div class="line">&#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>解决方案就是使用闭包。我们将创建一个内部作用域，以便在我们添加事件监听的时候存住num的值。其实有很多种方法可以实现这个效果 – 闭包是其中很好的一种。</p>
-<p><strong>闭包的用处</strong>：1.可以在函数外部读取函数内部的变量；2.可以将这些变量的值在内存中持久化</p>
+<p>&emsp;&emsp;解决方案就是使用闭包。我们将创建一个内部作用域，以便在我们添加事件监听的时候存住num的值。其实有很多种方法可以实现这个效果 – 闭包是其中很好的一种。</p>
+<p><strong>闭包的用处</strong>：</p>
+<ul>
+<li><p>可以在函数外部读取函数内部的变量</p>
+</li>
+<li><p>可以将这些变量的值在内存中持久化</p>
+</li>
+</ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.innerHTML = <span class="string">''</span>;</div><div class="line"><span class="keyword">var</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="comment">// 循环遍历数组中的每一个数</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line"><span class="comment">// 这是数组循环中当前的数值...</span></div><div class="line"><span class="keyword">var</span> num = nums[i];</div><div class="line"><span class="comment">// 我们为这个数创建了一个 DOM 元素</span></div><div class="line"><span class="keyword">var</span> elem = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">elem.textContent = num;</div><div class="line"><span class="comment">// ... 然后当我们点击 (click) 的时候，提示这个数字</span></div><div class="line">elem.addEventListener(<span class="string">'click'</span>, (<span class="function"><span class="keyword">function</span>(<span class="params">numCopy</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(numCopy);</div><div class="line">    &#125;;</div><div class="line">&#125;)(num));</div><div class="line"><span class="built_in">document</span>.body.appendChild(elem);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>讲闭包较好的一篇博客：<a href="http://lipeng1667.github.io/2016/12/20/closure-in-js/" target="_blank" rel="noopener">Michael Lee</a></p>
-<p>个人理解出现上述问题是因为函数只是定义了，并没有被调用。当它调用时，内部循环已经完成了，所以一直出现循环中最后的值。为解决上述问题，就是要函数立马被执行，所以出现了立即执行函数。</p>
-<p>*相关博文：<a href="http://lipeng1667.github.io/2016/12/20/IIFE-in-js/" target="_blank" rel="noopener">Michael Lee</a></p>
-<p><strong>面条式代码</strong>：将事物连接到一起时，很容易杂乱。应用最终就是将一段段代码连接到一起。当将一段段代码与其他代码连到一起后，就没法移动任何代码了。</p>
-<p><strong>MVC</strong>：<br>MVC/MVVM/MVP/MV*等等解决的是同一个问题，即将我们的模型与视图分开来。<br>MVC较深入的博文：<a href="https://www.cnblogs.com/Hackson/p/7055695.html" target="_blank" rel="noopener">cnblogs-Hackson</a></p>
-<p><a href="http://backbonejs.org/" target="_blank" rel="noopener">Backbone</a></p>
-<p>在jquery函数中分别定义变量data、view和octopus。其中，M指Model模型，view内部又有init设置内容和render函数更新视图。render内部用到了script模板。octopus负责将模型和视图联系在一起，模型和视图从来没有相互直接沟通，octopus是它们之间的唯一连接桥梁。整个代码的入口就是octopus，从octopus的init函数接入view的init。在octopus中的函数在对视图进行改变后需调用视图的render函数，如果是调用了模型，则直接返回数据。</p>
-<p>路由器：可以跟踪URL的状态，在某种程度上像视图一样，用户可以看到URL并与其进行交互。路由器通常用于跟踪应用的状态。</p>
-<p><strong>Knockout.js</strong>:Model；View；ViewModel；声明式绑定：与MVC的区别就是它没有在章鱼模式或ViewModel中编写大量代码以抓取部分视图，而是采用了相反的方式，以绑定的形式将逻辑写入DOM中，实现视图和ViewModel之间的连接，而无须手动编写；自动UI刷新：Knockout会检测模型数据，发生更改时，Knockout会自动刷新视图，被称为双向绑定；依赖项跟踪：有时，模型数据取决于其他模型数据（模型之间的依赖关系），并自动跟踪这些依赖项进行相应的更新。</p>
-<p>VM是入口，可以使用with确定范围，$.parent重新找到VM中的属性或方法。</p>
-<p>监控对象：只是包含特殊函数的对象而已，和监控数组都是带有很多键值和方法的函数。计算监控对象。方法中的this指的是绑定上下文</p>
+<ul>
+<li><p>讲闭包较好的一篇博客：<a href="http://lipeng1667.github.io/2016/12/20/closure-in-js/" target="_blank" rel="noopener">Michael Lee</a></p>
+</li>
+<li><p>个人理解出现上述问题是因为函数只是定义了，并没有被调用。当它调用时，内部循环已经完成了，所以一直出现循环中最后的值。为解决上述问题，就是要函数立马被执行，所以出现了立即执行函数。</p>
+</li>
+<li><p>相关博文：<a href="http://lipeng1667.github.io/2016/12/20/IIFE-in-js/" target="_blank" rel="noopener">Michael Lee</a></p>
+</li>
+</ul>
+<h3 id="面条式代码"><a href="#面条式代码" class="headerlink" title="面条式代码"></a>面条式代码</h3><p>&emsp;&emsp;将事物连接到一起时，很容易杂乱。应用最终就是将一段段代码连接到一起。当将一段段代码与其他代码连到一起后，就没法移动任何代码了。</p>
+<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><ul>
+<li><p>MVC/MVVM/MVP/MV*等等解决的是同一个问题，即将我们的模型与视图分开来。</p>
+</li>
+<li><p>MVC较深入的博文</p>
+<ul>
+<li><p><a href="https://www.cnblogs.com/Hackson/p/7055695.html" target="_blank" rel="noopener">cnblogs-Hackson</a></p>
+</li>
+<li><p><a href="http://backbonejs.org/" target="_blank" rel="noopener">Backbone</a></p>
+</li>
+<li><p>在jquery函数中分别定义变量data、view和octopus。其中，M指Model模型，view内部又有init设置内容和render函数更新视图。render内部用到了script模板。octopus负责将模型和视图联系在一起，模型和视图从来没有相互直接沟通，octopus是它们之间的唯一连接桥梁。整个代码的入口就是octopus，从octopus的init函数接入view的init。在octopus中的函数在对视图进行改变后需调用视图的render函数，如果是调用了模型，则直接返回数据。</p>
+</li>
+<li><p>路由器：可以跟踪URL的状态，在某种程度上像视图一样，用户可以看到URL并与其进行交互。路由器通常用于跟踪应用的状态。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Knockout-js"><a href="#Knockout-js" class="headerlink" title="Knockout.js"></a>Knockout.js</h3><ul>
+<li><p>Model；View；ViewModel；声明式绑定：与MVC的区别就是它没有在章鱼模式或ViewModel中编写大量代码以抓取部分视图，而是采用了相反的方式，以绑定的形式将逻辑写入DOM中，实现视图和ViewModel之间的连接，而无须手动编写；自动UI刷新：Knockout会检测模型数据，发生更改时，Knockout会自动刷新视图，被称为双向绑定；依赖项跟踪：有时，模型数据取决于其他模型数据（模型之间的依赖关系），并自动跟踪这些依赖项进行相应的更新。</p>
+</li>
+<li><p>VM是入口，可以使用with确定范围，$.parent重新找到VM中的属性或方法。</p>
+</li>
+<li><p>监控对象：只是包含特殊函数的对象而已，和监控数组都是带有很多键值和方法的函数。计算监控对象。方法中的this指的是绑定上下文</p>
+</li>
+</ul>
 <p><strong>题外话</strong>：<code>console.dir()</code>显示一个对象所有的属性和方法。</p>
 <p><strong>库与组织库</strong>：其他人或其他团队编写、打包和分发的一堆JavaScript，我们可以拿来直接使用。它也可能是你编写和打包的JavaScript。比如jQuery库。本课程中谈到的库和框架，指的是组织库和框架，jQuery并不是一个组织库，它提供了很多好的方法，但并不能为我们提供资源来帮助我们组织代码。而组织库就是像jQuery等库一样，只不过它们并不针对AJAX和DOM操作，而是针对应用组织MVC或MVVM，我们所知道的模型视图章鱼模式，以及一些其他东西。</p>
 <p><strong>框架</strong>：对框架的理解有很多种不同的解释。有些人说框架就是库的集合，也有人说框架调用视图呈现方式，而库需要你来调用它们。组织库和框架都能解决相同的问题，而且是以相似的方式。重要的是，不管它们如何定义，我们都可以使用他们来解决问题。</p>
 <p><strong>题外话</strong>：on事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 绑定单个事件</span></div><div class="line">    $(<span class="string">":button"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">"on"</span>);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line"><span class="comment">// 传递数据</span></div><div class="line">    $(<span class="string">":button"</span>).on(<span class="string">"click"</span>,&#123;<span class="attr">name</span>:<span class="string">"tom"</span>&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">        alert(e.data.name);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line"><span class="comment">// 绑定多个事件</span></div><div class="line">    $(<span class="string">":button"</span>).on(<span class="string">"mouseover mouseout"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">        alert(<span class="string">"移入移出"</span>);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line"><span class="comment">// 使用对象绑定多个事件</span></div><div class="line">    $(<span class="string">":button"</span>).on(&#123;</div><div class="line">        <span class="attr">mouseover</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="string">"移入"</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">mouseout</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="string">"移出"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line"><span class="comment">// 阻止冒泡和默认行为</span></div><div class="line">    $(<span class="string">":submit"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">        e.preventDefault();</div><div class="line">        e.stopPropagation();</div><div class="line">        alert(<span class="string">"取消默认行为和冒泡"</span>);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
-<p>与bind事件相比，on事件多了一个参数<code>select</code>，可以筛选出调用on方法的dom元素的指定子元素。on事件可以利用事件冒泡原理进行事件委托，子元素把事件委托给父元素进行事件处理。这样的好处：</p>
+<p>&emsp;&emsp;与bind事件相比，on事件多了一个参数<code>select</code>，可以筛选出调用on方法的dom元素的指定子元素。on事件可以利用事件冒泡原理进行事件委托，子元素把事件委托给父元素进行事件处理。这样的好处：</p>
 <ul>
-<li>子元素很多的时候，给每个子元素都添加一个事件，会影响到性能；</li>
-<li>为动态添加的元素绑定上指定事件。</li>
+<li><p>子元素很多的时候，给每个子元素都添加一个事件，会影响到性能；</p>
+</li>
+<li><p>为动态添加的元素绑定上指定事件。</p>
+</li>
 </ul>
-<p><strong>题外话：JavaScript模板引擎</strong>：<br>简介：将HTML结构从包含它们的内容中分离的方法，这样就可以把大段的HTML操作从JS里分离开了。在html文件中<script>标签中使用。<code>&lt;script type=&quot;text/template&quot;&gt;&lt;/script&gt;</code>。通俗理解是一个放置模板的地方，并不显示在页面上，可以看作一个容器。之后用js取模板的内容，正则匹配出所有内容，用其他东西替换，再放置到另一个容器中。<br>相关博文：<a href="http://blog.csdn.net/thirteenfloor/article/details/55097802">萧十三楼</a>；<br><a href="https://www.cnblogs.com/huansky/p/6073104.html">huansky</a></p>
-<p>近年来，js模板引擎出现很多种类，如：baiduTemplate(百度)、artTemplate（腾讯）、juicer（淘宝）、doT、tmpl、handlebars、easyTemplate(Freemarker模板风格)、underscoretemplate、mustache、kissytemplate、jTemplates、EJS、laytpl、Jade templating、最简单的模板引擎等等。（来自博文：<a href="https://www.cnblogs.com/EasonJim/p/6228034.html">Jim</a>）。<br>关于他们之间的差别和比较可参考博文<a href="http://web.jobbole.com/84420/#">伯乐在线</a>；<a href="https://www.cnblogs.com/52fhy/p/5393673.html">飞鸿影</a>；<a href="http://blog.csdn.net/meikidd/article/details/8931904">CSDN-meikidd</a></p>
+<p><strong>题外话：JavaScript模板引擎</strong>：</p>
+<ul>
+<li><p>简介：将HTML结构从包含它们的内容中分离的方法，这样就可以把大段的HTML操作从JS里分离开了。在html文件中<code>&lt;script&gt;</code>标签中使用。<code>&lt;script type=&quot;text/template&quot;&gt;&lt;/script&gt;</code>。通俗理解是一个放置模板的地方，并不显示在页面上，可以看作一个容器。之后用js取模板的内容，正则匹配出所有内容，用其他东西替换，再放置到另一个容器中。</p>
+</li>
+<li><p>相关博文：</p>
+<ul>
+<li><a href="http://blog.csdn.net/thirteenfloor/article/details/55097802" target="_blank" rel="noopener">萧十三楼</a>；</li>
+<li><a href="https://www.cnblogs.com/huansky/p/6073104.html" target="_blank" rel="noopener">huansky</a></li>
+</ul>
+</li>
+<li><p>近年来，js模板引擎出现很多种类，如：baiduTemplate(百度)、artTemplate（腾讯）、juicer（淘宝）、doT、tmpl、handlebars、easyTemplate(Freemarker模板风格)、underscoretemplate、mustache、kissytemplate、jTemplates、EJS、laytpl、Jade templating、最简单的模板引擎等等。（来自博文：<a href="https://www.cnblogs.com/EasonJim/p/6228034.html" target="_blank" rel="noopener">Jim</a>）。</p>
+</li>
+<li><p>关于他们之间的差别和比较可参考博文</p>
+<ul>
+<li><a href="http://web.jobbole.com/84420/#" target="_blank" rel="noopener">伯乐在线</a>；</li>
+<li><a href="https://www.cnblogs.com/52fhy/p/5393673.html" target="_blank" rel="noopener">飞鸿影</a>；<a href="http://blog.csdn.net/meikidd/article/details/8931904" target="_blank" rel="noopener">CSDN-meikidd</a></li>
+</ul>
+</li>
+</ul>
 <p><strong>题外话</strong>：localStorage.clear可以清除浏览器本地中的数据</p>
 <h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a><strong>webpack</strong></h3><ul>
 <li><p>简介<br>  &emsp;&emsp;WebPack是模块打包机，分析项目结构，找到JavaScript模块及其他浏览器不能直接运行的拓展语言，将其打包为合适的格式供浏览器使用。模块化概念盛行，各种各样的扩展语言和各种预处理器或是依赖包提高开发效率的同时，使利用它们开发的文件需要额外的处理才能让浏览器识别，手动处理很繁琐，所以出现了这样的工具。</p>
 </li>
 <li><p>Gulp/Grunt（优化前端的开发流程的工具）相比：</p>
-<p>  &emsp;&emsp;Gulp/Grunt是一种能够优化前端的开发流程的工具，WebPack是一种模块化解决方案。</p>
-<p>  &emsp;&emsp;Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。</p>
+<ul>
+<li><p>Gulp/Grunt是一种能够优化前端的开发流程的工具，WebPack是一种模块化解决方案。</p>
+</li>
+<li><p>Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。</p>
 </li>
 </ul>
-<p>![Grunt和Gulp的工作流程][Block-map-loading/grunt和gulp的工作流程.png]<br>    &emsp;&emsp;Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。他的处理速度更快更直接，能打包更多不同类型的文件。</p>
-<pre><code>&amp;emsp;&amp;emsp;在配置webpack时参考的博文：[简书-zhangwang](https://www.jianshu.com/p/42e11515c10f)
-</code></pre><p><img src="Block-map-loading/webpack工作方式.png" alt="webpack工作方式"></p>
+</li>
+</ul>
+<p>![Grunt和Gulp的工作流程][Block-map-loading/grunt和gulp的工作流程.png]</p>
 <ul>
+<li><ul>
+<li><p>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。他的处理速度更快更直接，能打包更多不同类型的文件。</p>
+</li>
+<li><p>在配置webpack时参考的博文：<a href="https://www.jianshu.com/p/42e11515c10f" target="_blank" rel="noopener">简书-zhangwang</a><br><img src="/2017/12/03/Block-map-loading/webpack工作方式.png" alt="webpack工作方式"></p>
+</li>
+</ul>
+</li>
 <li><p>优点：</p>
 <ul>
-<li><p>模块化</p>
-<p>&emsp;&emsp;一切都是模块，只有通过合适的loaders，它们都可以被当作模块被处理。</p>
+<li><p>统一了JS的各种模块系统，取代了Browserify、RequireJS、SeaJS的工作.</p>
 </li>
 <li><p>可以生成Source Maps（使调试更容易）：帮助找到写错的位置。</p>
 </li>
+<li><p>更重要的是它的万能模块加载理念，即所有的资源都可以且也应该模块化。资源模块化后，有三个好处：</p>
+<ul>
+<li><p>依赖关系单一化。所有CSS和图片等资源的依赖关系统一走JS路线，无需额外处理CSS预处理器的依赖关系，也不需处理代码迁移时的图片合并、字体图片等路径问题；</p>
+</li>
+<li><p>资源处理集成化。现在可以用loader对各种资源做各种事情，比如复杂的vue-loader等等。</p>
+</li>
+<li><p>项目结构清晰化。使用Webpack后，你的项目结构总可以表示成这样的函数：<code>dest = webpack(src, config)</code></p>
+</li>
 </ul>
 </li>
 </ul>
-<p><img src="Block-map-loading/devtool.png" alt="devtool配置项"></p>
-<pre><code>&amp;emsp;&amp;emsp;正如上表所述，上述选项由上到下打包速度越来越快，不过同时也具有越来越多的负面作用，较快的打包速度的后果就是对打包后的文件的的执行有一定影响。
+</li>
+</ul>
+<p><img src="/2017/12/03/Block-map-loading/devtool.png" alt="devtool配置项"></p>
+<p>-</p>
+<pre><code>- devtool配置项：
 
-&amp;emsp;&amp;emsp;对小到中型的项目中，eval-source-map是一个很好的选项，再次强调你只应该开发阶段使用它.
+    - 正如上表所述，上述选项由上到下打包速度越来越快，不过同时也具有越来越多的负面作用，较快的打包速度的后果就是对打包后的文件的的执行有一定影响。
+
+    - 对小到中型的项目中，eval-source-map是一个很好的选项，再次强调你只应该开发阶段使用它.
 </code></pre><ul>
 <li><p>loader加载器</p>
-<p>  &emsp;&emsp;webpack把所有静态资源认为是模块，它在打包构建过程中用来处理源文件的（JSX，Scss，Less，js，图片等），一次处理一个。加载器之间可以进行串联，一个加载器的输出可以成为另一个加载器的输入。比如LESS文件先通过less-load处理成css，然后再通过css-loader加载成css模块，最后由style-loader加载器对其做最后的处理，从而运行时可以通过style标签将其应用到最终的浏览器环境。</p>
-<p>  &emsp;&emsp;对于样式表，有两种处理方式：<code>css-loader</code>和<code>style-loader</code>，二者处理的任务不同，css-loader使你能够使用类似@import 和 url(…)的方法实现 require()的功能,style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。</p>
-<p>  &emsp;&emsp;CSS module被称为CSS modules的技术意在把JS的模块化思想带入CSS中来，通过CSS模块，所有的类名，动画名默认都只作用于当前模块。Webpack对CSS模块化提供了非常好的支持，可以直接把CSS的类名传递到组件的代码中。</p>
-<p>  &emsp;&emsp;对loader理解的不到位，导致我的css代码没法从html分离出来。一开始我用loader中的css-loader和style-loader处理css文件。配置如图：</p>
+<ul>
+<li><p>webpack把所有静态资源认为是模块，它在打包构建过程中用来处理源文件的（JSX，Scss，Less，js，图片等），一次处理一个。加载器之间可以进行串联，一个加载器的输出可以成为另一个加载器的输入。比如LESS文件先通过less-load处理成css，然后再通过css-loader加载成css模块，最后由style-loader加载器对其做最后的处理，从而运行时可以通过style标签将其应用到最终的浏览器环境。</p>
+</li>
+<li><p>对于样式表，有两种处理方式：<code>css-loader</code>和<code>style-loader</code>，二者处理的任务不同，css-loader使你能够使用类似@import 和 url(…)的方法实现 require()的功能,style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。</p>
+</li>
+<li><p>CSS module被称为CSS modules的技术意在把JS的模块化思想带入CSS中来，通过CSS模块，所有的类名，动画名默认都只作用于当前模块。Webpack对CSS模块化提供了非常好的支持，可以直接把CSS的类名传递到组件的代码中。</p>
+</li>
+<li><p>对loader理解的不到位，导致我的css代码没法从html分离出来。一开始我用loader中的css-loader和style-loader处理css文件。配置如图：</p>
 </li>
 </ul>
-<p><img src="Block-map-loading/webpack_config_module.png" alt="loader配置"></p>
-<pre><code>&amp;emsp;&amp;emsp;module是指css module模块，默认是局部范围，如果设置了module:true就使我的css变成了组件内CSS，而不是全局CSS了。
-
-&amp;emsp;&amp;emsp;相关文档：[https://www.npmjs.com/package/css-loader#modules](https://www.npmjs.com/package/css-loader#modules)
-
-&amp;emsp;&amp;emsp;另外，要更好的分离出css文件，可以配置ExtractTextPlugin插件。
-</code></pre><ul>
+</li>
+</ul>
+<p><img src="/2017/12/03/Block-map-loading/webpack_config_module.png" alt="loader配置"></p>
+<ul>
+<li><p>jx</p>
+<ul>
+<li><p>module是指css module模块，默认是局部范围，如果设置了module:true就使我的css变成了组件内CSS，而不是全局CSS了。</p>
+</li>
+<li><p>相关文档：<a href="https://www.npmjs.com/package/css-loader#modules" target="_blank" rel="noopener">https://www.npmjs.com/package/css-loader#modules</a></p>
+</li>
+<li><p>另外，要更好的分离出css文件，可以配置ExtractTextPlugin插件。</p>
+</li>
+</ul>
+</li>
 <li><p>插件Plugins</p>
-<p>  &emsp;&emsp;用来拓展webpack功能，插件不直接操作单个文件，直接作用于整个构建过程。</p>
-<p>  常用的插件：</p>
+<ul>
+<li><p>用来拓展webpack功能，插件不直接操作单个文件，直接作用于整个构建过程。</p>
+</li>
+<li><p>常用的插件：</p>
 <ul>
 <li><p>HtmlWebpackPlugin：依据一个简单的index.html模板，生成一个自动引用你打包后的JS文件的新index.html，创建一个build文件夹存放最终的输出文件。</p>
 </li>
@@ -248,48 +331,49 @@
 <li><p>clean-webpack-plugin: 如果使用缓存去存储不同内容版本的文件，则可以使用这个插件去除目标文件中的残余文件。</p>
 </li>
 <li><p>ProvidePlugin: 这是在项目中用到了另一个插件，可以在里面定制要使用的库，如jQuery，knockout等等</p>
-<p>生产阶段的代码和开发阶段的代码不同，一些配置不能同时在两个配置文件中。</p>
-<p>&emsp;&emsp;开发阶段：</p>
+</li>
+</ul>
+</li>
+<li><p>生产阶段的代码和开发阶段的代码不同，一些配置不能同时在两个配置文件中。</p>
+</li>
+<li><p>开发阶段：</p>
 </li>
 </ul>
 </li>
 </ul>
-<p><img src="Block-map-loading/webpack_plugins_develop.png" alt="webpack_plugins_develop"></p>
-<p><img src="Block-map-loading/webpack_plugins_production.png" alt="webpack_plugins_production"></p>
+<p><img src="/2017/12/03/Block-map-loading/webpack_plugins_develop.png" alt="webpack_plugins_develop"></p>
+<p><img src="/2017/12/03/Block-map-loading/webpack_plugins_production.png" alt="webpack_plugins_production"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">            <span class="attr">ko</span>: <span class="string">'knockout'</span>,</div><div class="line">            <span class="attr">$</span>: <span class="string">'jquery'</span>,</div><div class="line">            <span class="attr">axios</span>: <span class="string">'axios'</span></div><div class="line">        &#125;)</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;上述知识点来源于<a href="https://www.jianshu.com/p/42e11515c10f">参考博文</a></p>
-<p>&emsp;&emsp;webpack4正式发布了，不必配置文件，通过选择mode类型来选择生产或开发模式。<a href="https://baijiahao.baidu.com/s?id=1593463639501622465&amp;wfr=spider&amp;for=pc">相关材料</a></p>
-<ul>
-<li><p>Side Navigation</p>
-<p>  &emsp;&emsp;<a href="https://www.w3schools.com/howto/howto_js_sidenav.asp">参考博文</a></p>
-</li>
-<li><p>取得元素计算过后的样式<br>window.getComputedStyle()</p>
+<p>-</p>
+<pre><code>- 上述知识点来源于[参考博文](https://www.jianshu.com/p/42e11515c10f)
+
+- webpack4正式发布了，不必配置文件，通过选择mode类型来选择生产或开发模式。[相关材料](https://baijiahao.baidu.com/s?id=1593463639501622465&amp;wfr=spider&amp;for=pc)
+
+- webpack多页面应用配置[http://www.duanliang920.com/learn/web353.html](http://www.duanliang920.com/learn/web353.html)
+</code></pre><p><strong>Side Navigation</strong> <a href="https://www.w3schools.com/howto/howto_js_sidenav.asp" target="_blank" rel="noopener">参考博文</a></p>
+<p><strong>取得元素计算过后的样式</strong>：<code>window.getComputedStyle()</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleBar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'options-box'</span>);</div><div class="line">        <span class="keyword">let</span> navStyle = <span class="built_in">window</span>.getComputedStyle(nav, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">let</span> mapLeft = <span class="built_in">document</span>.getElementById(<span class="string">'map'</span>);</div><div class="line">        <span class="keyword">let</span> currentMapLeft = <span class="built_in">window</span>.getComputedStyle(mapLeft, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">let</span> mapLeftCon = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line">        <span class="keyword">let</span> currentMapLeftCon = <span class="built_in">window</span>.getComputedStyle(mapLeftCon, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(<span class="built_in">window</span>.screen.width &lt; <span class="number">576</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (navStyle.display === <span class="string">'none'</span>)&#123;</div><div class="line">                nav.style.cssText = <span class="string">"display: block"</span></div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                nav.style.cssText = <span class="string">"display: none"</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (currentMapLeft.marginLeft === <span class="string">'302px'</span> &amp;&amp;</div><div class="line">                currentMapLeftCon.marginLeft === <span class="string">'302px'</span>)&#123;</div><div class="line">                mapLeft.style.cssText = <span class="string">"margin-left: 0px"</span>;</div><div class="line">                mapLeftCon.style.cssText = <span class="string">"margin-left: 0px"</span>;</div><div class="line"></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentMapLeft.marginLeft === <span class="string">'0'</span> &amp;&amp;</div><div class="line">                currentMapLeftCon.marginLeft === <span class="string">'0'</span>)&#123;</div><div class="line">                mapLeft.style.cssText = <span class="string">"margin-left: 302px"</span>;</div><div class="line">                mapLeftCon.style.cssText = <span class="string">"margin-left: 302px"</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            nav.style.cssText = <span class="string">"display: block"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>webpack多页面应用配置<a href="http://www.duanliang920.com/learn/web353.html">http://www.duanliang920.com/learn/web353.html</a></p>
-</li>
-</ul>
-</script></p>
+
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#闭包和事件侦听程序"><span class="toc-text">闭包和事件侦听程序</span></a></li></ol>
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包和事件侦听程序"><span class="toc-text">闭包和事件侦听程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面条式代码"><span class="toc-text">面条式代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC"><span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Knockout-js"><span class="toc-text">Knockout.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack"><span class="toc-text">webpack</span></a></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="prev">&larr; Prev post 值得记住的那些markdown语法</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="prev">&larr; 上一篇 值得记住的那些markdown语法</a>
   
 
   
 
   
-    <a href="/2017/12/01/订阅阅读器测试（Subscribe-reader-test）/" class="next">Next post 订阅阅读器测试（Subscribe reader test） &rarr;</a>
+    <a href="/2017/10/31/记忆游戏loading/" class="next">下一篇 记忆游戏loading... &rarr;</a>
   
 </nav>
 

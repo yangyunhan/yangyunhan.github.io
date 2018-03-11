@@ -1,14 +1,8 @@
 
 
-  
 
 
 
-
-  
-
-
-  
 
 
 <!doctype html>
@@ -22,9 +16,11 @@
   
   
   
-    <meta name="description" content="">
+    <meta name="description" content="&lt;img&gt;元素的usemap属性和ismap属性：
+
+ismap被称为服务器端的图像映射，它只可以用在&lt;a&gt;标签标识的超链接里面。当用户在ismap图像上单击了某处时，浏览器会自动把鼠标的x、y位置（相对于图像的左上角）发送到服务器端。特殊的服务器端软件（在本例中是/example/map程序）可以根据这些坐标来做出响应。123&lt;a href="/example...">
   
-  <title>归档: 12/2017: 2017 [ 该叫什么好 ]</title>
+  <title>特殊的元素特殊的你（html篇） [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -43,6 +39,24 @@
 <body>
 <div class="side-navigate hide-area">
   
+    <div class="item prev">
+      <a href="/2018/03/11/一些关于工程、组件、模块的概念/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        一些关于工程、组件、模块的概念
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/03/10/小命令/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        小命令
+      </div>
+    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -68,7 +82,7 @@
           </li>
         
           
-            <li class="active">
+            <li>
           
             <a href="/archives">Archives</a>
             
@@ -114,89 +128,72 @@
     <div id="content-inner">
       
       
-  <article>
-    
-
-  <div id="recent-posts">
-    <h1>归档
-    
-      <span class="posts-count">
-      共
-      1
+  <article id="post">
+    <h1>特殊的元素特殊的你（html篇）</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">撰写于 2018-03-10</span>
       
-        文章
+        <span id = "post-title-updated">修改于 2018-03-10</span>
+      
+      
+      
+      <span id = "post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/html/">html</a>
       
       </span>
-    
-    </h1>
-    
-    
       
-      
-        
-      
-      
+    </p>
     
-    
-    
-      
-      
-        
-        <h3 class="archive-year-title">2017
-        
-          <span class="posts-count">
-          共
-          1
-          
-            文章
-          
-          </span>
-        
-        </h3>
-      
-      <div class="post-title-item">
-  
-  <a href="/2017/12/03/Block-map-loading/">
-  
-    Block map loading...
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">12-3</span>
-    
-    <span id = "post-title-categories">分类
-    
-    
-      
-      
-      <a href="/categories/skill/">skill</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/tips/">tips</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-    
-  </div>
-
+    <ol>
+<li><p><code>&lt;img&gt;</code>元素的usemap属性和ismap属性：</p>
+<ul>
+<li>ismap被称为服务器端的图像映射，它只可以用在<code>&lt;a&gt;</code>标签标识的超链接里面。当用户在ismap图像上单击了某处时，浏览器会自动把鼠标的x、y位置（相对于图像的左上角）发送到服务器端。特殊的服务器端软件（在本例中是/example/map程序）可以根据这些坐标来做出响应。<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/example/map"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/i/map.gif"</span> <span class="attr">ismap</span>=<span class="string">"ismap"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p>-</p>
+<pre><code>- usemap属性提供了一种“客户端”的图像映射机制，有效地消除了服务器端对鼠标坐标的处理，以及由此带来的网络延迟问题。通过特殊的`&lt;map&gt;`和`&lt;area&gt;`标签，HTML创作者可以提供一个描述usemap图像中超链接敏感区域坐标的映射，这个映射同时包含相应的超链接URL。usemap属性的值是一个 URL，它指向特殊的`&lt;map&gt;` 区域。用户计算机上的浏览器将把鼠标在图像上单击时的坐标转换成特定的行为，包括加载和显示另外一个文档。
+</code></pre><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/example/map"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/i/map.gif"</span> <span class="attr">ismap</span>=<span class="string">"ismap"</span> <span class="attr">usemap</span>=<span class="string">"#map"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">area</span> <span class="attr">coords</span>=<span class="string">"0,0,49,49"</span> <span class="attr">href</span>=<span class="string">"link1.html"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">area</span> <span class="attr">coords</span>=<span class="string">"50,0,99,49"</span> <span class="attr">href</span>=<span class="string">"link2.html"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">area</span> <span class="attr">coords</span>=<span class="string">"0,50,49,99"</span> <span class="attr">href</span>=<span class="string">"link3.html"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">area</span> <span class="attr">coords</span>=<span class="string">"50,50,99,99"</span> <span class="attr">href</span>=<span class="string">"link4.html"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><ul>
+<li>usemap客户端处理图像映射的好处是，它不要求有服务器或特殊的服务器软件，与ismap机制不同，它可以用在非web（无网络）环境中。</li>
+</ul>
+</li>
+</ul>
 
   </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/03/11/一些关于工程、组件、模块的概念/" class="prev">&larr; 上一篇 一些关于工程、组件、模块的概念</a>
+  
+
+  
+
+  
+    <a href="/2018/03/10/小命令/" class="next">下一篇 小命令 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
 
       
       
@@ -326,6 +323,8 @@ var unsplashConfig = {"gravity":"north"};
 var turnoffBackgroundImage = false;
 
 
+
+  turnoffBackgroundImage = true;
 
 
 var backgroundColor = "34495E";
