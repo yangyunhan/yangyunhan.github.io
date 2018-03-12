@@ -136,7 +136,7 @@
     <p class="page-title-sub">
       <span id = "post-title-date">Created at 2018-03-08</span>
       
-        <span id = "post-title-updated">Updated at 2018-03-11</span>
+        <span id = "post-title-updated">Updated at 2018-03-12</span>
       
       
       
@@ -502,39 +502,46 @@
 </li>
 <li><p>面向对象</p>
 <ul>
-<li>套路<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params">name</span>)</span>{
-  <span class="keyword">this</span>.name = name
-}
-People.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-  <span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">${<span class="keyword">this</span>.name}</span>`</span>)
-};
-<span class="keyword">var</span> p = <span class="keyword">new</span> People(<span class="string">'jirengu'</span>);
-p.sayName()
-</code></pre>
+<li>套路<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name</div><div class="line">    &#125;</div><div class="line">    People.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> p = <span class="keyword">new</span> People(<span class="string">'jirengu'</span>);</div><div class="line">    p.sayName()</div><div class="line"><span class="string">``</span><span class="string">`   </span></div><div class="line">- </div><div class="line">    - 发生了什么</div><div class="line">    当new一个函数时</div><div class="line">        -  创建一个空对象，把一个空的对象的 proto 属性设置为 People.prototype</div><div class="line">        </div><div class="line">        - 执行函数 People， 函数里面的 this 代表刚刚创建的新对象</div><div class="line">        </div><div class="line">        - 返回这个对象</div><div class="line">        </div><div class="line">    &amp;emsp;&amp;emsp;对于第3步，如果构造函数里有 return，分情况讨论。 如果 return 的是基本类型，会忽略不计。 如果 return 的是引用类型，则返回这个引用类型。</div><div class="line">    </div><div class="line">    - 原型图</div><div class="line">    </div><div class="line">![原型图](js知识点复习/原型图.png)</div><div class="line"></div><div class="line">- </div><div class="line">    - 任何函数都有 .prototype 这个属性，对应的值是一个对象叫原型对象，这个原型对象可以被由这个函数 new 的所有对象共享</div><div class="line">    </div><div class="line">- this</div><div class="line"></div><div class="line">    - 基本上在任何情况下都不能确定，它只是个参数，要看他在被调用的时候的情况确定指向谁。</div><div class="line">    </div><div class="line">    - 函数执行的本质是在调用.call或.apply函数，他们的第一个参数就是this。严格模式下传什么指向什么，非严格模式下浏览器会做出判断。call和apply的区别是apply后面的参数会放数组中。</div><div class="line">    </div><div class="line">    - bind的作用和call、apply类似，区别是bind执行的结果返回的是一个绑定了一个对象的新函数。它在绑定的时候就已经创建了新的函数等待被执行。常见的用法是通过bind(this)将作用域绑定到调用的对象上。</div><div class="line">    </div><div class="line">    - 箭头函数下，this指向它上一级所在的环境下的this。</div><div class="line">    </div><div class="line">    - 不错的练习题：[https://xiedaimala.com/courses/b8b4c00c-6798-4caf-8bfe-ba9fbb4c6d3d/tasks/ffbb7825-1793-4793-9477-ee5a34614210](https://xiedaimala.com/courses/b8b4c00c-6798-4caf-8bfe-ba9fbb4c6d3d/tasks/ffbb7825-1793-4793-9477-ee5a34614210)</div><div class="line"></div><div class="line">&amp;emsp;&amp;emsp;测试题1：</div><div class="line">`<span class="string">``</span>javascript</div><div class="line"><span class="keyword">var</span> name = <span class="string">'hunger'</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">   <span class="attr">name</span>: <span class="string">'valley'</span>,</div><div class="line">   <span class="attr">fn</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">       <span class="keyword">this</span>.name = <span class="string">'jirengu'</span>;</div><div class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">       <span class="keyword">var</span> name = <span class="string">'world'</span></div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">           <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">           <span class="keyword">var</span> name = <span class="string">'hello'</span></div><div class="line">           <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> fn2</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'oh my god'</span></div><div class="line">&#125;</div><div class="line">obj2.fn = obj.fn()</div><div class="line">obj2.fn()</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><ul>
-<li><p>发生了什么<br>当new一个函数时</p>
+</ul>
+<p>&emsp;&emsp;测试题2：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">'hunger'</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">   <span class="attr">name</span>: <span class="string">'valley'</span>,</div><div class="line">   <span class="attr">fn</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="keyword">this</span>.name = <span class="string">'jirengu'</span></div><div class="line">       <span class="keyword">var</span> name = <span class="string">'world'</span></div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> name = <span class="string">'hello'</span></div><div class="line">         <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">       &#125;</div><div class="line">       fn2()</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line">obj.fn()</div></pre></td></tr></table></figure></p>
 <ul>
-<li><p>创建一个空对象，把一个空的对象的 proto 属性设置为 People.prototype</p>
-</li>
-<li><p>执行函数 People， 函数里面的 this 代表刚刚创建的新对象</p>
-</li>
-<li><p>返回这个对象</p>
-</li>
-</ul>
-<p>&emsp;&emsp;对于第3步，如果构造函数里有 return，分情况讨论。 如果 return 的是基本类型，会忽略不计。 如果 return 的是引用类型，则返回这个引用类型。</p>
-</li>
-<li><p>原型图</p>
+<li><p>继承</p>
+<ul>
+<li>套路<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dialog</span>(<span class="params">target</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.target = target</div><div class="line">&#125;</div><div class="line">Dialog.prototype.show = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.target + <span class="string">' show'</span>)</div><div class="line">&#125;</div><div class="line">Dialog.prototype.hide = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.target + <span class="string">' hide'</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> dialog = <span class="keyword">new</span> Dialog(<span class="string">'body'</span>)</div><div class="line">dialog.show()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Message</span>(<span class="params">target, name</span>) </span>&#123;</div><div class="line">    Dialog.call(<span class="keyword">this</span>, target)     <span class="comment">//这句很重要</span></div><div class="line">    <span class="keyword">this</span>.name = name</div><div class="line">&#125;</div><div class="line">Message.prototype = <span class="built_in">Object</span>.create(Dialog.prototype)   <span class="comment">//这句更重要</span></div><div class="line">Message.prototype.success = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' success'</span> )</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> msgBox = <span class="keyword">new</span> Message(<span class="string">'main'</span>, <span class="string">'msg'</span>)</div><div class="line">msgBox.show()</div><div class="line">msgBox.success()</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
-<p><img src="/2018/03/08/js知识点复习/原型图.png" alt="原型图"></p>
+<p>画成原型图</p>
+<p><img src="/2018/03/08/js知识点复习/继承-原型图.jpg" alt="原型图"></p>
 <ul>
 <li><ul>
-<li>任何函数都有 .prototype 这个属性，对应的值是一个对象叫原型对象，这个原型对象可以被由这个函数 new 的所有对象共享</li>
+<li><p><code>Dialog.call(this, target)</code>的作用：执行函数Dialog(target)，执行时遇到this换成当前传递的this。</p>
+</li>
+<li><p><code>Object.create(Dialog.prototype)</code>的作用：创建一个空对象，空对象的<strong>proto</strong>等于Dialog.prototype。</p>
+</li>
+<li><p>理解new的时候发生了什么</p>
+<ul>
+<li>创建一个空对象</li>
+<li>执行函数，遇到this就认为空对象是this，赋值后会将空对象return出来。（基本类型值时会被忽略，引用类型时就return对象）</li>
+<li>这个对象会有一个<strong>proto</strong>隐藏属性，它指向Function的原型prototype。（原型的特点就是对象在查找属性和方式时从自身开始找起，找不到就到原型中去找，构成了原型链）</li>
+</ul>
+</li>
+<li><p>Dialog.call可以用bind代替实现，Dialog.bind(this,target);Object.create()可以自己实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">var</span> f = <span class="keyword">new</span> F();</div><div class="line">    <span class="keyword">return</span> f;</div><div class="line">&#125;</div><div class="line"><span class="built_in">Object</span>.create()的内部实现</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>通过Object.create()构建的对象不能指向构建这个对象的函数的原型。</p>
+</li>
+<li><p>相关博文：</p>
+<ul>
+<li><a href="http://blog.csdn.net/blueblueskyhua/article/details/73135938" target="_blank" rel="noopener">http://blog.csdn.net/blueblueskyhua/article/details/73135938</a></li>
+<li><a href="https://www.zhihu.com/question/34183746" target="_blank" rel="noopener">https://www.zhihu.com/question/34183746</a></li>
 </ul>
 </li>
 </ul>
