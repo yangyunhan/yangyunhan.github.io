@@ -134,9 +134,9 @@
   <article id="post">
     <h1>js知识点复习</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2018-03-08</span>
+      <span id = "post-title-date">撰写于 2018-03-08</span>
       
-        <span id = "post-title-updated">Updated at 2018-03-12</span>
+        <span id = "post-title-updated">修改于 2018-03-13</span>
       
       
       
@@ -511,7 +511,7 @@
 <ul>
 <li><p>继承</p>
 <ul>
-<li>套路<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dialog</span>(<span class="params">target</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.target = target</div><div class="line">&#125;</div><div class="line">Dialog.prototype.show = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.target + <span class="string">' show'</span>)</div><div class="line">&#125;</div><div class="line">Dialog.prototype.hide = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.target + <span class="string">' hide'</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> dialog = <span class="keyword">new</span> Dialog(<span class="string">'body'</span>)</div><div class="line">dialog.show()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Message</span>(<span class="params">target, name</span>) </span>&#123;</div><div class="line">    Dialog.call(<span class="keyword">this</span>, target)     <span class="comment">//这句很重要</span></div><div class="line">    <span class="keyword">this</span>.name = name</div><div class="line">&#125;</div><div class="line">Message.prototype = <span class="built_in">Object</span>.create(Dialog.prototype)   <span class="comment">//这句更重要</span></div><div class="line">Message.prototype.success = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' success'</span> )</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> msgBox = <span class="keyword">new</span> Message(<span class="string">'main'</span>, <span class="string">'msg'</span>)</div><div class="line">msgBox.show()</div><div class="line">msgBox.success()</div></pre></td></tr></table></figure>
+<li>套路<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dialog</span>(<span class="params">target</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.target = target</div><div class="line">&#125;</div><div class="line">Dialog.prototype.show = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.target + <span class="string">' show'</span>)</div><div class="line">&#125;</div><div class="line">Dialog.prototype.hide = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.target + <span class="string">' hide'</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> dialog = <span class="keyword">new</span> Dialog(<span class="string">'body'</span>)</div><div class="line">dialog.show()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Message</span>(<span class="params">target, name</span>) </span>&#123;</div><div class="line">    Dialog.call(<span class="keyword">this</span>, target)     <span class="comment">//这句很重要</span></div><div class="line">    <span class="keyword">this</span>.name = name</div><div class="line">&#125;</div><div class="line">Message.prototype = <span class="built_in">Object</span>.create(Dialog.prototype);  <span class="comment">//这句更重要</span></div><div class="line">Message.prototype.success = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' success'</span> )</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">* function fn()&#123;&#125;</div><div class="line">* fn.prototype = Dialog.prototype;</div><div class="line">* Message.prototype = new fn();</div><div class="line">* */</div><div class="line"></div><div class="line"><span class="keyword">var</span> msgBox = <span class="keyword">new</span> Message(<span class="string">'main'</span>, <span class="string">'msg'</span>)</div><div class="line">msgBox.show()</div><div class="line">msgBox.success()</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -527,31 +527,94 @@
 <li><p>理解new的时候发生了什么</p>
 <ul>
 <li>创建一个空对象</li>
-<li>执行函数，遇到this就认为空对象是this，赋值后会将空对象return出来。（基本类型值时会被忽略，引用类型时就return对象）</li>
+<li>执行函数，(Message.bind({})())遇到this就认为空对象是this，赋值后会将空对象return出来。（基本类型值时会被忽略，引用类型时就return对象）</li>
 <li>这个对象会有一个<strong>proto</strong>隐藏属性，它指向Function的原型prototype。（原型的特点就是对象在查找属性和方式时从自身开始找起，找不到就到原型中去找，构成了原型链）</li>
 </ul>
 </li>
-<li><p>Dialog.call可以用bind代替实现，Dialog.bind(this,target);Object.create()可以自己实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">var</span> f = <span class="keyword">new</span> F();</div><div class="line">    <span class="keyword">return</span> f;</div><div class="line">&#125;</div><div class="line"><span class="built_in">Object</span>.create()的内部实现</div></pre></td></tr></table></figure>
+<li><p>Dialog.call可以用bind代替实现，Dialog.bind(this)(target);Object.create()可以自己实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">var</span> f = <span class="keyword">new</span> F();</div><div class="line">    <span class="keyword">return</span> f;</div><div class="line">&#125;</div><div class="line"><span class="comment">//Object.create()的内部实现</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>通过Object.create()构建的对象不能指向构建这个对象的函数的原型。</p>
 </li>
+<li><p>cookie和session</p>
+<ul>
+<li><p>cookie是用来记录当页面关闭后仍然要记录的信息，使用<code>document.cookie</code>查看cookie。可以使用js在浏览器中设置，也可以在服务器端使用set-cookie让浏览器种下。</p>
+<ul>
+<li><p>每次网络请求Request headers会带上cookie，所以对传输效率有影响。</p>
+</li>
+<li><p>特征：只要cookie已经存在，那么以后每次发送请求时，都会自动带上这个cookie信息。</p>
+</li>
+<li><p>测试： 很多网站的静态资源使用CDN地址而是使用当前网站域名，从cookie的角度说说这对性能有何影响?</p>
+<ul>
+<li>假如页面下有很多cookie，如果静态资源是同样的域名，发送请求的时候会带上这些cookie。</li>
+<li>如果域名换掉了，那么cookie只对之前的域名生效，请求时就不会带上cookie。</li>
+<li>发的东西体积变小了，速度变快一点</li>
+</ul>
+</li>
+<li><p>localStorage的信息不会附在请求中</p>
+</li>
+</ul>
+</li>
+<li><p>session</p>
+<ul>
+<li><p>让服务器识别用户的一个机制</p>
+</li>
+<li><p>保存状态，可以用来判断用户是不是刚刚登录过的用户。服务器会在验证通过之后创建一个session对象，放入当前用户信息。</p>
+</li>
+<li><p>创建session后，会把session_id通过setcookie放到用户的cookie中，下次请求会带上这个session_id。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>安全</p>
+<ul>
+<li><p>传输安全，体现在</p>
+<ul>
+<li>我发的数据，不该看的人看不懂</li>
+<li>不该看的人不能伪造或修改</li>
+<li>过期后不该看的人不能拿来继续用</li>
+</ul>
+</li>
+<li><p>浏览器安全机制</p>
+</li>
+<li>常见攻击</li>
+</ul>
+</li>
+<li><p>Https</p>
+<ul>
+<li>http，不安全，中间任何环节都可能是危险的</li>
+<li>原理：在对称加密、非对称加密、hash等加密方法+有效的认证基础上实现安全数据的传输。</li>
+</ul>
+</li>
+<li><p>XSS</p>
+<ul>
+<li>所有用户输入的地方都不安全</li>
+<li>所有展示用户输入的地方都不安全，不能做成html放到页面上，防止恶意代码</li>
+<li>不用eval()，全局环境</li>
+<li>不用innerHTML<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">'hello&lt;/div&gt;&lt;script&gt;alert(1)&lt;/script&gt;'</span><span class="comment">//构造XSS攻击</span></div><div class="line"><span class="comment">//不要把用户请求的东西当成html运行，可以创建dom节点，用DOM节点的innerText把用户输入放进去。被当成字符串展示在页面上。</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
 <li><p>相关博文：</p>
 <ul>
 <li><a href="http://blog.csdn.net/blueblueskyhua/article/details/73135938" target="_blank" rel="noopener">http://blog.csdn.net/blueblueskyhua/article/details/73135938</a></li>
 <li><a href="https://www.zhihu.com/question/34183746" target="_blank" rel="noopener">https://www.zhihu.com/question/34183746</a></li>
+<li><a href="http://book.jirengu.com/fe/" target="_blank" rel="noopener">http://book.jirengu.com/fe/</a></li>
 </ul>
 </li>
 </ul>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
-    <h2>Table of Content</h2>
+    <h2>目录</h2>
     
   </div>
 </div>
@@ -559,13 +622,13 @@
   
 <nav id="pagination">
   
-    <a href="/2018/03/10/小命令/" class="prev">&larr; Prev post 小命令</a>
+    <a href="/2018/03/10/小命令/" class="prev">&larr; 上一篇 小命令</a>
   
 
   
 
   
-    <a href="/2018/03/06/JS模块化编程之模块规范/" class="next">Next post JS模块化编程之模块规范 &rarr;</a>
+    <a href="/2018/03/06/JS模块化编程之模块规范/" class="next">下一篇 JS模块化编程之模块规范 &rarr;</a>
   
 </nav>
 
