@@ -133,12 +133,12 @@ DOM操作，因为经常会插入和删除视...">
   <article id="post">
     <h1>前端框架</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-02-24</span>
+      <span id = "post-title-date">Created at 2018-02-24</span>
       
-        <span id = "post-title-updated">修改于 2018-02-27</span>
+        <span id = "post-title-updated">Updated at 2018-02-27</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -149,7 +149,7 @@ DOM操作，因为经常会插入和删除视...">
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -177,7 +177,7 @@ DOM操作，因为经常会插入和删除视...">
 <p>具体来看：</p>
 <h3 id="Backbone-js"><a href="#Backbone-js" class="headerlink" title="Backbone.js"></a><strong>Backbone.js</strong></h3><p><strong>简介</strong>：Backbone在2010年首次发布，是轻量级的。在缩小和压缩以用于生产并且仅具有一个依赖项（Underscore.js）时，它只有6.3KB，它是一个高度通用且简约的MVC（模型 - 视图 - 控制器）框架，可为这些站点提供支持： Twitter，Hulu，Pinterest和潘多拉电台。将<code>Underscore</code>用作模板，并由自己的事件管理和路由系统。</p>
 <p><code>&lt;%= %&gt;</code>是定界符，为一个或多个用于形成边界的字符，区分HTML与将来的JavaScript变量。</p>
-<p>底层模板函数其实调用了JavaScript的构造函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;&#125;; &lt;----&gt; var obj2 = new Object();</div><div class="line">var arr1 = []; &lt;----&gt; var arr2 = new Array();</div><div class="line">var func1 = function()&#123;&#125;; &lt;----&gt; var func2 = new Function();</div></pre></td></tr></table></figure></p>
+<p>底层模板函数其实调用了JavaScript的构造函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;&#125;; <span class="xml"><span class="tag">&lt;<span class="name">----</span>&gt;</span> var obj2 = new Object();</span></div><div class="line">var arr1 = []; <span class="tag">&lt;<span class="name">----</span>&gt;</span> var arr2 = new Array();</div><div class="line">var func1 = function()&#123;&#125;; <span class="tag">&lt;<span class="name">----</span>&gt;</span> var func2 = new Function();</div></pre></td></tr></table></figure></p>
 <p>并不建议使用构造函数格式，因为它不可读，更难处理，而且速度更慢。但是构造函数相比函数自变量有一个优点，它可以在运行时动态创建函数。<code>Underscore</code>的template函数的作用是构造函数，而它通过使用构造函数格式来实现这一点。最后返回一个模板函数等待被调用。</p>
 <p><strong>tips</strong>：<code>ctrl+g</code>在控制台的<code>source</code>页面根据行查找；<code>ctrl+r</code>刷新页面；</p>
 <p>浏览器的事件系统：告知我们网页上执行的所有操作，是DOM API极为重要的组成部分，使我们能够监听浏览器的事件系统。target可以是实现EventTarget界面的任何内容，包括网页元素、文档对象、窗口对象、甚至XHR对象。方法可传递一个事件对象。</p>
@@ -269,10 +269,10 @@ DOM操作，因为经常会插入和删除视...">
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Backbone-js"><span class="toc-text">Backbone.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS"><span class="toc-text">AngularJS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ember"><span class="toc-text">Ember</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React"><span class="toc-text">React</span></a></li></ol>
   </div>
 </div>
@@ -280,13 +280,13 @@ DOM操作，因为经常会插入和删除视...">
   
 <nav id="pagination">
   
-    <a href="/2018/03/02/hexo问题集锦/" class="prev">&larr; 上一篇 hexo问题集锦</a>
+    <a href="/2018/03/02/hexo问题集锦/" class="prev">&larr; Prev post hexo问题集锦</a>
   
 
   
 
   
-    <a href="/2018/02/13/hexo插入图片解决方法/" class="next">下一篇 hexo插入图片解决方法 &rarr;</a>
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="next">Next post hexo插入图片解决方法 &rarr;</a>
   
 </nav>
 

@@ -131,12 +131,12 @@
   <article id="post">
     <h1>Block map loading...</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2017-12-03</span>
+      <span id = "post-title-date">Created at 2017-12-03</span>
       
-        <span id = "post-title-updated">修改于 2018-03-11</span>
+        <span id = "post-title-updated">Updated at 2018-03-15</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -147,7 +147,7 @@
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -350,16 +350,18 @@
 - webpack4正式发布了，不必配置文件，通过选择mode类型来选择生产或开发模式。[相关材料](https://baijiahao.baidu.com/s?id=1593463639501622465&amp;wfr=spider&amp;for=pc)
 
 - webpack多页面应用配置[http://www.duanliang920.com/learn/web353.html](http://www.duanliang920.com/learn/web353.html)
+
+- 解决webpack编译慢的问题[https://segmentfault.com/a/1190000006087638](https://segmentfault.com/a/1190000006087638)
 </code></pre><p><strong>Side Navigation</strong> <a href="https://www.w3schools.com/howto/howto_js_sidenav.asp" target="_blank" rel="noopener">参考博文</a></p>
 <p><strong>取得元素计算过后的样式</strong>：<code>window.getComputedStyle()</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleBar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'options-box'</span>);</div><div class="line">        <span class="keyword">let</span> navStyle = <span class="built_in">window</span>.getComputedStyle(nav, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">let</span> mapLeft = <span class="built_in">document</span>.getElementById(<span class="string">'map'</span>);</div><div class="line">        <span class="keyword">let</span> currentMapLeft = <span class="built_in">window</span>.getComputedStyle(mapLeft, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">let</span> mapLeftCon = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line">        <span class="keyword">let</span> currentMapLeftCon = <span class="built_in">window</span>.getComputedStyle(mapLeftCon, <span class="literal">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(<span class="built_in">window</span>.screen.width &lt; <span class="number">576</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (navStyle.display === <span class="string">'none'</span>)&#123;</div><div class="line">                nav.style.cssText = <span class="string">"display: block"</span></div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                nav.style.cssText = <span class="string">"display: none"</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (currentMapLeft.marginLeft === <span class="string">'302px'</span> &amp;&amp;</div><div class="line">                currentMapLeftCon.marginLeft === <span class="string">'302px'</span>)&#123;</div><div class="line">                mapLeft.style.cssText = <span class="string">"margin-left: 0px"</span>;</div><div class="line">                mapLeftCon.style.cssText = <span class="string">"margin-left: 0px"</span>;</div><div class="line"></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentMapLeft.marginLeft === <span class="string">'0'</span> &amp;&amp;</div><div class="line">                currentMapLeftCon.marginLeft === <span class="string">'0'</span>)&#123;</div><div class="line">                mapLeft.style.cssText = <span class="string">"margin-left: 302px"</span>;</div><div class="line">                mapLeftCon.style.cssText = <span class="string">"margin-left: 302px"</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            nav.style.cssText = <span class="string">"display: block"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包和事件侦听程序"><span class="toc-text">闭包和事件侦听程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面条式代码"><span class="toc-text">面条式代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC"><span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Knockout-js"><span class="toc-text">Knockout.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack"><span class="toc-text">webpack</span></a></li></ol>
   </div>
 </div>
@@ -367,13 +369,13 @@
   
 <nav id="pagination">
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="prev">&larr; 上一篇 值得记住的那些markdown语法</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="prev">&larr; Prev post 值得记住的那些markdown语法</a>
   
 
   
 
   
-    <a href="/2017/10/31/记忆游戏loading/" class="next">下一篇 记忆游戏loading... &rarr;</a>
+    <a href="/2017/10/31/记忆游戏loading/" class="next">Next post 记忆游戏loading... &rarr;</a>
   
 </nav>
 

@@ -16,9 +16,11 @@
   
   
   
-    <meta name="description" content="主要是负值情况下的使用感悟">
+    <meta name="description" content="XSS攻击游戏:https://xss-game.appspot.com/
+HTTP文档：https://www.w3.org/Protocols/rfc2616/rfc2616.html
+HTTP介绍：https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">
   
-  <title>margin理解与使用 [ 该叫什么好 ]</title>
+  <title>我会用到的官方文档列表 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -38,21 +40,21 @@
 <div class="side-navigate hide-area">
   
     <div class="item prev">
-      <a href="/2017/03/14/三栏布局认识与感悟/">
+      <a href="/2018/03/16/DOM这个戏精/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        三栏布局认识与感悟
+        DOM这个戏精
       </div>
     </div>
   
   
     <div class="item next">
-      <a href="/2017/03/10/git操作使用说明/">
+      <a href="/2018/03/12/hello-world/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        git操作使用说明
+        Hello World
       </div>
     </div>
   
@@ -127,11 +129,11 @@
       
       
   <article id="post">
-    <h1>margin理解与使用</h1>
+    <h1>我会用到的官方文档列表</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2017-03-12</span>
+      <span id = "post-title-date">Created at 2018-03-14</span>
       
-        <span id = "post-title-updated">Updated at 2018-03-12</span>
+        <span id = "post-title-updated">Updated at 2018-03-14</span>
       
       
       <span id = "post-title-categories">Category
@@ -139,7 +141,7 @@
       
         
         
-        <a href="/categories/skill/">skill</a>
+        <a href="/categories/accumulate/">accumulate</a>
       
       </span>
       
@@ -150,14 +152,17 @@
       
         
         
-        <a href="/tags/notebook/">notebook</a>
+        <a href="/tags/文档/">文档</a>
       
       </span>
       
     </p>
     
-    <p>margin:外边距<br>margin在不同的情况下可增大或“缩小”元素。<br>1、在元素没有长度规定大小的情况下即width没有设定宽度或者margin:auto，margin增大元素的宽度：margin-right:-10px;就是元素<br>向右扩展10个像素的长度，其他方向同理。<br><img src="http://images.cnblogs.com/cnblogs_com/2050/201208/201208131525141435.png" alt="原始图片"><br><img src="http://images.cnblogs.com/cnblogs_com/2050/201208/201208131525162599.png" alt="变化后图片"><br>2、（所有文字都被包裹在标签中）在文档流中，margin的负边距使得元素向左覆盖别的元素(margin-left:-50px)、向右被其他元素覆盖(margin-right:-)、<br>向上覆盖其他元素(margin-top:-)、向下被其他元素覆盖(magin-bottom:-)。此时为防止子元素超出父元素的边界，在父元素的样式<br>中设置了overflow:hidden。<br>3、文档流只能向左或向上移动，不能向右或向下移动<br>4、被利用解决居中的问题：利用绝对定位来居中。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">body&#123;padding:0;margin:0&#125;</div><div class="line">div&#123;width:100px;height:100px;background:#f00;</div><div class="line">	position:absolute;</div><div class="line">	left:50%;</div><div class="line">	top:50%;</div><div class="line">	margin-left:-50px;</div><div class="line">	margin-top:-50px;</div><div class="line">	&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
-<p><img src="http://images.cnblogs.com/cnblogs_com/2050/201208/201208131525461099.png" alt="效果图"><br>5、在页面布局中用来构造左右列固定，中间列自适应布局</p>
+    <ul>
+<li>XSS攻击游戏:<a href="https://xss-game.appspot.com/" target="_blank" rel="noopener">https://xss-game.appspot.com/</a></li>
+<li>HTTP文档：<a href="https://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="noopener">https://www.w3.org/Protocols/rfc2616/rfc2616.html</a></li>
+<li>HTTP介绍：<a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol</a></li>
+</ul>
 
   </article>
   <div class="random-toc-area">
@@ -172,13 +177,13 @@
   
 <nav id="pagination">
   
-    <a href="/2017/03/14/三栏布局认识与感悟/" class="prev">&larr; Prev post 三栏布局认识与感悟</a>
+    <a href="/2018/03/16/DOM这个戏精/" class="prev">&larr; Prev post DOM这个戏精</a>
   
 
   
 
   
-    <a href="/2017/03/10/git操作使用说明/" class="next">Next post git操作使用说明 &rarr;</a>
+    <a href="/2018/03/12/hello-world/" class="next">Next post Hello World &rarr;</a>
   
 </nav>
 

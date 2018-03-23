@@ -134,12 +134,12 @@ CommonJS
   <article id="post">
     <h1>JS模块化编程之模块规范</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-03-06</span>
+      <span id = "post-title-date">Created at 2018-03-06</span>
       
-        <span id = "post-title-updated">修改于 2018-03-07</span>
+        <span id = "post-title-updated">Updated at 2018-03-07</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -150,7 +150,7 @@ CommonJS
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -195,9 +195,9 @@ CommonJS
 &amp;emsp;&amp;emsp;原来多个文件按照顺序加载的时候会停止渲染或者依赖关系复杂，代码维护和编写困难。require.js就是为了解决这两个问题。实现js文件的异步加载，和管理模块之间的依赖性。
 
 &amp;emsp;&amp;emsp;加载这个文件，也可能造成网页失去响应。解决办法有两个，一个是把它放在网页底部加载，另一个是写成下面这样：
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"js/require.js"</span> defer <span class="keyword">async</span>=<span class="string">"true"</span> &gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"js/require.js"</span> defer <span class="keyword">async</span>=<span class="string">"true"</span> &gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <pre><code>&amp;emsp;&amp;emsp;async属性表明这个文件需要异步加载，避免网页失去响应。IE不支持这个属性，只支持defer，所以把defer也写上。
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"js/require.js"</span> data-main=<span class="string">"js/main"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"js/require.js"</span> data-main=<span class="string">"js/main"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <pre><code>&amp;emsp;&amp;emsp;data-main属性的作用是，指定网页程序的主模块。在上例中，就是js目录下面的main.js，这个文件会第一个被require.js加载。由于require.js默认的文件后缀名是js，所以可以把main.js简写成main。
 </code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>, <span class="string">'underscore'</span>, <span class="string">'backbone'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">$, _, Backbone</span>)</span>&#123;</div><div class="line">　　　　<span class="comment">// some code here</span></div><div class="line">　　&#125;);</div></pre></td></tr></table></figure>
 <pre><code>&amp;emsp;&amp;emsp;require.js会先加载jQuery、underscore和backbone，然后再运行回调函数。主模块的代码就写在回调函数中。
@@ -239,10 +239,10 @@ CommonJS
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     
   </div>
 </div>
@@ -250,13 +250,13 @@ CommonJS
   
 <nav id="pagination">
   
-    <a href="/2018/03/08/js知识点复习/" class="prev">&larr; 上一篇 js知识点复习</a>
+    <a href="/2018/03/08/js知识点复习/" class="prev">&larr; Prev post js知识点复习</a>
   
 
   
 
   
-    <a href="/2018/03/05/js异步处理/" class="next">下一篇 js异步处理 &rarr;</a>
+    <a href="/2018/03/05/js异步处理/" class="next">Next post js异步处理 &rarr;</a>
   
 </nav>
 

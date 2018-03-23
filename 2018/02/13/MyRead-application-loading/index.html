@@ -138,12 +138,12 @@ React本质 : 只需声明状态和标记，React会...">
   <article id="post">
     <h1>MyRead loading</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-02-13</span>
+      <span id = "post-title-date">Created at 2018-02-13</span>
       
-        <span id = "post-title-updated">修改于 2018-03-09</span>
+        <span id = "post-title-updated">Updated at 2018-03-23</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -154,7 +154,7 @@ React本质 : 只需声明状态和标记，React会...">
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -187,21 +187,24 @@ React本质 : 只需声明状态和标记，React会...">
 <blockquote>
 <p>概念：以函数作为主要载体的编程方式，用函数去拆解、抽象一般的表达式。</p>
 </blockquote>
+<ul>
+<li><p>典型的函数式编程有闭包（保留局部变量不被释放）、高阶函数（函数既可以作为参数又可以作为另一个函数的返回值使用）、柯里化（给定函数的部分参数，生成一个接受其他参数的新函数）、组合（合并多个函数，创造一个新函数）。</p>
+</li>
+<li><p>相关博文：</p>
+<ol>
+<li><a href="http://developer.51cto.com/art/201703/535299.htm" target="_blank" rel="noopener">51CTO</a>;</li>
+<li><a href="https://zhuanlan.zhihu.com/p/21714695" target="_blank" rel="noopener">Starkwang</a>(<small></small></li>
+<li>第二篇博文中涉及知识点<code>slice</code>，<code>splice</code>和<code>split</code>的区分。<a href="https://www.cnblogs.com/mangoWeb/p/3517801.html" target="_blank" rel="noopener">博客园-芒果干</a>)</li>
+</ol>
+</li>
+<li><p>React基于的是大量的函数式编程的技巧。重要的函数式编程有<code>.map()</code>和<code>.filter()</code>方法。</p>
+<ol>
+<li><code>.map()</code>适用于数组，该方法返回新的数组，它没有修改原始数组。</li>
+<li><code>.filter()</code>适用于数组，该方法也返回新的数组，返回通过检验的项目。</li>
+</ol>
 </li>
 </ul>
-<pre><code>&amp;emsp;&amp;emsp; 典型的函数式编程有闭包（保留局部变量不被释放）、高阶函数（函数既可以作为参数又可以作为另一个函数的返回值使用）、柯里化（给定函数的部分参数，生成一个接受其他参数的新函数）、组合（合并多个函数，创造一个新函数）。
-
-
-&amp;emsp;&amp;emsp;相关博文：
-    1. [51CTO](http://developer.51cto.com/art/201703/535299.htm);
-    2. [Starkwang](https://zhuanlan.zhihu.com/p/21714695)(&lt;small&gt;
-    3. 第二篇博文中涉及知识点`slice`，`splice`和`split`的区分。[博客园-芒果干](https://www.cnblogs.com/mangoWeb/p/3517801.html)&lt;/small&gt;)
-
-&amp;emsp;&amp;emsp;React基于的是大量的函数式编程的技巧。重要的函数式编程有`.map()`和`.filter()`方法。
-
-    1. `.map()`适用于数组，该方法返回新的数组，它没有修改原始数组。
-    2. `.filter()`适用于数组，该方法也返回新的数组，返回通过检验的项目。
-</code></pre><ul>
+</li>
 <li><p><strong>与其他框架的根本区别</strong> ：</p>
 <p>  &emsp;&emsp;React没有使用字符串模板，而是使用JavaScript对象来构建用户界面。React元素是轻量级JavaScript对象，而非实际的DOM节点。使用元素描述页面应该是什么样子，然后交给React来实际操作DOM，甚至可以创建自定义元素，也就是“组件”，利用它们来整齐地封装元素和行为。这些组件（可以重复利用的代码段，最终负责返回要渲染到网页上的HTML）是React的基本单位。</p>
 </li>
@@ -354,10 +357,10 @@ React本质 : 只需声明状态和标记，React会...">
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理论知识：React"><span class="toc-text">理论知识：React</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实践应用：图书跟踪应用，代码。"><span class="toc-text">实践应用：图书跟踪应用，代码。</span></a></li></ol></li></ol></li></ol>
   </div>
 </div>
@@ -365,13 +368,13 @@ React本质 : 只需声明状态和标记，React会...">
   
 <nav id="pagination">
   
-    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; 上一篇 hexo插入图片解决方法</a>
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; Prev post hexo插入图片解决方法</a>
   
 
   
 
   
-    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">下一篇 值得记住的那些markdown语法 &rarr;</a>
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">Next post 值得记住的那些markdown语法 &rarr;</a>
   
 </nav>
 

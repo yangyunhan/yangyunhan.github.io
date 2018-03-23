@@ -16,9 +16,8 @@
   
   
   
-    <meta name="description" content="&lt;img&gt;元素的usemap属性和ismap属性：
-
-ismap被称为服务器端的图像映射，它只可以用在&lt;a&gt;标签标识的超链接里面。当用户在ismap图像上单击了某处时，浏览器会自动把鼠标的x、y位置（相对于图像的左上角）发送到服务器端。特殊的服务器端软件（在本例中是/example/map程序）可以根据这些坐标来做出响应。123&lt;a href="/example...">
+    <meta name="description" content="&lt;img&gt;元素的usemap属性和ismap属性：- ismap被称为服务器端的图像映射，它只可以用在`&lt;a&gt;`标签标识的超链接里面。当用户在ismap图像上单击了某处时，浏览器会自动把鼠标的x、y位置（相对于图像的左上角）发送到服务器端。特殊的服务器端软件（在本例中是/example/map程序）可以根据这些坐标来做出响应。
+123&lt;a href="/exam...">
   
   <title>特殊的元素特殊的你（html篇） [ 该叫什么好 ]</title>
   
@@ -131,14 +130,14 @@ ismap被称为服务器端的图像映射，它只可以用在&lt;a&gt;标签标
   <article id="post">
     <h1>特殊的元素特殊的你（html篇）</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-03-10</span>
+      <span id = "post-title-date">Created at 2018-03-10</span>
       
-        <span id = "post-title-updated">修改于 2018-03-10</span>
+        <span id = "post-title-updated">Updated at 2018-03-16</span>
       
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -149,14 +148,8 @@ ismap被称为服务器端的图像映射，它只可以用在&lt;a&gt;标签标
       
     </p>
     
-    <ol>
-<li><p><code>&lt;img&gt;</code>元素的usemap属性和ismap属性：</p>
-<ul>
-<li>ismap被称为服务器端的图像映射，它只可以用在<code>&lt;a&gt;</code>标签标识的超链接里面。当用户在ismap图像上单击了某处时，浏览器会自动把鼠标的x、y位置（相对于图像的左上角）发送到服务器端。特殊的服务器端软件（在本例中是/example/map程序）可以根据这些坐标来做出响应。<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/example/map"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/i/map.gif"</span> <span class="attr">ismap</span>=<span class="string">"ismap"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
+    <h4 id="lt-img-gt-元素的usemap属性和ismap属性："><a href="#lt-img-gt-元素的usemap属性和ismap属性：" class="headerlink" title="&lt;img&gt;元素的usemap属性和ismap属性："></a><code>&lt;img&gt;</code>元素的usemap属性和ismap属性：</h4><pre><code>- ismap被称为服务器端的图像映射，它只可以用在`&lt;a&gt;`标签标识的超链接里面。当用户在ismap图像上单击了某处时，浏览器会自动把鼠标的x、y位置（相对于图像的左上角）发送到服务器端。特殊的服务器端软件（在本例中是/example/map程序）可以根据这些坐标来做出响应。
+</code></pre><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/example/map"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/i/map.gif"</span> <span class="attr">ismap</span>=<span class="string">"ismap"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>-</p>
 <pre><code>- usemap属性提供了一种“客户端”的图像映射机制，有效地消除了服务器端对鼠标坐标的处理，以及由此带来的网络延迟问题。通过特殊的`&lt;map&gt;`和`&lt;area&gt;`标签，HTML创作者可以提供一个描述usemap图像中超链接敏感区域坐标的映射，这个映射同时包含相应的超链接URL。usemap属性的值是一个 URL，它指向特殊的`&lt;map&gt;` 区域。用户计算机上的浏览器将把鼠标在图像上单击时的坐标转换成特定的行为，包括加载和显示另外一个文档。
 </code></pre><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/example/map"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/i/map.gif"</span> <span class="attr">ismap</span>=<span class="string">"ismap"</span> <span class="attr">usemap</span>=<span class="string">"#map"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">area</span> <span class="attr">coords</span>=<span class="string">"0,0,49,49"</span> <span class="attr">href</span>=<span class="string">"link1.html"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">area</span> <span class="attr">coords</span>=<span class="string">"50,0,99,49"</span> <span class="attr">href</span>=<span class="string">"link2.html"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">area</span> <span class="attr">coords</span>=<span class="string">"0,50,49,99"</span> <span class="attr">href</span>=<span class="string">"link3.html"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">area</span> <span class="attr">coords</span>=<span class="string">"50,50,99,99"</span> <span class="attr">href</span>=<span class="string">"link4.html"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -166,27 +159,71 @@ ismap被称为服务器端的图像映射，它只可以用在&lt;a&gt;标签标
 </ul>
 </li>
 </ul>
+<h4 id="lt-i-gt-、-lt-em-gt"><a href="#lt-i-gt-、-lt-em-gt" class="headerlink" title="&lt;i&gt;、&lt;em&gt;"></a><code>&lt;i&gt;</code>、<code>&lt;em&gt;</code></h4><ul>
+<li><p><code>&lt;i&gt;</code></p>
+<ul>
+<li><p>html5，表示一段普通文本中，因为某种原因和正常文本不同，例如专业术语、外语短语或排版用的文字，其通常表现为斜体，他的出现不会改变语义；</p>
+</li>
+<li><p>一段文本中如果有插入语言不同的专业术语，需要在<i>标签中加上<lang>属性作为注解，</lang></i></p>
+</li>
+<li><p>斜体文字</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>There is a certain <span class="tag">&lt;<span class="name">i</span> <span class="attr">lang</span>=<span class="string">"fr"</span>&gt;</span>je ne sais quoi<span class="tag">&lt;/<span class="name">i</span>&gt;</span> in the air.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>em</p>
+<ul>
+<li><p>表达对文本内容的强调；</p>
+</li>
+<li><p>其强调位置的不同往往带来语义的变化（可以理解为英语口语中针对一句话中不同位置的重度，影响听话人的理解）；</p>
+</li>
+<li><p>斜体文字</p>
+</li>
+<li><p><code>&lt;em&gt;</code>不适用于需要传达重要性的内容，传达重要性的语义应该使用<code>&lt;strong&gt;</code>；</p>
+</li>
+</ul>
+</li>
+<li><p>标签语义化的好处</p>
+</li>
+<li><p>html5事件</p>
+</li>
+</ul>
+<p>&emsp;&emsp;面试之后出了两道笔试题目，第一道不用html5原生事件，结果我连html5原生事件有啥都不知道，就比较尴尬了。赶快复习一下。</p>
+<ul>
+<li><p>windows事件，适用于body标签，常用onblur、onerror、onfocus、onhaschange、onload、onresize、onunload。</p>
+</li>
+<li><p>表单事件，适用于所有html5元素，常用于表单元素中。常用onblur、onchange、onfocus、oninput、onselect、onreset、onsubmit。</p>
+</li>
+<li><p>键盘事件，适用于所有html5元素。onkeydown、onkeypress、onkeyup</p>
+</li>
+<li><p>鼠标事件，适用于所有html5元素。onclick、ondblclick、ondrag、ondragend、ondragenter、ondragleave、ondragover、ondragstart、ondrop、onmousedown、onmousemove、onmouseout、onmouseover、onmouseup、onmousewheel、onscroll</p>
+</li>
+<li><p>媒体事件，适用于所有html5元素，常用于媒介元素（audio、embed、img、object以及video）。</p>
+</li>
+</ul>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
-    
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-img-gt-元素的usemap属性和ismap属性："><span class="toc-text">&lt;img&gt;元素的usemap属性和ismap属性：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-i-gt-、-lt-em-gt"><span class="toc-text">&lt;i&gt;、&lt;em&gt;</span></a></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2018/03/11/一些关于工程、组件、模块的概念/" class="prev">&larr; 上一篇 一些关于工程、组件、模块的概念</a>
+    <a href="/2018/03/11/一些关于工程、组件、模块的概念/" class="prev">&larr; Prev post 一些关于工程、组件、模块的概念</a>
   
 
   
 
   
-    <a href="/2018/03/10/小命令/" class="next">下一篇 小命令 &rarr;</a>
+    <a href="/2018/03/10/小命令/" class="next">Next post 小命令 &rarr;</a>
   
 </nav>
 

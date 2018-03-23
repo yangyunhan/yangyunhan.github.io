@@ -134,9 +134,9 @@
   <article id="post">
     <h1>js知识点复习</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-03-08</span>
+      <span id = "post-title-date">Created at 2018-03-08</span>
       
-        <span id = "post-title-updated">修改于 2018-03-13</span>
+        <span id = "post-title-updated">Updated at 2018-03-21</span>
       
       
       
@@ -498,6 +498,13 @@
 </li>
 </ul>
 </li>
+<li><p>cors与JSONP相比，更为先进、方便和可靠</p>
+<ul>
+<li>jsonp只能实现get请求，cors支持所有类型的http请求</li>
+<li>使用cors，开发者可以使用普通的XMLHttpRequest发起请求和获得数据，比起JSONP有更好的错误处理</li>
+<li>JSONP主要被老的浏览器支持，它们往往不支持CORS，绝大多数浏览器支持CORS</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>面向对象</p>
@@ -583,14 +590,68 @@
 <li>常见攻击</li>
 </ul>
 </li>
+<li><p>协议</p>
+<ul>
+<li><p>TCP/IP是协议组，可分为四个层次：网络接口层、网络层、传输层和应用层。</p>
+<ul>
+<li>网络层有IP协议；</li>
+<li>传输层有TCP协议、UDP协议；</li>
+<li>应用层有HTTP、FTP、DNS等协议；</li>
+</ul>
+</li>
+<li><p>Http</p>
+<ul>
+<li>特点是客户端发送每次请求都需要服务器回送响应，请求结束后主动释放连接，从建立连接到关闭连接的过程称为一次连接。</li>
+<li>明文传输</li>
+<li>端口80</li>
+<li>连接无状态</li>
+<li>三次握手四次挥手</li>
+<li>报文,构成<ul>
+<li>URI</li>
+<li>URL：定位资源</li>
+</ul>
+</li>
+<li>状态码<ul>
+<li>1xx：</li>
+</ul>
+</li>
+<li><p>缓存处理</p>
+<ul>
+<li>二级缓存机制：第一次请求后，服务器发送expires、Cache-Control字段。Cache-Control字段的几个值Public、Private、no-cache、no-store、max-age。当设置为no-cache时，意味着使用Etag或Last-Modified字段控制缓存。只设置Cache-Control的max-age时，请求在这个时间内，直接使用本地缓存。超过max-age，则重新发起请求，这是强缓存。如果设置了Last-Modified值（浏览器携带If-Modified-Since），就是根据服务器时间返回的header判断缓存，如果发现缓存是新的，从客户端缓存加载，返回HTTP 304。当服务器上资源有变化，但最后修改时间没有变化时，使用ETag（浏览器携带If-None-Match）判断缓存的新旧。没有替代Last-Modified的原因是分布式系统会尽量关掉Etag，因为每台机器生成的ETag都会不一样。</li>
+<li>无缓存：每次请求查找返回文件，浪费带宽–》有缓存无更新：服务器内容变化，浏览器无法获知新文件–》缓存+更新（Expires）：时间格式容易写错–》缓存+更新机制升级版：设置Cache-Control，没有修改的文件再后续请求时返回文件，浪费带宽。–》缓存+更新机制终极版：二级缓存。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>http2</p>
+<ul>
+<li>采用二进制格式传输数据</li>
+<li>对消息头采用HPACK压缩传输</li>
+<li>多路复用，通过一个连接完成并发请求</li>
+<li>server push，服务器可以推送资源给客户端</li>
+</ul>
+</li>
 <li><p>Https</p>
 <ul>
 <li>http，不安全，中间任何环节都可能是危险的</li>
 <li>原理：在对称加密、非对称加密、hash等加密方法+有效的认证基础上实现安全数据的传输。</li>
+<li>在http和tcp（传输控制协议）/udp（用户数据报协议）之间有一层安全套接层ssl/tls</li>
+<li>需要申请到ca证书</li>
+<li>端口443</li>
+</ul>
+</li>
+<li><p>socket</p>
+<ul>
+<li>通信管道，是一种连接模式，不是协议</li>
+<li>优点：1.传输数据字节级；2.传输数据时间短、性能高；3.可加密，数据安全性高</li>
+<li>缺点：1.需解析；2.对开发人员要求高；3.增加了开发量</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>XSS</p>
 <ul>
+<li>XSS又称CSS，全称Cross SiteScript，跨站脚本攻击，是Web程序中常见的漏洞，XSS属于被动式且用于客户端的攻击方式，所以容易被忽略其危害性。其原理是攻击者向有XSS漏洞的网站中输入(传入)恶意的HTML代码，当其它用户浏览该网站时，这段HTML代码会自动执行，从而达到攻击的目的。如，盗取用户Cookie、破坏页面结构、重定向到其它网站等。</li>
 <li>所有用户输入的地方都不安全</li>
 <li>所有展示用户输入的地方都不安全，不能做成html放到页面上，防止恶意代码</li>
 <li>不用eval()，全局环境</li>
@@ -598,23 +659,141 @@
 </li>
 </ul>
 </li>
+<li><p>CSRF</p>
+<ul>
+<li><p>跨站请求伪造。其原理是攻击者构造网站后台某个功能接口的请求地址，诱导用户去点击或者用特殊方法让该请求地址自动加载。用户在登录状态下这个请求被服务端接收后会被误以为是用户合法的操作。对于 GET 形式的接口地址可轻易被攻击，对于 POST 形式的接口地址也不是百分百安全，攻击者可诱导用户进入带 Form 表单可用POST方式提交参数的页面.</p>
+</li>
+<li><p>解决：</p>
+<ul>
+<li>服务器收到路由器请求时生成一个随机数并埋入页面和设置在setCookie中</li>
+<li>用户发送GET或POST请求时会带上csrf_token参数</li>
+<li>后台检查这个值做比较</li>
 </ul>
+</li>
+</ul>
+</li>
+<li><p>性能优化</p>
+<ul>
+<li><p>加载优化</p>
+<ul>
+<li>网络越快越好：静态资源放到cdn上，节点在用户周围；服务器网速、贷款、节点多</li>
+<li>东西体积越小越好：服务端开启压缩，前端压缩（图片、html、css）</li>
+<li>数量越少越好：资源打包合并</li>
+<li>服务器的处理速度越来越好：后端接口速度、中专速度</li>
+<li>能重复利用的最好重复利用</li>
+</ul>
+</li>
+<li><p>体验优化</p>
+<ul>
+<li>做好首页的静态化，服务器端的静态页面可以直接给用户</li>
+<li>只给用户暂时需要的东西，轮播+按需加载</li>
+<li>别让用户感觉卡顿，代码的性能优化，处理循环和DOM，检测用户滚动时</li>
+<li>动画不要卡，css3的动画的性能优化（设置translate+3d可以使用GPU做渲染，transform，不要使用margin），再考虑js动画，自己实现不用setTmeout</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>尺寸和坐标</p>
+</li>
+<li><p>void</p>
+<ul>
+<li><code>void(expression)</code>执行这个表达式，返回undefined，括号可以省略。</li>
+<li>主要用处是a标签。<code>&lt;a href = &quot;javascript:void(0)&quot;&gt;</code>让点击后不执行任何操作也不会刷新页面，填充<code>&lt;image&gt;</code>的src，确保不会向服务器发出垃圾请求。</li>
+<li>通过采用<code>void 0</code>取undefined比采用字面上的undefined更靠谱更安全，应该有限采用void 0这种方式</li>
+<li><a href="http://blog.csdn.net/u014267183/article/details/52998642" target="_blank" rel="noopener">http://blog.csdn.net/u014267183/article/details/52998642</a></li>
+<li><a href="https://segmentfault.com/a/1190000000474941" target="_blank" rel="noopener">https://segmentfault.com/a/1190000000474941</a></li>
+</ul>
+</li>
+<li><p>js中的onload与readyState===4</p>
+<ul>
+<li>在浏览器支持的情况下，onload和onerror可以搭配使用，出现在XMLHttpRequest2中</li>
+<li>onreadystatechange一开始就有，所有浏览器都支持</li>
+<li>实际上不一样，当onreadystatechange的readyState为4时，可能对应于onload、onerror、onabort三种状态。所以onload与onerror对应使用，因为onerror也可能触发readyState===4</li>
+<li><a href="https://stackoverflow.com/questions/9181090/is-onload-equal-to-readystate-4-in-xmlhttprequest" target="_blank" rel="noopener">https://stackoverflow.com/questions/9181090/is-onload-equal-to-readystate-4-in-xmlhttprequest</a></li>
+</ul>
+</li>
+<li><p>JQuery ajax,fetch,axios</p>
+<ul>
+<li><p>jQuery ajax</p>
+<ul>
+<li>缺点：<ul>
+<li>基于原生的XHR开发，XHR本身架构不清晰</li>
+<li>jQuery整个项目太大，单纯使用ajax却要引入整个jQuery不合理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Axios</p>
+<ul>
+<li>优点：<ul>
+<li>从node.js创建http请求</li>
+<li>支持Promise API</li>
+<li>客户端支持防止CSRF</li>
+<li>提供了一些并发请求的接口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Fetch</p>
+<ul>
+<li>优点：<ul>
+<li>更加底层，提供的API丰富</li>
+<li>脱离了XHR，是ES规范里新的实现方式</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>只对网络请求报错，对400，500都当作成功的请求，需要封装</li>
+<li>fetch默认不带cookie，需要添加配置项</li>
+<li>fetch不支持abort，不支持超时控制</li>
+<li>fetch没有办法原生检测请求的进度，XHR可以</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://segmentfault.com/a/1190000012836882" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012836882</a></li>
+</ul>
+</li>
+<li><p>浏览器取消默认动作</p>
+<ul>
+<li>默认动作是浏览器所执行的用户没有明确指定的操作。</li>
+<li>点击a标签会转向目标页面、点击提交按钮提交表单、点击重置按钮重置表单、鼠标移动到带有title属性的元素上出现提示等。</li>
+<li>如不希望执行这种默认操作，在事件对象上调用.stopPropagation()也无济于事，因为默认操作不是在正常的事件传播流中发生的。处理办法：<ul>
+<li>W3C:e.preventDefault()</li>
+<li>IE:e.returnValue = false </li>
+<li>是事件对象的一个方法，作用是取消一个目标元素的默认行为，前提是有默认行为才能被取消。有默认行为的元素<code>&lt;a&gt;</code>和<code>&lt;input type=&quot;submit&quot;&gt;</code>等。当Event对象的cancelable为false时，表示没有默认行为。</li>
+<li>JavaScript的return false只会阻止默认行为（仅在HTML事件属性和DOM0级事件处理方法中，才能使用），jQuery中则既阻止默认行为又防止对象冒泡。</li>
+<li>firefox里的event跟IE里的不同，IE里的是全局变量，随时可用；firefox里的要用参数引导才能用，是运行时的临时变量。在IE/Opera中是window.event，在Firefox中是event；而事件的对象，在IE中是window.event.srcElement，在Firefox中是event.target，Opera中两者都可用。 </li>
+<li><a href="https://www.cnblogs.com/yycode/articles/5499234.html" target="_blank" rel="noopener">https://www.cnblogs.com/yycode/articles/5499234.html</a></li>
+<li><a href="https://www.cnblogs.com/yycode/articles/5499234.html" target="_blank" rel="noopener">https://www.cnblogs.com/yycode/articles/5499234.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*组织默认行为*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopDefault</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e &amp;&amp; e.preventDefault)&#123;</div><div class="line">        e.preventDefault();<span class="comment">//W3C</span></div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;<span class="comment">//IE</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*阻止冒泡行为*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopBubble</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e &amp;&amp; e.stopPropagation)&#123;</div><div class="line">        e.stopPropagation();<span class="comment">//W3C</span></div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span>;<span class="comment">//IE</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li><p>相关博文：</p>
 <ul>
 <li><a href="http://blog.csdn.net/blueblueskyhua/article/details/73135938" target="_blank" rel="noopener">http://blog.csdn.net/blueblueskyhua/article/details/73135938</a></li>
 <li><a href="https://www.zhihu.com/question/34183746" target="_blank" rel="noopener">https://www.zhihu.com/question/34183746</a></li>
 <li><a href="http://book.jirengu.com/fe/" target="_blank" rel="noopener">http://book.jirengu.com/fe/</a></li>
+<li><a href="http://blog.csdn.net/ghsau/article/details/17027893" target="_blank" rel="noopener">http://blog.csdn.net/ghsau/article/details/17027893</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/22521378" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/22521378</a></li>
+<li><a href="https://www.cnblogs.com/wqhwe/p/5407468.html" target="_blank" rel="noopener">https://www.cnblogs.com/wqhwe/p/5407468.html</a></li>
+<li><a href="http://blog.csdn.net/whb20081815/article/details/67640804" target="_blank" rel="noopener">http://blog.csdn.net/whb20081815/article/details/67640804</a></li>
+<li><a href="https://www.tuicool.com/articles/mq2qm26" target="_blank" rel="noopener">https://www.tuicool.com/articles/mq2qm26</a></li>
+<li><a href="http://www.cnblogs.com/strick/p/4826273.html" target="_blank" rel="noopener">http://www.cnblogs.com/strick/p/4826273.html</a></li>
+<li><a href="http://blog.csdn.net/qq_36947128/article/details/72879382" target="_blank" rel="noopener">http://blog.csdn.net/qq_36947128/article/details/72879382</a></li>
 </ul>
 </li>
 </ul>
 
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     
   </div>
 </div>
@@ -622,13 +801,13 @@
   
 <nav id="pagination">
   
-    <a href="/2018/03/10/小命令/" class="prev">&larr; 上一篇 小命令</a>
+    <a href="/2018/03/10/小命令/" class="prev">&larr; Prev post 小命令</a>
   
 
   
 
   
-    <a href="/2018/03/06/JS模块化编程之模块规范/" class="next">下一篇 JS模块化编程之模块规范 &rarr;</a>
+    <a href="/2018/03/06/JS模块化编程之模块规范/" class="next">Next post JS模块化编程之模块规范 &rarr;</a>
   
 </nav>
 
