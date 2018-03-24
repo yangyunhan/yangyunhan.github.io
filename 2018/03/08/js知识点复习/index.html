@@ -136,7 +136,7 @@
     <p class="page-title-sub">
       <span id = "post-title-date">Created at 2018-03-08</span>
       
-        <span id = "post-title-updated">Updated at 2018-03-21</span>
+        <span id = "post-title-updated">Updated at 2018-03-23</span>
       
       
       
@@ -655,7 +655,12 @@
 <li>所有用户输入的地方都不安全</li>
 <li>所有展示用户输入的地方都不安全，不能做成html放到页面上，防止恶意代码</li>
 <li>不用eval()，全局环境</li>
-<li>不用innerHTML<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">'hello&lt;/div&gt;&lt;script&gt;alert(1)&lt;/script&gt;'</span><span class="comment">//构造XSS攻击</span></div><div class="line"><span class="comment">//不要把用户请求的东西当成html运行，可以创建dom节点，用DOM节点的innerText把用户输入放进去。被当成字符串展示在页面上。</span></div></pre></td></tr></table></figure>
+<li>不用innerHTML</li>
+<li>预防：<ul>
+<li>不使用innerHTML，改用innerText</li>
+<li>如果用innerHTML，字符过滤<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">'hello&lt;/div&gt;&lt;script&gt;alert(1)&lt;/script&gt;'</span><span class="comment">//构造XSS攻击</span></div><div class="line"><span class="comment">//不要把用户请求的东西当成html运行，可以创建dom节点，用DOM节点的innerText把用户输入放进去。被当成字符串展示在页面上。</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
 </li>
 </ul>
 </li>
