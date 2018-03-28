@@ -1,0 +1,495 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="定位：前端资源加载/打包工具
+
+简介  &emsp;&emsp;WebPack是模块打包机，分析项目结构，找到JavaScript模块及其他浏览器不能直接运行的拓展语言，将其打包为合适的格式供浏览器使用。模块化概念盛行，各种各样的扩展语言和各种预处理器或是依赖包提高开发效率的同时，使利用它们开发的文件需要额外的处理才能让浏览器识别，手动处理很繁琐，所以出现了这样的工具。
+
+Gulp/Grun...">
+  
+  <title>带着webpack走上自动化之路 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2018/03/27/算法之交换与排序/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        算法之交换与排序
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>带着webpack走上自动化之路</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-28</span>
+      
+        <span id = "post-title-updated">Updated at 2018-03-28</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/webpack/">webpack</a>
+      
+      </span>
+      
+    </p>
+    
+    <ul>
+<li><p>定位：前端资源加载/打包工具</p>
+</li>
+<li><p>简介<br>  &emsp;&emsp;WebPack是模块打包机，分析项目结构，找到JavaScript模块及其他浏览器不能直接运行的拓展语言，将其打包为合适的格式供浏览器使用。模块化概念盛行，各种各样的扩展语言和各种预处理器或是依赖包提高开发效率的同时，使利用它们开发的文件需要额外的处理才能让浏览器识别，手动处理很繁琐，所以出现了这样的工具。</p>
+</li>
+<li><p>Gulp/Grunt（优化前端的开发流程的工具）相比：</p>
+<ul>
+<li><p>Gulp/Grunt是一种能够优化前端的开发流程的工具，WebPack是一种模块化解决方案。</p>
+</li>
+<li><p>Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/03/28/带着webpack走上自动化之路/grunt和gulp的工作流程.png" alt="Grunt和Gulp的工作流程"></p>
+<ul>
+<li><ul>
+<li><p>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。他的处理速度更快更直接，能打包更多不同类型的文件。</p>
+</li>
+<li><p>做了哪些事：</p>
+<ul>
+<li>依赖管理：方便引用第三方模块、让模块更容易复用、避免全局注入导致的冲突、避免重复加载或加载不需要的模块。</li>
+<li>合并代码：把各个分散的模块集中打包成大文件，减少HTTP的请求链接数，配合UglifyJS可以减少、优化代码的体积。</li>
+<li>各路插件：babel把ES6+转译成ES5-，eslint可以检查编译期的错误</li>
+</ul>
+</li>
+<li><p>原理：分析代码，找到require、exports、define等关键词，替换成对应模块的“引用”</p>
+</li>
+<li><p>在配置webpack时参考的博文：<a href="https://www.jianshu.com/p/42e11515c10f" target="_blank" rel="noopener">https://www.jianshu.com/p/42e11515c10f</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/03/28/带着webpack走上自动化之路/webpack工作方式.png" alt="webpack工作方式"></p>
+<ul>
+<li><p>优点：</p>
+<ul>
+<li><p>统一了JS的各种模块系统，取代了Browserify、RequireJS、SeaJS的工作.</p>
+</li>
+<li><p>可以生成Source Maps（使调试更容易）：帮助找到写错的位置。</p>
+</li>
+<li><p>更重要的是它的万能模块加载理念，即所有的资源都可以且也应该模块化。资源模块化后，有三个好处：</p>
+<ul>
+<li><p>依赖关系单一化。所有CSS和图片等资源的依赖关系统一走JS路线，无需额外处理CSS预处理器的依赖关系，也不需处理代码迁移时的图片合并、字体图片等路径问题；</p>
+</li>
+<li><p>资源处理集成化。现在可以用loader对各种资源做各种事情，比如复杂的vue-loader等等。</p>
+</li>
+<li><p>项目结构清晰化。使用Webpack后，你的项目结构总可以表示成这样的函数：<code>dest = webpack(src, config)</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/03/28/带着webpack走上自动化之路/devtool.png" alt="devtool配置项"></p>
+<p>-</p>
+<pre><code>- devtool配置项：
+
+    - 正如上表所述，上述选项由上到下打包速度越来越快，不过同时也具有越来越多的负面作用，较快的打包速度的后果就是对打包后的文件的的执行有一定影响。
+
+    - 对小到中型的项目中，eval-source-map是一个很好的选项，再次强调你只应该开发阶段使用它.
+</code></pre><ul>
+<li><p>loader加载器</p>
+<ul>
+<li><p>webpack把所有静态资源认为是模块，它在打包构建过程中用来处理源文件的（JSX，Scss，Less，js，图片等），一次处理一个。加载器之间可以进行串联，一个加载器的输出可以成为另一个加载器的输入。比如LESS文件先通过less-load处理成css，然后再通过css-loader加载成css模块，最后由style-loader加载器对其做最后的处理，从而运行时可以通过style标签将其应用到最终的浏览器环境。</p>
+</li>
+<li><p>对于样式表，有两种处理方式：<code>css-loader</code>和<code>style-loader</code>，二者处理的任务不同，css-loader使你能够使用类似@import 和 url(…)的方法实现 require()的功能,style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。</p>
+</li>
+<li><p>CSS module被称为CSS modules的技术意在把JS的模块化思想带入CSS中来，通过CSS模块，所有的类名，动画名默认都只作用于当前模块。Webpack对CSS模块化提供了非常好的支持，可以直接把CSS的类名传递到组件的代码中。</p>
+</li>
+<li><p>对loader理解的不到位，导致我的css代码没法从html分离出来。一开始我用loader中的css-loader和style-loader处理css文件。配置如图：</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/03/28/带着webpack走上自动化之路/webpack_config_module.png" alt="loader配置"></p>
+<ul>
+<li><ul>
+<li><p>module是指css module模块，默认是局部范围，如果设置了module:true就使我的css变成了组件内CSS，而不是全局CSS了。</p>
+</li>
+<li><p>相关文档：<a href="https://www.npmjs.com/package/css-loader#modules" target="_blank" rel="noopener">https://www.npmjs.com/package/css-loader#modules</a></p>
+</li>
+<li><p>另外，要更好的分离出css文件，可以配置ExtractTextPlugin插件。</p>
+</li>
+</ul>
+</li>
+<li><p>插件Plugins</p>
+<ul>
+<li><p>用来拓展webpack功能，插件不直接操作单个文件，直接作用于整个构建过程。</p>
+</li>
+<li><p>常用的插件：</p>
+<ul>
+<li><p>HtmlWebpackPlugin：依据一个简单的index.html模板，生成一个自动引用你打包后的JS文件的新index.html，创建一个build文件夹存放最终的输出文件。</p>
+</li>
+<li><p>HotModuleReplacement (HMR): 允许在修改组件代码后，自动刷新实时预览修改后的效果。需要对模块进行额外的配置，在js模块中执行一个webpack提供的api才能实现热加载。如果是React模块，使用Babel(Babel中的react-transform-hrm插件可以在不对React模块进行额外的配置的前提下让HMR正常工作)可以方便的实现热加载。(<small>Babel和webpack是独立的工具；二者可以一起工作，都可以通过插件拓展功能。</small>)</p>
+<ul>
+<li>配置方法： 在webpack配置文件中添加HMR插件(new webpack.HotModuleReplacementPlugin())；在Webpack Dev Server中添加“hot”参数；</li>
+</ul>
+</li>
+<li><p>OccurenceOrderPlugin: 为组件分配ID，通过这个插件webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID</p>
+</li>
+<li><p>UglifyJsPlugin：压缩JS代码；</p>
+</li>
+<li><p>ExtractTextPlugin：分离CSS和JS文件。<code>ExtractTextPlugin.extract(fallback[编译后用什么loader提取css],use[需要什么样的loader编译文件],publicfile[覆盖项目路径，生成该css文件的文件路径])</code></p>
+</li>
+<li><p>clean-webpack-plugin: 如果使用缓存去存储不同内容版本的文件，则可以使用这个插件去除目标文件中的残余文件。</p>
+</li>
+<li><p>ProvidePlugin: 这是在项目中用到了另一个插件，可以在里面定制要使用的库，如jQuery，knockout等等</p>
+</li>
+</ul>
+</li>
+<li><p>生产阶段的代码和开发阶段的代码不同，一些配置不能同时在两个配置文件中。</p>
+</li>
+<li><p>开发阶段：</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/03/28/带着webpack走上自动化之路/webpack_plugins_develop.png" alt="webpack_plugins_develop"></p>
+<p>-</p>
+<pre><code>- 生产阶段：
+</code></pre><p><img src="/2018/03/28/带着webpack走上自动化之路/webpack_plugins_production.png" alt="webpack_plugins_production"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">            <span class="attr">ko</span>: <span class="string">'knockout'</span>,</div><div class="line">            <span class="attr">$</span>: <span class="string">'jquery'</span>,</div><div class="line">            <span class="attr">axios</span>: <span class="string">'axios'</span></div><div class="line">        &#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>其他相关问题</p>
+<ul>
+<li><p>webpack4正式发布了，不必配置文件，通过选择mode类型来选择生产或开发模式。<a href="https://baijiahao.baidu.com/s?id=1593463639501622465&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">相关材料</a></p>
+</li>
+<li><p>webpack多页面应用配置<a href="http://www.duanliang920.com/learn/web353.html" target="_blank" rel="noopener">http://www.duanliang920.com/learn/web353.html</a></p>
+</li>
+<li><p>解决webpack编译慢的问题<a href="https://segmentfault.com/a/1190000006087638" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006087638</a></p>
+</li>
+</ul>
+</li>
+<li><p>参考材料：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/42e11515c10f" target="_blank" rel="noopener">https://www.jianshu.com/p/42e11515c10f</a></li>
+<li><a href="https://segmentfault.com/q/1010000007581542?_ea=1390552" target="_blank" rel="noopener">https://segmentfault.com/q/1010000007581542?_ea=1390552</a></li>
+</ul>
+</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/03/27/算法之交换与排序/" class="next">Next post 算法之交换与排序 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
