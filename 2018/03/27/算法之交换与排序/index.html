@@ -1,0 +1,447 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="随机排序（洗牌算法）目的：生成随机的数组，实现随机功能。
+网络中常见的解决方案：
+12345function shuffle(arr)&#123;    return arr.sort(function() &#123;      return Math.random() - 0.5;    &#125;)&#125;
+这种方案并不能真正实现随机，大概率会出现在它原来的位置附近。因为给sor...">
+  
+  <title>算法之交换与排序 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2018/03/16/DOM这个戏精/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        DOM这个戏精
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>算法之交换与排序</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-27</span>
+      
+        <span id = "post-title-updated">Updated at 2018-03-27</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/summary-skill/">summary skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/排序算法-js/">排序算法 js</a>
+      
+      </span>
+      
+    </p>
+    
+    <h4 id="随机排序（洗牌算法）"><a href="#随机排序（洗牌算法）" class="headerlink" title="随机排序（洗牌算法）"></a>随机排序（洗牌算法）</h4><p>目的：生成随机的数组，实现随机功能。</p>
+<p>网络中常见的解决方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">shuffle</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Math</span>.random() - <span class="number">0.5</span>;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方案并不能真正实现随机，大概率会出现在它原来的位置附近。因为给<code>sort</code>方法传递进去的参数，需要返回相同的值。而v8引擎对长度小于10的数组使用插入排序，长度大于10的数组使用快速排序。</p>
+<p>真正实现随机且考虑到性能的是经典的Fisher-Yates shuffle算法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//ES6版本</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">shuffle</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> i = arr.length;</div><div class="line">    <span class="keyword">while</span>(i)&#123;</div><div class="line">        <span class="keyword">let</span> j = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * i--);</div><div class="line">        [arr[j], arr[i]] = [arr[i], arr[j]];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//ES5版本</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">shuffle</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> i = arr.length, t, j;</div><div class="line">    <span class="keyword">while</span>(i)&#123;</div><div class="line">        j = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * i--);</div><div class="line">        t = arr[i];</div><div class="line">        arr[i] = arr[j];</div><div class="line">        arr[j] = t;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>换一种写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> shuffle = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</div><div class="line">    arr.forEach(<span class="function">(<span class="params">element, index</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">const</span> randomIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (index + <span class="number">1</span>));</div><div class="line">        </div><div class="line">        swap(arr, index, randomIndex);</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> swap = <span class="function">(<span class="params">arr, indexA, indexB</span>) =&gt;</span>&#123;</div><div class="line">    [arr[indexA], arr[indexB]] = [arr[indexB], arr[indexA]];</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>但是这样的写法有两个小问题：</p>
+<ul>
+<li>当index=0时，swap(arr, 0, 0)没有必要</li>
+<li>const的写法失去自由的逻辑展现（调用不能放在声明前）</li>
+</ul>
+<p>所以最终版：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">shuffle([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">shuffle</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    arr.forEach(<span class="function">(<span class="params">element, index</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">if</span>(index !== <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">const</span> randomIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (index + <span class="number">1</span>));</div><div class="line">            </div><div class="line">            swap(arr, index, randomIndex);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">arr, indexA, indexB</span>) </span>&#123;</div><div class="line">    [arr[indexA], arr[indexB]] = [arr[indexB], arr[indexA]];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>参考博客：</p>
+<ul>
+<li><a href="https://www.rayjune.me/2018/03/13/see-code-taste-from-shuffle/" target="_blank" rel="noopener">https://www.rayjune.me/2018/03/13/see-code-taste-from-shuffle/</a></li>
+<li><a href="ttps://blog.oldj.net/2017/01/23/shuffle-an-array-in-javascript/" target="_blank" rel="noopener">ttps://blog.oldj.net/2017/01/23/shuffle-an-array-in-javascript/</a></li>
+</ul>
+<h4 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h4><ol>
+<li>冒泡排序 Bubble Sort</li>
+</ol>
+<ul>
+<li>思路：依次比较、交换相邻的元素大小。</li>
+<li>稳定，时间复杂度<code>O(n^2)</code>，交换<code>O(n^2)</code>。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = arr.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++)&#123;</div><div class="line">            <span class="keyword">if</span>(arr[j] &gt; arr[j + <span class="number">1</span>])&#123;</div><div class="line">                swap(arr, j, j + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>双向排序<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> start = <span class="number">0</span>;</div><div class="line">    <span class="keyword">let</span> end = arr.length - <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (start &lt; end)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = start; i &lt; end; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(arr[i] &gt; arr[i + <span class="number">1</span>])&#123;</div><div class="line">                swap(arr, i, i + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        end -= <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = end; i &gt; start; i--)&#123;</div><div class="line">            <span class="keyword">if</span>(arr[i - <span class="number">1</span>] &gt; arr[i])&#123;</div><div class="line">                swap(arr, i - <span class="number">1</span>, i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        start += <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>给冒泡排序传入第二个参数（参数为函数），来控制升序和降序</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr, compareFunc</span>)</span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = arr.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++)&#123;</div><div class="line">            <span class="keyword">if</span>(compareFunc(arr[j], arr[j + <span class="number">1</span>]) &gt; <span class="number">0</span>)&#123;</div><div class="line">                swap(arr, j, j + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> arr = [<span class="number">91</span>, <span class="number">60</span>, <span class="number">96</span>, <span class="number">7</span>, <span class="number">35</span>, <span class="number">65</span>, <span class="number">10</span>];</div><div class="line"><span class="built_in">console</span>.log(bubbleSort(arr, (a, b) =&gt; a - b));</div><div class="line"><span class="built_in">console</span>.log(bubbleSort(arr, (a, b) =&gt; b - a));</div></pre></td></tr></table></figure>
+<ol>
+<li>选择排序 Selection Sort</li>
+</ol>
+<ul>
+<li>思想：每一次循环遍历寻找最小的数，记录minIndex，在循环结束后交换minIndex与i的位置。</li>
+<li>不稳定，时间复杂度O(n^2)，交换<code>O(n)</code>，是选择排序的唯一优点（减少了swap的次数）。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//基本实现</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, len = arr.length; i &lt; len - <span class="number">1</span>; i++)&#123;</div><div class="line">        <span class="keyword">let</span> minIndex = i;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++)&#123;</div><div class="line">            <span class="keyword">if</span>(arr[j] &lt; arr[minIndex])&#123;</div><div class="line">                minIndex = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(i !== minIndex)&#123;</div><div class="line">            swap(arr, i, minIndex);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个改为在每次内循环中找到最大值并把其交换到数据的末尾</p>
+<ol>
+<li>插入排序 Insertion Sort</li>
+</ol>
+<ul>
+<li>思想：默认a[0]是已排序数组中的元素，从a[1]开始逐渐往已排序数组中插入元素，从后往前一个个比较，如果待插入元素小于已排序元素，则已排序元素后移一位，直到所有元素插入到数组中。</li>
+<li>稳定，适合快要排序完成的数组时间复杂度<code>O(n)</code>，开销低。时间复杂度<code>O(n^2)</code>。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>, len = arr.length; i &lt; len; i++)&#123;</div><div class="line">        <span class="keyword">const</span> temp = arr[i];</div><div class="line">        <span class="keyword">let</span> preIndex = i - <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(arr[preIndex] &gt; temp)&#123;</div><div class="line">            arr[preIndex + <span class="number">1</span>] = arr[preIndex];</div><div class="line">            preIndex -= <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        arr[preIndex + <span class="number">1</span>] = temp;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>二分查找</li>
+</ol>
+<p>思想：折半</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">arr, value</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> min = <span class="number">0</span>;</div><div class="line">    <span class="keyword">let</span> max = arr.length - <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(min &lt;= max)&#123;</div><div class="line">        <span class="keyword">const</span> mid = <span class="built_in">Math</span>.floor((min + max) / <span class="number">2</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(arr[mid] === value)&#123;</div><div class="line">            <span class="keyword">return</span> mid;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(arr[mid] &gt; value)&#123;</div><div class="line">            max = mid - <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            min = mid + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="string">'Not Found'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>希尔排序</li>
+</ol>
+<ul>
+<li>思想：插入排序的改进版，克服了插入排序只能移动一个相邻位置的缺陷（希尔排序可以一次移动gap个距离）。</li>
+<li>不稳定，快要排序完成的数组有<code>O(n*log(n))</code>的时间复杂度（反转数组的速度非常快）。</li>
+<li>gap的选择是希尔排序的重要部分，当gap=1，算法变为插入排序。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//gap = n/2时</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">const</span> len = arr.length;</div><div class="line">    <span class="keyword">let</span> gap = <span class="built_in">Math</span>.floor(len / <span class="number">2</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (gap &gt; <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">            <span class="keyword">const</span> temp = arr[i];</div><div class="line">            <span class="keyword">let</span> preIndex = i - gap;</div><div class="line">            </div><div class="line">            <span class="keyword">while</span>(arr[preIndex] &gt; temp)&#123;</div><div class="line">                arr[preIndex + gap] = arr[preIndex];</div><div class="line">                preIndex -= gap;</div><div class="line">            &#125;</div><div class="line">            arr[preIndex + gap] = temp;</div><div class="line">        &#125;</div><div class="line">        gap = <span class="built_in">Math</span>.floor(gap / <span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>归并排序</li>
+</ol>
+<ul>
+<li>思想：分而治之，折半的方式递归/迭代排序元素。</li>
+<li>稳定，时间复杂度<code>O(n*log(n))</code>，需要O(n)的额外空间。</li>
+<li>利用空间换时间，适用于次考虑存储空间的场合（数据库内排序），适合于链表排序。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">const</span> len = arr.length;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(len &lt; <span class="number">2</span>)&#123;</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">const</span> mid = <span class="built_in">Math</span>.floor(len / <span class="number">2</span>);</div><div class="line">    <span class="keyword">const</span> left = arr.slice(<span class="number">0</span>, mid);</div><div class="line">    <span class="keyword">const</span> right = arr.slice(mid);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> merge(mergeSort(left), mergeSort(right));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left, right</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> result = [];</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (left.length &gt; <span class="number">0</span> &amp;&amp; right.length &gt; <span class="number">0</span>)&#123;</div><div class="line">        result.push(left[<span class="number">0</span>] &lt;= right[<span class="number">0</span>] ? left.shift() : right.shift());</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> result.concat(left, right);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>堆排序 Heap Sort</li>
+</ol>
+<ul>
+<li>思想：是选择排序的改进版，像选择排序一样将输入划分为已排序和待排序。将所有数据堆化，移动arr[0]到数组末尾（已排序区域），重新堆化，依次循环排序。</li>
+<li>不稳定，时间复杂度O(n*log(n))，平均效率决定了它不如快速排序，适用于数据库内引擎排序（拥有良好的可预测性）。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">heapSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> size = arr.length;</div><div class="line">  <span class="comment">// 初始化堆，i 从最后一个父节点开始调整，直到节点均调整完毕 </span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="built_in">Math</span>.floor(size / <span class="number">2</span>) - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">    heapify(arr, i, size);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 堆排序：先将第一个元素和已拍好元素前一位作交换，再重新调整，直到排序完毕</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = size - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</div><div class="line">    swap(arr, <span class="number">0</span>, i);</div><div class="line">    size -= <span class="number">1</span>;</div><div class="line">    heapify(arr, <span class="number">0</span>, size);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> arr;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">heapify</span>(<span class="params">arr, index, size</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> largest = index;</div><div class="line">  <span class="keyword">let</span> left = <span class="number">2</span> * index + <span class="number">1</span>;</div><div class="line">  <span class="keyword">let</span> right = <span class="number">2</span> * index + <span class="number">2</span>;</div><div class="line">  <span class="keyword">if</span> (left &lt; size &amp;&amp; arr[left] &gt; arr[largest]) &#123;</div><div class="line">    largest = left;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (right &lt; size &amp;&amp; arr[right] &gt; arr[largest]) &#123;</div><div class="line">    largest = right;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (largest !== index) &#123;</div><div class="line">    swap(arr, index, largest);</div><div class="line">    heapify(arr, largest, size);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>快速排序 Quick Sort</li>
+</ol>
+<ul>
+<li>思想：从数列中挑出一个元素，称为基准（pivot），比基准小的放前面，大的放后面。递归</li>
+<li>不稳定，时间复杂度O(n*log(n))~O(n^2)，需要额外的O(log(n))空间</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">const</span> pivot = arr[<span class="number">0</span>];</div><div class="line">    <span class="keyword">const</span> left = [];</div><div class="line">    <span class="keyword">const</span> right = [];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(arr.length &lt; <span class="number">2</span>) &#123; <span class="keyword">return</span> arr; &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>, len = arr.length; i &lt; len; i++)&#123;</div><div class="line">        arr[i] &lt; pivot ? left.push(arr[i]) : right.push(arr[i]);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> quickSort(left).concat([pivot], quickSort(right));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><ul>
+<li>数据几乎快排序完成时：插入</li>
+<li>数据量小，对效率要求不高，代码简单：按照性能大小：希尔&gt;插入&gt;冒泡&gt;选择排序</li>
+<li>数据量大，要求稳定的效率：堆排序</li>
+<li>数据量大，要求效率高，要稳定：归并排序</li>
+<li>数据量大，要求最好的平均效率：按照性能大小：快速&gt;堆&gt;归并</li>
+<li>选择排序没用？只要O(n)次交换，比冒泡好很多</li>
+</ul>
+<p><img src="/2018/03/27/算法之交换与排序/排序算法比较.png" alt="排序算法比较"></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#随机排序（洗牌算法）"><span class="toc-text">随机排序（洗牌算法）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#排序算法"><span class="toc-text">排序算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结："><span class="toc-text">总结：</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/03/16/DOM这个戏精/" class="next">Next post DOM这个戏精 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
