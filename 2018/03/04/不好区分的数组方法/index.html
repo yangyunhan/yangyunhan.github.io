@@ -137,7 +137,7 @@ forEach()
     <p class="page-title-sub">
       <span id = "post-title-date">撰写于 2018-03-04</span>
       
-        <span id = "post-title-updated">修改于 2018-03-04</span>
+        <span id = "post-title-updated">修改于 2018-03-31</span>
       
       
       <span id = "post-title-categories">分类
@@ -156,7 +156,7 @@ forEach()
       
         
         
-        <a href="/tags/tips/">tips</a>
+        <a href="/tags/js-数组/">js 数组</a>
       
       </span>
       
@@ -189,16 +189,24 @@ forEach()
 <p>&emsp;&emsp;有返回值，可以return出来。$.map()里面的匿名函数支持2个参数和$.each()里的参数位置相反：数组中的当前项v，当前项的索引 i。如果遍历的是对象，k 是键，v 是值。如果是$(“span”).map()形式，参数顺序和$.each()  $(“span”).each()一样。</p>
 <ul>
 <li><p><strong>经典例子</strong></p>
-<p>  <strong>反转字符串</strong></p>
+<ul>
+<li><strong>反转字符串</strong></li>
+</ul>
 </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'12345'</span>;</div><div class="line"><span class="built_in">Array</span>.prototype.map.call(str, <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;   <span class="comment">/*同时利用了call()方法*/</span></div><div class="line">  <span class="keyword">return</span> x;</div><div class="line">&#125;).reverse().join(<span class="string">''</span>);</div></pre></td></tr></table></figure>
-<pre><code>**笔试题**
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>].map(<span class="built_in">parseInt</span>);  <span class="comment">/*结果  [1, NaN, NaN]*/</span>　</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnInt</span>(<span class="params">element</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(element,<span class="number">10</span>);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">[<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>].map(returnInt);　<span class="comment">/*结果 [1,2,3]*/</span></div></pre></td></tr></table></figure>
+<ul>
+<li><ul>
+<li><strong>笔试题</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>].map(<span class="built_in">parseInt</span>);  <span class="comment">/*结果  [1, NaN, NaN]*/</span>　</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnInt</span>(<span class="params">element</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(element, <span class="number">10</span>);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">[<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>].map(returnInt);　<span class="comment">/*结果 [1,2,3]*/</span></div></pre></td></tr></table></figure>
 <p>&emsp;&emsp;parseInt()默认有两个参数，第二个参数是进制数。当parsrInt没有传入参数的时候，而map()中的回调函数时候，会给它传三个参数，第二个参数就是索引，明显不正确，所以返回NaN了。</p>
-<pre><code>**联想**：
-</code></pre><p>&emsp;&emsp;我在项目中，想将类数组转换为数组来调用forEach方法，则给类数组添加一个自定义方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">HTMLCollection.prototype.toArray = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> [].slice.call(<span class="keyword">this</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">let</span> renderNode = <span class="built_in">document</span>.getElementsByClassName(className);</div><div class="line"></div><div class="line">renderNode[<span class="number">0</span>].children.toArray().forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(item);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>相关博文：<br>1.<a href="https://www.cnblogs.com/leaf930814/p/6667011.html" target="_blank" rel="noopener">博客园-leaf930814</a><br>2.<a href="https://www.cnblogs.com/liuruyi/p/6483526.html" target="_blank" rel="noopener">博客园-liuruyi007</a></p>
+<p><strong>联想</strong>：</p>
+<p>&emsp;&emsp;我在项目中，想将类数组转换为数组来调用forEach方法，则给类数组添加一个自定义方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">HTMLCollection.prototype.toArray = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> [].slice.call(<span class="keyword">this</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">let</span> renderNode = <span class="built_in">document</span>.getElementsByClassName(className);</div><div class="line"></div><div class="line">renderNode[<span class="number">0</span>].children.toArray().forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(item);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>相关博文：<br>1.<a href="https://www.cnblogs.com/leaf930814/p/6667011.html" target="_blank" rel="noopener">https://www.cnblogs.com/leaf930814/p/6667011.html</a><br>2.<a href="https://www.cnblogs.com/liuruyi/p/6483526.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuruyi/p/6483526.html</a></p>
 
   </article>
   <div class="random-toc-area">
