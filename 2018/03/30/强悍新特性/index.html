@@ -133,7 +133,7 @@
     <p class="page-title-sub">
       <span id = "post-title-date">撰写于 2018-03-30</span>
       
-        <span id = "post-title-updated">修改于 2018-03-30</span>
+        <span id = "post-title-updated">修改于 2018-04-01</span>
       
       
       <span id = "post-title-categories">分类
@@ -180,6 +180,9 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> el <span class="keyword">of</span> args)&#123;</div><div class="line">        <span class="built_in">console</span>.log(el)</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">bar(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">bar = <span class="function"><span class="keyword">function</span>(<span class="params">a, ...args</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">    <span class="built_in">console</span>.log(args);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">bar(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</div></pre></td></tr></table></figure>
 <p>配合解构使用：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> [a, ...rest] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</div><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="built_in">console</span>.log(rest);</div><div class="line"><span class="comment">//[2, 3, 4]</span></div></pre></td></tr></table></figure>
+<p>实现浅复制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> oldObj1 = &#123;<span class="attr">a</span>: <span class="string">"a"</span>, <span class="attr">b</span>: &#123;<span class="attr">b1</span>: <span class="string">"b1"</span>&#125;&#125;</div><div class="line"><span class="keyword">let</span> oldObj2 = &#123;<span class="attr">a</span>: <span class="string">"a1"</span>, <span class="attr">b</span>: &#123;<span class="attr">b2</span>: <span class="string">"b2"</span>&#125;, <span class="attr">c</span>: <span class="string">"c"</span>&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> newObject = &#123;...oldObj1, ...oldObj2&#125;;</div></pre></td></tr></table></figure>
+<h5 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h5><p>如果函数只有一条返回语句，可以省略大括号和return关键字</p>
 <p>总结：</p>
 <ul>
 <li>解构的原理是赋值的两边具有相同的解构，就可以正确去除数组或对象里面的元素或属性值。</li>
@@ -196,7 +199,7 @@
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#ES6解构："><span class="toc-text">ES6解构：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#扩展运算符："><span class="toc-text">扩展运算符：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#rest运算符"><span class="toc-text">rest运算符</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#ES6解构："><span class="toc-text">ES6解构：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#扩展运算符："><span class="toc-text">扩展运算符：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#rest运算符"><span class="toc-text">rest运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#箭头函数"><span class="toc-text">箭头函数</span></a></li></ol>
   </div>
 </div>
 
@@ -325,6 +328,18 @@ var isTriggerAnalytics = !( true && isIgnoreHost );
       backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
     
       backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
     
   
   $('#post').each(function(i){

@@ -136,7 +136,7 @@
     <p class="page-title-sub">
       <span id = "post-title-date">撰写于 2018-03-08</span>
       
-        <span id = "post-title-updated">修改于 2018-03-27</span>
+        <span id = "post-title-updated">修改于 2018-04-01</span>
       
       
       <span id = "post-title-categories">分类
@@ -796,6 +796,55 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*组织默认行为*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopDefault</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e &amp;&amp; e.preventDefault)&#123;</div><div class="line">        e.preventDefault();<span class="comment">//W3C</span></div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;<span class="comment">//IE</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*阻止冒泡行为*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopBubble</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e &amp;&amp; e.stopPropagation)&#123;</div><div class="line">        e.stopPropagation();<span class="comment">//W3C</span></div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span>;<span class="comment">//IE</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
+<li><p>纯函数（函数式编程的核心概念）</p>
+<ul>
+<li><p>定义有三点：</p>
+<ul>
+<li>对于同一参数，返回同一结果</li>
+<li>完全取决于传入的参数</li>
+<li>不会产生副作用</li>
+</ul>
+</li>
+<li><p>副作用是指：</p>
+<ul>
+<li>发出 HTTP 调用</li>
+<li>改变外部状态</li>
+<li>检索今天的日期</li>
+<li>Math.random()</li>
+<li>向控制台输出消息</li>
+<li>向数据库中添加数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数式编程</p>
+<ul>
+<li>定义：”函数式编程”是一种”编程范式”（programming paradigm），也就是如何编写程序的方法论。</li>
+<li>主要思想：它属于”结构化编程”的一种，主要思想是把运算过程尽量写成一系列嵌套的函数调用。</li>
+<li><p>特点：</p>
+<ul>
+<li>函数是”第一等公民”</li>
+<li>只用”表达式”，不用”语句”，每一个表达式都有返回值</li>
+<li>没有”副作用”</li>
+<li>不修改状态</li>
+<li>引用透明，只依赖输入的参数</li>
+</ul>
+</li>
+<li><p>优点：</p>
+<ul>
+<li>代码简洁，开发快速</li>
+<li>接近自然语言，易于理解</li>
+<li>更方便的代码管理</li>
+<li>易于”并发编程”</li>
+</ul>
+</li>
+<li>材料：<a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2012/04/functional_programming.html</a></li>
+</ul>
+</li>
+<li><p>柯里化：指向需要额外数据的函数提供部分输入的流程。偏函数应用。</p>
+</li>
+<li><p>forin、Object.keys和Object.getOwnPropertyNames的ubie </p>
+</li>
 <li><p>相关博文：</p>
 <ul>
 <li><a href="http://blog.csdn.net/blueblueskyhua/article/details/73135938" target="_blank" rel="noopener">http://blog.csdn.net/blueblueskyhua/article/details/73135938</a></li>
@@ -947,6 +996,18 @@ var isTriggerAnalytics = !( true && isIgnoreHost );
       backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
     
       backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
     
   
   $('#post').each(function(i){
