@@ -1,8 +1,6 @@
 
 
 
-  
-
 
 
 
@@ -18,9 +16,16 @@
   
   
   
-    <meta name="description" content="">
+    <meta name="description" content="问题描述在用npm安装了express后，express的命令不能使用，显示错误是express不是内部或外部命令。
+解决方案
+在node.js安装目录下，新建node_global和node_cache目录
+
+修改node.js安装目录&gt;node_moudules&gt;npmrc文件，修改里面的内容为：
+
+prefix=D:\nodejs\node_global
+cache=D:\...">
   
-  <title>Tag: webpack [ 该叫什么好 ]</title>
+  <title>express问题解决 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -39,6 +44,15 @@
 <body>
 <div class="side-navigate hide-area">
   
+  
+    <div class="item next">
+      <a href="/2018/04/01/js之深浅拷贝/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        js之深浅拷贝
+      </div>
+    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -71,7 +85,7 @@
           </li>
         
           
-            <li class="active">
+            <li>
           
             <a href="/tags">Tags</a>
             
@@ -110,273 +124,72 @@
     <div id="content-inner">
       
       
-  <div id="tag">
-    <h1>webpack</h1>
-    
+  <article id="post">
+    <h1>express问题解决</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-04-03</span>
+      
+        <span id = "post-title-updated">Updated at 2018-04-03</span>
+      
+      
+      
+      <span id = "post-title-tags">
+      Tag
       
       
         
-      
-      
-    
-      
-      
         
+        <a href="/tags/express/">express</a>
       
+      </span>
       
+    </p>
     
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-          
-        
-      
-      
-      <div class="post-title-item">
-  
-  <a href="/2018/03/28/带着webpack走上自动化之路/">
-  
-    带着webpack走上自动化之路
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">3-28</span>
-    
-    <span id = "post-title-categories">Category
-    
-    
-      
-      
-      <a href="/categories/skill/">skill</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    Tag
-    
-    
-      
-      
-      <a href="/tags/webpack/">webpack</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
+    <h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>在用npm安装了express后，express的命令不能使用，显示错误是express不是内部或外部命令。</p>
+<h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><ul>
+<li><p>在node.js安装目录下，新建node_global和node_cache目录</p>
+</li>
+<li><p>修改node.js安装目录&gt;node_moudules&gt;npmrc文件，修改里面的内容为：</p>
+<ul>
+<li>prefix=D:\nodejs\node_global</li>
+<li>cache=D:\nodejs\node_cache</li>
+<li>registry=<a href="http://registry.npm.taobao.org" target="_blank" rel="noopener">http://registry.npm.taobao.org</a></li>
+</ul>
+</li>
+<li><p>修改环境变量让命令行识别命令</p>
+<ul>
+<li>用户变量：path: D:\nodejs\node_global</li>
+<li>系统变量：NODE_PATH: D:\nodejs\node_global\node_modules(全局模块的目录)</li>
+</ul>
+</li>
+</ul>
+<p>参考材料：<a href="http://www.cnblogs.com/JennyLin77/p/6808392.html" target="_blank" rel="noopener">http://www.cnblogs.com/JennyLin77/p/6808392.html</a></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解决方案"><span class="toc-text">解决方案</span></a></li></ol>
   </div>
+</div>
 
   
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/04/01/js之深浅拷贝/" class="next">Next post js之深浅拷贝 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
 
       
       
@@ -518,6 +331,8 @@ var unsplashConfig = {"gravity":"north"};
 var turnoffBackgroundImage = false;
 
 
+
+  turnoffBackgroundImage = true;
 
 
 var backgroundColor = "34495E";

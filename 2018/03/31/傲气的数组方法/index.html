@@ -135,12 +135,12 @@ callback(执行数组中每个值的函数，包...">
   <article id="post">
     <h1>傲气的数组方法</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-03-31</span>
+      <span id = "post-title-date">Created at 2018-03-31</span>
       
-        <span id = "post-title-updated">修改于 2018-03-31</span>
+        <span id = "post-title-updated">Updated at 2018-03-31</span>
       
       
-      <span id = "post-title-categories">分类
+      <span id = "post-title-categories">Category
       
       
         
@@ -151,7 +151,7 @@ callback(执行数组中每个值的函数，包...">
       
       
       <span id = "post-title-tags">
-      标签
+      Tag
       
       
         
@@ -191,10 +191,10 @@ callback(执行数组中每个值的函数，包...">
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*求加权后的分数*/</span></div><div class="line"><span class="keyword">var</span> result = [</div><div class="line">    &#123;</div><div class="line">        <span class="attr">subject</span>: <span class="string">'math'</span>,</div><div class="line">        <span class="attr">score</span>: <span class="number">88</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">subject</span>: <span class="string">'chinese'</span>,</div><div class="line">        <span class="attr">score</span>: <span class="number">95</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">subject</span>: <span class="string">'english'</span>,</div><div class="line">        <span class="attr">score</span>: <span class="number">80</span></div><div class="line">    &#125;</div><div class="line">];</div><div class="line"></div><div class="line"><span class="keyword">var</span> dis = &#123;</div><div class="line">    <span class="attr">math</span>: <span class="number">0.5</span>,</div><div class="line">    <span class="attr">chinese</span>: <span class="number">0.3</span>,</div><div class="line">    <span class="attr">english</span>: <span class="number">0.2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> sum = result.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">prev,cur</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> cur.score + prev;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">var</span> qsum = result.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">prev,cur</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> prev + cur.score*dis[cur.subject]</div><div class="line">&#125;,<span class="number">0</span>)</div><div class="line"><span class="keyword">var</span> sum = result.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, cur</span>) </span>&#123;</div><div class="line">    <span class="comment">//console.log(prev);</span></div><div class="line">    <span class="keyword">return</span> cur.score + prev;</div><div class="line">&#125;, <span class="number">-10</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> qsum = result.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, cur</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> prev + cur.score * dis[cur.subject]</div><div class="line">&#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(sum, qsum);</div></pre></td></tr></table></figure>
   </article>
   <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
-    <h2>目录</h2>
+    <h2>Table of Content</h2>
     
   </div>
 </div>
@@ -202,13 +202,13 @@ callback(执行数组中每个值的函数，包...">
   
 <nav id="pagination">
   
-    <a href="/2018/03/31/Redux初识/" class="prev">&larr; 上一篇 Redux初识</a>
+    <a href="/2018/03/31/Redux初识/" class="prev">&larr; Prev post Redux初识</a>
   
 
   
 
   
-    <a href="/2018/03/30/强悍新特性/" class="next">下一篇 强悍新特性 &rarr;</a>
+    <a href="/2018/03/30/强悍新特性/" class="next">Next post 强悍新特性 &rarr;</a>
   
 </nav>
 
