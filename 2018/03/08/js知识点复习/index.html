@@ -136,7 +136,7 @@
     <p class="page-title-sub">
       <span id = "post-title-date">Created at 2018-03-08</span>
       
-        <span id = "post-title-updated">Updated at 2018-04-06</span>
+        <span id = "post-title-updated">Updated at 2018-04-08</span>
       
       
       <span id = "post-title-categories">Category
@@ -312,6 +312,8 @@
 <li><p>parseInt()[由于Number()处理字符串比较复杂]，更多的看是否符合数值模式，会忽略字符串前面的空格。第一个字符不是数字或负号，则返回NaN；parseInt()返回NaN(Number()对空字符返回0)；后面的字符被忽略；可以识别出进制，但是在ES3和ES5中对八进制样式的字符转换存在差别，所以它提供了第二个参数。</p>
 </li>
 <li><p>parseFloat()与parseInt()的差别一是字符串中第一个小数点有效，其他无效；第二是它忽略前导的0，所以十六进制的字符串被转换为0；只解析十进制，没有用第二个参数指定基数的用法；字符串包含是整数，就转换为整数。</p>
+</li>
+<li><p>字符串转数组的方法：split(‘’);   </p>
 </li>
 </ul>
 </li>
@@ -843,7 +845,37 @@
 </li>
 <li><p>柯里化：指向需要额外数据的函数提供部分输入的流程。偏函数应用。</p>
 </li>
-<li><p>forin、Object.keys和Object.getOwnPropertyNames的ubie </p>
+<li><p>forin、Object.keys和Object.getOwnPropertyNames的区别。</p>
+</li>
+<li><p>argument，有length和callee属性。<br><a href="https://blog.csdn.net/qq_16339527/article/details/53231725" target="_blank" rel="noopener">https://blog.csdn.net/qq_16339527/article/details/53231725</a></p>
+</li>
+<li><p>同步、异步、事件循环：<a href="https://segmentfault.com/a/1190000004322358" target="_blank" rel="noopener">https://segmentfault.com/a/1190000004322358</a></p>
+</li>
+<li><p>jquery中的$有几种重载方法？（可以接受几种数据类型）</p>
+<ul>
+<li>jquery(expression,[context])根据css选择器字符串在页面中匹配一组元素，或者利用context参数指定匹配的范围。</li>
+<li>jquery(html)根据html标记字符串，动态创建由jQuery对象包装的DOM元素。</li>
+<li>jquery(elements)将一个或多个DOM对象转化为jquery对象。</li>
+<li>jquery(callback)类型函数可以在页面加载完毕时执行包含的函数。$(document).ready(function(){})，简写为$(function(){})</li>
+<li><a href="https://blog.csdn.net/jingcairensheng/article/details/68923478" target="_blank" rel="noopener">https://blog.csdn.net/jingcairensheng/article/details/68923478</a></li>
+</ul>
+</li>
+<li><p>jquery九大选择器</p>
+<ul>
+<li>基本选择器（元素）</li>
+<li>层次选择器，可以链式操作</li>
+<li>过滤选择器（:/[]），又有：<ul>
+<li>基础过滤选择器:first\:last\:not\:even\:odd\:eq\:gt\:lt\:header\:animated</li>
+<li>内容过滤选择器:contains(text)\:empty\:has\:parent</li>
+<li>可见度过滤选择器:hidden\:visible</li>
+<li>属性过滤选择器[attribute][attribute=vlue][attribute!=value][attribute^=value][attribute$=vale]</li>
+<li>子元素过滤选择器:nth-child()\:first-child\:last-child\:only-child</li>
+<li>表单对象过滤选择器:enabled\:disabled\:checked\:selected</li>
+<li>表单选择器:input\:text\:password\:radio\:checkbox\:submit\:image\:reset\:button\:file\input:hidden</li>
+</ul>
+</li>
+<li><a href="https://blog.csdn.net/pseudonym_/article/details/76093261" target="_blank" rel="noopener">https://blog.csdn.net/pseudonym_/article/details/76093261</a></li>
+</ul>
 </li>
 <li><p>相关博文：</p>
 <ul>
