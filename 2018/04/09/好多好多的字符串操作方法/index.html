@@ -1,14 +1,8 @@
 
 
-  
 
 
 
-
-  
-
-
-  
 
 
 <!doctype html>
@@ -22,9 +16,16 @@
   
   
   
-    <meta name="description" content="">
+    <meta name="description" content="concat()
+
+用于将一个或多个字符串拼接起来，返回得到新的字符串。多数情况下会用’+’进行字符串的拼接。
+
+基于子字符串创建新字符串的方法，都会返回新的被操作字符串的一个子字符串，也都接受一个或两个参数。第一个参数指定子字符串的开始位置，第二个参数表示子字符串哪里结束。
+
+slice()：第二个参数是最后一个字符后面的位置，传入的负值会与字符串长度相加
+substr()：第二个参数是返...">
   
-  <title>归档: 2/2018: 2018 [ 该叫什么好 ]</title>
+  <title>好多好多的字符串操作方法 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -43,6 +44,15 @@
 <body>
 <div class="side-navigate hide-area">
   
+  
+    <div class="item next">
+      <a href="/2018/04/09/正则表达式之match与exec/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        正则表达式之match与exec
+      </div>
+    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -68,7 +78,7 @@
           </li>
         
           
-            <li class="active">
+            <li>
           
             <a href="/archives">Archives</a>
             
@@ -114,179 +124,107 @@
     <div id="content-inner">
       
       
-  <article>
-    
-
-  <div id="recent-posts">
-    <h1>归档
-    
-      <span class="posts-count">
-      共
-      3
+  <article id="post">
+    <h1>好多好多的字符串操作方法</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">撰写于 2018-04-09</span>
       
-        文章
+        <span id = "post-title-updated">修改于 2018-04-09</span>
+      
+      
+      <span id = "post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/calculate/">calculate</a>
       
       </span>
-    
-    </h1>
-    
-    
+      
+      
+      <span id = "post-title-tags">
+      标签
       
       
         
-      
-      
-    
-      
-      
-      
-    
-      
-      
-      
-    
-    
-    
-      
-      
         
-        <h3 class="archive-year-title">2018
-        
-          <span class="posts-count">
-          共
-          3
-          
-            文章
-          
-          </span>
-        
-        </h3>
+        <a href="/tags/js/">js</a>
       
-      <div class="post-title-item">
-  
-  <a href="/2018/02/24/前端框架/">
-  
-    前端框架
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">2-24</span>
-    
-    <span id = "post-title-categories">分类
-    
-    
+      </span>
       
-      
-      <a href="/categories/skill/">skill</a>
+    </p>
     
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/tips/">tips</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-    
-      
-      
-      <div class="post-title-item">
-  
-  <a href="/2018/02/13/hexo插入图片解决方法/">
-  
-    hexo插入图片解决方法
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">2-13</span>
-    
-    <span id = "post-title-categories">分类
-    
-    
-      
-      
-      <a href="/categories/skill/">skill</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/tips-hexo/">tips hexo</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-    
-      
-      
-      <div class="post-title-item">
-  
-  <a href="/2018/02/13/MyRead-application-loading/">
-  
-    MyRead loading
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">2-13</span>
-    
-    <span id = "post-title-categories">分类
-    
-    
-      
-      
-      <a href="/categories/skill/">skill</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/tips/">tips</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-    
-  </div>
-
+    <ul>
+<li>concat()</li>
+</ul>
+<p>用于将一个或多个字符串拼接起来，返回得到新的字符串。多数情况下会用’+’进行字符串的拼接。</p>
+<ul>
+<li><p>基于子字符串创建新字符串的方法，都会返回新的被操作字符串的一个子字符串，也都接受一个或两个参数。第一个参数指定子字符串的开始位置，第二个参数表示子字符串哪里结束。</p>
+<ul>
+<li>slice()：第二个参数是最后一个字符后面的位置，传入的负值会与字符串长度相加</li>
+<li>substr()：第二个参数是返回的字符串的长度，第一个负值加上字符串长度，第二个负值转换为0</li>
+<li><p>substring()：第二个参数是最后一个字符后面的位置，所有负值转换为0</p>
+</li>
+<li><p>slice和substring的第二个参数指定是子字符串最后一个字符的后面的位置；substr()的第二个参数指定的是返回的字符个数。</p>
+</li>
+</ul>
+</li>
+<li><p>字符串位置方法</p>
+<ul>
+<li>indexOf()</li>
+<li>lastIndexOf()</li>
+<li>trim():function trim(string){return string.replace(/^\s+|\s+$/g,’’)}</li>
+</ul>
+</li>
+<li><p>大小写转换方法：返回新的字符串</p>
+<ul>
+<li>toLowerCase()</li>
+<li>toLocaleLowerCase()</li>
+<li>toUpperCase()</li>
+<li>toLocaleUpperCase()</li>
+</ul>
+</li>
+<li><p>字符串的模式匹配方法</p>
+<ul>
+<li>match():返回数组</li>
+<li>search()：返回1/-1</li>
+<li>replace():返回新的字符串</li>
+<li>split()：返回数组，可接受两个参数，第二个参数指定数组的长度</li>
+</ul>
+</li>
+<li><p>localeCompare()：比较两个字符串的位置，返回-1/0/1</p>
+</li>
+<li><p>fromCharCode()：String构造函数的静态方法，接受一个或多个字符编码，转换为字符串。</p>
+</li>
+<li><p>HTML方法，尽量不使用，因为创建的标记无法表达语义。</p>
+</li>
+</ul>
 
   </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/04/09/正则表达式之match与exec/" class="next">下一篇 正则表达式之match与exec &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
 
       
       
@@ -428,6 +366,8 @@ var unsplashConfig = {"blur":true,"gravity":"north"};
 var turnoffBackgroundImage = false;
 
 
+
+  turnoffBackgroundImage = true;
 
 
 var backgroundColor = "34495E";
