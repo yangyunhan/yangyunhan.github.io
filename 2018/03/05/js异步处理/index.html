@@ -1,0 +1,406 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="&emsp;&emsp;背景：在做街区地图的项目时，我在map地图中需要通过ajax调用第三方的数据，并根据调用结果求得图片地址返回给map作为参数显示。当时没有注意到我是在做异步处理，在ajax函数里用return返回一个字符串。但是在map里调用ajax的时候，没法把ajax赋值给一个变量，导致没有正常取到需要的参数。
+&emsp;&emsp;经过论坛里老师的指导，现在处理成在ajax函...">
+  
+  <title>js异步处理 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/03/06/JS模块化编程之模块规范/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JS模块化编程之模块规范
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/03/04/不好区分的数组方法/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        不好区分的数组方法
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>js异步处理</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-05</span>
+      
+        <span id = "post-title-updated">Updated at 2018-03-05</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/tips/">tips</a>
+      
+      </span>
+      
+    </p>
+    
+    <p>&emsp;&emsp;背景：在做街区地图的项目时，我在map地图中需要通过ajax调用第三方的数据，并根据调用结果求得图片地址返回给map作为参数显示。当时没有注意到我是在做异步处理，在ajax函数里用return返回一个字符串。但是在map里调用ajax的时候，没法把ajax赋值给一个变量，导致没有正常取到需要的参数。</p>
+<p>&emsp;&emsp;经过论坛里老师的指导，现在处理成在ajax函数里传入回调函数，需要处理的结果返回给回调函数。在map函数里调用ajax的时候传给ajax函数处理返回结果处理正确的函数和处理错误的函数。也就是ajax里留了“口”，返回的数据怎么处理可以交给map。而ajax函数中涉及到了异步调用，就引发了对这个问题的关注。</p>
+<p>&emsp;&emsp;异步处理要解决的问题是为防止js单线程的工作模式导致页面卡死在某个地方。</p>
+<p>&emsp;&emsp;常用的解决办法：</p>
+<ul>
+<li>setTimeout函数实现</li>
+<li>script属性实现异步<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>js常用的异步处理方法<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"test1.js"</span> defer&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><span class="comment">/*当页面加载完毕后才执行代码*/</span></div><div class="line">&lt;script src=<span class="string">"test2.js"</span> <span class="keyword">async</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><span class="comment">/*异步执行script代码*/</span></div><div class="line">&lt;script src=<span class="string">"test3.js"</span>&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&emsp;&emsp;执行结果的顺序是3、1、2</p>
+<ul>
+<li>动态创建script标签</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var head = document.getElementsByTagName(&apos;head&apos;)[0];</div><div class="line">var script = document.createElement(&apos;script&apos;);</div><div class="line">script.src = &apos;test1.js&apos;;</div><div class="line">head.appendChild(script);</div><div class="line">console.log(&quot;--------------------&quot;);</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;执行结果的顺序是—-，然后是test1.js</p>
+<ul>
+<li>回调函数</li>
+</ul>
+<p>&emsp;&emsp;利用了setTimeout函数实现，把耗时的操作推迟执行。优点是简单、容易理解和部署，缺点是不利于代码阅读和维护，各个部分之间高度耦合，流程会很乱，每个任务只能指定一个回调函数。</p>
+<ul>
+<li><p>事件监听</p>
+</li>
+<li><p>发布/订阅</p>
+</li>
+<li><p>Promises对象</p>
+</li>
+</ul>
+<p>参考文章：</p>
+<ol>
+<li><a href="https://jingyan.baidu.com/article/eae07827473f801fec5485ba.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/eae07827473f801fec5485ba.html</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript</a></li>
+</ol>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/03/06/JS模块化编程之模块规范/" class="prev">&larr; Prev post JS模块化编程之模块规范</a>
+  
+
+  
+
+  
+    <a href="/2018/03/04/不好区分的数组方法/" class="next">Next post 不好区分的数组方法 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

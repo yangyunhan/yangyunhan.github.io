@@ -1,0 +1,629 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="居中问题：
+水平居中
+内联模式的文本：text-align: center，适用于inline，inline-block，inline-table，inline-flex
+块级别的元素：margin: 0 auto
+多个块级别的元素：
+多个块级别的元素在同一行：块级别元素间是inline-block，这一行的text-align设置为center。出现的效果是这一行水平居中，内容高度不一致；...">
+  
+  <title>css的那些事 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2017/07/08/做网站的那些tips/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        做网站的那些tips
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2017/05/10/form的method-我该选谁？/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        form的method,我该选谁？
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>css的那些事</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2017-06-01</span>
+      
+        <span id = "post-title-updated">Updated at 2018-04-12</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/tips/">tips</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="居中问题："><a href="#居中问题：" class="headerlink" title="居中问题："></a>居中问题：</h3><ul>
+<li>水平居中<ul>
+<li>内联模式的文本：<code>text-align: center</code>，适用于inline，inline-block，inline-table，inline-flex</li>
+<li>块级别的元素：<code>margin: 0 auto</code></li>
+<li>多个块级别的元素：<ul>
+<li>多个块级别的元素在同一行：块级别元素间是inline-block，这一行的text-align设置为center。出现的效果是这一行水平居中，内容高度不一致；采用flex布局，<code>justify-content: center</code>可使这一行元素水平居中，内容高度一致。</li>
+<li>多个块级别的元素垂直排列，使用<code>margin:0 auto</code>可使它们水平居中。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>垂直居中<ul>
+<li>内联元素：<ul>
+<li>单行文本：<ul>
+<li>高度不确定，设置<code>padding-top</code>与<code>padding-bottom</code>一致；</li>
+<li>设置<code>line-height</code>等于盒子的高度</li>
+</ul>
+</li>
+<li>多行文本：<ul>
+<li>padding好用的情况下可使用；</li>
+<li>不好用的原因可能文本是一个表格单元。这时可以使用<code>vertical-align: middle</code>设置。</li>
+<li>flex布局，<code>justify-content: center</code>和<code>flex-direction: column</code>。</li>
+<li>其他方法都不好用的情况下，在这个元素前面加一个<code>::before</code>，设置它的display与显示元素一致为inline-block，vertical-align为middle。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>块级别的元素：<ul>
+<li>如果知道高度：使用<code>position: absolute</code>设置高度。</li>
+<li>未知高度：使用<code>position: absolute</code>、<code>top: 50%</code>和<code>transform: translateY(-50%);</code></li>
+<li>使用弹性（flex）布局：<code>justify-content: center;flex-direction: column</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>水平垂直居中：<ul>
+<li>知道宽度和高度：<code>position: absolute</code></li>
+<li>未知宽度和高度：<code>position: absolute; top: 50%; left:50%;transform: translate(-50%,-50%);</code></li>
+<li>使用flex布局：<code>justify-content: center;align-items: center</code></li>
+<li>使用grid布局：<code>html{display: grid} span{margin: auto}</code><br><em><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$" target="_blank" rel="noopener">弹性布局</a>：Webkit内核的浏览器需<code>-webkit</code>前缀，<code>float</code>、<code>clear</code>、<code>vertical-align</code>属性失效。采用Flex布局的元素称为容器，子元素称为项目。
+</em>来自教程：<a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="noopener">CSS-TRICKS</a><br>*<a href="https://jscode.me/t/topic/1936" target="_blank" rel="noopener">垂直居中的七种方法</a></li>
+</ul>
+</li>
+</ul>
+<p>&emsp;&emsp;在布局中遇到内联元素与嵌套元素有缝隙时，考虑vertical-align和line-height之间的关系。他们都基于HTML5。看了张鑫旭的文章用了很久，具体例子就不贴了，给出链接：<a href="www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/">张鑫旭-vertical-align与line-height</a>；<a href="http://www.zhangxinxu.com/wordpress/2009/11/css行高line-height的一些深入理解及应用/" target="_blank" rel="noopener">张鑫旭-对line-hight的理解</a></p>
+<h3 id="左边栏固定，右边自适应"><a href="#左边栏固定，右边自适应" class="headerlink" title="左边栏固定，右边自适应"></a>左边栏固定，右边自适应</h3><ul>
+<li><p>硬编码定高的情况下：</p>
+<ul>
+<li>左侧float，右侧margin-left/overflow(BFC)</li>
+<li>左侧absolute，右侧margin-left</li>
+<li>flex布局：父元素flex=1；子元素左侧定宽，右侧flex=1（左侧如果也是flex=1，会平分空间）</li>
+<li>table布局：父元素display=table，子元素左侧、右侧都display=table-cell</li>
+<li><p>左右两栏，右侧有子元素，左右两侧都是float=left布局，右侧宽度100%，右侧子元素margin-left是左侧宽度。现在效果是上下两栏，下面已经实现左侧定宽，右侧自适应。(不明白为什么要有这种实现，这种实现没有办法在左侧添加文字等内容)</p>
+</li>
+<li><p>相关材料：<a href="https://blog.csdn.net/sinat_31057219/article/details/79281864" target="_blank" rel="noopener">https://blog.csdn.net/sinat_31057219/article/details/79281864</a></p>
+</li>
+</ul>
+</li>
+<li><p>用css实现等高布局：</p>
+<ul>
+<li>假的等高，利用背景图在y轴上进行平铺，background: url() repeat-y</li>
+<li>给容器div使用单独的背景色（固定布局）<ul>
+<li>原理：给每一列的div元素增加一层div，背景设置在单独的div元素上，原则是任何div元素的最大高度来撑大其他div容器高度。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="grid是网络布局"><a href="#grid是网络布局" class="headerlink" title="grid是网络布局"></a>grid是网络布局</h3><p>学习材料：</p>
+<ul>
+<li><a href="http://blog.csdn.net/hj7jay/article/details/70670467" target="_blank" rel="noopener">CSDN-Joker_Ye</a>;</li>
+<li><a href="http://cssgridgarden.com/" target="_blank" rel="noopener">有趣的教程</a></li>
+</ul>
+<h3 id="outline-高亮元素，包括color，style，width"><a href="#outline-高亮元素，包括color，style，width" class="headerlink" title="outline:高亮元素，包括color，style，width"></a>outline:高亮元素，包括color，style，width</h3><h3 id="border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承"><a href="#border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承" class="headerlink" title="border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承"></a>border-collapse：为表格设置合并边框模型。<code>separate</code>分开；<code>collapse</code>：合并；<code>inherit</code>：继承</h3><h3 id="字体：px、pt、em、rem"><a href="#字体：px、pt、em、rem" class="headerlink" title="字体：px、pt、em、rem"></a>字体：px、pt、em、rem</h3><p>&emsp;&emsp;1em = 16px; 1em = 12pt; 1pt = 4/3px;<br>&emsp;&emsp;浏览器默认字体大小：16px。chrome强制最小字体为12px。<br>&emsp;&emsp;区别：</p>
+<ul>
+<li>px：相对单位，相对于分辨率，所以分辨率越大字体越小。优点：稳定、精确；缺点：缩放影响文本可读性。</li>
+<li>em：相对单位，相对于父级元素。优点：弥补了px的不足；缺点：过于依赖父级节点，容易出现字体大小重复声明。</li>
+<li>rem：相对单位，相对于根节点html字体大小。缺点：避免了em依赖父级元素字体大小；优点：参考系只有一个，根节点字体大小。</li>
+</ul>
+<h3 id="html内部是float元素，外部div高度为0的解决办法"><a href="#html内部是float元素，外部div高度为0的解决办法" class="headerlink" title="html内部是float元素，外部div高度为0的解决办法"></a>html内部是float元素，外部div高度为0的解决办法</h3><p>&emsp;&emsp;外部div是block，内部元素是float，float的元素没有实际高度，所以设置了float元素的高度也不会撑开外部block元素的高度。</p>
+<p>&emsp;&emsp;解决办法：</p>
+<ul>
+<li><p>知道高度：显示设置</p>
+</li>
+<li><p>不知道高度</p>
+<ul>
+<li><p>jq控制，优点是所有浏览器兼容，缺点是网络不好的时候加载不完，页面可能显示错乱</p>
+</li>
+<li><p>伪类after，在外部div设置<code>div:after{content: &quot;&quot;,display: block;clear: both;}</code>。IE6/7不支持这个伪类after，可以用hack对这两个浏览器私有的zoom属性，让div远离浮动塌陷问题：<code>div{*zoom:1}</code>。</p>
+</li>
+<li><p>设置外部元素<code>div{overflow:hidden}</code>，超出隐藏float的元素会自动有高度。</p>
+</li>
+</ul>
+</li>
+<li><p>清除浮动带来的影响</p>
+</li>
+</ul>
+<p>&emsp;&emsp;一类是clear: both/left/right;一类是包裹清除。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"background: #f0f3f9; padding: 20px"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">style</span>=<span class="string">"float: left;"</span> <span class="attr">src</span>=<span class="string">"http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">/*</div><div class="line">float:left||position:absolute||display:inline-block这些设置在IE、Chrome和火狐中显示正常，可以包含内部元素。</div><div class="line">overflow:hidden，三个浏览器可以包裹，但是是包裹整行，而不是只有这个元素</div><div class="line">zoom:1;为了兼容IE</div><div class="line">*/</div></pre></td></tr></table></figure>
+<ul>
+<li>通用的清除浮动：<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*写在爸爸身上*/</span></div><div class="line"><span class="selector-class">.clearfix</span>&#123;</div><div class="line">    <span class="attribute">zoom</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</div><div class="line">    <span class="attribute">display</span>: table;<span class="comment">/*block*/</span></div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="父子margin合并"><a href="#父子margin合并" class="headerlink" title="父子margin合并"></a>父子margin合并</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"parent"</span> <span class="attr">style</span>=<span class="string">"background-color: blue;height: 500px;padding-top: 0.1px"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"child"</span> <span class="attr">style</span>=<span class="string">"background-color: yellowgreen; height: 100px;margin-top: 50px"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>现象是儿子设置margin-top后，父亲也有相同的margin-top。</p>
+</li>
+<li><p>解决：</p>
+<ul>
+<li>给父亲设置样式：overflow: hidden</li>
+<li>给父亲设置样式：padding-top: 0.1px</li>
+</ul>
+</li>
+</ul>
+<h3 id="神秘的hasLayout"><a href="#神秘的hasLayout" class="headerlink" title="神秘的hasLayout"></a>神秘的hasLayout</h3><ul>
+<li><p>IE5.5/6/7中的BFC(Block Formatting Context)，也就是一个元素要么自己对自身内容进行组织和尺寸计算（通过with/height设置自身宽高），要么由其containing block来组织和尺寸计算。</p>
+</li>
+<li><p>IFC（没有拥有布局），元素无法对自身内容进行组织和尺寸计算，而是由自身内容来决定其尺寸（仅能通过line-height设置内容行距，通过行距支撑元素高度，也无法通过with设置元素宽度，仅能由内容决定）。</p>
+</li>
+<li><p>默认hasLayout==true的元素</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>, <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span>, <span class="tag">&lt;<span class="name">tr</span>&gt;</span>, <span class="tag">&lt;<span class="name">th</span>&gt;</span>, <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span>&gt;</span>,<span class="tag">&lt;<span class="name">hr</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span>&gt;</span>, <span class="tag">&lt;<span class="name">button</span>&gt;</span>, <span class="tag">&lt;<span class="name">select</span>&gt;</span>, <span class="tag">&lt;<span class="name">textarea</span>&gt;</span>, <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span>, <span class="tag">&lt;<span class="name">legend</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">iframe</span>&gt;</span>, <span class="tag">&lt;<span class="name">embed</span>&gt;</span>, <span class="tag">&lt;<span class="name">object</span>&gt;</span>, <span class="tag">&lt;<span class="name">applet</span>&gt;</span>,<span class="tag">&lt;<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;触发hasLayout==true的方式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">display: inline-block</div><div class="line">height: (除 auto 外任何值)</div><div class="line">width: (除 auto 外任何值)</div><div class="line">float: (left 或 right)</div><div class="line">position: absolute</div><div class="line">writing-mode: tb-rl</div><div class="line">zoom: (除 normal 外任意值)</div></pre></td></tr></table></figure>
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><ul>
+<li><p>Block Formatting Context块级格式化上下文，表现是内部元素再怎么折腾，都不会影响外部的元素，所以能够避免margin穿透，清除浮动。</p>
+</li>
+<li><p>触发BFC</p>
+</li>
+</ul>
+<p><img src="/2017/06/01/css的那些事/bfc.png" alt="触发BFC"></p>
+<ul>
+<li>优势<ul>
+<li>自适应内容由于封闭，更健壮，容错性强。比方说，内部clear:both不会与兄弟float产生矛盾。而纯流体布局，clear:both会让后面内容无法和float元素在一个水平上，产生布局问题。</li>
+<li>自适应内容自动填满浮动以为区域，无需关心浮动元素宽度，可以整站大规模应用。而纯流体布局，需要大小不确定的margin/padding等值撑开合适间距，无法CSS组件化。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.float-left</span> &#123;</div><div class="line">    <span class="attribute">float</span>: left; <span class="attribute">margin-right</span>: <span class="number">20px</span>; </div><div class="line">&#125;</div><div class="line"><span class="selector-class">.bfc-content</span> &#123;</div><div class="line">    <span class="attribute">overflow</span>: hidden; <span class="attribute">background-color</span>: <span class="number">#beceeb</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可实现自适应布局</p>
+<ul>
+<li><p>没有广泛流行</p>
+<ul>
+<li>float：本身有破坏性和包裹性，失去了元素本身的流体自适应性</li>
+<li>position：absolute脱离流有些严重</li>
+<li>overflow：很多场景不能使用overflow:hidden，无法作为一个通用css类整站大规模使用，可以float+overflow局部使用。既可以BFC特性加身，又有流体特性保留。</li>
+<li>display：inline-block 会让元素尺寸包裹收缩</li>
+<li>display：table-cell IE8+以上的浏览器才支持，跟display：inline-block一样，跟随内容元素的宽度显示。但是单元格的宽度设置再大也不会超过表格容器的宽度。</li>
+<li>display：table-row 对width无感，无法自适应剩余容器空间</li>
+<li>display：table-caption</li>
+</ul>
+</li>
+<li><p>可以做到自适应布局的有</p>
+<ul>
+<li>overflow: auto/hidden</li>
+<li>display: inline-block</li>
+<li>display: table-cell</li>
+</ul>
+</li>
+<li><p>最新的实现方式：<code>display: flow-root</code>是css3中display的新属性，创建了一个BFC。目前主要是火狐和谷歌浏览器实现这个属性。</p>
+<ul>
+<li>一种兼容多浏览器的写法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.floatElement</span>&#123;</div><div class="line">    <span class="attribute">float</span>: left;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.wrapper</span><span class="selector-pseudo">::after</span>&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</div><div class="line">    <span class="attribute">display</span>: table;</div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">supports</span> (display: flow-root) &#123;</div><div class="line">    <span class="selector-class">.wrapper</span>&#123;</div><div class="line">        <span class="attribute">display</span>: flow-root;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.wrapper</span><span class="selector-pseudo">::after</span>&#123;</div><div class="line">        <span class="attribute">content</span>: none;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><ul>
+<li>@supports是css3的条件判断，判断浏览器对某个属性的支持情况，可以配合not、and、or使用。目前只有火狐、Opear较新的属性支持。</li>
+</ul>
+</li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25321647" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25321647</a></li>
+<li><a href="https://www.w3cplus.com/css3/css3-supports.html" target="_blank" rel="noopener">https://www.w3cplus.com/css3/css3-supports.html</a></li>
+<li><a href="http://web.jobbole.com/91165/" target="_blank" rel="noopener">http://web.jobbole.com/91165/</a></li>
+</ul>
+<h3 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h3><ul>
+<li>伪类本质上是为了弥补常规CSS选择器的不足，以便获取到更多信息；不存在于DOM树。功能一个是获取不存在于DOM树中的信息，如<code>&lt;a&gt;</code>标签中的:link,visited等；一个是获取不能被常规CSS选择器获取的信息，如:target。</li>
+<li>伪元素本质上是创建了一个有内容的虚拟容器；一些抽象元素，不存在于文档语言中。</li>
+<li>CSS3中伪类和伪元素的语法不同:伪类是一个冒号，伪元素是两个</li>
+<li>可以同时使用多个伪类，而只能同时使用一个伪元素；</li>
+<li>伪类的效果可以通过添加实际的类来实现，伪类的效果可以通过添加实际的类来实现，它们的本质区别就是是否抽象创造了新元素</li>
+</ul>
+<h3 id="自动配置前缀的工具AutoPrefixer"><a href="#自动配置前缀的工具AutoPrefixer" class="headerlink" title="自动配置前缀的工具AutoPrefixer"></a>自动配置前缀的工具AutoPrefixer</h3><ul>
+<li>自动为css文件添加各种浏览器前缀</li>
+</ul>
+<h3 id="resize"><a href="#resize" class="headerlink" title="resize"></a>resize</h3><ul>
+<li>规定可以由用户调整div元素的大小</li>
+<li>resize: none|both|horizontal|vertical</li>
+</ul>
+<h3 id="css3与flash的优劣势"><a href="#css3与flash的优劣势" class="headerlink" title="css3与flash的优劣势"></a>css3与flash的优劣势</h3><ul>
+<li>flash<ul>
+<li>优势：<ul>
+<li>复杂动画简单一些，接触代码更少，可以GUI搞定</li>
+<li>pc兼容性好，IE6压力不大，全部浏览器效果一致</li>
+</ul>
+</li>
+<li>劣势：<ul>
+<li>ios不支持</li>
+<li>要安装软件，浏览器不原生支持</li>
+<li>seo比html+css+js麻烦</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>css3<ul>
+<li>优势：<ul>
+<li>新浏览器兼容性好，移动设备兼容性好</li>
+<li>改动起来方便，不必启动软件</li>
+</ul>
+</li>
+<li>劣势：<ul>
+<li>对旧浏览器不兼容，IE6、7、8</li>
+<li>不太友好，但有自动化工具可以帮助生成代码</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ajax与flash"><a href="#ajax与flash" class="headerlink" title="ajax与flash"></a>ajax与flash</h3><ul>
+<li><p>共同点</p>
+<ul>
+<li>与服务器的无刷新传递消息、用户离线和在线状态、操作DOM</li>
+</ul>
+</li>
+<li><p>不同</p>
+<ul>
+<li>flash适合处理多媒体、矢量图、访问机器；对CSS、处理文本不足，不容易被搜索，二进制格式，格式私有，文件很大需要等待。</li>
+<li>ajax对css、文本支持好，支持搜索，多媒体、矢量图形、机器访问不足，破坏浏览器的后退功能；使用动态页面更新使得用户难于将某个特定的状态保存到收藏夹中。</li>
+</ul>
+</li>
+</ul>
+<h3 id="position-sticky粘性布局"><a href="#position-sticky粘性布局" class="headerlink" title="position: sticky粘性布局"></a>position: sticky粘性布局</h3><p>是position:relative和fixed的结合。在设置了某一边（top、bottom、left、right）的值后，在没达到这个值时，是relative。达到之后是fixed。</p>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><ul>
+<li>BFC实现左侧宽度固定，右侧自适应宽度的两栏布局。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"gege"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">content</span>=<span class="string">"didi"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.gege</span>&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">    <span class="attribute">min-height</span>: <span class="number">600px</span>;</div><div class="line">    <span class="attribute">border</span>: <span class="number">3px</span> solid red;</div><div class="line">    <span class="attribute">float</span>: left;</div><div class="line">    <span class="attribute">margin-right</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.didi</span>&#123;</div><div class="line">    <span class="attribute">min-height</span>: <span class="number">600px</span>;</div><div class="line">    <span class="attribute">border</span>: <span class="number">5px</span> solid green;</div><div class="line">    <span class="attribute">display</span>: flow-root;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>不常用table进行布局，因为table必须在页面完全加载完后才显示，没有加载完之前，table为一片空白。而div是逐行显示，不需要页面完全加载完毕，可以一边加载一边显示。</li>
+<li>不要用tables布局的一个原因就是tables中某个元素一旦触发reflow就会导致table里所有的其它元素reflow。在适合用table的场合，可以设置table-layout为auto或fixed，这样可以让table一行一行的渲染，这种做法也是为了限制reflow的影响范围。</li>
+</ul>
+<p>参考博文：</p>
+<ul>
+<li><a href="http://www.jb51.net/css/449969.html" target="_blank" rel="noopener">http://www.jb51.net/css/449969.html</a></li>
+<li><a href="https://www.cnblogs.com/plants/p/4882361.html" target="_blank" rel="noopener">https://www.cnblogs.com/plants/p/4882361.html</a></li>
+<li><a href="https://www.cnblogs.com/fsjohnhuang/p/5291166.html" target="_blank" rel="noopener">https://www.cnblogs.com/fsjohnhuang/p/5291166.html</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/对overflow与zoom清除浮动的一些认识/" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/2010/01/对overflow与zoom清除浮动的一些认识/</a></li>
+<li><a href="https://www.cnblogs.com/ihardcoder/p/5294927.html" target="_blank" rel="noopener">https://www.cnblogs.com/ihardcoder/p/5294927.html</a></li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#居中问题："><span class="toc-text">居中问题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#左边栏固定，右边自适应"><span class="toc-text">左边栏固定，右边自适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grid是网络布局"><span class="toc-text">grid是网络布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-高亮元素，包括color，style，width"><span class="toc-text">outline:高亮元素，包括color，style，width</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承"><span class="toc-text">border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体：px、pt、em、rem"><span class="toc-text">字体：px、pt、em、rem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html内部是float元素，外部div高度为0的解决办法"><span class="toc-text">html内部是float元素，外部div高度为0的解决办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#父子margin合并"><span class="toc-text">父子margin合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#神秘的hasLayout"><span class="toc-text">神秘的hasLayout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC"><span class="toc-text">BFC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类和伪元素"><span class="toc-text">伪类和伪元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动配置前缀的工具AutoPrefixer"><span class="toc-text">自动配置前缀的工具AutoPrefixer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resize"><span class="toc-text">resize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css3与flash的优劣势"><span class="toc-text">css3与flash的优劣势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ajax与flash"><span class="toc-text">ajax与flash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position-sticky粘性布局"><span class="toc-text">position: sticky粘性布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#布局"><span class="toc-text">布局</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2017/07/08/做网站的那些tips/" class="prev">&larr; Prev post 做网站的那些tips</a>
+  
+
+  
+
+  
+    <a href="/2017/05/10/form的method-我该选谁？/" class="next">Next post form的method,我该选谁？ &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

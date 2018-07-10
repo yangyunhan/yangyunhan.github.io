@@ -1,0 +1,1114 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="JavaScript实现
+  &emsp;&emsp;JavaScript由3个部分组成：
+
+核心（ECMAScript）：不依赖web浏览器，是语言基础。Web浏览器是它实现的宿主环境之一，提供它的实现和扩展。其他宿主环境Node（服务器JavaScript平台）和Adobe Flash；2017年6月，ES8或ES2017发布。主要新功能：
+
+字符串填充：str.padStart(tar...">
+  
+  <title>js知识点复习 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/03/10/小命令/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        小命令
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/03/06/JS模块化编程之模块规范/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JS模块化编程之模块规范
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>js知识点复习</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-08</span>
+      
+        <span id = "post-title-updated">Updated at 2018-04-15</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/summary/">summary</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/js/">js</a>
+      
+      </span>
+      
+    </p>
+    
+    <ul>
+<li><p>JavaScript实现</p>
+<p>  &emsp;&emsp;JavaScript由3个部分组成：</p>
+<ul>
+<li><p>核心（ECMAScript）：不依赖web浏览器，是语言基础。Web浏览器是它实现的宿主环境之一，提供它的实现和扩展。其他宿主环境Node（服务器JavaScript平台）和Adobe Flash；2017年6月，ES8或ES2017发布。主要新功能：</p>
+<ul>
+<li><p>字符串填充：<code>str.padStart(targetLength [, padString])</code>;<code>str.padEnd(targetLength[, padString])</code></p>
+</li>
+<li><p>Object.value和Object.entries：以与<code>for in</code>循环所提供的顺序相同的顺序返回给定对象自己的枚举属性值/对的数组。IE不支持</p>
+</li>
+<li><p>Object.getOwnPropertyDescriptors：返回指定对象的所有属性描述符。可配置、枚举、读写、设置。IE未知支持状态</p>
+</li>
+<li><p>功能参数列表和调用中的逗号不会引发错误</p>
+</li>
+<li><p>异步功能，工作方式与生成器相似但不会转换为生成器。？？IE未知支持状态。</p>
+</li>
+<li><p>共享内存和原子：共享存储器时，多个线程可以在内存中读取和写入相同的数据。 原子操作确保可预测的值被写入和读取，在下一个操作开始之前完成操作，并且操作不被中断。？？火狐支持。</p>
+</li>
+<li><p>博文来自于<a href="http://blog.csdn.net/lihefei_coder/article/details/75068578" target="_blank" rel="noopener">http://blog.csdn.net/lihefei_coder/article/details/75068578</a></p>
+</li>
+</ul>
+</li>
+<li><p>文档对象模型（DOM）：针对 XML 但经过扩展用于 HTML 的应用程序编程接口，把整个页面映射为一个多层节点结构。HTML或 XML页面中的每个组成部分都是某种类型的节点，这些节点又包含着不同类型的数据。为了跨平台。DOM有3级，映射文档结构–&gt;视图、事件、样式、遍历和范围–&gt;加载、保存、验证文档。</p>
+</li>
+<li><p>浏览器对象模型（BOM）：控制浏览器显示的页面以为的部分，处理浏览器窗口和框架。没有标准，但基本的windows、Navigator都有，它的扩展有location、screen、cookies、XMLHttoRequest/ActiveXObject对象。</p>
+</li>
+</ul>
+</li>
+<li><p><code>&lt;script&gt;</code>元素</p>
+<ul>
+<li><p>async：立即下载脚本，适用于外部脚本文件。不保证按照指定顺序执行。</p>
+</li>
+<li><p>charset：字符集</p>
+</li>
+<li><p>defer：延迟到文档完全被解析和显示后执行。不一定会按照顺序执行，最好只有一个延迟脚本，只适用于外部脚本文件。</p>
+</li>
+<li><p>src</p>
+</li>
+<li><p>type：默认text/javascript。在元素内部插入另一个script时要用转义符转义/。</p>
+</li>
+</ul>
+</li>
+<li><p>文档模式</p>
+<ul>
+<li><p>混杂模式quirks mode，与IE5相同</p>
+</li>
+<li><p>标准模式standards mode</p>
+</li>
+<li><p>准标准模式通过过渡型transitianal或框架集型frameset触发。</p>
+<p>&emsp;&emsp;标准模式指除了混杂模式以外的模式。</p>
+</li>
+</ul>
+</li>
+<li><p><code>&lt;noscript&gt;</code>元素：包含浏览器不支持的脚本，平稳退化。</p>
+</li>
+<li><p>基本概念</p>
+<ul>
+<li><p>标识符区分大小写，驼峰大小写</p>
+</li>
+<li><p>严格模式：<code>use strict</code>，编译指示，不要乱搞</p>
+</li>
+<li><p>变量松散类型，可以保存任何类型数据。</p>
+</li>
+<li><p>5种简单/基本数据类型：Undefined、Null、Boolean、Number、String和1种复杂数据类型：Object。不允许自己创建类型。区分用操作符typeof，不是函数。特殊情况：</p>
+<ul>
+<li><p><strong>typeof null;</strong> //object, null是空指针对象<br>  typeof null === “object”//true<br>  typeof null === Object//false</p>
+</li>
+<li><p><strong>typeof undefined</strong> //undefined<br>  typeof undefined === undefined //false<br>  typeof undefined === “undefined” //true</p>
+</li>
+<li><p><strong>typeof Number</strong> //function<br>  typeof Number === “function”//true<br>  typeof Number === Function//false<br>  typeof Number === function //被当成没写完的函数</p>
+</li>
+<li><p><strong>typeof String </strong>//function<br>  typeof String === “function”//true</p>
+</li>
+<li><p><strong>typeof Boolean</strong>//function<br>  typeof Boolean === “function”//true</p>
+</li>
+<li><p>使用typeof可以区分给定变量的数据类型，以及区分函数和其他对象</p>
+</li>
+<li><blockquote>
+<p>函数也<br>  确实有一些特殊的属性，因此通过 typeof 操作符来区分函数和其他对象是有必要的。</p>
+</blockquote>
+</li>
+<li><p>&emsp;&emsp;typeof检测变量时可以检测出具体的基本数据类型还是object。在检测函数的时候，会有些特殊情况。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/03/08/js知识点复习/typeof检测函数.png" alt="typeof检测函数"></p>
+<ul>
+<li><ul>
+<li><p>Undefined类型</p>
+</li>
+<li><p>var 声明变量但没有初始化的变量类型</p>
+</li>
+<li><p>typeof 没定义的或只定义的，结果都是underfined</p>
+</li>
+<li><p>Null类型</p>
+</li>
+<li><p>空指针对象，变量准备保存对象，初始化null。</p>
+</li>
+<li><p>undefined派生自null，<code>null == undefined//true</code>,这里是因为做比较转化为其他操作符; <code>null === undefined//false</code>.相等操作符将两边的值转为数值。</p>
+</li>
+<li><p>Boolean类型</p>
+</li>
+<li><p>与数组不一样，true不一定等于1</p>
+</li>
+<li><p>区分大小写，True和False只是标识符</p>
+</li>
+<li><p>所有类型值都有与这两个Boolean值等价的值，使用Boolean()</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/03/08/js知识点复习/boolean转换规则.png" alt="Boolean转换规则"></p>
+<p>   &emsp;&emsp;也就是说所有数据类型都可以转换为false：0, ‘’, false, null, undefined, NaN.</p>
+<ul>
+<li><ul>
+<li><p>Number类型</p>
+<ul>
+<li><p>使用IEEE754格式表示整数和浮点数。</p>
+</li>
+<li><p>保存浮点数值会转换为整数值，浮点数最高精度17位小数，算数计算精度不如整数。</p>
+<ul>
+<li>0.1 + 0.2 = 0.30…04；</li>
+<li>0.1 + 0.7 = 0.777..9;</li>
+<li>0.2 + 0.4 = 0.600…01;</li>
+<li>0.2 + 0.7 = 0.8999..99;</li>
+<li>0.3 + 0.6 = 0.899..99;</li>
+</ul>
+</li>
+<li><p>最小值Number.MIN_VALUE=5e-324;最大值Number.MAX_VALUE=1.7…e+308;超出范围转换为Infinity/-Infinity，不能参与计算。isFinite()判断数值是不是有穷的。Number.NEGATIVE_INFINITY保存-Infinity，Number.POSITIVE_INFINITY保存Infinity。</p>
+</li>
+<li><p>NaN，非数值。表示一个本来要返回数值的操作数未返回数值的情况，防止抛出错误。涉及NaN的操作返回NaN，与任何值都不想等，包括本身。isNaN()确定参数是否“不是数值”。接收到参数后尝试将这个值转换为数值，不能转换则返回true。</p>
+<ul>
+<li>0/0 = NaN；</li>
+<li>正数/0 = Infinity；</li>
+<li>负数/0=-Infinity；</li>
+</ul>
+</li>
+<li><p>非数值转换为数值</p>
+<ul>
+<li><p>Number()可用于任何数据类型。Boolean被转换为1和0；null–0；undefined–NaN；字符串–直接转、浮点数、十进制、0、NaN；对象–先调用valueOf()方法，然后依照前面的规则转换。效果同一元加操作符。</p>
+<ul>
+<li>一元+操作符的转换在遇到长度为2以上的数组的时候结果的NaN，数组长度为空、0、1都为0.</li>
+<li><code>console.log(+[undefined])</code>结果为0.</li>
+</ul>
+</li>
+<li><p>parseInt()[由于Number()处理字符串比较复杂]，更多的看是否符合数值模式，会忽略字符串前面的空格。第一个字符不是数字或负号，则返回NaN；parseInt()返回NaN(Number()对空字符返回0)；后面的字符被忽略；可以识别出进制，但是在ES3和ES5中对八进制样式的字符转换存在差别，所以它提供了第二个参数。</p>
+</li>
+<li><p>parseFloat()与parseInt()的差别一是字符串中第一个小数点有效，其他无效；第二是它忽略前导的0，所以十六进制的字符串被转换为0；只解析十进制，没有用第二个参数指定基数的用法；字符串包含是整数，就转换为整数。</p>
+</li>
+<li><p>字符串转数组的方法：split(‘’);   </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>String类型</p>
+<ul>
+<li><p>字符串是不变的，要销毁再创建新的字符串。过程在后台发生。</p>
+</li>
+<li><p>转换为字符串：</p>
+<ul>
+<li><p>toString():数值、布尔值、对象和字符串值都有，null和undefined没有。数字转换可以传递基数。</p>
+</li>
+<li><p>String()：可以在不知道是null或undefined的情况下使用，可以将任何类型的值转换为字符串。类型有toString()方法的，去调用，值是null时返回null，undefined返回undefined。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>object类型，每个object实例都有下面的属性和方法</p>
+<ul>
+<li><p>constructor</p>
+</li>
+<li><p>hasOwnProperty(propertyName)：检查给定属性在当前对象实例中是否存在</p>
+</li>
+<li><p>isPrototypeOf(object)：传入的对象是否是传入对象的原型</p>
+</li>
+<li><p>propertyIsEnumerable(propertyName)：检查给定属性是否能使用for-in枚举</p>
+</li>
+<li><p>toLocaleString()：返回对象的字符串表示，与执行环境的地区对应</p>
+</li>
+<li><p>toString()对象的字符串表示</p>
+</li>
+<li><p>valueOf()返回对象的字符串、数值或布尔值表示，通常与toString()一致</p>
+</li>
+<li><p>toString()与valueOf()的区别：toSting返回文本表示；valueOf返回对象本身；除了null、undefined所有数据类型都支持她俩，valueOf()在遇到alert的时候还会调用toString</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>访问变量有按值传递和按引用传递，而参数只能按值传递。</p>
+<p>  举例：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">     obj.name = <span class="string">"Nicholas"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(person);</div><div class="line">alert(person.name); <span class="comment">/*"Nicholas"*/</span></div></pre></td></tr></table></figure>
+<p>   &emsp;&emsp;和</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    obj.name = <span class="string">"Nicholas"</span>;</div><div class="line">    obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">    obj.name = <span class="string">"Greg"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(person);</div><div class="line">alert(person.name); <span class="comment">//"Nicholas"</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>最常用的垃圾收集机制是标记清除</p>
+</li>
+<li><p>引用类型之数组类型对象：</p>
+<ul>
+<li><p>先进先出FIFO：push与shift，pop与unshift；</p>
+</li>
+<li><p>reverse返回反转后的该数组； sort返回排序后的该数组；concat返回粘贴的新数组；slice返回取出的部分新的数组；splice返回删除元素组成的数组；pop和shift返回删除的值；push和unshift返回数组新的长度。</p>
+</li>
+<li><p>归并方法reduce()与reduceRight()，接收函数和一个初始值。函数又接收4个参数（前一项，后一项，索引，数组本身）。</p>
+</li>
+</ul>
+</li>
+<li><p>引用类型之Date类型</p>
+<ul>
+<li><p>创建日期对象var now = new Date()//Fri Mar 09 2018 10:49:22 GMT+0800 (中国标准时间)</p>
+</li>
+<li><p>创建指定的日期对象：</p>
+<ul>
+<li><p>Date.parse():接受字符串参数，返回相应日期的毫秒数。返回UTC格式的话：var someDate = new Date(Date.parse(“May 25, 2004”));</p>
+</li>
+<li><p>Date.UTC():接受参数不一样，年份，基于0的月份，日期、小时数、分钟和秒。且参数是数字。返回UTC格式的话在外面套new Date.</p>
+</li>
+<li><p>构造函数可以使用两种方法的参数。</p>
+</li>
+<li><p>ES5提供了Date.now()</p>
+</li>
+<li><p>Date类型的valueOf()方法返回日期的毫秒表示</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>引用类型与基本类型的区别是基本类型存的是值，引用类型存的是地址。基本类型值保存在栈内存中；引用类型值保存在堆内存中。  </p>
+<p>测试题1 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="string">'jirengu'</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="string">'jirengu'</span>;</div><div class="line"><span class="built_in">console</span>.log( a === b ); <span class="comment">//true，存值</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</div><div class="line"><span class="keyword">var</span> obj2 = &#123;&#125;;</div><div class="line"><span class="built_in">console</span>.log( obj1 === obj2 ); <span class="comment">//false，存地址</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>测试题2</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> count = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj1 = &#123;<span class="attr">count</span>: <span class="number">10</span>&#125;;</div><div class="line"></div><div class="line">incNumber(count);</div><div class="line"><span class="built_in">console</span>.log( count );  <span class="comment">// 1</span></div><div class="line"></div><div class="line">incObject( obj1 );</div><div class="line"><span class="built_in">console</span>.log( obj1.count );</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2 = &#123;count&#125;;</div><div class="line">incObject( obj2 );</div><div class="line"><span class="built_in">console</span>.log( count );</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incNumber</span>(<span class="params">count</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> ++count</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incObject</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    obj.count++</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以转换为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incNumber</span>(<span class="params">count</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> ++count</div><div class="line">&#125;</div><div class="line"><span class="comment">//相当于</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incNumber</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> count = <span class="built_in">arguments</span>[<span class="number">0</span>];   <span class="comment">//count 里面存的是内容，拷贝的也是内容</span></div><div class="line">  <span class="keyword">return</span> ++count</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incObject</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">  obj.count++</div><div class="line">&#125;</div><div class="line"><span class="comment">//相当于</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incObject</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> obj = <span class="built_in">arguments</span>[<span class="number">0</span>];  <span class="comment">//obj里面存储的是地址，拷贝的也是地址， 操作的是同一地址指向的那片区域</span></div><div class="line">  obj.count++</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>基本包装类型：</p>
+<ul>
+<li><p>为了便于操作基本类型值， ECMAScript 还提供了 3 个特殊的引用类型： Boolean、 Number 和String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。实际上，每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象。基本类型值不是对象，但确实有方法。</p>
+</li>
+<li><p>引用类型与基本包装类型的主要区别就是对象的生存期。使用 new 操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。这意味着我们不能在运行时为基本类型值添加属性和方法。</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1 = <span class="string">"some text"</span>;</div><div class="line">s1.color = <span class="string">"red"</span>;</div><div class="line">alert(s1.color); <span class="comment">/*undefined*/</span></div></pre></td></tr></table></figure>
+<ul>
+<li><blockquote>
+<p>当然，可以显式地调用Boolean、Number和String来创建基本包装类型的对象。不过，应该在绝对必要的情况下再这样做，因为这种做法很容易让人分不清自己是在处理基本类型还是引用类型的值。对基本包装类型的实例调用typeof会返回”object”，而且所有基本包装类型的对象都会被转换为布尔值true。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> falseObject = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> result = falseObject &amp;&amp; <span class="literal">true</span>;</div><div class="line">alert(result); <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;falseObject是对象，会被转换成true。</p>
+<ul>
+<li><p>操作数组的方法：concat()、slice()、splice()；操作基本包装类型中字符串的方法：concat()、slice()、substr()、substring()</p>
+</li>
+<li><p>单体内置对象指在程序执行之前就有的对象，如Global和Math。在大多数ECMAScript实现中都不能直接访问Global对象；不过，web浏览器实现了承担该角色的window对象。全局变量和函数都是global对象的属性。</p>
+</li>
+<li><p>声明前置<br>example1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log( fn );</div><div class="line"><span class="keyword">var</span> fn = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="built_in">console</span>.log( fn );</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//应转换为</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> fn;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log( fn );<span class="comment">//f</span></div><div class="line">fn = <span class="number">1</span>;</div><div class="line"><span class="built_in">console</span>.log( fn );<span class="comment">//1</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&emsp;&emsp;example2<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(i);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; <span class="number">3</span>; i++)&#123;</div><div class="line">    <span class="built_in">console</span>.log(i)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//应转化为</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> i;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(i);<span class="comment">//undefined</span></div><div class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt; <span class="number">3</span>; i++)&#123;</div><div class="line">    <span class="built_in">console</span>.log(i)<span class="comment">//0,1,2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;example3</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    a = <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">    <span class="keyword">var</span> a = <span class="number">3</span>;</div><div class="line">    <span class="built_in">console</span>.log(a)</div><div class="line">&#125;</div><div class="line">fn();</div><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"></div><div class="line"><span class="comment">//应转换为</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> a;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a;</div><div class="line"></div><div class="line">    a = <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(a);<span class="comment">//2</span></div><div class="line">    a = <span class="number">3</span>;</div><div class="line">    <span class="built_in">console</span>.log(a)<span class="comment">//3</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">a = <span class="number">1</span>;</div><div class="line">fn();</div><div class="line"><span class="built_in">console</span>.log(a);<span class="comment">//1</span></div></pre></td></tr></table></figure>
+<p>-</p>
+<pre><code>- 是var声明在前还是function声明的在前？who care，按先来后到，同名覆盖。当然如果一个变量已经有值，再var是无效的.
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fn;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(fn)  <span class="comment">//function</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> fn;   <span class="comment">//已经声明过 fn， 再 var 无效，并不会重置为 undefined</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(fn)  <span class="comment">//function</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>作用域：两种用法</p>
+<ul>
+<li>词法作用域：描述源代码中的范围，可以使用变量名引用变量。仅代码代码中不同变量名有意义的区域。</li>
+</ul>
+</li>
+<li><p>函数作用域链<br>当代码在一个环境中执行时，会创建对象的一个作用域链，保证对执行环境有权访问的所有变量和函数的有序访问。  </p>
+<ul>
+<li>测试题目1<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> fn2</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn = fn1();</div><div class="line">fn(); <span class="comment">//2</span></div><div class="line"><span class="comment">//可以转换为</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//声明</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a);<span class="comment">//找不到去fn1里面找</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> a;</div><div class="line">    <span class="comment">//执行</span></div><div class="line">    a = <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> fn2;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn;</div><div class="line">a = <span class="number">1</span>;</div><div class="line">fn = fn1();</div><div class="line">fn();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>测似乎题2</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> fn2</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a)<span class="comment">//找不到在全局作用域下找</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn = fn1();</div><div class="line">fn(); <span class="comment">//输出1</span></div><div class="line"></div><div class="line"><span class="comment">//可以转换为</span></div><div class="line"><span class="keyword">var</span> a;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a;</div><div class="line">    a = <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> fn2;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn;</div><div class="line"></div><div class="line">a = <span class="number">1</span>; </div><div class="line">fn = fn1();</div><div class="line">fn();</div><div class="line"></div><div class="line"><span class="comment">/*如果改变a赋值的位置，则会发生改变*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> fn2</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn = fn1();</div><div class="line">fn(); <span class="comment">//输出undefined</span></div><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li><ul>
+<li>函数在执行的过程中，先从自己内部找变量;如果找不到，再从<strong>创建当前函数所在的作用域</strong>去找, 以此往上。</li>
+</ul>
+</li>
+<li><p>闭包：</p>
+<ul>
+<li><p>为什么会出现这种写法：为了简写参数。先把第一个参数保存起来，再传其他的不同的参数。</p>
+</li>
+<li><p>定义：一个函数和声明函数的词法作用域的结合。通俗理解：一个函数内部，有一些变量无法被释放，可以通过他导出的这个函数能够被用起来。这个函数加上变量这一块的东西就是闭包。</p>
+</li>
+<li><p>执行一次闭包，就会创建一个新的作用域。</p>
+</li>
+</ul>
+</li>
+<li><p>跨域</p>
+<ul>
+<li><p>浏览器禁止访问的情景：</p>
+<ul>
+<li><p>1.js 里发送 ajax 请求，如果请求的 url 和当前页面的 url 非同域，则浏览器拒绝提供接受的数据并报错。</p>
+</li>
+<li><p>2.当前页面下引入iframe，如果 iframe 里的页面和当前页面的 url 非同域， 则浏览器禁止当前页面的 js 获取或者操作 iframe下页面的 DOM。</p>
+</li>
+</ul>
+</li>
+<li><p>对于禁止访问的场景1， 有两种方法能绕过浏览器的限制，一种是 JSONP，另外一种是 CORS</p>
+</li>
+<li><p>对于禁止访问的场景2， 如果两个页面拥有相同的一级域名(a.jirengu.com 和 b.jirengu.com)可通过降域的方式。 如果是不同域名，可使用<br>PostMessage</p>
+</li>
+<li><p>JSONP:</p>
+<ul>
+<li><p>可以创建一个script 标签<script src="http://api.jirengu.com/weathe.phpr?callback=showData"></script><br>这个请求到达后端后，后端会去解析callback这个参数获取到字符串showData，在发送 天气数据做如下处理：</p>
+<ul>
+<li><p>之前后端返回数据： {“city”: “hangzhou”, “weather”: “晴天”}</p>
+</li>
+<li><p>现在后端返回数据： showData({“city”: “hangzhou”, “weather”: “晴天”})</p>
+</li>
+</ul>
+</li>
+<li><p>前端script标签在加载数据后会把 showData({“city”: “hangzhou”, “weather”: “晴天”})做为 js 来执行，这实际上就是调用showData这个函数，同时参数是 {“city”: “hangzhou”, “weather”: “晴天”}</p>
+</li>
+<li><p>用户只需要在加载提前在页面定义好showData这个全局函数，在函数内部处理参数即可</p>
+</li>
+<li><p>使用前提是后台服务器需要支持处理传递进去的callback参数，并包装好这个数据。</p>
+</li>
+</ul>
+</li>
+<li><p>CORS(Cross-Origin-Resource-Sharing):</p>
+<ul>
+<li><p>ajax跨域请求资源的方式，IE10以上。</p>
+</li>
+<li><p>实现方式：当你使用 XMLHttpRequest 发送请求时，浏览器发现该请求不符合同源策略，会给该请求加一个请求头：Origin，后台进行一系列处理，如果确定接受请求则在返回结果中加入一个响应头：Access-Control-Allow-Origin; 浏览器判断该相应头中是否包含 Origin 的值，如果有则浏览器会处理响应，我们就可以拿到响应数据，如果不包含浏览器直接驳回，这时我们无法拿到响应数据。</p>
+</li>
+<li><p>CORS 的表象是让你觉得它与同源的 ajax 请求没啥区别，代码完全一样。</p>
+</li>
+</ul>
+</li>
+<li><p>cors与JSONP相比，更为先进、方便和可靠</p>
+<ul>
+<li>jsonp只能实现get请求，cors支持所有类型的http请求</li>
+<li>使用cors，开发者可以使用普通的XMLHttpRequest发起请求和获得数据，比起JSONP有更好的错误处理</li>
+<li>JSONP主要被老的浏览器支持，它们往往不支持CORS，绝大多数浏览器支持CORS</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>面向对象</p>
+<ul>
+<li>套路<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name</div><div class="line">    &#125;</div><div class="line">    People.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> p = <span class="keyword">new</span> People(<span class="string">'jirengu'</span>);</div><div class="line">    p.sayName()</div><div class="line"><span class="string">``</span><span class="string">`   </span></div><div class="line">- </div><div class="line">    - 发生了什么</div><div class="line">    当new一个函数时</div><div class="line">        -  创建一个空对象，把一个空的对象的 proto 属性设置为 People.prototype</div><div class="line">        </div><div class="line">        - 执行函数 People， 函数里面的 this 代表刚刚创建的新对象</div><div class="line">        </div><div class="line">        - 返回这个对象</div><div class="line">        </div><div class="line">    &amp;emsp;&amp;emsp;对于第3步，如果构造函数里有 return，分情况讨论。 如果 return 的是基本类型，会忽略不计。 如果 return 的是引用类型，则返回这个引用类型。</div><div class="line">    </div><div class="line">    - 原型图</div><div class="line">    </div><div class="line">![原型图](js知识点复习/原型图.png)</div><div class="line"></div><div class="line">- </div><div class="line">    - 任何函数都有 .prototype 这个属性，对应的值是一个对象叫原型对象，这个原型对象可以被由这个函数 new 的所有对象共享</div><div class="line">    </div><div class="line">- this</div><div class="line"></div><div class="line">    - 基本上在任何情况下都不能确定，它只是个参数，要看他在被调用的时候的情况确定指向谁。</div><div class="line">    </div><div class="line">    - 函数执行的本质是在调用.call或.apply函数，他们的第一个参数就是this。严格模式下传什么指向什么，非严格模式下浏览器会做出判断。call和apply的区别是apply后面的参数会放数组中。</div><div class="line">    </div><div class="line">    - bind的作用和call、apply类似，区别是bind执行的结果返回的是一个绑定了一个对象的新函数。它在绑定的时候就已经创建了新的函数等待被执行。常见的用法是通过bind(this)将作用域绑定到调用的对象上。</div><div class="line">    </div><div class="line">    - 箭头函数下，this指向它上一级所在的环境下的this。</div><div class="line">    </div><div class="line">    - 不错的练习题：[https://xiedaimala.com/courses/b8b4c00c-6798-4caf-8bfe-ba9fbb4c6d3d/tasks/ffbb7825-1793-4793-9477-ee5a34614210](https://xiedaimala.com/courses/b8b4c00c-6798-4caf-8bfe-ba9fbb4c6d3d/tasks/ffbb7825-1793-4793-9477-ee5a34614210)</div><div class="line"></div><div class="line">&amp;emsp;&amp;emsp;测试题1：</div><div class="line">`<span class="string">``</span>javascript</div><div class="line"><span class="keyword">var</span> name = <span class="string">'hunger'</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">   <span class="attr">name</span>: <span class="string">'valley'</span>,</div><div class="line">   <span class="attr">fn</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">       <span class="keyword">this</span>.name = <span class="string">'jirengu'</span>;</div><div class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">       <span class="keyword">var</span> name = <span class="string">'world'</span></div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">           <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">           <span class="keyword">var</span> name = <span class="string">'hello'</span></div><div class="line">           <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> fn2</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'oh my god'</span></div><div class="line">&#125;</div><div class="line">obj2.fn = obj.fn()</div><div class="line">obj2.fn()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>&emsp;&emsp;测试题2：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">'hunger'</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">   <span class="attr">name</span>: <span class="string">'valley'</span>,</div><div class="line">   <span class="attr">fn</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="keyword">this</span>.name = <span class="string">'jirengu'</span></div><div class="line">       <span class="keyword">var</span> name = <span class="string">'world'</span></div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> name = <span class="string">'hello'</span></div><div class="line">         <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">       &#125;</div><div class="line">       fn2()</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line">obj.fn()</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>继承</p>
+<ul>
+<li>套路<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dialog</span>(<span class="params">target</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.target = target</div><div class="line">&#125;</div><div class="line">Dialog.prototype.show = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.target + <span class="string">' show'</span>)</div><div class="line">&#125;</div><div class="line">Dialog.prototype.hide = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.target + <span class="string">' hide'</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> dialog = <span class="keyword">new</span> Dialog(<span class="string">'body'</span>)</div><div class="line">dialog.show()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Message</span>(<span class="params">target, name</span>) </span>&#123;</div><div class="line">    Dialog.call(<span class="keyword">this</span>, target)     <span class="comment">//这句很重要</span></div><div class="line">    <span class="keyword">this</span>.name = name</div><div class="line">&#125;</div><div class="line">Message.prototype = <span class="built_in">Object</span>.create(Dialog.prototype);  <span class="comment">//这句更重要</span></div><div class="line">Message.prototype.success = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' success'</span> )</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">* function fn()&#123;&#125;</div><div class="line">* fn.prototype = Dialog.prototype;</div><div class="line">* Message.prototype = new fn();</div><div class="line">* */</div><div class="line"></div><div class="line"><span class="keyword">var</span> msgBox = <span class="keyword">new</span> Message(<span class="string">'main'</span>, <span class="string">'msg'</span>)</div><div class="line">msgBox.show()</div><div class="line">msgBox.success()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>画成原型图</p>
+<p><img src="/2018/03/08/js知识点复习/继承-原型图.jpg" alt="原型图"></p>
+<ul>
+<li><ul>
+<li><p><code>Dialog.call(this, target)</code>的作用：执行函数Dialog(target)，执行时遇到this换成当前传递的this。</p>
+</li>
+<li><p><code>Object.create(Dialog.prototype)</code>的作用：创建一个空对象，空对象的<strong>proto</strong>等于Dialog.prototype。</p>
+</li>
+<li><p>理解new的时候发生了什么</p>
+<ul>
+<li>创建一个空对象</li>
+<li>执行函数，(Message.bind({})())遇到this就认为空对象是this，赋值后会将空对象return出来。（基本类型值时会被忽略，引用类型时就return对象）</li>
+<li>这个对象会有一个<strong>proto</strong>隐藏属性，它指向Function的原型prototype。（原型的特点就是对象在查找属性和方式时从自身开始找起，找不到就到原型中去找，构成了原型链）</li>
+</ul>
+</li>
+<li><p>Dialog.call可以用bind代替实现，Dialog.bind(this)(target);Object.create()可以自己实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">var</span> f = <span class="keyword">new</span> F();</div><div class="line">    <span class="keyword">return</span> f;</div><div class="line">&#125;</div><div class="line"><span class="comment">//Object.create()的内部实现</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>通过Object.create()构建的对象不能指向构建这个对象的函数的原型。</p>
+</li>
+<li><p>cookie和session</p>
+<ul>
+<li><p>cookie是用来记录当页面关闭后仍然要记录的信息，使用<code>document.cookie</code>查看cookie。可以使用js在浏览器中设置，也可以在服务器端使用set-cookie让浏览器种下。</p>
+<ul>
+<li><p>每次网络请求Request headers会带上cookie，所以对传输效率有影响。</p>
+</li>
+<li><p>特征：只要cookie已经存在，那么以后每次发送请求时，都会自动带上这个cookie信息。</p>
+</li>
+<li><p>测试：很多网站的静态资源使用CDN地址而是使用当前网站域名，从cookie的角度说说这对性能有何影响?</p>
+<ul>
+<li>假如页面下有很多cookie，如果静态资源是同样的域名，发送请求的时候会带上这些cookie。</li>
+<li>如果域名换掉了，那么cookie只对之前的域名生效，请求时就不会带上cookie。</li>
+<li>发的东西体积变小了，速度变快一点</li>
+</ul>
+</li>
+<li><p>localStorage的信息不会附在请求中</p>
+</li>
+</ul>
+</li>
+<li><p>session</p>
+<ul>
+<li><p>让服务器识别用户的一个机制</p>
+</li>
+<li><p>保存状态，可以用来判断用户是不是刚刚登录过的用户。服务器会在验证通过之后创建一个session对象，放入当前用户信息。</p>
+</li>
+<li><p>创建session后，会把session_id通过setcookie放到用户的cookie中，下次请求会带上这个session_id。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>安全</p>
+<ul>
+<li><p>传输安全，体现在</p>
+<ul>
+<li>我发的数据，不该看的人看不懂</li>
+<li>不该看的人不能伪造或修改</li>
+<li>过期后不该看的人不能拿来继续用</li>
+</ul>
+</li>
+<li><p>浏览器安全机制</p>
+</li>
+<li>常见攻击</li>
+</ul>
+</li>
+<li><p>协议</p>
+<ul>
+<li><p>TCP/IP是协议组，可分为四个层次：网络接口层、网络层、传输层和应用层。</p>
+<ul>
+<li>网络层有IP协议；</li>
+<li>传输层有TCP协议、UDP协议；</li>
+<li>应用层有HTTP、FTP、DNS等协议；</li>
+</ul>
+</li>
+<li><p>Http</p>
+<ul>
+<li>特点是客户端发送每次请求都需要服务器回送响应，请求结束后主动释放连接，从建立连接到关闭连接的过程称为一次连接。</li>
+<li>明文传输</li>
+<li>端口80</li>
+<li>连接无状态</li>
+<li>三次握手四次挥手</li>
+<li>报文,构成<ul>
+<li>URI</li>
+<li>URL：定位资源</li>
+</ul>
+</li>
+<li>状态码<ul>
+<li>1xx：</li>
+</ul>
+</li>
+<li><p>缓存处理</p>
+<ul>
+<li>二级缓存机制：第一次请求后，服务器发送expires、Cache-Control字段。Cache-Control字段的几个值Public、Private、no-cache、no-store、max-age。当设置为no-cache时，意味着使用Etag或Last-Modified字段控制缓存。只设置Cache-Control的max-age时，请求在这个时间内，直接使用本地缓存。超过max-age，则重新发起请求，这是强缓存。如果设置了Last-Modified值（浏览器携带If-Modified-Since），就是根据服务器时间返回的header判断缓存，如果发现缓存是新的，从客户端缓存加载，返回HTTP 304。当服务器上资源有变化，但最后修改时间没有变化时，使用ETag（浏览器携带If-None-Match）判断缓存的新旧。没有替代Last-Modified的原因是分布式系统会尽量关掉Etag，因为每台机器生成的ETag都会不一样。</li>
+<li>无缓存：每次请求查找返回文件，浪费带宽–》有缓存无更新：服务器内容变化，浏览器无法获知新文件–》缓存+更新（Expires）：时间格式容易写错–》缓存+更新机制升级版：设置Cache-Control，没有修改的文件再后续请求时返回文件，浪费带宽。–》缓存+更新机制终极版：二级缓存。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>http2</p>
+<ul>
+<li>采用二进制格式传输数据</li>
+<li>对消息头采用HPACK压缩传输</li>
+<li>多路复用，通过一个连接完成并发请求</li>
+<li>server push，服务器可以推送资源给客户端</li>
+</ul>
+</li>
+<li><p>Https</p>
+<ul>
+<li>http，不安全，中间任何环节都可能是危险的</li>
+<li>原理：在对称加密、非对称加密、hash等加密方法+有效的认证基础上实现安全数据的传输。</li>
+<li>在http和tcp（传输控制协议）/udp（用户数据报协议）之间有一层安全套接层ssl/tls</li>
+<li>需要申请到ca证书</li>
+<li>端口443</li>
+</ul>
+</li>
+<li><p>socket</p>
+<ul>
+<li>通信管道，是一种连接模式，不是协议</li>
+<li>优点：1.传输数据字节级；2.传输数据时间短、性能高；3.可加密，数据安全性高</li>
+<li>缺点：1.需解析；2.对开发人员要求高；3.增加了开发量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>XSS</p>
+<ul>
+<li>XSS又称CSS，全称Cross SiteScript，跨站脚本攻击，是Web程序中常见的漏洞，XSS属于被动式且用于客户端的攻击方式，所以容易被忽略其危害性。其原理是攻击者向有XSS漏洞的网站中输入(传入)恶意的HTML代码，当其它用户浏览该网站时，这段HTML代码会自动执行，从而达到攻击的目的。如，盗取用户Cookie、破坏页面结构、重定向到其它网站等。</li>
+<li>所有用户输入的地方都不安全</li>
+<li>所有展示用户输入的地方都不安全，不能做成html放到页面上，防止恶意代码</li>
+<li>不用eval()，全局环境</li>
+<li>不用innerHTML</li>
+<li>预防：<ul>
+<li>不使用innerHTML，改用innerText</li>
+<li>如果用innerHTML，字符过滤<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">'hello&lt;/div&gt;&lt;script&gt;alert(1)&lt;/script&gt;'</span><span class="comment">//构造XSS攻击</span></div><div class="line"><span class="comment">//不要把用户请求的东西当成html运行，可以创建dom节点，用DOM节点的innerText把用户输入放进去。被当成字符串展示在页面上。</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CSRF</p>
+<ul>
+<li><p>跨站请求伪造。其原理是攻击者构造网站后台某个功能接口的请求地址，诱导用户去点击或者用特殊方法让该请求地址自动加载。用户在登录状态下这个请求被服务端接收后会被误以为是用户合法的操作。对于 GET 形式的接口地址可轻易被攻击，对于 POST 形式的接口地址也不是百分百安全，攻击者可诱导用户进入带 Form 表单可用POST方式提交参数的页面.</p>
+</li>
+<li><p>解决：</p>
+<ul>
+<li>服务器收到路由器请求时生成一个随机数并埋入页面和设置在setCookie中</li>
+<li>用户发送GET或POST请求时会带上csrf_token参数</li>
+<li>后台检查这个值做比较</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>性能优化</p>
+<ul>
+<li><p>加载优化</p>
+<ul>
+<li>网络越快越好：静态资源放到cdn上，节点在用户周围；服务器网速、贷款、节点多</li>
+<li>东西体积越小越好：服务端开启压缩，前端压缩（图片、html、css）</li>
+<li>数量越少越好：资源打包合并</li>
+<li>服务器的处理速度越来越好：后端接口速度、中专速度</li>
+<li>能重复利用的最好重复利用</li>
+</ul>
+</li>
+<li><p>体验优化</p>
+<ul>
+<li>做好首页的静态化，服务器端的静态页面可以直接给用户</li>
+<li>只给用户暂时需要的东西，轮播+按需加载</li>
+<li>别让用户感觉卡顿，代码的性能优化，处理循环和DOM，检测用户滚动时</li>
+<li>动画不要卡，css3的动画的性能优化（设置translate+3d可以使用GPU做渲染，transform，不要使用margin），再考虑js动画，自己实现不用setTmeout</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>尺寸和坐标</p>
+</li>
+<li><p>void</p>
+<ul>
+<li><code>void(expression)</code>执行这个表达式，返回undefined，括号可以省略。</li>
+<li>主要用处是a标签。<code>&lt;a href = &quot;javascript:void(0)&quot;&gt;</code>让点击后不执行任何操作也不会刷新页面，填充<code>&lt;image&gt;</code>的src，确保不会向服务器发出垃圾请求。</li>
+<li>通过采用<code>void 0</code>取undefined比采用字面上的undefined更靠谱更安全，应该有限采用void 0这种方式</li>
+<li><a href="http://blog.csdn.net/u014267183/article/details/52998642" target="_blank" rel="noopener">http://blog.csdn.net/u014267183/article/details/52998642</a></li>
+<li><a href="https://segmentfault.com/a/1190000000474941" target="_blank" rel="noopener">https://segmentfault.com/a/1190000000474941</a></li>
+</ul>
+</li>
+<li><p>js中的onload与readyState===4</p>
+<ul>
+<li>在浏览器支持的情况下，onload和onerror可以搭配使用，出现在XMLHttpRequest2中</li>
+<li>onreadystatechange一开始就有，所有浏览器都支持</li>
+<li>实际上不一样，当onreadystatechange的readyState为4时，可能对应于onload、onerror、onabort三种状态。所以onload与onerror对应使用，因为onerror也可能触发readyState===4</li>
+<li><a href="https://stackoverflow.com/questions/9181090/is-onload-equal-to-readystate-4-in-xmlhttprequest" target="_blank" rel="noopener">https://stackoverflow.com/questions/9181090/is-onload-equal-to-readystate-4-in-xmlhttprequest</a></li>
+</ul>
+</li>
+<li><p>JQuery ajax,fetch,axios</p>
+<ul>
+<li><p>jQuery ajax</p>
+<ul>
+<li>缺点：<ul>
+<li>基于原生的XHR开发，XHR本身架构不清晰</li>
+<li>jQuery整个项目太大，单纯使用ajax却要引入整个jQuery不合理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Axios</p>
+<ul>
+<li>优点：<ul>
+<li>从node.js创建http请求</li>
+<li>支持Promise API</li>
+<li>客户端支持防止CSRF</li>
+<li>提供了一些并发请求的接口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Fetch</p>
+<ul>
+<li>优点：<ul>
+<li>更加底层，提供的API丰富</li>
+<li>脱离了XHR，是ES规范里新的实现方式</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>只对网络请求报错，对400，500都当作成功的请求，需要封装</li>
+<li>fetch默认不带cookie，需要添加配置项</li>
+<li>fetch不支持abort，不支持超时控制</li>
+<li>fetch没有办法原生检测请求的进度，XHR可以</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://segmentfault.com/a/1190000012836882" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012836882</a></li>
+</ul>
+</li>
+<li><p>浏览器取消默认动作</p>
+<ul>
+<li>默认动作是浏览器所执行的用户没有明确指定的操作。</li>
+<li>点击a标签会转向目标页面、点击提交按钮提交表单、点击重置按钮重置表单、鼠标移动到带有title属性的元素上出现提示等。</li>
+<li>如不希望执行这种默认操作，在事件对象上调用.stopPropagation()也无济于事，因为默认操作不是在正常的事件传播流中发生的。处理办法：<ul>
+<li>W3C:e.preventDefault()</li>
+<li>IE:e.returnValue = false </li>
+<li>是事件对象的一个方法，作用是取消一个目标元素的默认行为，前提是有默认行为才能被取消。有默认行为的元素<code>&lt;a&gt;</code>和<code>&lt;input type=&quot;submit&quot;&gt;</code>等。当Event对象的cancelable为false时，表示没有默认行为。</li>
+<li>JavaScript的return false只会阻止默认行为（仅在HTML事件属性和DOM0级事件处理方法中，才能使用），jQuery中则既阻止默认行为又防止对象冒泡。</li>
+<li>firefox里的event跟IE里的不同，IE里的是全局变量，随时可用；firefox里的要用参数引导才能用，是运行时的临时变量。在IE/Opera中是window.event，在Firefox中是event；而事件的对象，在IE中是window.event.srcElement，在Firefox中是event.target，Opera中两者都可用。 </li>
+<li><a href="https://www.cnblogs.com/yycode/articles/5499234.html" target="_blank" rel="noopener">https://www.cnblogs.com/yycode/articles/5499234.html</a></li>
+<li><a href="https://www.cnblogs.com/yycode/articles/5499234.html" target="_blank" rel="noopener">https://www.cnblogs.com/yycode/articles/5499234.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*组织默认行为*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopDefault</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e &amp;&amp; e.preventDefault)&#123;</div><div class="line">        e.preventDefault();<span class="comment">//W3C</span></div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;<span class="comment">//IE</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*阻止冒泡行为*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopBubble</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e &amp;&amp; e.stopPropagation)&#123;</div><div class="line">        e.stopPropagation();<span class="comment">//W3C</span></div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span>;<span class="comment">//IE</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>纯函数（函数式编程的核心概念）</p>
+<ul>
+<li><p>定义有三点：</p>
+<ul>
+<li>对于同一参数，返回同一结果</li>
+<li>完全取决于传入的参数</li>
+<li>不会产生副作用</li>
+</ul>
+</li>
+<li><p>副作用是指：</p>
+<ul>
+<li>发出 HTTP 调用</li>
+<li>改变外部状态</li>
+<li>检索今天的日期</li>
+<li>Math.random()</li>
+<li>向控制台输出消息</li>
+<li>向数据库中添加数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数式编程</p>
+<ul>
+<li>定义：”函数式编程”是一种”编程范式”（programming paradigm），也就是如何编写程序的方法论。</li>
+<li>主要思想：它属于”结构化编程”的一种，主要思想是把运算过程尽量写成一系列嵌套的函数调用。</li>
+<li><p>特点：</p>
+<ul>
+<li>函数是”第一等公民”</li>
+<li>只用”表达式”，不用”语句”，每一个表达式都有返回值</li>
+<li>没有”副作用”</li>
+<li>不修改状态</li>
+<li>引用透明，只依赖输入的参数</li>
+</ul>
+</li>
+<li><p>优点：</p>
+<ul>
+<li>代码简洁，开发快速</li>
+<li>接近自然语言，易于理解</li>
+<li>更方便的代码管理</li>
+<li>易于”并发编程”</li>
+</ul>
+</li>
+<li>材料：<a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2012/04/functional_programming.html</a></li>
+</ul>
+</li>
+<li><p>柯里化：指向需要额外数据的函数提供部分输入的流程。偏函数应用。</p>
+</li>
+<li><p>forin、Object.keys和Object.getOwnPropertyNames的区别。</p>
+</li>
+<li><p>argument，有length和callee属性。<br><a href="https://blog.csdn.net/qq_16339527/article/details/53231725" target="_blank" rel="noopener">https://blog.csdn.net/qq_16339527/article/details/53231725</a></p>
+</li>
+<li><p>同步、异步、事件循环：<a href="https://segmentfault.com/a/1190000004322358" target="_blank" rel="noopener">https://segmentfault.com/a/1190000004322358</a></p>
+</li>
+<li><p>jquery中的$有几种重载方法？（可以接受几种数据类型）</p>
+<ul>
+<li>jquery(expression,[context])根据css选择器字符串在页面中匹配一组元素，或者利用context参数指定匹配的范围。</li>
+<li>jquery(html)根据html标记字符串，动态创建由jQuery对象包装的DOM元素。</li>
+<li>jquery(elements)将一个或多个DOM对象转化为jquery对象。</li>
+<li>jquery(callback)类型函数可以在页面加载完毕时执行包含的函数。$(document).ready(function(){})，简写为$(function(){})</li>
+<li><a href="https://blog.csdn.net/jingcairensheng/article/details/68923478" target="_blank" rel="noopener">https://blog.csdn.net/jingcairensheng/article/details/68923478</a></li>
+</ul>
+</li>
+<li><p>jquery九大选择器</p>
+<ul>
+<li>基本选择器（元素）</li>
+<li>层次选择器，可以链式操作</li>
+<li>过滤选择器（:/[]），又有：<ul>
+<li>基础过滤选择器:first\:last\:not\:even\:odd\:eq\:gt\:lt\:header\:animated</li>
+<li>内容过滤选择器:contains(text)\:empty\:has\:parent</li>
+<li>可见度过滤选择器:hidden\:visible</li>
+<li>属性过滤选择器[attribute][attribute=vlue][attribute!=value][attribute^=value][attribute$=vale]</li>
+<li>子元素过滤选择器:nth-child()\:first-child\:last-child\:only-child</li>
+<li>表单对象过滤选择器:enabled\:disabled\:checked\:selected</li>
+<li>表单选择器:input\:text\:password\:radio\:checkbox\:submit\:image\:reset\:button\:file\input:hidden</li>
+</ul>
+</li>
+<li><a href="https://blog.csdn.net/pseudonym_/article/details/76093261" target="_blank" rel="noopener">https://blog.csdn.net/pseudonym_/article/details/76093261</a></li>
+</ul>
+</li>
+<li><p>setTimeout与promise执行顺序</p>
+<ul>
+<li><a href="https://www.tuicool.com/articles/MnY7N3a" target="_blank" rel="noopener">https://www.tuicool.com/articles/MnY7N3a</a></li>
+</ul>
+</li>
+<li><p>相关博文：</p>
+<ul>
+<li><a href="http://blog.csdn.net/blueblueskyhua/article/details/73135938" target="_blank" rel="noopener">http://blog.csdn.net/blueblueskyhua/article/details/73135938</a></li>
+<li><a href="https://www.zhihu.com/question/34183746" target="_blank" rel="noopener">https://www.zhihu.com/question/34183746</a></li>
+<li><a href="http://book.jirengu.com/fe/" target="_blank" rel="noopener">http://book.jirengu.com/fe/</a></li>
+<li><a href="http://blog.csdn.net/ghsau/article/details/17027893" target="_blank" rel="noopener">http://blog.csdn.net/ghsau/article/details/17027893</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/22521378" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/22521378</a></li>
+<li><a href="https://www.cnblogs.com/wqhwe/p/5407468.html" target="_blank" rel="noopener">https://www.cnblogs.com/wqhwe/p/5407468.html</a></li>
+<li><a href="http://blog.csdn.net/whb20081815/article/details/67640804" target="_blank" rel="noopener">http://blog.csdn.net/whb20081815/article/details/67640804</a></li>
+<li><a href="https://www.tuicool.com/articles/mq2qm26" target="_blank" rel="noopener">https://www.tuicool.com/articles/mq2qm26</a></li>
+<li><a href="http://www.cnblogs.com/strick/p/4826273.html" target="_blank" rel="noopener">http://www.cnblogs.com/strick/p/4826273.html</a></li>
+<li><a href="http://blog.csdn.net/qq_36947128/article/details/72879382" target="_blank" rel="noopener">http://blog.csdn.net/qq_36947128/article/details/72879382</a></li>
+</ul>
+</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/03/10/小命令/" class="prev">&larr; Prev post 小命令</a>
+  
+
+  
+
+  
+    <a href="/2018/03/06/JS模块化编程之模块规范/" class="next">Next post JS模块化编程之模块规范 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

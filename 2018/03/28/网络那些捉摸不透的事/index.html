@@ -1,0 +1,510 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="网络协议
+
+TCP/IP是协议组，可分为四个层次：网络接口层、网络层、传输层和应用层。
+
+网络层有IP协议；
+传输层有TCP协议、UDP协议；
+
+TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接。
+TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证可靠交付。
+TCP面向字节流，...">
+  
+  <title>网络那些捉摸不透的事 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/03/30/强悍新特性/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        强悍新特性
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/03/28/带着webpack走上自动化之路/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        带着webpack走上自动化之路
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>网络那些捉摸不透的事</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-28</span>
+      
+        <span id = "post-title-updated">Updated at 2018-04-05</span>
+      
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/HTTP-WebSocket/">HTTP WebSocket</a>
+      
+      </span>
+      
+    </p>
+    
+    <ul>
+<li><p>网络协议</p>
+<ul>
+<li><p>TCP/IP是协议组，可分为四个层次：网络接口层、网络层、传输层和应用层。</p>
+<ul>
+<li>网络层有IP协议；</li>
+<li><p>传输层有TCP协议、UDP协议；</p>
+<ul>
+<li>TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接。</li>
+<li>TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证可靠交付。</li>
+<li>TCP面向字节流，实际上是TCP把数据看成一连串无结构的字节流;UDP是面向报文的。UDP没有拥塞控制，因此网络出现拥塞不会使源主机的发送速率降低（对实时应用很有用，如IP电话，实时视频会议等）</li>
+<li>每一条TCP连接只能是点到点的;UDP支持一对一，一对多，多对一和多对多的交互通信。</li>
+<li>TCP首部开销20字节;UDP的首部开销小，只有8个字节。</li>
+<li>TCP的逻辑通信信道是全双工的可靠信道，UDP则是不可靠信道。</li>
+</ul>
+</li>
+<li><p>应用层有HTTP、FTP、DNS等协议；</p>
+</li>
+</ul>
+</li>
+<li><p>Http</p>
+<ul>
+<li>特点是客户端发送每次请求都需要服务器回送响应，请求结束后主动释放连接，从建立连接到关闭连接的过程称为一次连接。</li>
+<li>明文传输</li>
+<li>端口80</li>
+<li>连接无状态</li>
+<li><p>三次握手四次挥手：</p>
+<ul>
+<li>三次握手：<ul>
+<li>第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</li>
+<li>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</li>
+<li>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</li>
+</ul>
+</li>
+<li>四次挥手：<ul>
+<li>第一步，当主机A的应用程序通知TCP数据已经发送完毕时，TCP向主机B发送一个带有FIN附加标记的报文段（FIN表示英文finish）。</li>
+<li>第二步，主机B收到这个FIN报文段之后，并不立即用FIN报文段回复主机A，而是先向主机A发送一个确认序号ACK，同时通知自己相应的应用程序：对方要求关闭连接（先发送ACK的目的是为了防止在这段时间内，对方重传FIN报文段）。</li>
+<li>第三步，主机B的应用程序告诉TCP：我要彻底的关闭连接，TCP向主机A送一个FIN报文段。</li>
+<li>第四步，主机A收到这个FIN报文段后，向主机B发送一个ACK表示连接彻底释放。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>报文,构成</p>
+<ul>
+<li>URI：统一资源标识符，包括URL和URN两个子集</li>
+<li>URL：定位资源</li>
+</ul>
+</li>
+<li><p>状态码</p>
+<ul>
+<li>1xx：指定客户端相应的某些动作</li>
+<li>2xx：表示请求成功</li>
+<li>3xx：已经移动的文件并且常被包含在定位头信息中指定新的地址信息</li>
+<li>4xx：指出客户端的错误</li>
+<li>5xx：服务器错误</li>
+<li>常用：<ul>
+<li>301(moved permanently)：永久重定向。</li>
+<li>302(found)：临时重定向，只有当原来的请求是get时浏览器才会自动重定向。</li>
+<li>303(see other)：请求是post，重定向的目标文件通过get获取。</li>
+<li>307(Temporary Redirect)：只能跟随对get请求的重定向。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缓存处理</p>
+<ul>
+<li>二级缓存机制：第一次请求后，服务器发送expires、Cache-Control字段。Cache-Control字段的几个值Public、Private、no-cache、no-store、max-age。当设置为no-cache时，意味着使用Etag或Last-Modified字段控制缓存。只设置Cache-Control的max-age时，请求在这个时间内，直接使用本地缓存。超过max-age，则重新发起请求，这是强缓存。如果设置了Last-Modified值（浏览器携带If-Modified-Since），就是根据服务器时间返回的header判断缓存，如果发现缓存是新的，从客户端缓存加载，返回HTTP 304。当服务器上资源有变化，但最后修改时间没有变化时，使用ETag（浏览器携带If-None-Match）判断缓存的新旧。没有替代Last-Modified的原因是分布式系统会尽量关掉Etag，因为每台机器生成的ETag都会不一样。</li>
+<li>无缓存：每次请求查找返回文件，浪费带宽–》有缓存无更新：服务器内容变化，浏览器无法获知新文件–》缓存+更新（Expires）：时间格式容易写错–》缓存+更新机制升级版：设置Cache-Control，没有修改的文件再后续请求时返回文件，浪费带宽。–》缓存+更新机制终极版：二级缓存。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>http1.1</p>
+<ul>
+<li>增加了Etag标签，if-unmodified-since\If-Match\If-None-Match等可供选择的缓存头控制缓存策略。</li>
+<li>请求头加入了range头域，只请求资源的某个部分，返回状态码206，方便选择和利用带宽和连接。</li>
+<li>增加了24个错误状态响应码，409请求资源与当前状态发生冲突；410服务器上某资源被永久删除。</li>
+<li>支持了host头域（一台物理服务器上可以存在多个虚拟主机，共享一个ip地址）。</li>
+<li>支持长连接和请求的流水线处理，一个tcp连接上可以传送多个http请求和响应，减少了建立和关闭连接的消耗和延迟。</li>
+</ul>
+</li>
+<li><p>http2</p>
+<ul>
+<li>对html、css、js资源的传输方式进行了优化，不能用于实时传输消息</li>
+<li>采用二进制格式传输数据</li>
+<li>对消息头采用HPACK压缩传输</li>
+<li>多路复用，通过一个连接完成并发请求</li>
+<li>server push，服务器可以推送资源给客户端</li>
+</ul>
+</li>
+<li><p>Https</p>
+<ul>
+<li>http，不安全，中间任何环节都可能是危险的</li>
+<li>原理：在对称加密、非对称加密、hash等加密方法+有效的认证基础上实现安全数据的传输。</li>
+<li>在http和tcp（传输控制协议）/udp（用户数据报协议）之间有一层安全套接层ssl/tls</li>
+<li>需要申请到ca证书</li>
+<li>端口443</li>
+</ul>
+</li>
+<li><p>socket</p>
+<ul>
+<li>通信管道，是一种连接模式，不是协议</li>
+<li>优点：1.传输数据字节级；2.传输数据时间短、性能高；3.可加密，数据安全性高</li>
+<li>缺点：1.需解析；2.对开发人员要求高；3.增加了开发量</li>
+</ul>
+</li>
+<li><p>websocket</p>
+<ul>
+<li>出现原因：http不支持长连接，一个request对应一个response；客户端被动传输消息；</li>
+<li>最大特点：服务器主动向客户端推送消息，基于http1.1协议，还不能用于http2的链路上。</li>
+<li>建立在tcp协议上，与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。</li>
+<li>请求头里多了两个字段：Upgrade: websocket, Connection: Upgrade, Sec-WebSocket-Key:, Sec-WebSocket-Protocol:,Sec-WebSocket-Version:.</li>
+<li>数据格式比较轻量，性能开销小，通信高效。传统的long poll阻塞模型（处理并发的能力，空间要求），ajax轮询需要服务器有很快的处理速度和资源（速度）。</li>
+<li>可以发送文本，也可以发送二进制数据。</li>
+<li>没有同源限制，客户端可以与任意服务器通信。</li>
+<li>协议标识符是ws（如果加密，则为wss），服务器网址就是 URL。</li>
+</ul>
+</li>
+<li><p>与http不同：</p>
+<ul>
+<li>http协议基于请求应答，只能做单向传输，是半双工协议，而WebSocket是全双工协议，类似于socket通信，双方都可以在任何时刻向另一方发送数据。</li>
+<li>WebSocket使用HTTP来建立连接，但是定义了一系列新的header域，这些域在HTTP中并不会使用。</li>
+<li>WebSocket的连接不能通过中间人来转发，它必须是一个直接连接。如果通过代理转发，一个代理要承受如此多的websocket连接不释放，就类似于一次DDOS攻击了。</li>
+<li>WebSocket在建立握手连接时，数据是通过http协议传输的，但在建立连接之后，真正的数据传输阶段是不需要http协议参与的。</li>
+<li>websocket传输的数据是二进制流，是以帧为单位的，http传输的是明文传输，是字符串传输，WebSocket的数据帧有序。</li>
+<li>websocket的请求的头部和http请求头部不同，见上文。  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*客户端的用法*/</span></div><div class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">"wss://echo.websocket.org"</span>);</div><div class="line"></div><div class="line">ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123; </div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Connection open ..."</span>); </div><div class="line">  ws.send(<span class="string">"Hello WebSockets!"</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log( <span class="string">"Received Message: "</span> + evt.data);</div><div class="line">  ws.close();</div><div class="line">&#125;;</div><div class="line"></div><div class="line">ws.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Connection closed."</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>参考材料：</li>
+<li><a href="https://zhuanlan.zhihu.com/p/23299600?refer=study-fe" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/23299600?refer=study-fe</a></li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/03/30/强悍新特性/" class="prev">&larr; Prev post 强悍新特性</a>
+  
+
+  
+
+  
+    <a href="/2018/03/28/带着webpack走上自动化之路/" class="next">Next post 带着webpack走上自动化之路 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

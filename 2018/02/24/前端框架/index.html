@@ -1,0 +1,483 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="背景：比较几款前端框架，包括Backbone、AngularJS等。不讨论React。React可用于快速更新DOM，但它实际上只能处理视图，而非整个应用。这篇文章关注的是这个应用框架。
+练习：TodoMVC网站，有一个相同的TODO应用，使用不同的框架与技术编写，不过功能都一样。它的主要功能：
+
+维护大量的HTML，因为不同的HTML内容在不同的时间显示
+DOM操作，因为经常会插入和删除视...">
+  
+  <title>前端框架 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/03/02/hexo问题集锦/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        hexo问题集锦
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/02/13/hexo插入图片解决方法/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        hexo插入图片解决方法
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>前端框架</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-02-24</span>
+      
+        <span id = "post-title-updated">Updated at 2018-02-27</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/tips/">tips</a>
+      
+      </span>
+      
+    </p>
+    
+    <p><strong>背景</strong>：比较几款前端框架，包括Backbone、AngularJS等。不讨论React。React可用于快速更新DOM，但它实际上只能处理视图，而非整个应用。这篇文章关注的是这个应用框架。</p>
+<p><strong>练习</strong>：TodoMVC网站，有一个相同的TODO应用，使用不同的框架与技术编写，不过功能都一样。它的主要功能：</p>
+<ul>
+<li>维护大量的HTML，因为不同的HTML内容在不同的时间显示</li>
+<li>DOM操作，因为经常会插入和删除视图</li>
+<li>数据处理，因为能够过滤数据</li>
+<li>处理用户交互，因为可以点击和输入数据并获得相应</li>
+</ul>
+<p><strong>问题</strong>：我们为什么要首先使用这些框架之一？为什么不坚持使用传统的服务器端应用程序？</p>
+<ul>
+<li>非常简短的答案是它们提供了更具响应性的用户体验。例如，当用户点击一个按钮，而不是像传统的服务器端Web应用程序一样等待整个页面重新加载时，JavaScript框架只会在用户与它们交互时加载页面的某些部分，从而加快响​​应速度的用户界面。它可以创建一个与原生移动应用程序一样快速的UI。</li>
+<li>当然，你可以用传统的应用程序和一些jQuery来做类似的事情，但如果你曾经尝试过，那么你就知道你有多快就会遇到麻烦。除非你正在处理简单的事情，否则使用jQuery进行代码管理很快就会成为一种挑战，通常会导致“意大利面条”代码。</li>
+<li>现代JavaScript框架通过提供明确定义的应用程序体系结构（通常使用jQuery缺乏的MVC设计模式）来提供解决代码管理问题的方法，这可以极大地简化开发。因此，在使用这些框架之一时，我们得到高度响应的用户界面以及良好结构化和可维护的代码，从长远来看这可能是一个巨大的节省时间。</li>
+</ul>
+<p>具体来看：</p>
+<h3 id="Backbone-js"><a href="#Backbone-js" class="headerlink" title="Backbone.js"></a><strong>Backbone.js</strong></h3><p><strong>简介</strong>：Backbone在2010年首次发布，是轻量级的。在缩小和压缩以用于生产并且仅具有一个依赖项（Underscore.js）时，它只有6.3KB，它是一个高度通用且简约的MVC（模型 - 视图 - 控制器）框架，可为这些站点提供支持： Twitter，Hulu，Pinterest和潘多拉电台。将<code>Underscore</code>用作模板，并由自己的事件管理和路由系统。</p>
+<p><code>&lt;%= %&gt;</code>是定界符，为一个或多个用于形成边界的字符，区分HTML与将来的JavaScript变量。</p>
+<p>底层模板函数其实调用了JavaScript的构造函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;&#125;; <span class="xml"><span class="tag">&lt;<span class="name">----</span>&gt;</span> var obj2 = new Object();</span></div><div class="line">var arr1 = []; <span class="tag">&lt;<span class="name">----</span>&gt;</span> var arr2 = new Array();</div><div class="line">var func1 = function()&#123;&#125;; <span class="tag">&lt;<span class="name">----</span>&gt;</span> var func2 = new Function();</div></pre></td></tr></table></figure></p>
+<p>并不建议使用构造函数格式，因为它不可读，更难处理，而且速度更慢。但是构造函数相比函数自变量有一个优点，它可以在运行时动态创建函数。<code>Underscore</code>的template函数的作用是构造函数，而它通过使用构造函数格式来实现这一点。最后返回一个模板函数等待被调用。</p>
+<p><strong>tips</strong>：<code>ctrl+g</code>在控制台的<code>source</code>页面根据行查找；<code>ctrl+r</code>刷新页面；</p>
+<p>浏览器的事件系统：告知我们网页上执行的所有操作，是DOM API极为重要的组成部分，使我们能够监听浏览器的事件系统。target可以是实现EventTarget界面的任何内容，包括网页元素、文档对象、窗口对象、甚至XHR对象。方法可传递一个事件对象。</p>
+<p>on事件：<code>object.on(event, callback, [context])</code><br>大家可能只注意到了event,callback,其实这里有一个很重要的参数就是context就是事件执行的上下文环境，如果这里不指定context，则执行的函数中则无法使用this以及调用本对象中的函数.</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>文件小，具有多功能性。与其他框架不同，Backbone没有高度评价。例如，它不包含它自己的模板引擎（除了包含在Underscore中的基本模板），让开发人员在给定的项目中选择最适合他们的任何模板。</li>
+<li>适合用于单页面应用程序（Twitter，Pinterest）或属于传统Web应用程序的小部件。</li>
+</ul>
+<p><strong>担心</strong>：</p>
+<ul>
+<li>可能更适合更高级的JavaScript开发人员。在构建Backbone应用程序时，有许多不同的库和插件可以混合使用，并且很多开发人员都喜欢这种可扩展性，但对于新手来说，这可能很具挑战性。</li>
+<li>也有人担心需要过多的“样板”代码才能在项目中成功使用框架。这些抱怨往往被更有经验的开发人员所否认，他们建议那些在每个项目上编写大量样板的人都没有正确使用Backbone。</li>
+<li>另一个值得关注的问题：缺少服务器端渲染。为了更深入地讨论这个问题，建议阅读Tim Kadlec关于这个话题的出色<a href="https://timkadlec.com/2015/02/client-side-templatings-major-bug/" target="_blank" rel="noopener">文章</a>。他写道，“如果你的客户端MVC框架不支持服务器端渲染，那就是一个错误。它削弱了性能。“</li>
+<li>另一个关于缺乏服务器端渲染的问题是SEO。大多数搜索引擎机器人无法解析JavaScript，当它们发生在使用不支持服务器端呈现的框架的网站上时，它们不会收到内容。解决问题的方法有很多，但绝对要记住:很少有项目可以承受失去大量有机搜索流量。</li>
+</ul>
+<p><em>题外话：<em>*SEO(Search Engine Friendly)</em></em></p>
+<ul>
+<li>通俗理解是：通过总结搜索引擎的排名规律，对网站进行合理优化，使你的网站在百度和Google的排名提高，让搜索引擎给你带来客户。</li>
+<li>深刻理解是：通过SEO这样一套基于搜索引擎的营销思路，为网站提供生态式的自我营销解决方案，让网站在行业内占据领先地位，从而获得品牌收益。</li>
+</ul>
+<p><em>题外话：<em>*服务器端（后端）渲染与浏览器端（前端）渲染</em></em></p>
+<ul>
+<li>服务器端渲染：服务器经过解析存放在服务器端的模板文件来计算出最终的HTML字符串，浏览器只进行HTML解析和显示。<ul>
+<li>优势：前端耗时少，利于SEO</li>
+<li>劣势：网络传输数据量大，占用服务器运算资源，前后端联动修改。</li>
+</ul>
+</li>
+<li>浏览器端渲染：实现前后端分离，前端只专注于UI开发，后端只专注于逻辑的开发，前后端交互只通过约定好的API来交互，后端提供json数据，前端循环json生成DOM插入到页面中去。<ul>
+<li>优势：网络传输数据量小</li>
+<li>劣势：前端耗时较多，不利于SEO。</li>
+</ul>
+</li>
+<li><strong>选择</strong>：看业务场景。注重SEO的新闻站点，非强交互的页面可以用server端渲染；像后台管理页面，或QQ空间这类强交互的网页应用，可以选择浏览器端渲染。浏览器端渲染时，如数据量不大，没有大改变，用原生的DOM API操作绰绰有余；如果是复杂页面应用，还是使用框架完成。</li>
+<li>参考博文：<a href="https://www.manster.me/?p=473" target="_blank" rel="noopener">manster</a></li>
+</ul>
+<p><em>题外话：<em>*SPA(Single Page Application)</em></em></p>
+<p><strong>总结</strong>：Backbone适合于经验丰富的开发人员构建单页面应用程序（SPA）和小部件的框架。</p>
+<h3 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a><strong>AngularJS</strong></h3><p><small>first released in 2009 by Brat Tech LLC</small></p>
+<p><strong>简介</strong>：在缩小和压缩生产时，以36KB的速度推出，Angular经常被称为Model-View-Whatever框架，因为它不符合典型的MVC设计模式。它比Backbone更强大，但是您还可以获得更多内置功能，如下所示。使用AngularJS构建的一些著名网站包括：VEVO，The Weather Channel和MSNBC。</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>双向数据绑定是AngularJS最受欢迎的功能，它描述了数据绑定到视图中的HTML元素的情况，并且该元素具有更新和显示数据的能力。在Angular中，Model和View都可以更新数据，因此是“双向”描述符。 Angular实现这种形式的数据绑定可以减少创建动态视图所需的代码量。</li>
+<li>另一个受欢迎的功能是指令，它允许开发人员通过将特殊行为附加到DOM的某些部分来扩展HTML。例如，ng-repeat是一个指令，它允许开发人员重复一个元素，使得它可以非常方便地执行诸如向页面打印项目数组等操作。除了Angular附带的指令外，还可以创建自己的指令，从而为UI制定行为提供了极大的灵活性。</li>
+<li>依赖注入是Angular的另一个强大功能，它允许开发人员轻松地将服务包含在其模块中。例如，如果开发人员正在编写函数并希望使用$ location服务（一种在浏览器地址栏中解析URL的服务），那么所需的就是将其包含为函数的参数，并且Angular将确保该服务的一个实例可用于该功能。这对于将模拟数据注入到组件中也很有用，这是使Angular具有高度可测性的一项功能。</li>
+</ul>
+<p><strong>担心</strong>：</p>
+<ul>
+<li>双向数据绑定。虽然它使得使用Angular更容易构建，但它会使调试变得复杂并且损害性能。</li>
+<li>Angular速度很慢，尤其是在更大，更复杂的应用程序中，这首先破坏了使用JavaScript框架的主要原因。当应用程序实现复杂的用户界面时，通常会看到性能不佳的情况。</li>
+<li>另外值得关注的是，即将发布的Angular 2将完全重写框架：无向后兼容性。许多人认为这是Angular团队默认的初始方法有缺陷。它也可能破坏了企业之间项目的稳定性。</li>
+<li>像Backbone一样，Angular缺乏服务器端渲染，尽管存在解决方法。</li>
+</ul>
+<p><strong>总结</strong>：Angular适用于从小型项目到企业应用程序的广泛用例。不过，如果您计划一个庞大而复杂的应用程序，那么拥有熟练的开发人员可以解决任何出现的性能问题，这一点至关重要。<br>鉴于从版本1到版本2的过渡，Angular在这个时间点似乎不是一个好选择。学习当前版本的Angular可能只会让开发人员对传统应用程序进行工作，并且仍然需要学习即将推出的版本。艰巨的任务！采用Angular 2是否是一个不错的选择还有待观察。</p>
+<h3 id="Ember"><a href="#Ember" class="headerlink" title="Ember"></a><strong>Ember</strong></h3><p><small>它是由Yehuda Katz在2011年末创建的，他也是jQuery和Ruby on Rails核心团队的成员。</small><br><strong>简介</strong>：在95KB的缩小版和压缩版中，它是正在讨论的四个框架中最重要的一个（jQuery和Handlebars是必需的依赖关系，将增加这个总数）。但随着额外的大小，你会得到很多内置的功能。用Ember建立的网站包括：Qualcomm，Chicago.com，Nest，Vine和NBC News。</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>Ember社区有一个通用原则：“约定而不是配置”。在与Ember合作时，您应该按照“Ember方式”进行操作。几乎所有需要编写Web应用程序的内容都是内置的，其中包括模板库，路由以及大量其他内容，旨在使开发人员免于日常和平凡的重新创建任务，让他们专注于他们的项目所特有的更大的问题。</li>
+<li>Ember的一个有趣之处在于Ember CLI。尽管为了与Ember一起工作并不是必需的，但它是一个非常有用的命令行工具，可以处理许多人们通常使用Grunt或Gulp所做的事情，例如编译Sass和缩小CSS和JS。也许你不想混淆你当前的构建系统，但是如果你没有一个适合的构建系统，这是一个可以让你以最小的麻烦开始的工具。</li>
+</ul>
+<p><strong>担忧</strong>：</p>
+<ul>
+<li>Ember最大的担忧是需要以“Ember方式”做事。现在，在某种程度上，这与Angular类似，但Ember更进一步。 Ember渴望提供一个完整的解决方案，坚果汤。这当然与Backbone有明显的对比，它可以让你根据自己的喜好来混合和匹配事物。</li>
+<li>这种方法也有很多生成的代码，可能会导致开发人员难以准确理解发生了什么。当你有一个庞大的框架，有很多内置功能时，学习曲线非常陡峭。</li>
+<li>Ember也使用双向数据绑定，尽管它使用与Angular不同的实现。也许是为了回应社区的担忧，Ember团队已经宣布他们将来将不再使用双向数据绑定。</li>
+</ul>
+<p><strong>总结</strong>：Angular适用于从小型项目到企业应用程序的广泛用例。不过，如果您计划一个庞大而复杂的应用程序，那么拥有熟练的开发人员可以解决任何出现的性能问题，这一点至关重要。<br>Ember是一个很好的框架，在弱点方面，似乎有很多努力需要改进。例如，像Angular和Backbone一样，它不支持服务器端渲染，但已经宣布很快就会有这种支持，这非常棒。总体而言，我认为Ember可能最适合从事大中型项目的团队。它非常有见地，所以如果你喜欢自己推出，它可能不适合你。</p>
+<h3 id="React"><a href="#React" class="headerlink" title="React"></a><strong>React</strong></h3><p><small>由Facebook在2013年发布</small><br><strong>简介</strong>：Backbone，Angular和Ember通常被称为客户端MVC框架。但是，这并不能准确描述React。 Facebook说，React更多的是MVC中的V–视图部分。 React模式的其余部分很灵活，但Facebook使用Flux架构来填充它，这是一种最适合大型应用程序的模式。实际上，普通的旧React对很多应用程序来说都会很好。<br>它在被缩小和压缩以供生产时以120KB进入，使其成为文件大小最大的框架，尽管它没有任何所需的依赖关系。使用React的站点包括：Facebook，Instagram（基本上是一个大型的React应用程序），Flipboard，BBC和Netflix。</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>它速度非常快。</li>
+<li>它很容易学习。Angular和Ember都有很多所谓的“领域特定语言”。这是为这些框架创建相对陡峭的学习曲线的一部分。React的显著减少，使具有JavaScript体验的开发人员更容易掌握。</li>
+<li>一个基于组件的方法，对于那些熟悉创建CommonJS模块的人来说很自然。每个React组件代表UI的一部分，一个表单元素，一个页面标题等。这些组件可以被混合和匹配，从而允许最大程度地重用代码。</li>
+<li>React的一个非常酷的好处是您可以使用它来创建移动应用程序。没错，React Native允许开发人员学习一次React，并使用它来编写Web和iOS应用程序（Android即将推出）。</li>
+<li>React也支持服务器端渲染。这对解决自开始以来困扰客户端框架的性能和搜索引擎优化问题有很长的路要走。一旦服务器呈现内容发生初始页面加载，客户端的React就会根据用户交互接管并更新UI。在服务器上完成第一次渲染消除了搜索引擎无法为网站编制索引并提供更快页面加载的风险。</li>
+</ul>
+<p><strong>担忧</strong>：</p>
+<ul>
+<li>React最具争议的方面是缺少模板和使用组件来生成UI。这基本上意味着你的HTML存在于你的JavaScript中。</li>
+<li>对于很多开发者来说，这似乎是错误的。当他们意识到与特定组件有关的所有内容都位于同一个位置时，许多人就会到场。这些优势变得清晰 - 调试更容易，代码重用和关注点分离。</li>
+</ul>
+<p><strong>总结</strong>：React在炒作中发布。几乎任何规模的项目都可以成功地使用React，并且在解决最频繁的批评时，它擅长交付我们在框架中寻找的所有关键事项。 React Native也看起来像是游戏改变者。</p>
+<p>翻译自：<a href="https://www.lullabot.com/articles/choosing-the-right-javascript-framework-for-the-job" target="_blank" rel="noopener">https://www.lullabot.com/articles/choosing-the-right-javascript-framework-for-the-job</a></p>
+<p>背景知识：如今，我们使用的是 JavaScript 框架和单页面应用，但是我们来看看发展历史。</p>
+<p>在传统的服务器渲染网络应用中，客户端计算机向网页发出请求。服务器创建一个网页并返回给客户端。最后，客户端加载新的网页并显示信息。如果用户与网页互动，例如通过提交表格添加或删除内容，整个过程又循环一遍。客户端将发出另一个请求，服务器返回全新的网页，客户端加载网页并再次呈现给用户。</p>
+<p>在 2000 年代中期，这基本是互联网通信的唯一方式。信息存储在服务器上，客户端请求数据并刷新和显示页面。每个新的页面请求都会重复这一过程。</p>
+<p>在上世纪 90 年代末，Microsoft Outlook 团队向 Internet Explorer 添加了 XMLHTTP 组件，并构建了网络版 Outlook 邮箱客户端。之后，其他浏览器利用这些代码并创建了 XMLHttpRequest。这使得浏览器能够从 Javascript 发出 HTTP 请求，并更新当前网页的某个部分，而不用从服务器上获取整个网页。在用户继续操作时，用户界面可以异步更新，而不用采用同步模式并等待获取整个页面。交换的大部分数据采用的都是 XML 格式。</p>
+<p>创建框架是因为项目需要相同的初始组件，以前开发者总是执行相同的任务。框架能通过提供模板、URL管理和事件处理来控制应用程序的数据，它们代表了MVC中的视图和控制器。有些框架可以自定义元素（Angular和Ember）；在内存中创建一个Virtual DOM，并对此内存结构执行所有必要的更新和操作，再将VirtualDOM转换为真实的DOM并替换现有内容；有些是同时存在于客户端和服务器的全栈框架，能够处理数据流式传输等操作。</p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Backbone-js"><span class="toc-text">Backbone.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS"><span class="toc-text">AngularJS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ember"><span class="toc-text">Ember</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React"><span class="toc-text">React</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/03/02/hexo问题集锦/" class="prev">&larr; Prev post hexo问题集锦</a>
+  
+
+  
+
+  
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="next">Next post hexo插入图片解决方法 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

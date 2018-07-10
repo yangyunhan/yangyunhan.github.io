@@ -1,0 +1,445 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="背景：在街区地图项目中，配置webpack的时候，用到import、require、exports。比较茫然。。。
+&emsp;&emsp;为什么模块很重要？可以方便的调用不同功能的模块并按需加载，减少命名冲突和文件依赖数量与顺序的问题。
+&emsp;&emsp;但是如果没有规范，使用起来就很麻烦，所以产生了规范。JS的模块规范有CommonJS，AMD，CMD。
+
+CommonJS
+
+&e...">
+  
+  <title>JS模块化编程之模块规范 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/03/08/js知识点复习/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        js知识点复习
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/03/05/js异步处理/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        js异步处理
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>JS模块化编程之模块规范</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-06</span>
+      
+        <span id = "post-title-updated">Updated at 2018-03-28</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill-calculate/">skill calculate</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/js-模块化/">js 模块化</a>
+      
+      </span>
+      
+    </p>
+    
+    <p><strong>背景</strong>：在街区地图项目中，配置webpack的时候，用到import、require、exports。比较茫然。。。</p>
+<p>&emsp;&emsp;为什么模块很重要？可以方便的调用不同功能的模块并按需加载，减少命名冲突和文件依赖数量与顺序的问题。</p>
+<p>&emsp;&emsp;但是如果没有规范，使用起来就很麻烦，所以产生了规范。JS的模块规范有CommonJS，AMD，CMD。</p>
+<ul>
+<li><strong>CommonJS</strong></li>
+</ul>
+<p>&emsp;&emsp;CommonJS要构建一个类似python、Java的标准库。当Ryan Dahl创造node.js项目将之用于服务器开发时，就需要模块化编程了。NodeJS是CommonJS规范的实现，webpack也是以CommonJS的形式书写的。</p>
+<p>&emsp;&emsp;CommonJS定义的模块分为</p>
+<ul>
+<li><p>require: 模块引用，引入外部模块</p>
+</li>
+<li><p>exports: 模块定义，导出当前模块的方法或变量，唯一的导出口</p>
+</li>
+<li><p>module: 模块标识，模块本身。</p>
+</li>
+</ul>
+<p>&emsp;&emsp;主文件直接写代码。浏览器想要兼容CommonJS，就要有四个NodeJS环境变量：1.module；2.exports；3.require；4.global</p>
+<p>&emsp;&emsp;示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* module add.js*/</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123; <span class="keyword">return</span> a + b; &#125;;</div><div class="line"></div><div class="line"><span class="comment">/* main.js */</span></div><div class="line"><span class="keyword">var</span> &#123;add&#125; = <span class="built_in">require</span>(<span class="string">'./math'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'1 + 2 = '</span> + add(<span class="number">1</span>,<span class="number">2</span>));</div><div class="line"></div><div class="line"><span class="comment">/*自己实现模块的导出*/</span></div><div class="line"><span class="keyword">var</span> <span class="built_in">module</span> = &#123;</div><div class="line">    <span class="attr">exports</span>: &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">module, exports</span>) </span>&#123;</div><div class="line">    exports.multiply = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123; <span class="keyword">return</span> n * <span class="number">1000</span> &#125;;</div><div class="line">&#125;(<span class="built_in">module</span>, <span class="built_in">module</span>.exports));</div><div class="line"></div><div class="line"><span class="keyword">var</span> f = <span class="built_in">module</span>.exports.multiply;</div><div class="line">f(<span class="number">5</span>) <span class="comment">/* 5000 */</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;Browserify是常用的CommonJS格式转化工具(不能在浏览器中操作)，可将CommonJS转化为浏览器可用的格式。通过将模块放入一个数组，每个模块对象里，有模块编号id，模块源码source，模块依赖deps。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>:<span class="number">1</span>,</div><div class="line">        <span class="attr">"source"</span>:<span class="string">"module.exports = function(x) &#123;\n  console.log(x);\n&#125;;"</span>,</div><div class="line">        <span class="attr">"deps"</span>:&#123;&#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>:<span class="number">2</span>,</div><div class="line">        <span class="attr">"source"</span>:<span class="string">"var foo = require(\"./foo\");\nfoo(\"Hi\");"</span>,</div><div class="line">        <span class="attr">"deps"</span>:&#123;<span class="attr">"./foo"</span>:<span class="number">1</span>&#125;,</div><div class="line">        <span class="attr">"entry"</span>:<span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>AMD</strong></li>
+</ul>
+<p>&emsp;&emsp;CommonJS规范不适用于浏览器环境，并且require是同步的。所以如果加载模块的时间很长，整个应用就会停在那里。因为模块都在服务器端（不像服务器端，模块都在本地硬盘，读取速度是硬盘的读取速度），等待时间取决于网速的快慢。所以，浏览器端的模块不能采用同步加载（synchronous），只能异步加载（asynchronous），所以出现了AMD，为前端JS的表现制定规范。</p>
+<p>&emsp;&emsp;采用require()语句加载模块，要求两个参数，加载模块的数组和加载成功的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">define([<span class="string">'./a'</span>, <span class="string">'./b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;  </div><div class="line">        <span class="comment">// 依赖必须一开始就写好   </span></div><div class="line">        a.add1() </div><div class="line">        ...  </div><div class="line">        b.add2() </div><div class="line">        ...</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;AMD比较适合浏览器环境，有两个JavaScript库实现AMD规范：require.js和curl.js。</p>
+<p>&emsp;&emsp;原来多个文件按照顺序加载的时候会停止渲染或者依赖关系复杂，代码维护和编写困难。require.js就是为了解决这两个问题。实现js文件的异步加载，和管理模块之间的依赖性。</p>
+<p>&emsp;&emsp;加载这个文件，也可能造成网页失去响应。解决办法有两个，一个是把它放在网页底部加载，另一个是写成下面这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/require.js"</span> <span class="attr">defer</span> <span class="attr">async</span>=<span class="string">"true"</span> &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;async属性表明这个文件需要异步加载，避免网页失去响应。IE不支持这个属性，只支持defer，所以把defer也写上。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/require.js"</span> <span class="attr">data-main</span>=<span class="string">"js/main"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;data-main属性的作用是，指定网页程序的主模块。在上例中，就是js目录下面的main.js，这个文件会第一个被require.js加载。由于require.js默认的文件后缀名是js，所以可以把main.js简写成main。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>, <span class="string">'underscore'</span>, <span class="string">'backbone'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">$, _, Backbone</span>)</span>&#123;</div><div class="line">　　      </div><div class="line">　　 &#125;);</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;require.js会先加载jQuery、underscore和backbone，然后再运行回调函数。主模块的代码就写在回调函数中。</p>
+<p>&emsp;&emsp;使用require.config()方法，我们可以对模块的加载行为进行自定义。require.config()就写在主模块（main.js）的头部。参数就是一个对象，这个对象的paths属性指定各个模块的加载路径(逐一加载，基于基目录加载，或网址加载)。require还提供了优化工具，把多个模块合并到一个文件中以减少http请求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    <span class="built_in">require</span>.config(&#123;</div><div class="line">        <span class="attr">paths</span>: &#123;</div><div class="line">            <span class="string">"jquery"</span>: <span class="string">"jquery.min"</span>,</div><div class="line">　　　　  <span class="string">"underscore"</span>: <span class="string">"underscore.min"</span>,</div><div class="line">　　　　　<span class="string">"backbone"</span>: <span class="string">"backbone.min"</span></div><div class="line">　　&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;要采用define()声明和定义模块，如果需要依赖其他模块，则第一个参数为数组，并把依赖当作形参传到函数中。加载方式需要require()，参数是依赖模块数组和函数。</p>
+<p>&emsp;&emsp;很多库不符合AMD规范，require.js也可以加载。但是要先定义它们的特征。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config(&#123;</div><div class="line">    <span class="attr">shim</span>: &#123;</div><div class="line">        <span class="string">'underscore'</span>:&#123;</div><div class="line">            <span class="attr">exports</span>: <span class="string">'_'</span></div><div class="line">　　　　　&#125;,</div><div class="line">　　　　　<span class="string">'backbone'</span>: &#123;</div><div class="line">　　　　　　　<span class="attr">deps</span>: [<span class="string">'underscore'</span>, <span class="string">'jquery'</span>],</div><div class="line">　　　　　　　<span class="attr">exports</span>: <span class="string">'Backbone'</span></div><div class="line">　　　　　&#125;</div><div class="line">　　&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;exports值是输出变量名（外部调用的名称），deps是模块的依赖性。</p>
+<p>&emsp;&emsp;提供插件实现特定功能。如domready插件，让回调函数在DOM加载完成后运行；text和image插件，允许加载文本和图片；json和mdown插件，允许加载json文件和markdown文件。</p>
+<p>如何解决RequireJS模块的循环依赖问题？</p>
+<p>&emsp;&emsp;循环依赖就是模块a依赖b，b依赖a，当b模块被调用时，传递给它的a是undefined。b可以在a模块被引入之后通过require(a)来获取a。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*Inside b.js:*/</span></div><div class="line">define([<span class="string">"require"</span>, <span class="string">"a"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require, a</span>) </span>&#123;</div><div class="line">    <span class="comment">/*"a" in this case will be null if a also asked for b, a circular dependency.*/</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">title</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">require</span>(<span class="string">"a"</span>).doSomething();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;或者使用CommonJS模块的写法，使用exports创建一个空对象导出模块，可以立即被其他模块使用。适合用于导出的模块是对象而不是一个函数。</p>
+<p>&emsp;&emsp;用依赖数组的时候，将export当作依赖模块：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*Inside b.js:*/</span></div><div class="line">define([<span class="string">'a'</span>, <span class="string">'exports'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, exports</span>) </span>&#123;</div><div class="line">     <span class="comment">//If "a" has used exports, then we have a real object reference here. However, we cannot use any of a's properties until after b returns a value.</span></div><div class="line">     exports.foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">         <span class="keyword">return</span> a.bar();</div><div class="line">     &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>CMD</p>
+<p>  &emsp;&emsp;CMD的语法和AMD差不多，也是异步加载模块，seajs用这个规范写的。写起来是这样的：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span> (<span class="params">requie, exports, module</span>) </span>&#123; </div><div class="line">    <span class="comment">//依赖可以就近书写 </span></div><div class="line">    <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>); </div><div class="line">    a.add1(); </div><div class="line">    ... </div><div class="line">    if (status) &#123; </div><div class="line">        <span class="keyword">var</span> b = requie(<span class="string">'./b'</span>); </div><div class="line">        b.add2(); </div><div class="line">    &#125; </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>AMD与CMD最大的区别是对依赖模块的执行时机处理不同，AMD依赖前置，js可以方便的知道依赖模块是谁，立即加载；CMD就近依赖；</p>
+</li>
+<li><p>ES6中的module</p>
+<p>  &emsp;&emsp;用export导出模块接口。写法是export {b}，不可以只写export 1/a。</p>
+<p>  &emsp;&emsp;用import导入模块，必须放在文件的最开始。</p>
+<p>  &emsp;&emsp;require是运行时的，import是编译时的，只选择import的接口进行编译，在性能上比require好很多；require是赋值过程，import是结构过程。import语法会被转码为require去执行。</p>
+</li>
+<li><p>参考博客<br><a href="https://www.cnblogs.com/terrylin/p/3347073.html" target="_blank" rel="noopener">https://www.cnblogs.com/terrylin/p/3347073.html</a><br><a href="https://www.cnblogs.com/chenguangliang/p/5856701.html" target="_blank" rel="noopener">https://www.cnblogs.com/chenguangliang/p/5856701.html</a><br><a href="https://www.jianshu.com/p/09ffac7a3b2c" target="_blank" rel="noopener">https://www.jianshu.com/p/09ffac7a3b2c</a><br><a href="https://blog.csdn.net/u014168594/article/details/77099315" target="_blank" rel="noopener">https://blog.csdn.net/u014168594/article/details/77099315</a></p>
+</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/03/08/js知识点复习/" class="prev">&larr; Prev post js知识点复习</a>
+  
+
+  
+
+  
+    <a href="/2018/03/05/js异步处理/" class="next">Next post js异步处理 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

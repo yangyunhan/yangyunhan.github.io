@@ -1,0 +1,433 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。
+1、css...">
+  
+  <title>做网站的那些tips [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2017/07/18/小公举/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        小公举
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2017/06/01/css的那些事/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        css的那些事
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>做网站的那些tips</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2017-07-08</span>
+      
+        <span id = "post-title-updated">Updated at 2018-03-12</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/conclusion/">conclusion</a>
+      
+      </span>
+      
+    </p>
+    
+    <p>把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。</p>
+<p>1、css:white-space:如何处理元素内的空白<br>可能的值：<br>normal：默认，空白被忽略<br>pre：空白被保留<br>nowrap：文本不换行，在同一行继续，直到遇到<br>标签<br>pre-wrap：保留空白符序列，正常换行<br>pre-line：合并空白符序列，但保留换行符<br>inherit：从父元素继承white-space的值</p>
+<p>应用：与width、text-overflow、overflow一起使文本在一行内显示，超出则加省略号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;如果描述超出100像素，则会隐藏，添加省略号&lt;/p&gt;</div><div class="line">p&#123;width: 100px;overflow: hidden;white-space: nowrap;text-overflow:ellopsis;&#125;</div></pre></td></tr></table></figure></p>
+<p>支持低版本的opera的办法：o-text-overflow: ellipsis;</p>
+<p>关联：word-wrap:允许长单词或URL地址换行到下一行<br>可能的值：<br>normal：只在允许的断字点换行（浏览器保持默认处理）<br>break-word：在长单词或URL地址内部进行换行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p.test&#123;word-wrap:break-word;&#125;</div></pre></td></tr></table></figure></p>
+<p>注意点：</p>
+<ul>
+<li>（IE浏览器）连续的英文字符和阿拉伯数字,使用word-wrap : break-word;或者word-break:break-all;实现强制断行</li>
+<li>（Firefox浏览器）连续的英文字符和阿拉伯数字的断行,Firefox的所有版本的没有解决这个问题,只有让超出边界的字符隐藏或者给容器添加滚动条 .a{word-break:break-all; width:200px; overflow:auto;}.(Firefox浏览器)使用 table-layout:fixed;强制table的宽度,内层td,th采用word- break : break-all;或者word-wrap : break-word ;换行，使用overflow:hidden;隐藏超出内容，这里overflow:auto;无法起作用</li>
+</ul>
+<p>2、transtision:过渡，复合属性,不需要javascript就可以实现简单的动画效果，包含：</p>
+<ul>
+<li>transition-property：过渡属性，默认为all</li>
+<li>transition-duration：过渡持续时间，默认为0s，必需值不能为0，与delay一样是时间，只有一个时间时，是duration</li>
+<li>transition-timing-function：过渡函数，默认为ease函数</li>
+<li>transition-delay：过渡延迟时间，默认为0s<br>注：IE9不支持，safari3.1-6\IOS3.2-6.1\android2.1-4.3需要添加-webkit前缀<br>更多的设置和了解，参考博客：<a href="http://www.cnblogs.com/xiaohuochai/p/5347930.html" target="_blank" rel="noopener">http://www.cnblogs.com/xiaohuochai/p/5347930.html</a></li>
+</ul>
+<p>3、z-index:元素的堆叠顺序，越高与用户越近，在定位元素上奏效（position:absolute）</p>
+<p>4、标签<strike></strike>给文本加删除线,缩写为<s></s>，html5中已经不支持这个标签了。</p>
+<p>5、图片不显示，可能是css文件中的路径出错了”../images/…”</p>
+<p>6、css3:transform:改变，转换，有x、y之分。属性包含：</p>
+<ul>
+<li>transform:rotate()：旋转，单位是”deg”-度。</li>
+<li>transform:skew()：倾斜，单位相同。</li>
+<li>transform:scale()：正值放大，负值缩小，值是缩放比例值。</li>
+<li>transform:translate()：位移，单位是px。</li>
+</ul>
+<p>7、数据类型</p>
+<ul>
+<li>null:只有一个值的数据类型，表示一个空对象指针。typeof(null):object.如果一个变量准备用于保存对象，那么该变量初始化为null。undefined值派生自null，所以<code>alert(null == undefined);</code>//true</li>
+<li>undefined:只有一个值的数据类型，使用var声明变量但未对其加以初始化时，该变量的值是undefined。输出未初始化的变量，返回undefined，输出未声明的变量会产生错误。但对两种变量都可以做typeof()检验，且检验结果一样。</li>
+</ul>
+<p>8、mouseover:jQuery的事件，鼠标进入某个元素或其子元素时触发。<br>mouseout:jQuery事件，鼠标在离开某个元素或其子元素时触发。<br>onmouseover:html属性<br>hover:相当于mouseenter+mouseleave，鼠标只有进入到某个元素时才触发。</p>
+<p>9、javaScript的setInterval():设定每隔指定的时间就执行对应的函数或代码，属于全局对象window。<br><code>setInterval(code,milliseconds[,args...])</code>参数：</p>
+<ul>
+<li>code:需要执行的函数或js代码</li>
+<li>milliseconds:执行函数或代码的间隔时间，单位为毫秒</li>
+<li>args:用于给被调用的函数传递参数，参数可以有多个<br>该函数将返回一个标识符ID，是唯一的。<br>参数code可以是1）一段js脚本；2）一个函数声明（可选择带或不带参数）。<br>该函数是在全局作用域下执行的，所以不能调用局部变量。如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//错误用法，setInterval的定时代码无法调用局部变量site</div><div class="line">function foo()&#123;</div><div class="line">	var site = &quot;CodePlayer&quot;;</div><div class="line">	setInterval(&apos;alert(site);&apos;,5000);</div><div class="line">	&#125;</div><div class="line">foo();</div><div class="line"></div><div class="line">var x = 15;</div><div class="line">function bar()&#123;</div><div class="line">	var x = 18;</div><div class="line">	setInterval(&apos;alert(x);&apos;,5000);//15</div><div class="line">	&#125;</div><div class="line">//由于setInterval的定时代码是在全局作用域下执行的，因此这里的x为15</div><div class="line">bar();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>但是可以通过一些方法解决上述作用域问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">//省略var修饰符，使用全局变量代替局部变量</div><div class="line">function foo1()&#123;</div><div class="line">	site = &quot;CodePlayer 1&quot;;</div><div class="line">	setInterval(&apos;alert(site);&apos;,5000);</div><div class="line">	&#125;</div><div class="line">foo1();</div><div class="line"></div><div class="line">//不使用变量，直接传递变量的值</div><div class="line">function foo2()&#123;</div><div class="line">	var site = &quot;CodePlayer 2&quot;;</div><div class="line">	setInterval(&apos;alert(&quot;&apos; + site + &apos;&quot;);&apos;,5000);</div><div class="line">	&#125;</div><div class="line">foo2();</div><div class="line"></div><div class="line">//延长作用域链，使其能够访问到该函数作用域</div><div class="line">function foo3()&#123;</div><div class="line">	var site = &quot;CodePlayer 3&quot;;</div><div class="line">	setInterval(function()&#123;</div><div class="line">		alert(site);</div><div class="line">		&#125;,5000);</div><div class="line">		&#125;</div><div class="line">foo3();</div><div class="line"></div><div class="line">//调用指定的函数，并给函数传递相应的参数</div><div class="line">function callback(msg)&#123;</div><div class="line">	alert(msg);</div><div class="line">	&#125;</div><div class="line">function foo4()&#123;</div><div class="line">	var site = &quot;CodePlayer 4&quot;;</div><div class="line">	setInterval(callback, 5000, site);</div><div class="line">	&#125;</div><div class="line">foo4();</div></pre></td></tr></table></figure></p>
+<p>即该函数的第一个参数不能是布局变量。</p>
+<p>clearInterval()则是取消自动执行函数或代码，接收一个参数，是setInterval()返回的标识符ID，所以在设置setInterval时，可以指定一个变量来接受返回值（var int=self.setInterval(“clock()”,50)），该变量可直接作为clearInterval()的参数。<br>注：该知识点来自于：<a href="http://www.365mini.com/page/javascript-setinterval.htm" target="_blank" rel="noopener">http://www.365mini.com/page/javascript-setinterval.htm</a></p>
+<p>10、<code>background:url(&quot;../images/hot.gif&quot;) no-repeat scroll 0 0 transparent</code><br>background-attachment:scroll|fixed|inherit<br>background-position:背景图片的移动方向，正值向右，负值向左，第一个数字是水平方向，第二个数字是垂直方向。</p>
+<p>11、css的border与outline<br>border:元素主要的边框属性，包括border-width,border-style,border-color，统一设置各边框的格式。border-style的属性有soliddotted(实线)，dashed(点状)，double(双线)，默认值为none；border-width只有当border-style不为none时才有效，不能设置为负值，值可以是thin,medium,thick，也可以是数值，默认为medium；border-color只有当border-style的值不为none,hidden，默认值是transparent。<br>outline:轮廓。在元素边框外围绘制的一条包围元素的线，包括outline-color,outline-style,outline-width，不占页面空间，也不一定是矩形。除了IE以外的浏览器都直接支持outline。只有规定了!DOCUMENT之后的IE8以上版本的浏览器才支持outline。取值类型和默认值与border一致，outline-width与outline-color只有当outline-style不为none时才有效。<br>两者的区别：outline不占空间，不会增加额外的width或者height；outline有可能是非矩形的。</p>
+<p>12、宽度值width:元素宽；innerWidth：包含padding的宽度；outerWidth：包含padding+border的宽度；outerWidth(true)包含padding+border+margin的宽度。</p>
+<p>13、css:filter与css3:filter<br>css:filter滤镜效果，只能用在html控件元素上，不能使用div的id，class定义。IE4.0以上支持的滤镜效果属性有:Alpha,Blru,Chroma,DropShadow,FlipH,FlipV,Glow,Grayscale,Invert,Light,Mask,Shadow,Wave,Xray.部分浏览器不支持，使用时需查看。<br>css3:filter主要运用在图片上，实现一些特效。默认值是none，可选值有grayscale,sepia,saturate,hue-rotate,invert,opacity,brightness,contrast,blur,drop-shadow。只有webkit支持，且只有webkit nightly版本和Chrome 18.0.976以上的版本才支持。</p>
+<p>14、浏览器内核种类整理：</p>
+<ul>
+<li>Trident代表产品是IE。Trident(又称为MSHTML)，是微软开发的一种排版引擎。使用Trident渲染引擎的浏览器包括：IE，遨游，世界之窗，Avant，Netscape 8，NetCaptor，Sleipnir，GOSURF，GreenBrowser和KKman等。</li>
+<li>Gecko内核代表产品Mozilla FirefoxGecko是一套开放源代码的、以C++编写的网页排版引擎。浏览器有Firefox,Netscape6至9。</li>
+<li>Webkit内核代表产品Safari,Chrome.webkit是一个开源项目，包含了来自KDE项目和苹果公司的一些组件，主要用于Mac OS系统，特点在于源码结构清晰、渲染速度极快。缺点是对网页代码的兼容性不高，导致一些编写不标准的网页无法正常显示。</li>
+<li>Presto内核代表产品OperaPresto是由Opera Software开发的浏览器排版引擎，供Opera 7.0以上使用。</li>
+</ul>
+<p>15、jQuery中绑定事件有五种方法，以click事件为例<br>a)target.click(function(){});<br>b)target.bind(“click”,function(){});<br>c)target.live(“click”,function(){});<br>d)$(selector).delegate(childSelector,”click”,data,function(){});<br>e)$(selector).on(event,childSelector,data,function)<br>a方法和普通js的用法差不多，只是少了一个on。live的基本功能同bind一样，只是bind方法只能给当前存在的元素绑定事件，对于事后采用js等方式新生成的元素无效，live方法弥补了bind方法的缺陷，可以对后生成的元素也可以绑定相应的事件。live方法的原因归结在“事件委托”上，其处理机制是把时间绑定在DOM树的根节点上，而不是直接绑定在某个元素上。由于只有在事件发生的时候，live方法才会去检测绑定事件的对象是否存在，所以live方法可以实现后来新增的元素也可实现事件的绑定。相比之下，bind会在事件在绑定阶段就会判断绑定事件的元素是否存在，而且只针对当前元素进行绑定，而不是绑定到父节点上。<br>根据上面的分析，live的好处真是很大，那么为什么还要使用bind方法呢？之所以jquery要保留bind方法而不是采用live方法去替代bind，也是因为live在某些情况下是不能够完全替代bind的。主要的不同如下：<br>（1）bind方法可以绑定任何JavaScript的事件，而live方法在jQuery1.3的时候只支持click, dblclick, keydown, keypress, keyup,mousedown, mousemove, mouseout, mouseover, 和 mouseup.在jQuery 1.4.1中，甚至也支持 focus 和 blue 事件了（映射到更合适，并且可以冒泡的focusin和focusout上）。另外，在jQuery 1.4.1中，也能支持hover（映射到”mouseenter mouseleave”）。<br>（2）live()并不完全支持通过DOM遍历的方法找到的元素。取而代之的是，应当总是在一个选择器后面直接使用.live()方法。<br>（3）当一个元素采用live方法进行事件的绑定的时候，如果想阻止事件的传递或冒泡，就要在函数中return false,仅仅调用stopPropagation()是无法实现阻止事件的传递或者冒泡的<br>jQuery1.9版本以下支持live方法，jQuery1.9及其以上版本删除了此方法，用on()方法来代替。<br>d)delegate()为指定元素（被选元素的子元素）添加一个或多个事件处理程序，并规定当这些事发生时运行的函数，使用delegate()方法的事件处理程序适用于当前或未来的元素。使用undelegate()函数删除通过delegate()绑定的事件，适用于jQuery1.4.2及其以上版本。<br>e)on()为指定的元素，添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。使用on()方法的事件处理程序适用于当前或未来的元素。适用于jquery1.7及其以上版本，jquery1.7版本出现之后用于替代bind(),live()绑定事件方式。</p>
+<p>16、如果选择器的函数不支持，可能是一开始引入的jquery文件中不包含对函数的支持。</p>
+<p>17、<a>标签的可选属性rel和rev表示源文件与目标文档之间正式的关系和方向。<br>rel:源文件到目标文件的关系<br>rev:目标文档到源文档的关系<br>可同时使用</a></p>
+<p>18、clear：清除浮动，不允许元素某一侧或两侧有浮动对象。一般都写both，left,right值用来实现垂直环绕布局。更详细的解释和例子参考：<br><a href="http://www.zhangxinxu.com/wordpress/2014/06/understand-css-clear-left-right-and-use/" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/2014/06/understand-css-clear-left-right-and-use/</a></p>
+<p>19、jQuery.stop():停止当前匹配元素上正在运行的动画，默认停止当前正在运行的动画。参数：<br>queueName:需要停止动画的队列名称，默认为”fx”；<br>clearQueue:是否清空队列中的所有动画，默认值为false;<br>jumpToEnd:指示是否直接完成当前动画，默认值为false。<br>详情参见：<a href="http://www.365mini.com/page/jquery-stop.htm" target="_blank" rel="noopener">http://www.365mini.com/page/jquery-stop.htm</a></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2017/07/18/小公举/" class="prev">&larr; Prev post 小公举</a>
+  
+
+  
+
+  
+    <a href="/2017/06/01/css的那些事/" class="next">Next post css的那些事 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

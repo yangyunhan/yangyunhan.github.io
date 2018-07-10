@@ -1,0 +1,571 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="理论知识：React
+React的重要特征 ： 组合式模型，声明式特征，数据流经组件的方式。
+
+命令式代码 ： 通过不断控制旋钮来调节温度和告诉汽车我希望达到的温度，由它来为我调节。即我们明确的告诉Javascript做什么，如何做；
+
+声明式代码 ： 不编写所有步骤获得结果，而是声明要完成的操作，JavaScript帮我们执行他。
+
+
+
+React本质 : 只需声明状态和标记，React会...">
+  
+  <title>MyRead loading [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/02/13/hexo插入图片解决方法/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        hexo插入图片解决方法
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/01/13/值得记住的那些markdown语法/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        值得记住的那些markdown语法
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>MyRead loading</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-02-13</span>
+      
+        <span id = "post-title-updated">Updated at 2018-03-23</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/skill/">skill</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/tips/">tips</a>
+      
+      </span>
+      
+    </p>
+    
+    <h2 id="理论知识：React"><a href="#理论知识：React" class="headerlink" title="理论知识：React"></a>理论知识：React</h2><ul>
+<li><p><strong>React的重要特征</strong> ： 组合式模型，声明式特征，数据流经组件的方式。</p>
+<ul>
+<li><p><em>命令式代码</em> ： 通过不断控制旋钮来调节温度和告诉汽车我希望达到的温度，由它来为我调节。即我们明确的告诉Javascript做什么，如何做；</p>
+</li>
+<li><p><em>声明式代码</em> ： 不编写所有步骤获得结果，而是声明要完成的操作，JavaScript帮我们执行他。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>React本质</strong> : 只需声明状态和标记，React会执行命令式工作，使DOM与应用同步，React是声明式的。</p>
+<p>  <small>&emsp;&emsp;之前有用于管理应用状态变化的技术，是使用数据绑定。当应用某处的数据发生变化时，这些变化也会自动反应在应用中的其他方面。但是，应用中拥有该数据的任何部分，都可以更改该数据。随着应用规模增长，这种技术让人很难确定某个位置的数据变更是如何自动而隐式地影响着应用的其他部分。相比之下，React使用更明确的数据管理方式：在组件间向下传递数据，这使跟踪状态变更以及理解它对应用中其他部分造成的影响变得十分容易。称为单向数据流：数据单向从父组件流向子组件。</small></p>
+<p>  &emsp;&emsp;其他框架中的数据绑定：Angular 和 Ember 等前端框架使用双向数据绑定。在双向数据绑定中，数据在整个应用中保持同步，无论是在何处更新的。如果模型更改了数据，数据会在视图中更新。如果用户在视图中更改了数据，数据会在模型中更新。双向数据绑定听起来非常强大，但是会让应用很难判断数据实际上是否更新了，以及是在何处更新的。</p>
+</li>
+</ul>
+<p><img src="/2018/02/13/MyRead-application-loading/react.png" alt="框架图"></p>
+<ul>
+<li><p><strong> 工作原理 </strong> ： 数据位于父组件中，并向下传递给子组件。虽然数据位于父组件中，但是父组件和子组件都可以使用数据。然而，如果必须更新数据的话，则只有父组件应该进行更新。如果子组件需要更改数据，它会将更新的数据发送给父组件，由父组件完成更改。父组件执行更改后，会将更新的数据传递给子组件。</p>
+</li>
+<li><p><strong> 题外话：函数式编程</strong></p>
+<blockquote>
+<p>概念：以函数作为主要载体的编程方式，用函数去拆解、抽象一般的表达式。</p>
+</blockquote>
+<ul>
+<li><p>典型的函数式编程有闭包（保留局部变量不被释放）、高阶函数（函数既可以作为参数又可以作为另一个函数的返回值使用）、柯里化（给定函数的部分参数，生成一个接受其他参数的新函数）、组合（合并多个函数，创造一个新函数）。</p>
+</li>
+<li><p>相关博文：</p>
+<ol>
+<li><a href="http://developer.51cto.com/art/201703/535299.htm" target="_blank" rel="noopener">51CTO</a>;</li>
+<li><a href="https://zhuanlan.zhihu.com/p/21714695" target="_blank" rel="noopener">Starkwang</a>(<small></small></li>
+<li>第二篇博文中涉及知识点<code>slice</code>，<code>splice</code>和<code>split</code>的区分。<a href="https://www.cnblogs.com/mangoWeb/p/3517801.html" target="_blank" rel="noopener">博客园-芒果干</a>)</li>
+</ol>
+</li>
+<li><p>React基于的是大量的函数式编程的技巧。重要的函数式编程有<code>.map()</code>和<code>.filter()</code>方法。</p>
+<ol>
+<li><code>.map()</code>适用于数组，该方法返回新的数组，它没有修改原始数组。</li>
+<li><code>.filter()</code>适用于数组，该方法也返回新的数组，返回通过检验的项目。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>与其他框架的根本区别</strong> ：</p>
+<p>  &emsp;&emsp;React没有使用字符串模板，而是使用JavaScript对象来构建用户界面。React元素是轻量级JavaScript对象，而非实际的DOM节点。使用元素描述页面应该是什么样子，然后交给React来实际操作DOM，甚至可以创建自定义元素，也就是“组件”，利用它们来整齐地封装元素和行为。这些组件（可以重复利用的代码段，最终负责返回要渲染到网页上的HTML）是React的基本单位。</p>
+</li>
+<li><p><strong>ReactDOM</strong> : </p>
+<p>  &emsp;&emsp;React是JavaScript的扩展（即JavaScript库），没有内置在浏览器中。<code>ReactDOM</code>只是使用<code>react</code>库的一种方式。在<code>react</code>中，决定要渲染什么的过程与实际渲染完全脱钩。这种脱钩使我们可以在本地设备的服务器上甚至是在VR环境中渲染事物。</p>
+<ul>
+<li><p><small>Class是HTML属性的名称，一旦浏览器解析完毕，并将其转换为真正的DOM，节点DOM属性名称就是className。而创建React元素时，是在描述DOM节点，而非HTML字符串。</small></p>
+</li>
+<li><p><small>VirtualDOM：创建的不是真正的DOM元素，而只是描述真正DOM节点的对象。在调用<code>React.createElement</code>时，没有在DOM中创建任何东西。只有执行render后，浏览器才会创建真正的DOM元素。</small></p>
+</li>
+<li><p>JSX是JavaScript的语法扩展，它的源代码本质上调用了<code>createElement</code>函数。JSX只能返回一个元素。</p>
+</li>
+</ul>
+</li>
+<li><p><strong> React应用构建步骤 </strong>：</p>
+<ol>
+<li><p><code>npm install -g create-react-app</code>；</p>
+</li>
+<li><p><code>create-react-app contacts</code>(contacts是react应用的名称)；</p>
+</li>
+</ol>
+</li>
+</ul>
+<p><img src="/2018/02/13/MyRead-application-loading/webpack.png" alt="react安装包"></p>
+<pre><code>&lt;small&gt;&amp;emsp;&amp;emsp;react应用创建过程中安装了三个包：`react`、`reactDOM`、`react-scripts`，其中`react-scripts`安装了Babel使我们可以使用最新的JavaScript语法以及JSX。安装webpack进行生成和构建。安装webpack-dev-server，使其具有自动重新加载行为&lt;/small&gt;
+</code></pre><ul>
+<li><p><strong>无状态函数式组件</strong> ： </p>
+<p>  &emsp;&emsp;当所有组件都拥有一个<code>render</code>方法，实际上可以使用常规的旧函数来创建组件，但是不使用this访问组件的props，而是将props作为函数的第一个参数。也省去了render函数，直接使用return。</p>
+<p>  &emsp;&emsp;好处是：</p>
+<pre><code>- 接收props作为参数；
+
+- 返回UI的描述；
+
+- 不存在this关键字，不担心这个函数会被什么环境所调用。
+</code></pre></li>
+<li><p><strong>状态管理</strong> ： </p>
+<p>  &emsp;&emsp;添加状态就是向组件中添加状态属性，其值是一个对象，表示组件的状态。每个键和值表示该组件的一部分特定状态。它能让大脑分开两个重要又复杂的概念：一是组件看起来是什么样，第二，应用当前的状态是什么。由于这种区分UI或应用的外观，只是一个关于应用状态的函数。借助React，只需考虑的是应用的状态是什么，以及UI如何根据状态做出改变。</p>
+<p>  &emsp;&emsp;state放在constructor()外面意味着它是类字段，是对语言做出新更改的提议，暂时不受JavaScript支持，但是在Babel的强大转译功能下，可以使用。</p>
+<p>  &emsp;&emsp;使用React构建UI组件的关键优势之一：如果要重新渲染页面，我们只需考虑更新状态。每次有更新时，我们不需要知道到底是页面的哪个部分变化了。不需要判断如何有效地重新渲染页面。React会对比之前的输出和新的输出，判断哪些改变了，并为我们做出决策。这种判断之前的输出和新的输出之间哪些变化了的流程称为<strong>一致性比较</strong>。</p>
+<p>  &emsp;&emsp;不能直接更新状态，如果直接改变状态的话，React无法知道你的组件状态实际发生了变化。所以用setState方法，可传递一个函数或对象。</p>
+</li>
+<li><p><strong>PropTypes</strong> ： </p>
+<p>  &emsp;&emsp;是一个软件包，使我们能够在一开始就定义想要看到的数据类型，如果不是我们预期的类型，PropTypes将提醒我们。</p>
+</li>
+<li><p><strong>受控组件</strong> ： </p>
+<p>  &emsp;&emsp;React的表单通过React的受控组件来管理，受控组件是渲染表单的组件。表单状态的来源位于组件状态内，而非DOM内。</p>
+<p>  &emsp;&emsp;优势：</p>
+<ul>
+<li><p>支持即时输入验证；</p>
+</li>
+<li><p>它们允许你有条件地禁用或启用表单按钮；</p>
+</li>
+<li><p>它们限制了输入的格式；</p>
+</li>
+</ul>
+</li>
+<li><p><strong>对象解构</strong> ：</p>
+<p>  &emsp;&emsp;render方法经常访问状态对象和属性对象。因为属性和状态只是JavaScript对象，可以用ES6功能将它们拆分为单个变量，而不是每次都将他们当作<code>this.state.query</code>和<code>this.props.contacts</code>，这种拆分流程叫做对象解构。</p>
+</li>
+<li><p><strong>获取或管理数据库中的数据</strong> </p>
+<p>  &emsp;&emsp;不能在render方法中发送AJAX请求，因为render方法不能有副作用。它仅用于渲染，不应在render方法中获取数据。它不能发出AJAX请求或执行具有异步性质的任何操作，只能接收props并返回对此UI的描述。所以有了生命周期事件（lifecycle events）的概念，是每个组件具有的特殊方法。允许我们在组件生命的某些时间运行自定义行为。</p>
+<ul>
+<li><p><code>componentWillMount</code> ：在DOM插入之前立即调用；</p>
+</li>
+<li><p><code>componentDidMount</code>：在DOM插入之后立即调用；</p>
+</li>
+<li><p><code>componentWillUnmount</code>: 在组件从DOM移除之前立即调用；</p>
+</li>
+<li><p><code>componentWillReceiveProps</code>： 在组件从即将接收全新的props时调用。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/02/13/MyRead-application-loading/生命周期函数.png" alt="生命周期事件"></p>
+<p><img src="/2018/02/13/MyRead-application-loading/react生命周期.png" alt="位于组件生命周期不同阶段的React生命周期事件列表"></p>
+<ul>
+<li><p><strong>单页面应用(SPA)</strong>：</p>
+<p>  &emsp;&emsp;浏览器不需要向服务器请求新页面，而由JavaScript处理页面之间的转换。所以服务器只发送一个初始页面。React Router是使用React构建单页面应用的一个工具，是React库。</p>
+<p>  &emsp;&emsp;单页面应用可以有多种工作方式。单页面应用的一种加载方式是一次性下载整个网站的内容。这样，当你浏览网站时，一切内容已经出现在浏览器中，不需要刷新页面。单页面应用的另一种工作方式是下载渲染用户请求的页面所需的所有内容。当用户浏览到新页面时，仅对请求的内容发出异步 JavaScript 请求。</p>
+<p>  &emsp;&emsp;优质单页面应用的另一个关键因素是由 URL 控制页面内容。单页面应用互动性非常高，用户希望能够仅使用 URL 就能回到特定的状态。为何这一点很重要？Bookmarkability（书签功能，很确定的是这还不是一个单词）！当你将网站添加到书签中，该书签仅仅是 URL，并没有记录该页面的状态。</p>
+<p>  &emsp;&emsp;安装命令<code>npm install --save react-router-dom</code></p>
+<p>  &emsp;&emsp;需要组件：</p>
+<ul>
+<li><p><strong>BrowserRouter</strong>：监听URL的变化，当URL变更时，它使浏览器显示相应的页面。将<code>&lt;BrowserRouter&gt;&lt;/BrowserRouter&gt;</code>包裹上整个应用。</p>
+<p>&emsp;&emsp;React Router的源码：</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> propTypes = &#123;</div><div class="line">		<span class="attr">basename</span>: PropTypes.string,</div><div class="line">		<span class="attr">forceRefresh</span>: PropTypes.bool,</div><div class="line">		<span class="attr">getUserConfirmation</span>: PropTypes.func,</div><div class="line">		<span class="attr">keyLength</span>: PropTypes.number,</div><div class="line">		<span class="attr">children</span>: PropTypes.node</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	history = createHistory(<span class="keyword">this</span>.props)</div><div class="line"></div><div class="line">	render() &#123;</div><div class="line">		<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Router</span> <span class="attr">history</span>=<span class="string">&#123;this.history&#125;</span> <span class="attr">children</span>=<span class="string">&#123;this.props.children&#125;</span>  /&gt;</span></span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>&amp;emsp;&amp;emsp;当你使用 BrowserRouter 时，其实真正的是在渲染 Router 组件并将向其传递 history 属性。history 来自 [history 库](https://github.com/ReactTraining/history)（也是由 React Training 构建的）。该库的整个目标是抽象化不同环境中的区别，并提供最少的 API 来使你管理历史记录堆、导航、确认导航，并在会话之间保持状态。
+
+
+&amp;emsp;&amp;emsp;简而言之，当你使用 BrowserRouter 时，你是在创建 history 对象，该对象将监听 URL 中的变化，并使你的应用知道这些变化。
+
+
+- **Link**: 使用户能够在应用中进行导航。当用户点击[Link](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js)组件时，它会通知BrowserRouter，使它更新URL，它还具备可访问性。使用键盘在应用中导航，仍可以正常工作。右键打开新窗口的功能也仍然有用。需要一个to属性，使用真实的URL。to属性可以是简单的字符串，如
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=<span class="string">"/about"</span>&gt;About&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
+<pre><code>&amp;emsp;&amp;emsp;链接有时候需要稍微复杂下，而不仅仅只是个字符串。例如，可以传递查询参数或链接到页面的特定部分。如果要将状态传递给新的路由，该怎么办？要考虑这些情形，你可以向 Link 的 to 属性传递对象，而不是字符串，如：
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=&#123;&#123;</div><div class="line"><span class="attr">pathname</span>: <span class="string">'/courses'</span>,</div><div class="line"><span class="attr">search</span>: <span class="string">'?sort=name'</span>,</div><div class="line"><span class="attr">hash</span>: <span class="string">'#the-hash'</span>,</div><div class="line"><span class="attr">state</span>: &#123; <span class="attr">fromDashboard</span>: <span class="literal">true</span> &#125;</div><div class="line">&#125;&#125;&gt;</div><div class="line">Courses</div><div class="line">&lt;<span class="regexp">/Link&gt;</span></div></pre></td></tr></table></figure>
+<pre><code>- **Route**： 接受一个路径，匹配（也可能不匹配）当前的URL，如果匹配则Route渲染一些UI，不匹配则不渲染。属性path、render（给组件添加属性）或component。完全路径匹配在path前加exact，否则是不完全匹配。
+
+- SPA架构总结：[戴嘉华](https://segmentfault.com/a/1190000000607661)
+</code></pre><h4 id="实践应用：图书跟踪应用，代码。"><a href="#实践应用：图书跟踪应用，代码。" class="headerlink" title="实践应用：图书跟踪应用，代码。"></a>实践应用：图书跟踪应用，<a href="https://github.com/yangyunhan/Myreads" target="_blank" rel="noopener">代码</a>。</h4><ul>
+<li><p><strong>export</strong> : 导出函数、模块语法。</p>
+<p>  &emsp;&emsp;相关博客：<a href="https://www.cnblogs.com/libin-1/p/7127481.html" target="_blank" rel="noopener">最骚的就是你</a></p>
+</li>
+<li><p><strong>Array.prototype.slice.call(arguments)</strong>:</p>
+<p>  &emsp;&emsp;将具有length属性的对象转化成数组，除了IE下的节点集合。</p>
+<p>  &emsp;&emsp;相关博文<a href="https://www.cnblogs.com/littledu/archive/2012/05/19/2508672.html" target="_blank" rel="noopener">肥杜</a></p>
+</li>
+<li><p><strong>js中的prototype</strong>：</p>
+<p>  &emsp;&emsp;返回对象类型原型的引用。相关博文：<a href="http://www.cnblogs.com/yjf512/archive/2011/06/03/2071914.html" target="_blank" rel="noopener">叶剑峰</a></p>
+</li>
+<li><p><strong>call、apply、bind用法</strong>：</p>
+<p>  &emsp;&emsp;用来重定义this这个对象。bind返回的是一个新的函数，必须调用它才会被执行。三个函数的第一个参数都是this，后面的参数：call直接放进去，用逗号隔开；apply所有参数放到一个数组里；bind除了返回的是函数外，其他和call一样。</p>
+<p>  &emsp;&emsp;相关博文：<a href="https://www.cnblogs.com/Shd-Study/archive/2017/03/16/6560808.html" target="_blank" rel="noopener">小莫_yu</a></p>
+</li>
+<li><p><strong>React无状态组件</strong>：</p>
+<p>  &emsp;&emsp;没有状态的时候，使用无状态组件更好。这篇博文<a href="https://www.jianshu.com/p/bf643a328e10" target="_blank" rel="noopener">继续海阔天空</a>中提到了具体的好处：class并无必要；没有this关键字；被迫使用最好的方法；高信噪比；代码自动补全；很容易找出臃肿的组件和低劣的数据结构；便于理解；便于测试；优秀的性能表现。</p>
+</li>
+<li><p><strong>设计react组件样式的四种方式</strong>：</p>
+<ul>
+<li>inline styling：当只是添加一小部分样式属性</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> divStyle = &#123;</div><div class="line">	<span class="attr">margin</span>: <span class="string">'40px'</span>,</div><div class="line">	<span class="attr">border</span>: <span class="string">'5px solid pink'</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> pStyle = &#123;</div><div class="line">	<span class="attr">fontSize</span>: <span class="string">'15px'</span>,</div><div class="line">	<span class="attr">textAlign</span>: <span class="string">'center'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Box = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;divStyle&#125;</span>&gt;</span></span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#123;pStyle&#125;</span>&gt;</span>Get started with inline style<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Box;</div></pre></td></tr></table></figure>
+<pre><code>- [style-component](https://github.com/styled-components/styled-components)：是一个库，当在同一个文件中要重用样式属性的时候。使用前，需要先安装依赖包。
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Div = styled.div<span class="string">`</span></div><div class="line">	margin: 40px;</div><div class="line">	border: 5px outset pink;</div><div class="line">	&amp;:hover &#123;</div><div class="line">		background-color: yellow;</div><div class="line">	&#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Paragraph = styled.p<span class="string">`</span></div><div class="line">	font-size: 15px;</div><div class="line">	text-align: center;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> OutsetBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">Div</span>&gt;</span></span></div><div class="line">		<span class="tag">&lt;<span class="name">Paragraph</span>&gt;</span>Get started with styled-components 💅<span class="tag">&lt;/<span class="name">Paragraph</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">Div</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> OutsetBox;</div></pre></td></tr></table></figure>
+<pre><code>- CSS Modules：当应用更复杂时，与CSS Stylesheet相似，这样更像组件的形式。
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'./DashedBox.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> DashedBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span></span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span> <span class="attr">className</span>=<span class="string">&#123;styles.content&#125;</span>&gt;</span>Get started with CSS Modules style<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DashedBox;</div></pre></td></tr></table></figure>
+<pre><code>- CSS Stylesheet：当应用更复杂时，不能使用简单的方式，比如存在媒体查询时。
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./DottedBox.css'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> DottedBox = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"DottedBox"</span>&gt;</span></span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span> <span class="attr">className</span>=<span class="string">"DottedBox_content"</span>&gt;</span>Get started with CSS styling<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DottedBox;</div></pre></td></tr></table></figure>
+<pre><code>&amp;emsp;&amp;emsp;参考博文[Agata Krzywda](https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822)
+</code></pre><ul>
+<li><p><code>noscript</code>标签：在不支持JavaScript的浏览器中显示替代的内容。Facebook通过此达到更好的用户体验。</p>
+<p>  &emsp;&emsp;博文<a href="https://www.cnblogs.com/iamkun/p/6534447.html" target="_blank" rel="noopener">朱昆的博客</a></p>
+</li>
+<li><p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;</code></p>
+<p>  &emsp;&emsp;<code>shrink-to-fit=no</code>是为了让网页的宽度自动适应手机屏幕的宽度，并在iOS9中起作用。</p>
+<p>  &emsp;&emsp;<code>&lt;meta name=&quot;theme-color&quot; content=&quot;#000000&quot;&gt;</code>设置状态栏的颜色，可使Android版Chrome在访问状态栏时自动变色。</p>
+<p>  &emsp;&emsp;相关博文：<a href="https://www.jianshu.com/p/3ef0124e02e0" target="_blank" rel="noopener">饥人谷_Bayes</a></p>
+</li>
+<li><p><code>&lt;link rel=&quot;shortcut icon&quot;&gt;</code>:规定当前文档与被链接文档之间的关系，只有<code>stylesheet</code>得到了所有浏览器的支持。</p>
+</li>
+<li><p>在获取DOM或HTML元素的时候，常常会碰到取元素或者属性的时候。看到了Attribute和Property的不同和用法。Attribute是DOM节点自带的属性，如id，class，title，align等等。Property是DOM元素作为对象所附加的内容。</p>
+</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理论知识：React"><span class="toc-text">理论知识：React</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实践应用：图书跟踪应用，代码。"><span class="toc-text">实践应用：图书跟踪应用，代码。</span></a></li></ol></li></ol></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/02/13/hexo插入图片解决方法/" class="prev">&larr; Prev post hexo插入图片解决方法</a>
+  
+
+  
+
+  
+    <a href="/2018/01/13/值得记住的那些markdown语法/" class="next">Next post 值得记住的那些markdown语法 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

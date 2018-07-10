@@ -1,0 +1,470 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="DOM特性与DOM属性
+
+attribute（特性）：是我们赋予某个事物的特质或对象，attribute是HTML标签上的特性，它的值只能够是字符串
+property（属性）：是早已存在的不需要外界赋予的特质，property是DOM中的属性，是JavaScript里的对象
+&emsp;&emsp;访问方式：
+
+传统DOM方法getAttribute、setAttribute
+使用DOM对象...">
+  
+  <title>DOM这个戏精 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/03/27/算法之交换与排序/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        算法之交换与排序
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/03/14/我会用到的官方文档列表/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        我会用到的官方文档列表
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>DOM这个戏精</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-03-16</span>
+      
+        <span id = "post-title-updated">Updated at 2018-03-17</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/accumulate/">accumulate</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/DOM/">DOM</a>
+      
+      </span>
+      
+    </p>
+    
+    <ul>
+<li><p>DOM特性与DOM属性</p>
+<ul>
+<li>attribute（特性）：是我们赋予某个事物的特质或对象，attribute是HTML标签上的特性，它的值只能够是字符串</li>
+<li><p>property（属性）：是早已存在的不需要外界赋予的特质，property是DOM中的属性，是JavaScript里的对象</p>
+<p>&emsp;&emsp;访问方式：</p>
+<ul>
+<li>传统DOM方法getAttribute、setAttribute</li>
+<li>使用DOM对象上与之对应的属性</li>
+</ul>
+</li>
+<li><p>有五点要考虑：</p>
+<ul>
+<li>跨浏览器命名，多数浏览器用class，IE用className</li>
+<li><p>命名限制，特性命名自由，属性命名受限制<br><img src="/2018/03/16/DOM这个戏精/属性、特性命名.png" alt="属性名与特性名不同的情况"></p>
+</li>
+<li><p>HTML、XML差别：处理XML DOM时，不会在元素上自动创建属性值表示特性。需使用传统的DOM特性方法获取特性。elem.ownerDocument只读属性会返回当前节点的顶层的document对象。</p>
+</li>
+<li>自定义特性的行为：自定义的特性值，使用DOM方法getAttribute()、setAttribute()。自定义特性使用’data-‘前缀。</li>
+<li>性能注意事项：属性的访问速度比相应的DOM特性方法的访问速度快，特别在IE中。</li>
+</ul>
+</li>
+<li><p>跨浏览器的Attribute问题</p>
+<ul>
+<li><p>DOM中的id/name膨胀：</p>
+<ul>
+<li>将表单input元素的id和name特性作为<form>元素的属性值进行引用。产生的属性会主动覆盖form元素上已经存在的同名属性。IE浏览器还会替换该属性上的特性值。</form></li>
+<li>解决办法是获取描述元素特性本身的原始DOM节点，没有被浏览器修改。<code>var action = element.getAttributeNode(&#39;action&#39;).nodeValue</code>。</li>
+</ul>
+</li>
+<li><p>URL规范</p>
+<ul>
+<li>访问一个引用了URL属性时（src、href、action）,该值会自动将原始值转换成完整规范的URL。<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"listing-11.5.html"</span> <span class="attr">id</span>=<span class="string">"testSubject"</span>&gt;</span>Self<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> link = <span class="built_in">document</span>.getElementById(<span class="string">'testSubject'</span>);</div><div class="line"><span class="keyword">var</span> linkHref = link.getAttributeNode(<span class="string">'href'</span>).nodeValue; <span class="comment">//#1</span></div><div class="line"></div><div class="line">assert(linkHref === <span class="string">'listing-11.5.html'</span>,  <span class="string">'link node value is ok'</span>);</div><div class="line">assert(link.href === <span class="string">'listing-11.5.html'</span>,  <span class="string">'link property value is ok'</span>);</div><div class="line">assert(link.getAttribute(<span class="string">'href'</span>) == linkHref, <span class="string">'link attribute not modified'</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li><ul>
+<li><ul>
+<li><p>style特性：要获得样式信息可以直接用element.style.color；要获取字符串，getAttribute();</p>
+</li>
+<li><p>节点名称：HTML文档中nodeName属性返回名称大写；XML或XHTML文档中，自由</p>
+</li>
+</ul>
+</li>
+<li><p>element.style的方式只能取到内联样式，不能取到外部链接引入的样式</p>
+</li>
+<li><p>css特性将多余的单词用连字符分割</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> size = element.style[<span class="string">'font-size'</span>];</div><div class="line"><span class="keyword">var</span> size = element.style.fontSize;</div></pre></td></tr></table></figure>
+<p>-</p>
+<pre><code>- 点运算符不能设置字符串，多个属性可以用下列方式设置：
+</code></pre><pre><code class="javascript">elt.style.cssText = <span class="string">"color: blue;"</span>;
+elt.setAttribute(<span class="string">"style"</span>,<span class="string">"color:blue"</span>);
+</code></pre>
+<ul>
+<li><ul>
+<li>对于float，大部分浏览器使用cssFloat，IE使用styleFloat。</li>
+<li>style设置属性要指定单位</li>
+<li>对于display=none的元素，它的元素宽和高是0.为了获取到值，隐藏元素可以换一种方法设置：<ul>
+<li>display:block; visibility: hidden; position: absolute; 获取元素尺寸；恢复先前更改的属性。</li>
+</ul>
+</li>
+<li><p>通过不同的计算样式方法访问这些颜色值时，浏览器返回值几乎不一样。</p>
+</li>
+<li><p>获取元素的计算样式window.getComputedStyle(element)，IE9之前element.currentStyle</p>
+</li>
+<li><p>IE6/7用getAttribute获取不到值时，可以使用getAttributeNode().nodeValue获取。</p>
+</li>
+</ul>
+</li>
+<li><p>HTMLCollection、NodeList及NamedNodeMap动态的集合，类数组</p>
+</li>
+</ul>
+<p>相关材料：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/chenliyang/p/6554702.html" target="_blank" rel="noopener">https://www.cnblogs.com/chenliyang/p/6554702.html</a></li>
+<li><a href="https://www.mxgw.info/coding/javascript-attribute-property.html" target="_blank" rel="noopener">https://www.mxgw.info/coding/javascript-attribute-property.html</a></li>
+<li><a href="https://www.cnblogs.com/wangfupeng1988/p/3631853.html" target="_blank" rel="noopener">https://www.cnblogs.com/wangfupeng1988/p/3631853.html</a></li>
+<li><a href="https://www.cnblogs.com/wangfupeng1988/p/3626300.html" target="_blank" rel="noopener">https://www.cnblogs.com/wangfupeng1988/p/3626300.html</a></li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/03/27/算法之交换与排序/" class="prev">&larr; Prev post 算法之交换与排序</a>
+  
+
+  
+
+  
+    <a href="/2018/03/14/我会用到的官方文档列表/" class="next">Next post 我会用到的官方文档列表 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
