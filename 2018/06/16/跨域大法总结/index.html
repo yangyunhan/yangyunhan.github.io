@@ -1,0 +1,458 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="跨域的那些事跨域问题的出现是因为浏览器有同源策略的限制，制定同源策略是因为防止接口请求和DOM查询中可能出现的危险情况。
+举例子：如果没有同源策略
+
+接口请求：登入淘宝网站，验证成功后，服务器会在响应头加入Set-Cookie字段，再发请求的时候，浏览器会自动将cookie附加在HTTP请求的头字段Cookie中，服务端就能知道这个用户已经登录过了。在看买什么东西的过程中，有人发来一个链接，...">
+  
+  <title>跨域大法总结 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/07/04/React与类MVVM框架/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        React与类MVVM框架
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/04/09/好多好多的字符串操作方法/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        好多好多的字符串操作方法
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>跨域大法总结</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-06-16</span>
+      
+        <span id = "post-title-updated">Updated at 2018-08-04</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/summary/">summary</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/跨域/">跨域</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="跨域的那些事"><a href="#跨域的那些事" class="headerlink" title="跨域的那些事"></a>跨域的那些事</h3><p>跨域问题的出现是因为浏览器有同源策略的限制，制定同源策略是因为防止接口请求和DOM查询中可能出现的危险情况。</p>
+<p>举例子：如果没有同源策略</p>
+<ul>
+<li><p>接口请求：<br>登入淘宝网站，验证成功后，服务器会在响应头加入Set-Cookie字段，再发请求的时候，浏览器会自动将cookie附加在HTTP请求的头字段Cookie中，服务端就能知道这个用户已经登录过了。在看买什么东西的过程中，有人发来一个链接，出于好奇，打开链接查看内容。下次再发请求的时候，浏览器会自动将cookie附加在HTTP请求的头字段Cookie中。这样一来，如果这个链接是不法网站，就相当于登录了你的账号，可以为所欲为了。(CSRF攻击)</p>
+</li>
+<li><p>DOM查询：<br>收到长得像安全网站的危险网址，该网址引用安全网站放入框架标签中，使你输入了用户名和密码。他可以获取到安全网站的dom，从而获取到你输入的用户名密码，开始为所欲为。</p>
+</li>
+</ul>
+<p>同源限制的情况下的跨域策略：</p>
+<ul>
+<li>JSONP<br>  利用了script标签的src这种获取资源的标签没有跨域限制。定义请求成功后要执行的函数，将该函数名做为callback参数传给服务器。服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。（jQuery把它封装进了ajax，但是它们是本质上不同的东西。ajax的核心是通过XmlHttpRequest获取非本页内容，而jsonp的核心则是动态添加<code>&lt;script&gt;</code>标签来调用服务器提供的js脚本。）</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">'text/javascript'</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="built_in">window</span>.jsonpCb = <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(res)</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'http://localhost:9871/api/jsonp?msg=helloJsonp&amp;cb=jsonpCb'</span> <span class="attr">type</span>=<span class="string">'text/javascript'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>封装：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> request = <span class="function">(<span class="params">&#123;url, data&#125;</span>) =&gt;</span> &#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">		<span class="keyword">const</span> handleData = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</div><div class="line">     		<span class="keyword">const</span> keys = <span class="built_in">Object</span>.keys(data)</div><div class="line">     		<span class="keyword">const</span> keysLen = keys.length</div><div class="line">     		<span class="keyword">return</span> keys.reduce(<span class="function">(<span class="params">pre, cur, index</span>) =&gt;</span> &#123;</div><div class="line">       		<span class="keyword">const</span> value = data[cur]</div><div class="line">       		<span class="keyword">const</span> flag = index !== keysLen - <span class="number">1</span> ? <span class="string">'&amp;'</span> : <span class="string">''</span></div><div class="line">       		<span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;pre&#125;</span><span class="subst">$&#123;cur&#125;</span>=<span class="subst">$&#123;value&#125;</span><span class="subst">$&#123;flag&#125;</span>`</span></div><div class="line">     		&#125;, <span class="string">''</span>)</div><div class="line">     	&#125;</div><div class="line">   	<span class="keyword">const</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</div><div class="line">    	<span class="built_in">window</span>.jsonpCb = <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</div><div class="line">      	<span class="built_in">document</span>.body.removeChild(script)</div><div class="line">      	<span class="keyword">delete</span> <span class="built_in">window</span>.jsonpCb</div><div class="line">      	resolve(res)</div><div class="line">    	&#125;</div><div class="line">    	script.src = <span class="string">`<span class="subst">$&#123;url&#125;</span>?<span class="subst">$&#123;handleData(data)&#125;</span>&amp;cb=jsonpCb`</span></div><div class="line">    	<span class="built_in">document</span>.body.appendChild(script)</div><div class="line">  	&#125;)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 使用方式</span></div><div class="line">request(&#123;</div><div class="line">	<span class="attr">url</span>: <span class="string">'http://localhost:9871/api/jsonp'</span>,</div><div class="line"> 	<span class="attr">data</span>: &#123;</div><div class="line">   	<span class="attr">msg</span>: <span class="string">'helloJsonp'</span></div><div class="line"> 	&#125;</div><div class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</div><div class="line">  	<span class="built_in">console</span>.log(res)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>JSONP的方式是GET请求，如果想使用POST请求，可以用空iframe + form</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> requestPost = <span class="function">(<span class="params">&#123;url, data&#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// 首先创建一个用来发送数据的iframe.</span></div><div class="line">  <span class="keyword">const</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>)</div><div class="line">  iframe.name = <span class="string">'iframePost'</span></div><div class="line">  iframe.style.display = <span class="string">'none'</span></div><div class="line">  <span class="built_in">document</span>.body.appendChild(iframe)</div><div class="line">  <span class="keyword">const</span> form = <span class="built_in">document</span>.createElement(<span class="string">'form'</span>)</div><div class="line">  <span class="keyword">const</span> node = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>)</div><div class="line">  <span class="comment">// 注册iframe的load事件处理程序,如果你需要在响应返回时执行一些操作的话.</span></div><div class="line">  iframe.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'post success'</span>)</div><div class="line">  &#125;)</div><div class="line">  form.action = url</div><div class="line">  <span class="comment">// 在指定的iframe中执行form</span></div><div class="line">  form.target = iframe.name</div><div class="line">  form.method = <span class="string">'post'</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> name <span class="keyword">in</span> data) &#123;</div><div class="line">    node.name = name</div><div class="line">    node.value = data[name].toString()</div><div class="line">    form.appendChild(node.cloneNode())</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 表单元素需要添加到主文档中.</span></div><div class="line">  form.style.display = <span class="string">'none'</span></div><div class="line">  <span class="built_in">document</span>.body.appendChild(form)</div><div class="line">  form.submit()</div><div class="line">  <span class="comment">// 表单提交后,就可以删除这个表单,不影响下次的数据发送.</span></div><div class="line">  <span class="built_in">document</span>.body.removeChild(form)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 使用方式</span></div><div class="line">requestPost(&#123;</div><div class="line">  <span class="attr">url</span>: <span class="string">'http://localhost:9871/api/iframePost'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">msg</span>: <span class="string">'helloIframePost'</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>总结：他的优势在于兼容性，可以支持老版浏览器，当浏览器不支持CORS的情况下，可以用该方法实现跨域请求。</p>
+<ul>
+<li>CORS跨域资源共享cross-origin resource sharing</li>
+</ul>
+<blockquote>
+<p>CORS需要浏览器和服务器同时支持。整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。因此，实现CORS通信的关键是服务器。</p>
+</blockquote>
+<p>又分为简单请求和非简单请求：</p>
+<p>在简单请求中，前端什么也不用干，浏览器在头信息之中，增加一个Origin字段，服务器根据这个值，决定是否同意这次请求。如果Origin指定的源不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段，就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。CORS请求默认不发送Cookie和HTTP认证信息。如果要把Cookie发到服务器，一方面要服务器同意，指定Access-Control-Allow-Credentials字段。另一方面，开发者必须在AJAX请求中打开withCredentials属性。需要注意的是，如果要发送Cookie，Access-Control-Allow-Origin就不能设为星号，必须指定明确的、与请求网页一致的域名。同时，Cookie依然遵循同源政策，只有用服务器域名设置的Cookie才会上传，其他域名的Cookie并不会上传，且（跨源）原网页代码中的document.cookie也无法读取服务器域名下的Cookie。</p>
+<p>非简单请求会发出一次预检测请求，返回码是204，浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段，”预检”请求用的请求方法是OPTIONS，服务器检查了Origin、Access-Control-Request-Method和Access-Control-Request-Headers字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求。如果浏览器否定了”预检”请求，会返回一个正常的HTTP回应，但是没有任何CORS相关的头信息字段。这时，浏览器就会认定，服务器不同意预检请求，因此触发一个错误，被XMLHttpRequest对象的onerror回调函数捕获。一旦服务器通过了”预检”请求，以后每次浏览器正常的CORS请求，就都跟简单请求一样，会有一个Origin头信息字段。服务器的回应，也都会有一个Access-Control-Allow-Origin头信息字段。</p>
+<p>有几种发生错误的情况：</p>
+<ol>
+<li><code>No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource,并且The response had HTTP status code 404</code>：本次ajax请求是“非简单请求”,所以请求前会发送一次预检请求(OPTIONS)；服务器端后台接口没有允许OPTIONS请求,导致无法找到对应接口地址<br> 解决：后端允许options请求</li>
+<li><code>No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource,并且The response had HTTP status code 405</code>：这种现象和第一种有区别,这种情况下，后台方法允许OPTIONS请求,但是一些配置文件中(如安全配置),阻止了OPTIONS请求,才会导致这个现象<br> 解决: 后端关闭对应的安全配置</li>
+<li><code>No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource,并且status 200</code>：这种现象和第一种和第二种有区别,这种情况下，服务器端后台允许OPTIONS请求,并且接口也允许OPTIONS请求,但是头部匹配时出现不匹配现象。比如origin头部检查不匹配,比如少了一些头部的支持(如常见的X-Requested-With头部),然后服务端就会将response返回给前端,前端检测到这个后就触发XHR.onerror,导致前端控制台报错<br> 解决: 后端增加对应的头部支持</li>
+<li><code>heade contains multiple values &#39;*,*&#39;</code>：表现现象是，后台响应的http头部信息有两个Access-Control-Allow-Origin:*，重复配置<br> 解决：只用项目配置中的即可</li>
+<li>还有request的Accept和response的Content-Type不匹配会出现406的错误。</li>
+</ol>
+<p>后台node跨域配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">app.all(<span class="string">'*'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);</div><div class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"X-Requested-With"</span>);</div><div class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</div><div class="line">    res.header(<span class="string">"X-Powered-By"</span>, <span class="string">' 3.2.1'</span>)</div><div class="line">    res.header(<span class="string">"Content-Type"</span>, <span class="string">"application/json;charset=utf-8"</span>);</div><div class="line">    <span class="keyword">if</span>(req.method == <span class="string">'OPTIONS'</span>) &#123;</div><div class="line">        <span class="comment">//让options请求快速返回</span></div><div class="line">        res.sendStatus(<span class="number">200</span>); </div><div class="line">    &#125; <span class="keyword">else</span> &#123; </div><div class="line">        next(); </div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>优化：OPTIONS预检的优化<br><code>Access-Control-Max-Age:</code>这个头部加上后，可以缓存此次请求的秒数。在这个时间范围内，所有同类型的请求都将不再发送预检请求而是直接使用此次返回的头作为判断依据。</p>
+<p>总结：比JSONP更强大，支持多种请求类型，不考虑兼容性问题（如IE 10），CORS是更通用的做法。</p>
+<ul>
+<li>代理：有东西帮我们把请求转到真正的后端域名</li>
+</ul>
+<ol>
+<li>使用Nginx，它是一个Linux 容器解决方案（虚拟机就是软件带环境安装的一种解决方案。Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。启动容器就相当于启动了本机的一个进程）。Nginx 的最大作用，就是搭建一个 Web Server。</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server&#123;</div><div class="line">    # 监听9099端口</div><div class="line">    listen 9099;</div><div class="line">    # 域名是localhost</div><div class="line">    server_name localhost;</div><div class="line">    #凡是localhost:9099/api这个样子的，都转发到真正的服务端地址http://localhost:9871 </div><div class="line">    location ^~ /api &#123;</div><div class="line">        proxy_pass http://localhost:9871;</div><div class="line">    &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>前端请求时可以用本地的地址做请求，Nginx监听到凡是localhost:9099/api这个样子的，就转发转发到真正的服务端地址上。</p>
+<ol>
+<li>webpack中引用webpack-dev-server来进行配置跨域方案（线下开发环境）。webpack-dev-server是一个小型的nodejs服务器，是基于express框架的，用于实时监听和打包编译静态资源。其中里面有一个属性是proxy，是专门来配置代理请求接口的。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">devServer: &#123;</div><div class="line">   <span class="attr">contentBase</span>: __dirname + <span class="string">"/"</span>,</div><div class="line">   <span class="attr">port</span>: <span class="number">9000</span>,</div><div class="line">   <span class="attr">proxy</span>: &#123;</div><div class="line">     <span class="string">"/users"</span>: &#123;    <span class="comment">//需要代理的路径</span></div><div class="line">       target: <span class="string">"http://jsonplaceholder.typicode.com"</span>,  <span class="comment">//需要代理的域名</span></div><div class="line">       changeOrigin: <span class="literal">true</span>  <span class="comment">//必须配置为true，才能正确代理</span></div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果么有使用webpack做项目自动化，而是其他的如gulp，则直接引入http-proxy-middleware模块。webpack-dev-server就是引入了这个模块。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> proxy = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line">app.use(<span class="string">'/users'</span>, proxy(&#123;</div><div class="line">    <span class="attr">target</span>: <span class="string">"http://jsonplaceholder.typicode.com"</span>,</div><div class="line">    <span class="attr">changeOrigin</span>: <span class="literal">true</span></div><div class="line">&#125;));</div><div class="line"><span class="comment">// 省略各种配置  ... ...</span></div><div class="line">app.listen(..., <span class="number">9000</span>);</div></pre></td></tr></table></figure>
+<ol>
+<li>自己搭建一个node服务器做代理<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>); </div><div class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>); </div><div class="line"><span class="keyword">var</span> app = express(); </div><div class="line">app.use(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123; </div><div class="line">	<span class="keyword">var</span> url = <span class="string">'https://www.baidu.com/'</span> + req.url;</div><div class="line">	req.pipe(request(url)).pipe(res); <span class="comment">//关键代码</span></div><div class="line">&#125;); </div><div class="line">app.listen(process.env.PORT || <span class="number">3000</span>);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>总结：Nginx线上线下都需要配置。使用要看场景，如果后端接口是一个公共的API，比如一些公共服务获取天气，前端调用的时候总不能让运维去配置一下Nginx；webpack-dev-server和http-proxy-middleware都是开发环境下需要使用的跨域解决方案，一般说的跨域解决方案还是指线上用CORS。</p>
+<ul>
+<li>window.postMessage() 是HTML5的一个接口<br>发消息方在页面中定义一个iframe，<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"postMessage"</span>&gt;</span>给http://crossDomain.com:9099发消息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">name</span>=<span class="string">"crossDomainIframe"</span> <span class="attr">src</span>=<span class="string">"http://crossdomain.com:9099"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>利用框架向别的窗口发送消息<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  mounted () &#123;</div><div class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, (e) =&gt; &#123;</div><div class="line">      <span class="keyword">if</span> (e.origin === <span class="string">'http://crossdomain.com:9099'</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(e.data)</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    postMessage () &#123;</div><div class="line">      <span class="keyword">const</span> iframe = <span class="built_in">window</span>.frames[<span class="string">'crossDomainIframe'</span>]</div><div class="line">      iframe.postMessage(<span class="string">'我是[http://localhost:9099], 麻烦你查一下你那边有没有id为app的Dom'</span>, <span class="string">'http://crossdomain.com:9099'</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接收消息方：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  mounted () &#123;</div><div class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, (e) =&gt; &#123;</div><div class="line">      <span class="keyword">if</span> (e.origin === <span class="string">'http://localhost:9099'</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(e.data)</div><div class="line">        e.source.postMessage(<span class="string">`我是[http://crossdomain.com:9099]，我知道了兄弟，这就是你想知道的结果：<span class="subst">$&#123;<span class="built_in">document</span>.getElementById(<span class="string">'app'</span>) ? <span class="string">'有id为app的Dom'</span> : <span class="string">'没有id为app的Dom'</span>&#125;</span>`</span>, e.origin);</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>总结：window.postMessage() 需要在页面加载完毕后才能进行跨域通信，但是我们无法检测目标页面的onload事件，所以只能使用setTimeout和setInterval来处理。如果不希望从其他网站接收message，不要为message事件添加任何事件侦听器。如果希望从其他网站接收message，始终使用origin和source属性验证发件人的身份。当使用postMessage将数据发送到其他窗口时，始终指定精确的目标origin，而不是*。</p>
+<ul>
+<li>document.domain<br>举例：<br>主域名：<a href="http://crossdomain.com:9099，" target="_blank" rel="noopener">http://crossdomain.com:9099，</a><br>子域名：<a href="http://child.crossdomain.com:9099，" target="_blank" rel="noopener">http://child.crossdomain.com:9099，</a><br>给两个页面设置：document.domain = crossdomain.com</li>
+</ul>
+<p>总结：这种方式只适合主域名相同，但子域名不同的iframe跨域。它有一些副作用：修改了document.domain，则在某些机器上的IE678里，获取location.href有权限异常；它包含的iframe，必须也设domain，才能进行交互。就算是同域的页面也必须要设；也会影响到其它跟iframe有关的功能。</p>
+<ul>
+<li><p>canvas图片跨域<br>第一步，图片服务器需要配置Access-Control-Allow-Origin信息（一般团队都会有一个专门域名放置静态资源，例如腾讯是gtimg.com，百度是bdimg.com）；<br>第二步，如果想更进一步，通过canvas的getImageData()方法获取图片的完整的像素信息，会因为跨域问题而出错。HTML5的<code>&lt;img&gt;，&lt;video&gt;，&lt;script&gt;</code>提供了支持CORS(Cross-Origin Resource Sharing)（跨域资源共享）的属性：crossOrigin。只需要添加<code>img.crossOrigin = &#39;&#39;（先创建Image实例）;</code>就可以解决问题（IE9/10不支持）；<br>第三步，如果想在IE10中实现跨域，可以借助ajax和URL.createObjectURL()方法解决。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> url = URL.createObjectURL(<span class="keyword">this</span>.response);</div><div class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">    img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        URL.revokeObjectURL(url);</div><div class="line">    &#125;;</div><div class="line">    img.src = url;</div><div class="line">&#125;;</div><div class="line">xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</div><div class="line">xhr.responseType = <span class="string">'blob'</span>;</div><div class="line">xhr.send();</div></pre></td></tr></table></figure>
+</li>
+<li><p><a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="noopener">http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html</a></p>
+</li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/cors.html</a></li>
+<li><a href="https://www.cnblogs.com/jkisjk/archive/2013/05/30/change_document_domain.html" target="_blank" rel="noopener">https://www.cnblogs.com/jkisjk/archive/2013/05/30/change_document_domain.html</a></li>
+<li><a href="https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/" target="_blank" rel="noopener">https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/</a></li>
+<li><a href="https://segmentfault.com/a/1190000015597029" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015597029</a></li>
+<li><a href="https://www.cnblogs.com/dojo-lzz/p/4265637.html" target="_blank" rel="noopener">https://www.cnblogs.com/dojo-lzz/p/4265637.html</a></li>
+<li><a href="https://segmentfault.com/a/1190000012469713" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012469713</a></li>
+<li><a href="https://www.cnblogs.com/canfoo/p/6912306.html" target="_blank" rel="noopener">https://www.cnblogs.com/canfoo/p/6912306.html</a></li>
+<li><a href="https://www.jianshu.com/p/50d82333b22a" target="_blank" rel="noopener">https://www.jianshu.com/p/50d82333b22a</a></li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#跨域的那些事"><span class="toc-text">跨域的那些事</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/07/04/React与类MVVM框架/" class="prev">&larr; Prev post React与类MVVM框架</a>
+  
+
+  
+
+  
+    <a href="/2018/04/09/好多好多的字符串操作方法/" class="next">Next post 好多好多的字符串操作方法 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
