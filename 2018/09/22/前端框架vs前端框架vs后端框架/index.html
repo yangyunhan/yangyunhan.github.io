@@ -1,0 +1,450 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Yhuann">
+  
+  
+  
+  
+    <meta name="description" content="前后端架构设计与框架对比首先，MVC是一种架构设计模式，它通过关注点分离鼓励改进应用程序组织。前后端都有MVC架构模式的概念，前端的MVC是为了解决前端复杂JS模块化的问题，从后端MVC的V分出来的MVC，与后端MVC并没有直接的关系。前端的MVC中，M占的比例很低，只指代数据。而后端V的比例很低，只有模版的部分。
+经典MVC模式下（并非一定在js中），涉及两种设计模式：view和model...">
+  
+  <title>前端框架vs前端框架vs后端框架 [ 该叫什么好 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2018/07/04/React与类MVVM框架/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        React再整理
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/uploads/avatar.jpg"/>
+          <div id="homelink">该叫什么好</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/yangyunhan/yangyunhan.github.io">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>前端框架vs前端框架vs后端框架</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2018-09-22</span>
+      
+        <span id = "post-title-updated">Updated at 2018-09-22</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/summary/">summary</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/框架/">框架</a>
+      
+      </span>
+      
+    </p>
+    
+    <h4 id="前后端架构设计与框架对比"><a href="#前后端架构设计与框架对比" class="headerlink" title="前后端架构设计与框架对比"></a>前后端架构设计与框架对比</h4><p>首先，MVC是一种架构设计模式，它通过关注点分离鼓励改进应用程序组织。前后端都有MVC架构模式的概念，前端的MVC是为了解决前端复杂JS模块化的问题，从后端MVC的V分出来的MVC，与后端MVC并没有直接的关系。前端的MVC中，M占的比例很低，只指代数据。而后端V的比例很低，只有模版的部分。<br><img src="https://sfault-image.b0.upaiyun.com/356/500/3565004702-5b238bef92e52" alt="https://sfault-image.b0.upaiyun.com/356/500/3565004702-5b238bef92e52"></p>
+<p>经典MVC模式下（并非一定在js中），涉及两种设计模式：view和model之间的观察者模式，view观察model，事先在此model上注册，以便view可以了解在数据model上发生的改变。和view和controller之间的策略模式，一个策略是一个表述算法的对象。MVC将响应机制封装在controller对象中。存在着一个controller的类层次结构，使得可以方便地对原有的controller做适当改变而创建新的controller。view使用controller子类的实例来实现一个特定的响应策略。要实现不同的响应的策略只要用不同种类的controller实例替换即可。</p>
+<p>经典MVC到jsMVC可以实现1对1的转换，但controller的角色有些许改变。从原来派发用户输入给不同的view和改变model到用户和系统的连接。在js中，controller的职责已经被系统实现了。<br><img src="/2018/09/22/前端框架vs前端框架vs后端框架/D:/软件\blog\source\_posts\前端框架vs前端框架vs后端框架\mvc.png" alt=""></p>
+<p>MVP是想改变cotroller与view的捆绑关系，view有用户处理事件的能力。但是用户处理事件统一放到P中，如此，多个view可以公用一个controller。通过Presenter更新model，通过观察者模式更新view。更新方式与MVC一样，但是MVC的更新过程是一个圆，一个循环的过程。MVP依赖Presenter作为核心，负责从model中拿数据，填充到view中。常见的MVP的实现是被动视图，Presenter观察model，不再是view观察model，一旦model发生变化，就会更新view。Presenter有效地绑定了model到view。view暴露了setters接口以便Presenter可以设置数据。对于这种被动视图的结构，没有直接数据绑定的概念。但是他的好处是在view和model直接提供更清晰的分离。但是由于缺乏数据绑定支持，意味着不得不单独关注某个任务。在MVP里，应用程序的逻辑主要在Presenter来实现，其中的view是很薄的一层。<br><img src="/2018/09/22/前端框架vs前端框架vs后端框架/D:/软件\blog\source\_posts\前端框架vs前端框架vs后端框架\mvp.png" alt=""></p>
+<p>MVVM的特点是数据绑定，view和model是不知道彼此存在的，同MVP一样，将view和model清晰地分离开来。 其次，view是对viewmodel的外在显示，与viewmodel保持同步，viewmodel对象可以看作是view的上下文。view绑定到viewmodel的属性上，如果viewmodel中的属性值变化了，这些新值通过数据绑定会自动传递给view。反过来viewmodel会暴露model中的数据和特定状态给view。所以，view不知道model的存在，viewmodel和model也觉察不到view。<br><img src="/2018/09/22/前端框架vs前端框架vs后端框架/D:/软件\blog\source\_posts\前端框架vs前端框架vs后端框架\mvvm.png" alt=""></p>
+<p>简单来说，<code>MV*</code>的区别在M与V的联系上，Controller负责监听view的用户事件，得到数据做处理，渲染view。由于各个模块耦合性强，无法单独验证应用逻辑正确性，不能判断出问题的模块。所以有MVP调用view层的接口渲染model。如此，P可以做单元测试，结构也更清楚。但是当view变的复杂之后，需要的接口变多，增加了开发调试的成本，所以有了MVVM。VM中构建一组状态数据（view层的抽象），通过双向数据绑定使VM中的状态数据与View中的显示状态保持一致。VM只适合复杂UI交互的项目。</p>
+<p>参考：<br>​    - <a href="https://segmentfault.com/a/1190000015310674" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015310674</a><br>​    - <a href="http://efe.baidu.com/blog/mvc-deformation/" target="_blank" rel="noopener">http://efe.baidu.com/blog/mvc-deformation/</a></p>
+<p>其次，React的定位是MVC框架中的V，Vue的定位是MVVM框架中的VM，Angular的定位是完整的MVVM框架。</p>
+<ul>
+<li>React-13：可以非常方便地构建大型网页应用。<ul>
+<li>出现：为了降低操作DOM的代价</li>
+<li>优点：<ul>
+<li>速度快。提出了Virtual Dom这种新颖的思路，并且这种思路衍生出了React Native，有可能会统一Web/Native开发。在性能方面，由于运用了Virtual Dom技术，Reactjs只在调用setState的时候会更新dom，而且还是先更新Virtual Dom，然后和实际Dom比较，最后再更新实际Dom。一是更新dom的次数少，二是更新dom的内容少。</li>
+<li>模块化。独立的模块化UI组件，这样当某个或某些组件出现问题是，可以方便地进行隔离。组件通过组合、嵌套构成更复杂的UI界面。</li>
+<li>ReactJS更关注数据的单向更新，但是它更简单直观，所有的状态改变只有一个入口this.setState()。/<em>它提出了FLUX架构的新概念，现在React可以直接用Js ES6语法了，然后通过webpack编译成浏览器兼容的ES5，开发效率上有些优势. </em>/</li>
+<li>React Native生成的App不是运行在WebView上，而是系统原生的UI，React通过jsx生成系统原生的UI，iOS和Android的React UI组件还是比较相似的，大量代码可以复用。</li>
+<li>同构的JavaScript: 单页面JS应用程序的最大缺陷在于对搜索引擎的索引有很大限制。React可以在服务器上预渲染应用再发送到客户端。它可以从预渲染的静态内容中恢复一样的记录到动态应用程序中。因为搜索引擎的爬虫程序依赖的是服务端响应而不是JavaScript的执行，预渲染你的应用有助于搜索引擎优化。</li>
+<li>跨浏览器兼容：虚拟DOM帮助我们解决了跨浏览器问题，它为我们提供了标准化的API，甚至在IE8中都是没问题的。</li>
+<li>灵活性、轻量级、开源、版本迁移容易</li>
+</ul>
+</li>
+<li>缺点：<br>React是目标是UI组件，通常可以和其它框架组合使用，目前并不适合单独做一个完整的框架。React 即使配上 redux 的组合，也不能称之一个完整的框架，比如你想用Promise化的AJAX？要自己找现成的库。而且第三方组件远远不如Angular多。React本身只是一个V而已，所以如果是大型项目想要一套完整的框架的话，也许还需要引入Redux和route相关的东西。</li>
+</ul>
+</li>
+<li>Vue-13：非常适合用于构架非常灵活的UI和复杂的单页面应用。<ul>
+<li>是一个提供 MVVM 数据双向绑定的库，专注于UI 层面，核心思想是：数据驱动、组件系统。</li>
+<li>数据观测原理在技术实现上，利用的是 ES5 Object.defineProperty 和存储器属性: getter 和 setter（所以只兼容 IE9 及以上版本）</li>
+<li>Vue实现数据和视图保持一致性：每一个指令都会有一个对应的用来观测数据的对象，叫做 watcher，比如v-text=”msg”, ，即为两个 watcher，watcher对象中包含了待渲染的关联 DOM 元素。<ul>
+<li>将原生的数据改造成 “可观察对象”，通常为调用 defineProperty 改变 data 对象中数据为存储器属性；一个可观察对象可以被取值 getter，也可以被赋值setter。</li>
+<li>解析模板，也就是在 watcher 的求值过程中，每一个被取值的可观察对象都会将当前的 watcher 注册为自己的一个订阅者，并成为当前watcher的一个依赖。</li>
+<li>当一个被依赖的可观察对象被赋值时，它会通知 notify 所有订阅自己的 watcher 重新求值，并触发相应的更新，即watcher对象中关联的 DOM 改变渲染。</li>
+<li>使用 Virtual DOM；提供了响应式（Reactive）和组件化（Composable）的视图组件；将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库</li>
+</ul>
+</li>
+<li>端对端的数据渲染，react是setState更新组件，父组件更新子组件重新渲染</li>
+<li>继承方式不同，react面向对象继承，vue需要遵循很多规则</li>
+<li>优点：<ul>
+<li>轻便（20多kb），双向绑定</li>
+<li>强化的HTML，像Angular</li>
+<li>可适用性：可以很快地从其它框架转移到Vue.js</li>
+<li>整合性：Vue.js可以同时用于单页面应用和更加复杂的网页应用。主要在于你可以用它编写很小的可交互部件，然后可以很容易地整合到现有的项目中而不会影响到整个系统；</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>不支持ie8</li>
+<li>在整个市场中只占有很小的比例，所以相应的资源、知识要少很多；</li>
+<li>灵活性带来的风险：有时候，将其整合到大型项目的时候会有一些问题，但是不见得能够找到解法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Angular-09:对于构建高度可交互的网页应用非常方便。</p>
+<ul>
+<li>出现：AngularJS是为了克服HTML在构建应用上的不足而设计的。使用了不同的方法，它尝试去补足HTML本身在构建应用方面的缺陷。通过使用标识符(directives)的结构，让浏览器能够识别新的语法。例如使用双大括号语法进行数据绑定；使用ng-controller指定每个控制器负责监视视图中的哪一部分；使用ng-model，把输入数据绑定到模型中的一部分属性上。</li>
+<li>优点：<ul>
+<li>AngularJS是一套完整的框架，angular有自带的数据绑定、render渲染、angularUI库,过滤器,directive(模板),服务q(defer),http，inject(依赖注入),factory,provider……，等等一系列工具，基本上只要你在做web开发用过的东西，它都有一个。</li>
+<li>新特性：RXJS，快速编译（3秒内），新的HttpClient；</li>
+<li>详细的文档几乎涵盖了所有必须的信息</li>
+<li>数据双向绑定，可以减少出错的风险</li>
+<li>MVVM(Model-View-ViewModel)使得开发者可以针对同一个App模块同时开发</li>
+<li>依赖注入使得模块化和模块中组件引入更加方便；</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>性能：随着组件增加，项目越来越复杂，双向数据绑定带来性能问题。在JavaScript（ES5）中，并没有实现当变量或对象改变时发出通知的功能，Angular的实现方法被叫做“Dirty-checking（脏检查机制）”，通过跟踪数据的改变再动态更新用户界面（UI）。在Angular的作用域中任何操作的执行都会引发Dirty-checking，随着绑定数量的增加性能就会越低。</li>
+<li>学习成本高</li>
+<li>迁移问题：从低版本升级到新版本的时候，不兼容导致迁移成本高。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在react，angular，vue这三者中，Angular的适用领域相对窄一些，React可以拓展到服务端，移动端Native部分，而Vue因为比较轻量，还能用于业务场景非常轻的页面中。</p>
+</li>
+<li>在web应用中，要解决三个问题：状态、组织和效率<ul>
+<li>状态：在一个业务界面中，可能根据数据生成界面，再通过操作改变数据，影响界面中另一些部分。其中有两种关系：从数据到界面和从界面到数据。能够描述界面当前状况的数据，可称为状态。不同框架采用不同方式做了处理：MVVM流的Angular和Vue，通过类似模板的语法，描述界面状态与数据的绑定关系，然后通过内部转换，把这个结构建立起来，当界面发生变化的时候，按照配置规则去更新相应的数据，然后，再根据配置好的规则去，从数据更新界面状态；React走的是另外一个流派，就是所谓的函数式，在这个里面，推崇的是单向数据流：给定原始界面（或数据），施加一个变化，就能推导出另外一个状态（界面或者数据的更新）。</li>
+<li>组织：模块关系和业务模型。模块关系就是模块化，业务模型指的是所处领域中的业务数据、规则、流程的集合。</li>
+<li>效率：开发效率和运行效率。组件化提高开发效率；运行效率在于数据变更检测方式和创建和修改DOM</li>
+</ul>
+</li>
+<li>参考材料：<ul>
+<li><a href="https://www.w3cvip.org/topics/93" target="_blank" rel="noopener">https://www.w3cvip.org/topics/93</a></li>
+<li><a href="https://segmentfault.com/a/1190000005159165" target="_blank" rel="noopener">https://segmentfault.com/a/1190000005159165</a></li>
+<li><a href="https://blog.csdn.net/u012125579/article/details/52744093" target="_blank" rel="noopener">https://blog.csdn.net/u012125579/article/details/52744093</a></li>
+<li><a href="https://blog.fundebug.com/2018/07/09/react_vs_angular_vue/" target="_blank" rel="noopener">https://blog.fundebug.com/2018/07/09/react_vs_angular_vue/</a></li>
+</ul>
+</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前后端架构设计与框架对比"><span class="toc-text">前后端架构设计与框架对比</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/07/04/React与类MVVM框架/" class="next">Next post React再整理 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Yhuann using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/uploads/avatar.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/yangyunhan/yangyunhan.github.io">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/3817275592/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_1.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_2.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_3.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_4.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_5.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_6.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_7.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_8.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_10.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_11.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_12.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_14.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_25.jpg?imageView2/1/w/__width__/h/__height__');
+    
+      backgroundImages.push('http://7te9fe.com1.z0.glb.clouddn.com/bgimg_34.jpg?imageView2/1/w/__width__/h/__height__');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"blur":true,"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

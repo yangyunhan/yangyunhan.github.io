@@ -16,11 +16,12 @@
   
   
   
-    <meta name="description" content="React与类MVVM框架React原理及diff理解
-虚拟DOM+diff算法，虚拟DOM树像是客户端与DOM之间的代理对象，该对象是js的树形结构。将html、css、页面逻辑混合在一起生成一个js形式的浏览器可以直接识别的reactRenderTree，浏览器直接painting和显示，使DOM树构建的复杂度从O(n^3)转为O(n)，最小化DOM操作。
-分别对tree、compone...">
+    <meta name="description" content="React再整理React原理及diff理解
+DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。
+虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。
+...">
   
-  <title>React与类MVVM框架 [ 该叫什么好 ]</title>
+  <title>React再整理 [ 该叫什么好 ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -38,6 +39,15 @@
 
 <body>
 <div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/09/22/前端框架vs前端框架vs后端框架/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        前端框架vs前端框架vs后端框架
+      </div>
+    </div>
   
   
     <div class="item next">
@@ -120,11 +130,11 @@
       
       
   <article id="post">
-    <h1>React与类MVVM框架</h1>
+    <h1>React再整理</h1>
     <p class="page-title-sub">
       <span id = "post-title-date">Created at 2018-07-04</span>
       
-        <span id = "post-title-updated">Updated at 2018-08-04</span>
+        <span id = "post-title-updated">Updated at 2018-09-22</span>
       
       
       <span id = "post-title-categories">Category
@@ -143,59 +153,135 @@
       
         
         
-        <a href="/tags/框架/">框架</a>
+        <a href="/tags/react/">react</a>
       
       </span>
       
     </p>
     
-    <h2 id="React与类MVVM框架"><a href="#React与类MVVM框架" class="headerlink" title="React与类MVVM框架"></a>React与类MVVM框架</h2><h4 id="React原理及diff理解"><a href="#React原理及diff理解" class="headerlink" title="React原理及diff理解"></a>React原理及diff理解</h4><ul>
-<li>虚拟DOM+diff算法，虚拟DOM树像是客户端与DOM之间的代理对象，该对象是js的树形结构。将html、css、页面逻辑混合在一起生成一个js形式的浏览器可以直接识别的reactRenderTree，浏览器直接painting和显示，使DOM树构建的复杂度从O(n^3)转为O(n)，最小化DOM操作。</li>
+    <h2 id="React再整理"><a href="#React再整理" class="headerlink" title="React再整理"></a>React再整理</h2><h4 id="React原理及diff理解"><a href="#React原理及diff理解" class="headerlink" title="React原理及diff理解"></a>React原理及diff理解</h4><ul>
+<li>DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。</li>
+<li>虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。</li>
 <li>分别对tree、component、element diff进行优化：<ul>
 <li>tree：只对同一层次的节点进行比较，发现不同时，直接删除该节点及其子节点，再添加新的节点</li>
 <li>component：统一类型的节点，继续比较；不同类型，dirty component，替换整个组件</li>
 <li>element：添加唯一key区分同一层级的节点，当修改后的位移小于最右的位置时才会进行位移操作，更新完新集合，遍历老集合删去要删除的节点。</li>
 </ul>
 </li>
-<li>应保持React结构的稳定，有助于性能提升；减少将最后一个节点移到列表首部的操作。节点数量过大和更新过频繁会影响性能。</li>
-<li>参考：<a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a><h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4></li>
-<li>注意不要使用push、pop、shift、unshift、splice等方法修改React中数组类型的状态，因为这些方法都是在原数组的基础上修改，而concat、slice、filter会返回一个新的数组。state应是不可变对象。</li>
-<li><a href="https://juejin.im/entry/59522bdb6fb9a06b9a516113" target="_blank" rel="noopener">https://juejin.im/entry/59522bdb6fb9a06b9a516113</a></li>
+<li>参考：<a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a></li>
 </ul>
-<h4 id="ref：在典型数据流外（props）强制修改子组件"><a href="#ref：在典型数据流外（props）强制修改子组件" class="headerlink" title="ref：在典型数据流外（props）强制修改子组件"></a>ref：在典型数据流外（props）强制修改子组件</h4><ul>
-<li>Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。我们可以为元素添加ref属性然后在回调函数中接受该元素在 DOM 树中的句柄，该值会作为回调函数的第一个参数返回。</li>
-<li>ref更新发生在componentDidMount 或 componentDidUpdate 生命周期钩子之前。</li>
-<li>可以通过这个属性获得Dom元素或者子组件的实例。在无状态组件和函数式组件中，则需要一个变量来保存组件或DOM元素实例（闭包）。因为无状态组件不会被实例化，在父组件中通过ref获取无状态子组件时，值为null。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div ref=&#123;(node) =&gt; refDom = node&#125;&gt;</div><div class="line">...</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><ul>
+<li><p>定位：组件的任何UI改变，可以从state中反映出来，并且是UI呈现的最小状态集，不需要通过其他状态计算而来，需要在render中使用。</p>
+</li>
+<li><p>与props的区别：state是可变的，是组件内部维护的用于反应组件UI变化的状态集合；props是只读的，修改props只能通过该组件的父组件修改。</p>
+</li>
+<li><p>适用场合：</p>
+<ul>
+<li>在componentWillMount中执行无意义，因为组件只挂载一次，而且会和constructor中的初始化state合并执行，对state的初始化可以放在constructor中。</li>
+<li>在componentDidMount中执行导致组件在初始化的时候就触发，渲染两次，除了在必要的场合如组件渲染完成获得DOM元素位置或者宽高以外，其他时候避免在该生命周期中设置。</li>
+<li>在componentWillUnmount中执行不生效无意义。</li>
+<li>在shouldComponentUpdate和componentWillUpdate中调用se’tState，会造成循环调用，直至耗光浏览器内存后崩溃。</li>
+<li>在componentDidUpdate中执行setState可能会导致死循环，但在需要重新获取DOM元素宽高时更新某个state就不得不使用，给他设置一个前提条件，避免循环渲染。</li>
+</ul>
+</li>
+<li><p>修改state：</p>
+<ul>
+<li>购物车点击购买数量时：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//错误，只会更新一次，后面的覆盖前面的，因为setState是异步的，React会做性能优化</div><div class="line">Object.assign(previousState,&#123;</div><div class="line">    &#123;quantity: this.state.quantity + 1&#125;,</div><div class="line">    &#123;quantity: this.state.quantity + 1&#125;</div><div class="line">&#125;)</div><div class="line">//正确</div><div class="line">this.setState((preState, props) =&gt; &#123;</div><div class="line">    counter: preState.quantity + 1;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>State的更新是一个浅合并的过程，只需要把部分state的更改传入即可。</p>
+</li>
+<li><p>State应是不可变的对象，即当是引用类型的值时，需要重新创建状态对象，而不是修改原来的对象。有几点考虑：一是不可变对象方便管理和调试，因为从不会更改的数据比在整个应用程序中可以随意更改的数据更容易理解；二是处于性能考虑，当对象组件是不可变对象时，我们在组件的<code>shouldComponentUpdate</code>方法中，仅需要比较状态的引用就可以判断是否真的改变，从而避免不必要的<code>render</code>调用；三是当我们使用React提供的<code>PureComponent</code>时，更要保证组件状态是不可变的，因为<code>PureComponent</code>执行的是浅比较。此处可以借助<code>Immutable.js</code>库实现类似效果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> books = <span class="keyword">this</span>.state.books;</div><div class="line"><span class="comment">//concat返回新数组</span></div><div class="line"><span class="keyword">this</span>.setState(&#123;</div><div class="line">    <span class="attr">books</span>: books.concat([<span class="string">'React Guide'</span>]);</div><div class="line">&#125;)</div><div class="line"><span class="comment">//使用preState\concat创建新数组</span></div><div class="line"><span class="keyword">this</span>.setState(<span class="function"><span class="params">preState</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">books</span>: preState.books.concat([<span class="string">'React Guide'</span>]);</div><div class="line">&#125;))</div><div class="line"><span class="comment">//扩展运算符</span></div><div class="line"><span class="keyword">this</span>.setState(<span class="function"><span class="params">preState</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">books</span>: [...preState.books, <span class="string">'React Guide'</span>];</div><div class="line">&#125;))</div><div class="line"><span class="comment">//slice创建新数组</span></div><div class="line"><span class="keyword">this</span>.setState(<span class="function"><span class="params">preState</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">books</span>: preState.books.slice(<span class="number">1</span>, <span class="number">3</span>);</div><div class="line">&#125;))</div><div class="line"><span class="comment">//filter创建新数组</span></div><div class="line"><span class="keyword">this</span>.setState(&#123;</div><div class="line">    <span class="attr">books</span>: books.filter(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">return</span> item != <span class="string">'React'</span></div><div class="line">    &#125;);</div><div class="line">&#125;)</div><div class="line"><span class="keyword">this</span>.setState(<span class="function"><span class="params">preState</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">books</span>: preState.books.filter(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">return</span> item != <span class="string">'React'</span></div><div class="line">    &#125;)</div><div class="line">&#125;))</div><div class="line"><span class="keyword">this</span>.setState(&#123;</div><div class="line">    <span class="attr">books</span>: <span class="built_in">Object</span>.assign(&#123;&#125;, books, &#123;<span class="attr">name</span>: <span class="string">'Jason'</span>&#125;);</div><div class="line">&#125;)</div><div class="line"><span class="keyword">this</span>.setState(<span class="function"><span class="params">preState</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">books</span>: <span class="built_in">Object</span>.assign(&#123;&#125;, preState.books, &#123;<span class="attr">name</span>: <span class="string">'Jason'</span>&#125;);</div><div class="line">&#125;))</div><div class="line"><span class="keyword">this</span>.setState(&#123;</div><div class="line">    <span class="attr">books</span>: &#123;...books, &#123;<span class="attr">name</span>: <span class="string">'Jason'</span>&#125;&#125;;</div><div class="line">&#125;)</div><div class="line"><span class="keyword">this</span>.setState(<span class="function"><span class="params">preState</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">books</span>: &#123;...preState.books, &#123;<span class="attr">name</span>: <span class="string">'Jason'</span>&#125;&#125;;</div><div class="line">&#125;))</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h4><p>componentWillMount请求数据会执行两次：服务器端没有did方法，因为涉及到DOM渲染，只能在浏览器端。如果做服务器端渲染，则会执行两次，否则是一样的。</p>
-<h4 id="React中的key"><a href="#React中的key" class="headerlink" title="React中的key"></a>React中的key</h4><p>React 用于追踪哪些列表中元素被修改、被添加或者被移除的辅助标识。在 React Diff 算法中 React 会借助元素的 Key 值来判断该元素是新近创建的还是被移动而来的元素，从而减少不必要的元素重渲染。此外，React 还需要借助 Key 值来判断元素与本地状态的关联关系。</p>
-<h4 id="React事件处理"><a href="#React事件处理" class="headerlink" title="React事件处理"></a>React事件处理</h4><blockquote>
-<p>为了解决跨浏览器兼容性问题，React 会将浏览器原生事件（Browser Native Event）封装为合成事件（SyntheticEvent）传入设置的事件处理器中。这里的合成事件提供了与原生事件相同的接口，不过它们屏蔽了底层浏览器的细节差异，保证了行为的一致性。另外有意思的是，React 并没有直接将事件附着到子元素上，而是以单一事件监听器的方式将所有的事件发送到顶层进行处理。这样 React 在更新 DOM 的时候就不需要考虑如何去处理附着在 DOM 上的事件监听器，最终达到优化性能的目的。<br>SyntheticEvent 是浏览器原生事件跨浏览器的封装。SyntheticEvent 和浏览器原生事件一样有 stopPropagation()、preventDefault() 接口，而且这些接口夸浏览器兼容。<br>阻止冒泡事件有三种方式：</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">handleClick(e)&#123;</div><div class="line">    <span class="comment">// 阻止合成事件间的冒泡</span></div><div class="line">    e.stopPropagation();</div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">count</span>:++<span class="keyword">this</span>.state.count&#125;);</div><div class="line">&#125;</div><div class="line">handleClick(e)&#123;</div><div class="line">    <span class="comment">// 阻止合成事件与最外层document上的事件间的冒泡</span></div><div class="line">    e.nativeEvent.stopImmediatePropagation();</div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">count</span>:++<span class="keyword">this</span>.state.count&#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">/*阻止合成事件与除最外层document上的原生事件上的冒泡*/</span></div><div class="line">componentDidMount() &#123;</div><div class="line">    <span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>,e=&gt;&#123;</div><div class="line">        <span class="comment">// 通过e.target判断阻止冒泡</span></div><div class="line">        <span class="keyword">if</span>(e.target&amp;&amp;e.target.matches(<span class="string">'a'</span>))&#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'body'</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>参考材料：</p>
+</li>
+<li><p>setState是异步执行的</p>
 <ul>
-<li><a href="https://html-js.site/2017/08/25/react%E4%BA%8B%E4%BB%B6%E7%A0%94%E7%A9%B6%E5%8F%8A%E9%98%BB%E6%AD%A2%E5%86%92%E6%B3%A1/" target="_blank" rel="noopener">https://html-js.site/2017/08/25/react%E4%BA%8B%E4%BB%B6%E7%A0%94%E7%A9%B6%E5%8F%8A%E9%98%BB%E6%AD%A2%E5%86%92%E6%B3%A1/</a></li>
+<li>可以设置第二个参数，是回调函数，函数里可以拿到更新的state值</li>
+<li>出于性能考虑，当要加载的组件树比较庞大时，更新这段时间内，用户输入或敲击键盘不会获得响应。等更新过程完成后，用户输入又会一下显示出来，造成界面卡顿，体验不好。解决办法是分片，把耗时长的任务分成小片，小片执行完执行其他任务，可以先做紧急任务（维护每个分片的数据结构就是Fiber）。带来的影响是一个更新任务可能没有执行完就被另一个高级任务打断。低级任务会作废，有机会重头再来。React Fiber把更新过程分为两个阶段：第一阶段Reconciliation，找出需要更新的DOM，可以被打断，生命周期函数有<code>componentWillMount</code>、<code>componentWillReceiveProps</code>，<code>shouldComponentUpdate</code>，<code>componentWillUpdate</code>；第二阶段Commit Phase，一鼓作气更新DOM，不会打断，用到的生命周期函数有<code>componentDidMount</code>，<code>componentDidUpdate</code>，<code>componentWillUnmount</code>。可以被打断意味着在一次加载和更新过程中这些生命周期函数可能会被多次调用。</li>
+<li>setState异步更新的关键是<code>batchingStrategy</code>，批量更新，以事务的方式实现。<code>isBatchingUpdates</code>是事务的一个标志，如果为true，表示react正在一个更新组件的事务流中。如果在事务流中，将需要更新的组件放入<code>dirtyComponent</code>中，先将需要更新的组件存起来，稍后更新；否则调用<code>batchedUpdates</code>方法进入更新流程。进入流程后，会将<code>isBatchingUpdates</code>设置为true。这是为什么在<code>componentDidMount</code>中调用setState并不会立即更新state，因为正处于一个更新流程中，只会放入<code>dirtyComponents</code>中等待稍后更新。在事件中调用setState也是异步的，因为react通过合成事件实现对事件绑定。在组件创建和更新的入口方法<code>mountComponent</code>和<code>updateComponent</code>中会将绑定的事件注册到document上，相应的回调函数通过<code>EventPluginHub</code>存储，即也是通过事务完成。</li>
+<li>原生事件绑定不会通过合成事件的方式处理，也就不会进入更新事务的处理流程。setTimeout也一样，在setTimeout回调执行时已经完成了原更新组件流程，不会放入<code>dirtyComponent</code>进行异步更新，结果是同步的。</li>
 </ul>
-<h4 id="项目优化"><a href="#项目优化" class="headerlink" title="项目优化"></a>项目优化</h4><ul>
-<li>组件的state中不能出现props</li>
-<li>使用 PropTypes 和 getDefaultProps()：非预期情况下，获得警告</li>
-<li><p>component –&gt; pureComponent</p>
+</li>
+<li><p>参考：</p>
 <ul>
+<li><p><a href="https://juejin.im/entry/59522bdb6fb9a06b9a516113" target="_blank" rel="noopener">https://juejin.im/entry/59522bdb6fb9a06b9a516113</a></p>
+</li>
+<li><p><a href="https://redux.js.org/faq/immutabledata#benefits-of-immutability" target="_blank" rel="noopener">https://redux.js.org/faq/immutabledata#benefits-of-immutability</a></p>
+</li>
+<li><a href="https://zhuanlan.zhihu.com/p/35226897" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35226897</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="创建组件的方式"><a href="#创建组件的方式" class="headerlink" title="创建组件的方式"></a>创建组件的方式</h4><ul>
+<li>无状态函数组件：只是展示组件，不涉及state，也没有生命周期函数，只有render方法。不会被实例化，不能访问this，生命周期函数，只能访问props。</li>
+<li>es5的createClass：每个成员函数的this由React自动绑定，任何时候使用，直接this.method即可，this会被正确的设置；在getInitialState中配置组件相关的状态。</li>
+<li>es6的Component：其成员函数不会自动绑定this，需要开发者手动绑定，否则this不能获取当前组件实例对象。绑定的方式有三种：在构造函数中绑定，如下所示。在调用时使用<code>method.bind(this)</code>绑定。还可以用箭头函数绑定；可以在constructor中统一声明和绑定。最终会呈现<code>React.createClass</code>的形式。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InputControlES6</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(props)&#123;</div><div class="line">        <span class="keyword">super</span>(props);</div><div class="line">        <span class="keyword">this</span>.state = &#123;</div><div class="line">            <span class="attr">text</span>: props.initialValue || <span class="string">'placeholder'</span></div><div class="line">        &#125;;</div><div class="line">        <span class="comment">//es6类中函数必须手动绑定，否则this不能获取当前组件实例对象，第一种方式</span></div><div class="line">        <span class="keyword">this</span>.handleChange = <span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    handleChange(event)&#123;</div><div class="line">        <span class="keyword">this</span>.setState(&#123;</div><div class="line">            <span class="attr">text</span>: event.target.value</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">        	&lt;div&gt;</div><div class="line">            	Type something:</div><div class="line">            	&lt;input onChange=&#123;this.handleChange.bind(this)//第二种方式</div><div class="line">    &#125; value=&#123;this.state.text&#125; /&gt;</div><div class="line">				&lt;input onClick=&#123;()=&gt;this.handleClick() //第三种方式绑定</div><div class="line">                &#125;/&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>参考：<a href="http://www.cnblogs.com/wonyun/p/5930333.html" target="_blank" rel="noopener">http://www.cnblogs.com/wonyun/p/5930333.html</a></li>
+</ul>
+<h4 id="React中的数据流"><a href="#React中的数据流" class="headerlink" title="React中的数据流"></a>React中的数据流</h4><ul>
+<li>父子组件沟通：传递props</li>
+<li>子父组件沟通：父组件传递回调函数给子组件，子组件调用触发</li>
+<li>兄弟组件沟通：一、通过父组件回调函数改变兄弟组件的props；二、通过react中的context</li>
+<li>全局事件：redux</li>
+<li>ref：在典型数据流外（props）强制修改子组件<ul>
+<li>Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。我们可以为元素添加ref属性然后在回调函数中接受该元素在 DOM 树中的句柄，该值会作为回调函数的第一个参数返回。</li>
+<li>ref更新发生在componentDidMount 或 componentDidUpdate 生命周期钩子之前。</li>
+<li>不要在render方法中访问ref，因为这时组件不一定挂载到DOM中或render返回的虚拟DOM不一定会更新到DOM中。</li>
+<li>通过<code>ReactDOM.findDOMNode(ref)</code>来获取组件挂载之后真正的DOM节点。</li>
+<li>可以设置回调函数或者字符串</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建Refs，通过ref属性获得React元素</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(props)&#123;</div><div class="line">        <span class="keyword">super</span>(props);</div><div class="line">        <span class="keyword">this</span>.myRef = React.createRef();</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span> &lt;div ref = &#123;this.myRef&#125; /&gt;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//访问Refs</div><div class="line">const node = this.myRef.current;</div><div class="line">//为DOM元素添加Ref</div><div class="line">class CustomTextInput extends React.Component&#123;</div><div class="line">    constructor(props)&#123;</div><div class="line">        super(props);</div><div class="line">        //创建ref存储textInput DOM元素</div><div class="line">        this.textInput = React.createRef();</div><div class="line">        this.focusTextInput = this.focusTextInput.bind(this);</div><div class="line">    &#125;</div><div class="line">    focusTextInput()&#123;</div><div class="line">        //直接使用原生API使text输入框获得焦点</div><div class="line">        //通过current取得DOM节点</div><div class="line">        this.textInput.current.focus();</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        //告诉React我们想把&lt;input&gt;ref关联到构造器里创建的textInput上</div><div class="line">        return (</div><div class="line">        	&lt;div&gt;</div><div class="line">            	&lt;input</div><div class="line">            		type="text"</div><div class="line">            		ref=&#123;this.textInput&#125;</div><div class="line">            	/&gt;</div><div class="line">            	&lt;input</div><div class="line">            		type="button"</div><div class="line">            		value="Focus the text input"</div><div class="line">            		onClick=&#123;this.focusTextInput&#125;</div><div class="line">            	/&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//为类组件添加Ref</div><div class="line">class AutoFocusTextInput extends React.Component&#123;</div><div class="line">    constructor(props)&#123;</div><div class="line">        super(props);</div><div class="line">        this.textInput = React.createRef();</div><div class="line">    &#125;</div><div class="line">    componentDidMount()&#123;</div><div class="line">        this.textInput.current.focusTextInput();</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        return (</div><div class="line">        	&lt;CustomTextInput ref=&#123;this.textInput&#125; /&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//回调函数的方式在实例的属性中存储对DOM的引用</div><div class="line">componentDidMount()&#123;</div><div class="line">    Echarts.init(this.element).setOption(pieOption);</div><div class="line">&#125;</div><div class="line">render()&#123;</div><div class="line">    return &lt;div style = &#123;chartStyle&#125; ref = &#123;ref =&gt; this.element = ref&#125; /&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>参考：<a href="https://segmentfault.com/a/1190000006831820" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006831820</a></li>
+</ul>
+<h4 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h4><ul>
+<li><p>componentWillMount</p>
+<ul>
+<li>请求数据会执行两次：服务器端没有did方法，因为涉及到DOM渲染，只能在浏览器端。如果做服务器端渲染，则会执行两次，否则是一样的。</li>
+<li>在React16.3中被认为是不安全的方法。使用者常常把首屏数据和事件订阅放在这个生命周期中。但是首屏数据可能是异步的，在这个生命周期里用setState产生的变化可能不会被更新；其次，事件订阅如果放在这个生命周期中，不保证该事件在willUnmount中被撤销。只有放在componentDidMount中才能保证一定会执行componentWillUnmount，可能造成内存泄漏。在新版本中，componentWillMount中可以做的事情建议放在componentDidMount中。</li>
+</ul>
+</li>
+<li><p>componentWillReceiveProps</p>
+<p>在React16.3中被认为是不安全的方法。他的问题是多次props改变可能在子组件中多次发送异步请求，造成浪费。getDeivedstateFromProps则是接收到props的变化后，确认state改变了，才在componentDidUpdate中执行异步请求。</p>
+</li>
+<li><p>getSnapshotBeforeUpdate</p>
+<p>在更新之前被调用，返回值将作为第三个参数传递给componentDidUpdate。与componentDidUpdate一起，这个生命周期函数将覆盖旧版componentWillUpdate的所有用例。</p>
+</li>
+<li><p>参考：<a href="https://github.com/frontend9/fe9-library/issues/6" target="_blank" rel="noopener">https://github.com/frontend9/fe9-library/issues/6</a></p>
+</li>
+</ul>
+<h4 id="受控组建与非受控组件"><a href="#受控组建与非受控组件" class="headerlink" title="受控组建与非受控组件"></a>受控组建与非受控组件</h4><p>引入原生HTML表单元素（input、select、textarea）时，是否应该将所有的数据托管到React组件中还是仍保留在DOM元素中。</p>
+<ul>
+<li>受控组件：交由React控制并且所有的表单数据统一存放的组件。数据存放在state中，调用setState修改数据；</li>
+<li>非数控组件：由DOM存放表单数据，使用refs操控DOM元素。</li>
+</ul>
+<h4 id="React项目小经验积累"><a href="#React项目小经验积累" class="headerlink" title="React项目小经验积累"></a>React项目小经验积累</h4><ul>
+<li>使用 PropTypes 和 getDefaultProps()：非预期情况下，获得警告</li>
+<li>component –&gt; pureComponent<ul>
 <li>在state和props真正改变的时候重新渲染，减少渲染次数（浅比较）</li>
-<li>适合在展示组件，无状态组件中使用</li>
+<li>因为纯组件忽略重新渲染时，不仅会影响它本身，而且会影响它的所有子元素。所以它适合在展示组件，无状态组件中使用。没有子组件和依赖应用的全局状态。</li>
 <li>每次更新state时，需返回一个新对象</li>
 <li>当有常变化的部分（输入框的改变事件）和一般不变化的部分（列表）在一起时，可以将不变的列表部分抽出用pureComponent表示</li>
 <li>使用匿名函数传递props会失去pureComponent的优势，因为每次渲染都会创建一个新的函数</li>
 </ul>
 </li>
-<li><p>动态多个className：引入库classnames</p>
-</li>
+<li>动态多个className：引入库classnames。</li>
+<li><code>You cannot set field before registering it.</code>不能在注册之前设置值，是说设置了没有注册的表单，需要删除响应的数据。比如项目中要保留查询条件，通过将查询条件设置到url上实现，要返回到查询结果页面，则从url上取值查询刷新页面。这时查询条件中的分页信息需要先去掉。</li>
+<li><code>data.pageNum | 0</code>任何类型转换成数字，<code>+(undefined)</code>是NaN，<code>undefined|0</code>是0。</li>
+<li>级联表单思路：在antd中，监听第一个表单的onchange事件，获得改变后的值传入回调函数获取下一个表单应该有的值列表，通过form.setFieldsValue设置给下一个表单。</li>
+<li>异步加载组件：不是一开始就全部加载完成所有组件，而是匹配到哪个路由，才去加载这个组件。</li>
 <li>参考：<ul>
 <li><a href="https://segmentfault.com/a/1190000005013207" target="_blank" rel="noopener">https://segmentfault.com/a/1190000005013207</a></li>
 <li><a href="https://www.zcfy.cc/article/why-and-how-to-use-purecomponent-in-react-js-60devs-2344.html" target="_blank" rel="noopener">https://www.zcfy.cc/article/why-and-how-to-use-purecomponent-in-react-js-60devs-2344.html</a></li>
-<li><a href="https://github.com/AnHongpeng/blog/issues/5" target="_blank" rel="noopener">https://github.com/AnHongpeng/blog/issues/5</a></li>
+<li><a href="https://segmentfault.com/a/1190000010067597" target="_blank" rel="noopener">https://segmentfault.com/a/1190000010067597</a></li>
 </ul>
 </li>
 </ul>
@@ -207,102 +293,6 @@
 <li><a href="https://knownsec-fed.com/2018-01-28-fan-yi-react-zu-jian-mo-shi/" target="_blank" rel="noopener">https://knownsec-fed.com/2018-01-28-fan-yi-react-zu-jian-mo-shi/</a></li>
 <li><a href="https://tyrmars.gitbooks.io/react-steppitguide/content/React-01" target="_blank" rel="noopener">https://tyrmars.gitbooks.io/react-steppitguide/content/React-01</a></li>
 </ul>
-<h4 id="前后端架构设计与框架对比"><a href="#前后端架构设计与框架对比" class="headerlink" title="前后端架构设计与框架对比"></a>前后端架构设计与框架对比</h4><p>首先，MVC是一种架构设计模式，它通过关注点分离鼓励改进应用程序组织。前后端都有MVC架构模式的概念，前端的MVC是为了解决前端复杂JS模块化的问题，从后端MVC的V分出来的MVC，与后端MVC并没有直接的关系。前端的MVC中，M占的比例很低，只指代数据。而后端V的比例很低，只有模版的部分。<br><img src="https://sfault-image.b0.upaiyun.com/356/500/3565004702-5b238bef92e52" alt="https://sfault-image.b0.upaiyun.com/356/500/3565004702-5b238bef92e52"></p>
-<p>经典MVC模式下（并非一定在js中），涉及两种设计模式：view和model之间的观察者模式，view观察model，事先在此model上注册，以便view可以了解在数据model上发生的改变。和view和controller之间的策略模式，一个策略是一个表述算法的对象。MVC将响应机制封装在controller对象中。存在着一个controller的类层次结构，使得可以方便地对原有的controller做适当改变而创建新的controller。view使用controller子类的实例来实现一个特定的响应策略。要实现不同的响应的策略只要用不同种类的controller实例替换即可。</p>
-<p>经典MVC到jsMVC可以实现1对1的转换，但controller的角色有些许改变。从原来派发用户输入给不同的view和改变model到用户和系统的连接。在js中，controller的职责已经被系统实现了。<br><img src="/2018/07/04/React与类MVVM框架/" alt=""></p>
-<p>MVP是想改变cotroller与view的捆绑关系，view有用户处理事件的能力。但是用户处理事件统一放到P中，如此，多个view可以公用一个controller。通过Presenter更新model，通过观察者模式更新view。更新方式与MVC一样，但是MVC的更新过程是一个圆，一个循环的过程。MVP依赖Presenter作为核心，负责从model中拿数据，填充到view中。常见的MVP的实现是被动视图，Presenter观察model，不再是view观察model，一旦model发生变化，就会更新view。Presenter有效地绑定了model到view。view暴露了setters接口以便Presenter可以设置数据。对于这种被动视图的结构，没有直接数据绑定的概念。但是他的好处是在view和model直接提供更清晰的分离。但是由于缺乏数据绑定支持，意味着不得不单独关注某个任务。在MVP里，应用程序的逻辑主要在Presenter来实现，其中的view是很薄的一层。<br><img src="/2018/07/04/React与类MVVM框架/" alt=""></p>
-<p>MVVM的特点是数据绑定，view和model是不知道彼此存在的，同MVP一样，将view和model清晰地分离开来。 其次，view是对viewmodel的外在显示，与viewmodel保持同步，viewmodel对象可以看作是view的上下文。view绑定到viewmodel的属性上，如果viewmodel中的属性值变化了，这些新值通过数据绑定会自动传递给view。反过来viewmodel会暴露model中的数据和特定状态给view。所以，view不知道model的存在，viewmodel和model也觉察不到view。<br><img src="/2018/07/04/React与类MVVM框架/" alt=""></p>
-<p>简单来说，<code>MV*</code>的区别在M与V的联系上，Controller负责监听view的用户事件，得到数据做处理，渲染view。由于各个模块耦合性强，无法单独验证应用逻辑正确性，不能判断出问题的模块。所以有MVP调用view层的接口渲染model。如此，P可以做单元测试，结构也更清楚。但是当view变的复杂之后，需要的接口变多，增加了开发调试的成本，所以有了MVVM。VM中构建一组状态数据（view层的抽象），通过双向数据绑定使VM中的状态数据与View中的显示状态保持一致。VM只适合复杂UI交互的项目。</p>
-<p>参考：</p>
-<pre><code>- [https://segmentfault.com/a/1190000015310674](https://segmentfault.com/a/1190000015310674)
-- [http://efe.baidu.com/blog/mvc-deformation/](http://efe.baidu.com/blog/mvc-deformation/)
-</code></pre><p>其次，React的定位是MVC框架中的V，Vue的定位是MVVM框架中的VM，Angular的定位是完整的MVVM框架。</p>
-<ul>
-<li><p>React-13：可以非常方便地构建大型网页应用。</p>
-<ul>
-<li>出现：为了降低操作DOM的代价</li>
-<li>优点：<ul>
-<li>速度快。提出了Virtual Dom这种新颖的思路，并且这种思路衍生出了React Native，有可能会统一Web/Native开发。在性能方面，由于运用了Virtual Dom技术，Reactjs只在调用setState的时候会更新dom，而且还是先更新Virtual Dom，然后和实际Dom比较，最后再更新实际Dom。一是更新dom的次数少，二是更新dom的内容少。</li>
-<li>模块化。独立的模块化UI组件，这样当某个或某些组件出现问题是，可以方便地进行隔离。组件通过组合、嵌套构成更复杂的UI界面。</li>
-<li>ReactJS更关注数据的单向更新，但是它更简单直观，所有的状态改变只有一个入口this.setState()。/<em>它提出了FLUX架构的新概念，现在React可以直接用Js ES6语法了，然后通过webpack编译成浏览器兼容的ES5，开发效率上有些优势. </em>/</li>
-<li>React Native生成的App不是运行在WebView上，而是系统原生的UI，React通过jsx生成系统原生的UI，iOS和Android的React UI组件还是比较相似的，大量代码可以复用。</li>
-<li>同构的JavaScript: 单页面JS应用程序的最大缺陷在于对搜索引擎的索引有很大限制。React可以在服务器上预渲染应用再发送到客户端。它可以从预渲染的静态内容中恢复一样的记录到动态应用程序中。因为搜索引擎的爬虫程序依赖的是服务端响应而不是JavaScript的执行，预渲染你的应用有助于搜索引擎优化。</li>
-<li>跨浏览器兼容：虚拟DOM帮助我们解决了跨浏览器问题，它为我们提供了标准化的API，甚至在IE8中都是没问题的。</li>
-<li>灵活性、轻量级、开源、版本迁移容易</li>
-</ul>
-</li>
-<li>缺点：<br>  React是目标是UI组件，通常可以和其它框架组合使用，目前并不适合单独做一个完整的框架。React 即使配上 redux 的组合，也不能称之一个完整的框架，比如你想用Promise化的AJAX？要自己找现成的库。而且第三方组件远远不如Angular多。React本身只是一个V而已，所以如果是大型项目想要一套完整的框架的话，也许还需要引入Redux和route相关的东西。</li>
-</ul>
-</li>
-<li><p>Vue-13：非常适合用于构架非常灵活的UI和复杂的单页面应用。</p>
-<ul>
-<li>是一个提供 MVVM 数据双向绑定的库，专注于UI 层面，核心思想是：数据驱动、组件系统。</li>
-<li>数据观测原理在技术实现上，利用的是 ES5 Object.defineProperty 和存储器属性: getter 和 setter（所以只兼容 IE9 及以上版本）</li>
-<li>Vue实现数据和视图保持一致性：每一个指令都会有一个对应的用来观测数据的对象，叫做 watcher，比如v-text=”msg”, ，即为两个 watcher，watcher对象中包含了待渲染的关联 DOM 元素。<ul>
-<li>将原生的数据改造成 “可观察对象”，通常为调用 defineProperty 改变 data 对象中数据为存储器属性；一个可观察对象可以被取值 getter，也可以被赋值setter。</li>
-<li>解析模板，也就是在 watcher 的求值过程中，每一个被取值的可观察对象都会将当前的 watcher 注册为自己的一个订阅者，并成为当前watcher的一个依赖。</li>
-<li>当一个被依赖的可观察对象被赋值时，它会通知 notify 所有订阅自己的 watcher 重新求值，并触发相应的更新，即watcher对象中关联的 DOM 改变渲染。</li>
-<li>使用 Virtual DOM；提供了响应式（Reactive）和组件化（Composable）的视图组件；将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库</li>
-</ul>
-</li>
-<li>端对端的数据渲染，react是setState更新组件，父组件更新子组件重新渲染</li>
-<li>继承方式不同，react面向对象继承，vue需要遵循很多规则</li>
-<li>优点：<ul>
-<li>轻便（20多kb），双向绑定</li>
-<li>强化的HTML，像Angular</li>
-<li>可适用性：可以很快地从其它框架转移到Vue.js</li>
-<li>整合性：Vue.js可以同时用于单页面应用和更加复杂的网页应用。主要在于你可以用它编写很小的可交互部件，然后可以很容易地整合到现有的项目中而不会影响到整个系统；</li>
-</ul>
-</li>
-<li>缺点：<ul>
-<li>不支持ie8</li>
-<li>在整个市场中只占有很小的比例，所以相应的资源、知识要少很多；</li>
-<li>灵活性带来的风险：有时候，将其整合到大型项目的时候会有一些问题，但是不见得能够找到解法</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Angular-09:对于构建高度可交互的网页应用非常方便。</p>
-<ul>
-<li>出现：AngularJS是为了克服HTML在构建应用上的不足而设计的。使用了不同的方法，它尝试去补足HTML本身在构建应用方面的缺陷。通过使用标识符(directives)的结构，让浏览器能够识别新的语法。例如使用双大括号语法进行数据绑定；使用ng-controller指定每个控制器负责监视视图中的哪一部分；使用ng-model，把输入数据绑定到模型中的一部分属性上。</li>
-<li><p>优点：</p>
-<ul>
-<li>AngularJS是一套完整的框架，angular有自带的数据绑定、render渲染、angularUI库,过滤器,directive(模板),服务q(defer),http，inject(依赖注入),factory,provider……，等等一系列工具，基本上只要你在做web开发用过的东西，它都有一个。</li>
-<li>新特性：RXJS，快速编译（3秒内），新的HttpClient；</li>
-<li>详细的文档几乎涵盖了所有必须的信息</li>
-<li>数据双向绑定，可以减少出错的风险</li>
-<li>MVVM(Model-View-ViewModel)使得开发者可以针对同一个App模块同时开发</li>
-<li>依赖注入使得模块化和模块中组件引入更加方便；</li>
-</ul>
-</li>
-<li><p>缺点：</p>
-<ul>
-<li>性能：随着组件增加，项目越来越复杂，双向数据绑定带来性能问题。在JavaScript（ES5）中，并没有实现当变量或对象改变时发出通知的功能，Angular的实现方法被叫做“Dirty-checking（脏检查机制）”，通过跟踪数据的改变再动态更新用户界面（UI）。在Angular的作用域中任何操作的执行都会引发Dirty-checking，随着绑定数量的增加性能就会越低。</li>
-<li>学习成本高</li>
-<li>迁移问题：从低版本升级到新版本的时候，不兼容导致迁移成本高。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>在react，angular，vue这三者中，Angular的适用领域相对窄一些，React可以拓展到服务端，移动端Native部分，而Vue因为比较轻量，还能用于业务场景非常轻的页面中。</li>
-<li><p>在web应用中，要解决三个问题：状态、组织和效率</p>
-<ul>
-<li>状态：在一个业务界面中，可能根据数据生成界面，再通过操作改变数据，影响界面中另一些部分。其中有两种关系：从数据到界面和从界面到数据。能够描述界面当前状况的数据，可称为状态。不同框架采用不同方式做了处理：MVVM流的Angular和Vue，通过类似模板的语法，描述界面状态与数据的绑定关系，然后通过内部转换，把这个结构建立起来，当界面发生变化的时候，按照配置规则去更新相应的数据，然后，再根据配置好的规则去，从数据更新界面状态；React走的是另外一个流派，就是所谓的函数式，在这个里面，推崇的是单向数据流：给定原始界面（或数据），施加一个变化，就能推导出另外一个状态（界面或者数据的更新）。</li>
-<li>组织：模块关系和业务模型。模块关系就是模块化，业务模型指的是所处领域中的业务数据、规则、流程的集合。</li>
-<li>效率：开发效率和运行效率。组件化提高开发效率；运行效率在于数据变更检测方式和创建和修改DOM</li>
-</ul>
-</li>
-<li><p>参考材料：</p>
-<ul>
-<li><a href="https://www.w3cvip.org/topics/93" target="_blank" rel="noopener">https://www.w3cvip.org/topics/93</a></li>
-<li><a href="https://segmentfault.com/a/1190000005159165" target="_blank" rel="noopener">https://segmentfault.com/a/1190000005159165</a></li>
-<li><a href="https://blog.csdn.net/u012125579/article/details/52744093" target="_blank" rel="noopener">https://blog.csdn.net/u012125579/article/details/52744093</a></li>
-<li><a href="https://blog.fundebug.com/2018/07/09/react_vs_angular_vue/" target="_blank" rel="noopener">https://blog.fundebug.com/2018/07/09/react_vs_angular_vue/</a></li>
-</ul>
-</li>
-</ul>
 
   </article>
   <div class="random-toc-area">
@@ -310,12 +300,14 @@
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
   <div class="random-toc">
     <h2>Table of Content</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React与类MVVM框架"><span class="toc-text">React与类MVVM框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#React原理及diff理解"><span class="toc-text">React原理及diff理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态"><span class="toc-text">状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ref：在典型数据流外（props）强制修改子组件"><span class="toc-text">ref：在典型数据流外（props）强制修改子组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生命周期函数"><span class="toc-text">生命周期函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React中的key"><span class="toc-text">React中的key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React事件处理"><span class="toc-text">React事件处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目优化"><span class="toc-text">项目优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前后端架构设计与框架对比"><span class="toc-text">前后端架构设计与框架对比</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React再整理"><span class="toc-text">React再整理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#React原理及diff理解"><span class="toc-text">React原理及diff理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态"><span class="toc-text">状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建组件的方式"><span class="toc-text">创建组件的方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React中的数据流"><span class="toc-text">React中的数据流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生命周期函数"><span class="toc-text">生命周期函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#受控组建与非受控组件"><span class="toc-text">受控组建与非受控组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React项目小经验积累"><span class="toc-text">React项目小经验积累</span></a></li></ol></li></ol></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
+  
+    <a href="/2018/09/22/前端框架vs前端框架vs后端框架/" class="prev">&larr; Prev post 前端框架vs前端框架vs后端框架</a>
   
 
   
