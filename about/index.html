@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="寻 觅">
 <meta property="og:description" content="前端小白爱纠结 爱做梦还没完全的了解自己被生活和现实挫败后 还是要重新开始就先这样">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-02T13:03:30.343Z">
+<meta property="og:updated_time" content="2018-10-02T13:05:21.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
 <meta name="twitter:description" content="前端小白爱纠结 爱做梦还没完全的了解自己被生活和现实挫败后 还是要重新开始就先这样">
@@ -286,6 +286,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -541,6 +555,18 @@
       <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/about/index.html';
+          this.page.identifier = 'about/index.html';
+          this.page.title = 'about';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
