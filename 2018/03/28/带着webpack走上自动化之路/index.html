@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="寻 觅">
 <meta property="og:description" content="定位&amp;emsp;&amp;emsp;Webpack是前端资源加载/打包工具，模块化解决方案。 &amp;emsp;&amp;emsp;其他的关于前端构建工具还有：  编译器：Babel  任务运行器：Gulp/Grunt，定义并运行任务的工具，编写模块打包器不能处理的任务是有必要的（为模块打包器自动生成的静态资源文件在网页中插入一个script标签）。Grunt是先前定义过的任务的工具，通过一系列的配置对象声明式定义。缺">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-06T03:06:32.858Z">
+<meta property="og:updated_time" content="2018-10-06T06:28:41.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="带着Webpack走上自动化之路">
 <meta name="twitter:description" content="定位&amp;emsp;&amp;emsp;Webpack是前端资源加载/打包工具，模块化解决方案。 &amp;emsp;&amp;emsp;其他的关于前端构建工具还有：  编译器：Babel  任务运行器：Gulp/Grunt，定义并运行任务的工具，编写模块打包器不能处理的任务是有必要的（为模块打包器自动生成的静态资源文件在网页中插入一个script标签）。Grunt是先前定义过的任务的工具，通过一系列的配置对象声明式定义。缺">
@@ -436,16 +436,14 @@
 <li>UglifyJsParallelPlugin：多线程压缩</li>
 <li>webpack-sftp-plugin：上传文件到ftp服务器</li>
 <li>CommonsChunkPlugin–&gt;splitChunks：模块拆分</li>
+<li>AddAssetHtmlPlugin：配合生成某文件自动加载在html中</li>
 </ul>
-<ul>
-<li>参考材料：<ul>
+<h4 id="参考材料："><a href="#参考材料：" class="headerlink" title="参考材料："></a>参考材料：</h4><ul>
 <li><a href="https://www.jianshu.com/p/42e11515c10f" target="_blank" rel="noopener">https://www.jianshu.com/p/42e11515c10f</a></li>
 <li><a href="https://segmentfault.com/q/1010000007581542?_ea=1390552" target="_blank" rel="noopener">https://segmentfault.com/q/1010000007581542?_ea=1390552</a></li>
 <li><a href="http://jackieanxis.coding.me/2018/01/18/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9JavaScript%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E4%B9%8BBabel%E3%80%81Browserify%E3%80%81Webpack%E3%80%81Grunt%E4%BB%A5%E5%8F%8AGulp/" target="_blank" rel="noopener">http://jackieanxis.coding.me/2018/01/18/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9JavaScript%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E4%B9%8BBabel%E3%80%81Browserify%E3%80%81Webpack%E3%80%81Grunt%E4%BB%A5%E5%8F%8AGulp/</a></li>
 <li><a href="https://juejin.im/post/5badd0c5e51d450e4437f07a" target="_blank" rel="noopener">https://juejin.im/post/5badd0c5e51d450e4437f07a</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/37896189" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37896189</a></li>
-</ul>
-</li>
 </ul>
 
       
@@ -651,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定位"><span class="nav-number">1.</span> <span class="nav-text">定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#适用场景"><span class="nav-number">2.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优势"><span class="nav-number">3.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作方式"><span class="nav-number">4.</span> <span class="nav-text">工作方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行流程解析"><span class="nav-number">5.</span> <span class="nav-text">运行流程解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loader"><span class="nav-number">6.</span> <span class="nav-text">loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plugin"><span class="nav-number">7.</span> <span class="nav-text">plugin</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定位"><span class="nav-number">1.</span> <span class="nav-text">定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#适用场景"><span class="nav-number">2.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优势"><span class="nav-number">3.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作方式"><span class="nav-number">4.</span> <span class="nav-text">工作方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行流程解析"><span class="nav-number">5.</span> <span class="nav-text">运行流程解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loader"><span class="nav-number">6.</span> <span class="nav-text">loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plugin"><span class="nav-number">7.</span> <span class="nav-text">plugin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考材料："><span class="nav-number">8.</span> <span class="nav-text">参考材料：</span></a></li></ol></div>
             
 
           </div>
