@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="React再整理React原理及diff理解 DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。 虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。 分别对">
+<meta name="description" content="React原理及diff理解 DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。 虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。 分别对tree、com">
 <meta name="keywords" content="react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React再整理">
 <meta property="og:url" content="http://yoursite.com/2018/07/04/React再整理/index.html">
 <meta property="og:site_name" content="寻 觅">
-<meta property="og:description" content="React再整理React原理及diff理解 DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。 虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。 分别对">
+<meta property="og:description" content="React原理及diff理解 DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。 虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。 分别对tree、com">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-22T08:28:07.793Z">
+<meta property="og:updated_time" content="2018-10-23T08:59:04.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React再整理">
-<meta name="twitter:description" content="React再整理React原理及diff理解 DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。 虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。 分别对">
+<meta name="twitter:description" content="React原理及diff理解 DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。 虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。 分别对tree、com">
 
 
 
@@ -363,7 +363,7 @@
       
 
       
-        <h2 id="React再整理"><a href="#React再整理" class="headerlink" title="React再整理"></a>React再整理</h2><h4 id="React原理及diff理解"><a href="#React原理及diff理解" class="headerlink" title="React原理及diff理解"></a>React原理及diff理解</h4><ul>
+        <h4 id="React原理及diff理解"><a href="#React原理及diff理解" class="headerlink" title="React原理及diff理解"></a>React原理及diff理解</h4><ul>
 <li>DOM diff其实是比较两个虚拟DOM的区别，本质上是比较两个对象（js的树形解构）的区别，对比出不同，创建补丁（补丁是描述改变了的内容），用这个补丁来进行更新，最小化DOM操作。</li>
 <li>虚拟DOM+diff算法，使DOM树构建的复杂度从O(n^3)转为O(n)，O(n^3)据说是对比两棵树需要两层嵌套循环，再加一层确认是什么操作（增、删、改等）。</li>
 <li>分别对tree、component、element diff进行优化：<ul>
@@ -375,16 +375,16 @@
 <li>参考：<a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a></li>
 </ul>
 <h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><ul>
-<li><p>定位：组件的任何UI改变，可以从state中反映出来，并且是UI呈现的最小状态集，不需要通过其他状态计算而来，需要在render中使用。</p>
+<li><p>定位：组件的任何UI改变，可以从state中反映出来，并且是<strong>UI呈现的最小状态集</strong>，不需要通过其他状态计算而来，需要在render中使用。</p>
 </li>
 <li><p>与props的区别：state是可变的，是组件内部维护的用于反应组件UI变化的状态集合；props是只读的，修改props只能通过该组件的父组件修改。</p>
 </li>
 <li><p>适用场合：</p>
 <ul>
-<li>在componentWillMount中执行无意义，因为组件只挂载一次，而且会和constructor中的初始化state合并执行，对state的初始化可以放在constructor中。</li>
+<li>在componentWillMount中执行无意义，因为组件只挂载一次，而且会和constructor中的初始化state合并执行，对state的初始化可以放在constructor（组件的初始化工作）中。</li>
 <li>在componentDidMount中执行导致组件在初始化的时候就触发，渲染两次，除了在必要的场合如组件渲染完成获得DOM元素位置或者宽高以外，其他时候避免在该生命周期中设置。</li>
 <li>在componentWillUnmount中执行不生效无意义。</li>
-<li>在shouldComponentUpdate和componentWillUpdate中调用se’tState，会造成循环调用，直至耗光浏览器内存后崩溃。</li>
+<li>在shouldComponentUpdate和componentWillUpdate中调用setState，会造成循环调用，直至耗光浏览器内存后崩溃。</li>
 <li>在componentDidUpdate中执行setState可能会导致死循环，但在需要重新获取DOM元素宽高时更新某个state就不得不使用，给他设置一个前提条件，避免循环渲染。</li>
 </ul>
 </li>
@@ -467,6 +467,10 @@
 <li>受控组件：交由React控制并且所有的表单数据统一存放的组件。数据存放在state中，调用setState修改数据；</li>
 <li>非数控组件：由DOM存放表单数据，使用refs操控DOM元素。</li>
 </ul>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><p>React中异步事件被合并，在调用事件回调之后，将重用该对象并且所有属性都将无效。是出于性能考虑，所以无法以异步方式访问事件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    state = &#123;<span class="attr">search</span>:<span class="string">''</span>&#125;</div><div class="line">	handleChange = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</div><div class="line">        <span class="comment">//event.persist()</span></div><div class="line">    	clearTimeout(<span class="keyword">this</span>.timeout);</div><div class="line">        <span class="keyword">this</span>.timeout = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">            <span class="keyword">this</span>.setState(&#123;</div><div class="line">                <span class="attr">search</span>: event.target.value</div><div class="line">            &#125;)</div><div class="line">        &#125;, <span class="number">250</span>);</div><div class="line">	&#125;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">        	<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">            	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">onChange</span>=<span class="string">&#123;this.handleChange&#125;</span> /&gt;</span></div><div class="line">            	&#123;this.state.search ? <span class="tag">&lt;<span class="name">p</span>&gt;</span>Search for: &#123;this.state.search&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span> : null&#125;</div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;不会得到预期的结果，报错<code>can&#39;t get value of undefined</code>。React中事件是合成事件，如果和它的交互被延迟了（如通过setTimeout），事件会被清除并且<code>.target.value</code>引用不会再有效。</p>
+<p>&emsp;&emsp;修改：去掉上面的注释语句。<code>event.persist()</code>事件将从池中删除合成事件，并允许用户代码保留对事件的引用。</p>
 <h4 id="React项目小经验积累"><a href="#React项目小经验积累" class="headerlink" title="React项目小经验积累"></a>React项目小经验积累</h4><ul>
 <li>使用 PropTypes 和 getDefaultProps()：非预期情况下，获得警告</li>
 <li>component –&gt; pureComponent<ul>
@@ -630,7 +634,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -701,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React再整理"><span class="nav-number">1.</span> <span class="nav-text">React再整理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#React原理及diff理解"><span class="nav-number">1.0.1.</span> <span class="nav-text">React原理及diff理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态"><span class="nav-number">1.0.2.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建组件的方式"><span class="nav-number">1.0.3.</span> <span class="nav-text">创建组件的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React中的数据流"><span class="nav-number">1.0.4.</span> <span class="nav-text">React中的数据流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期函数"><span class="nav-number">1.0.5.</span> <span class="nav-text">生命周期函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#受控组建与非受控组件"><span class="nav-number">1.0.6.</span> <span class="nav-text">受控组建与非受控组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React项目小经验积累"><span class="nav-number">1.0.7.</span> <span class="nav-text">React项目小经验积累</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#React原理及diff理解"><span class="nav-number">1.</span> <span class="nav-text">React原理及diff理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态"><span class="nav-number">2.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建组件的方式"><span class="nav-number">3.</span> <span class="nav-text">创建组件的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React中的数据流"><span class="nav-number">4.</span> <span class="nav-text">React中的数据流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期函数"><span class="nav-number">5.</span> <span class="nav-text">生命周期函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#受控组建与非受控组件"><span class="nav-number">6.</span> <span class="nav-text">受控组建与非受控组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件"><span class="nav-number">7.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React项目小经验积累"><span class="nav-number">8.</span> <span class="nav-text">React项目小经验积累</span></a></li></ol></div>
             
 
           </div>
