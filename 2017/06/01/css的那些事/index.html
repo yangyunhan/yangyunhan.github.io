@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="盒子大小W3C模型中，width等于内容的width。有padding、box、margin的盒子的实际宽度就是width + 2*(padding + border + margin)；IE模型中，width等于内容width+2(border + padding)。有margin的盒子的实际宽度就是`width + 2(margin)`。 居中问题： 水平居中 内联模式的文本：text-ali">
+<meta name="description" content="居中问题： 水平居中 内联模式的文本：text-align: center，适用于inline，inline-block，inline-table，inline-flex 块级别的元素：margin: 0 auto 多个块级别的元素： 多个块级别的元素在同一行：块级别元素间是inline-block，这一行的text-align设置为center。出现的效果是这一行水平居中，内容高度不一致；采用f">
 <meta name="keywords" content="tips">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css的那些事">
 <meta property="og:url" content="http://yoursite.com/2017/06/01/css的那些事/index.html">
 <meta property="og:site_name" content="寻 觅">
-<meta property="og:description" content="盒子大小W3C模型中，width等于内容的width。有padding、box、margin的盒子的实际宽度就是width + 2*(padding + border + margin)；IE模型中，width等于内容width+2(border + padding)。有margin的盒子的实际宽度就是`width + 2(margin)`。 居中问题： 水平居中 内联模式的文本：text-ali">
+<meta property="og:description" content="居中问题： 水平居中 内联模式的文本：text-align: center，适用于inline，inline-block，inline-table，inline-flex 块级别的元素：margin: 0 auto 多个块级别的元素： 多个块级别的元素在同一行：块级别元素间是inline-block，这一行的text-align设置为center。出现的效果是这一行水平居中，内容高度不一致；采用f">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/06/01/css的那些事/bfc.png">
-<meta property="og:updated_time" content="2018-08-08T10:23:50.779Z">
+<meta property="og:updated_time" content="2018-11-13T06:15:32.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css的那些事">
-<meta name="twitter:description" content="盒子大小W3C模型中，width等于内容的width。有padding、box、margin的盒子的实际宽度就是width + 2*(padding + border + margin)；IE模型中，width等于内容width+2(border + padding)。有margin的盒子的实际宽度就是`width + 2(margin)`。 居中问题： 水平居中 内联模式的文本：text-ali">
+<meta name="twitter:description" content="居中问题： 水平居中 内联模式的文本：text-align: center，适用于inline，inline-block，inline-table，inline-flex 块级别的元素：margin: 0 auto 多个块级别的元素： 多个块级别的元素在同一行：块级别元素间是inline-block，这一行的text-align设置为center。出现的效果是这一行水平居中，内容高度不一致；采用f">
 <meta name="twitter:image" content="http://yoursite.com/2017/06/01/css的那些事/bfc.png">
 
 
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/skill/" itemprop="url" rel="index">
-                    <span itemprop="name">skill</span>
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
                   </a>
                 </span>
 
@@ -365,8 +365,7 @@
       
 
       
-        <h3 id="盒子大小"><a href="#盒子大小" class="headerlink" title="盒子大小"></a>盒子大小</h3><p>W3C模型中，width等于内容的width。有padding、box、margin的盒子的实际宽度就是<code>width + 2*(padding + border + margin)</code>；<br>IE模型中，width等于内容width+2<em>(border + padding)。有margin的盒子的实际宽度就是`width + 2</em>(margin)`。</p>
-<h3 id="居中问题："><a href="#居中问题：" class="headerlink" title="居中问题："></a>居中问题：</h3><ul>
+        <h3 id="居中问题："><a href="#居中问题：" class="headerlink" title="居中问题："></a>居中问题：</h3><ul>
 <li>水平居中<ul>
 <li>内联模式的文本：<code>text-align: center</code>，适用于inline，inline-block，inline-table，inline-flex</li>
 <li>块级别的元素：<code>margin: 0 auto</code></li>
@@ -394,7 +393,7 @@
 </ul>
 </li>
 <li>块级别的元素：<ul>
-<li>如果知道高度：使用<code>position: absolute</code>设置高度。</li>
+<li>知道高度：使用<code>position: absolute</code>设置高度。</li>
 <li>未知高度：使用<code>position: absolute</code>、<code>top: 50%</code>和<code>transform: translateY(-50%);</code></li>
 <li>使用弹性（flex）布局：<code>justify-content: center;flex-direction: column</code>。</li>
 </ul>
@@ -410,8 +409,7 @@
 </li>
 </ul>
 <p><em>来自教程：<a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="noopener">CSS-TRICKS</a>
-</em><a href="https://jscode.me/t/topic/1936" target="_blank" rel="noopener">垂直居中的七种方法</a></p>
-<p>&emsp;&emsp;在布局中遇到内联元素与嵌套元素有缝隙时，考虑vertical-align和line-height之间的关系。他们都基于HTML5。看了张鑫旭的文章用了很久，具体例子就不贴了，给出链接：<a href="www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/">张鑫旭-vertical-align与line-height</a>；<a href="http://www.zhangxinxu.com/wordpress/2009/11/css行高line-height的一些深入理解及应用/" target="_blank" rel="noopener">张鑫旭-对line-hight的理解</a></p>
+</em><a href="https://jscode.me/t/topic/1936" target="_blank" rel="noopener">垂直居中的七种方法</a><br>​<br>&emsp;&emsp;在布局中遇到内联元素与嵌套元素有缝隙时，考虑vertical-align和line-height之间的关系。他们都基于HTML5。看了张鑫旭的文章用了很久，具体例子就不贴了，给出链接：<a href="www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/">张鑫旭-vertical-align与line-height</a>；<a href="http://www.zhangxinxu.com/wordpress/2009/11/css行高line-height的一些深入理解及应用/" target="_blank" rel="noopener">张鑫旭-对line-hight的理解</a></p>
 <h3 id="左边栏固定，右边自适应"><a href="#左边栏固定，右边自适应" class="headerlink" title="左边栏固定，右边自适应"></a>左边栏固定，右边自适应</h3><ul>
 <li><p>硬编码定高的情况下：</p>
 <ul>
@@ -441,7 +439,9 @@
 <li><a href="http://cssgridgarden.com/" target="_blank" rel="noopener">有趣的教程</a></li>
 </ul>
 <h3 id="瀑布流布局"><a href="#瀑布流布局" class="headerlink" title="瀑布流布局"></a>瀑布流布局</h3><p>用css3中的多列布局，可以方便实现瀑布流布局。在块中指定column-count是表示分成几列；column-width每一列的宽，如果不指定count，浏览器分成合适的列数；column-gap指定间隔宽度。为了让浏览器兼容，最好添加三种浏览器前缀：-webkit-/-moz-/-ms-。在程序练习目录有演示示例。该布局flex实现不了。</p>
-<h3 id="outline-高亮元素，包括color，style，width"><a href="#outline-高亮元素，包括color，style，width" class="headerlink" title="outline:高亮元素，包括color，style，width"></a>outline:高亮元素，包括color，style，width</h3><h3 id="border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承"><a href="#border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承" class="headerlink" title="border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承"></a>border-collapse：为表格设置合并边框模型。<code>separate</code>分开；<code>collapse</code>：合并；<code>inherit</code>：继承</h3><h3 id="字体：px、pt、em、rem"><a href="#字体：px、pt、em、rem" class="headerlink" title="字体：px、pt、em、rem"></a>字体：px、pt、em、rem</h3><p>&emsp;&emsp;1em = 16px; 1em = 12pt; 1pt = 4/3px;<br>&emsp;&emsp;浏览器默认字体大小：16px。chrome强制最小字体为12px。<br>&emsp;&emsp;区别：</p>
+<h3 id="outline"><a href="#outline" class="headerlink" title="outline"></a>outline</h3><p>高亮元素，包括color，style，width</p>
+<h3 id="border-collapse"><a href="#border-collapse" class="headerlink" title="border-collapse"></a>border-collapse</h3><p>为表格设置合并边框模型。<code>separate</code>分开；<code>collapse</code>：合并；<code>inherit</code>：继承</p>
+<h3 id="字体：px、pt、em、rem"><a href="#字体：px、pt、em、rem" class="headerlink" title="字体：px、pt、em、rem"></a>字体：px、pt、em、rem</h3><p>&emsp;&emsp;1em = 16px; 1em = 12pt; 1pt = 4/3px;<br>&emsp;&emsp;浏览器默认字体大小：16px。chrome强制最小字体为12px。<br>&emsp;&emsp;区别：</p>
 <ul>
 <li>px：相对单位，相对于分辨率，所以分辨率越大字体越小。优点：稳定、精确；缺点：缩放影响文本可读性。</li>
 <li>em：相对单位，相对于父级元素。优点：弥补了px的不足；缺点：过于依赖父级节点，容易出现字体大小重复声明。</li>
@@ -552,13 +552,8 @@
 <li>可以同时使用多个伪类，而只能同时使用一个伪元素；</li>
 <li>伪类的效果可以通过添加实际的类来实现，伪类的效果可以通过添加实际的类来实现，它们的本质区别就是是否抽象创造了新元素</li>
 </ul>
-<p>常见伪类选择器css3：</p>
-<pre><code>- :link/:visited/:hover/:active
-- :focus
-- :checked/:enabled/:disabled
-- :first-child/:last-child/:nth-child()/:nth-last-child()/:nth-of-type()/:nth-last-of-type()/:first-of-type/:last-of-type/:only-child/:only-of-type/:empty
-- 效率比较：id选择器 》 类选择器 》标签选择器 》 相邻选择器 》 子选择器 》 后代选择器 》 通配符选择器 》 属性选择器 》 伪类选择器
-</code></pre><h3 id="自动配置前缀的工具AutoPrefixer"><a href="#自动配置前缀的工具AutoPrefixer" class="headerlink" title="自动配置前缀的工具AutoPrefixer"></a>自动配置前缀的工具AutoPrefixer</h3><ul>
+<p>常见伪类选择器css3：<br>​    - :link/:visited/:hover/:active<br>​    - :focus<br>​    - :checked/:enabled/:disabled<br>​    - :first-child/:last-child/:nth-child()/:nth-last-child()/:nth-of-type()/:nth-last-of-type()/:first-of-type/:last-of-type/:only-child/:only-of-type/:empty<br>​    - 效率比较：id选择器 》 类选择器 》标签选择器 》 相邻选择器 》 子选择器 》 后代选择器 》 通配符选择器 》 属性选择器 》 伪类选择器</p>
+<h3 id="自动配置前缀的工具AutoPrefixer"><a href="#自动配置前缀的工具AutoPrefixer" class="headerlink" title="自动配置前缀的工具AutoPrefixer"></a>自动配置前缀的工具AutoPrefixer</h3><ul>
 <li>自动为css文件添加各种浏览器前缀</li>
 </ul>
 <h3 id="resize"><a href="#resize" class="headerlink" title="resize"></a>resize</h3><ul>
@@ -784,7 +779,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -795,7 +790,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -844,7 +839,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#盒子大小"><span class="nav-number">1.</span> <span class="nav-text">盒子大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#居中问题："><span class="nav-number">2.</span> <span class="nav-text">居中问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#左边栏固定，右边自适应"><span class="nav-number">3.</span> <span class="nav-text">左边栏固定，右边自适应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grid是网络布局"><span class="nav-number">4.</span> <span class="nav-text">grid是网络布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瀑布流布局"><span class="nav-number">5.</span> <span class="nav-text">瀑布流布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#outline-高亮元素，包括color，style，width"><span class="nav-number">6.</span> <span class="nav-text">outline:高亮元素，包括color，style，width</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承"><span class="nav-number">7.</span> <span class="nav-text">border-collapse：为表格设置合并边框模型。separate分开；collapse：合并；inherit：继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字体：px、pt、em、rem"><span class="nav-number">8.</span> <span class="nav-text">字体：px、pt、em、rem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html内部是float元素，外部div高度为0的解决办法"><span class="nav-number">9.</span> <span class="nav-text">html内部是float元素，外部div高度为0的解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父子margin合并"><span class="nav-number">10.</span> <span class="nav-text">父子margin合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神秘的hasLayout"><span class="nav-number">11.</span> <span class="nav-text">神秘的hasLayout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC"><span class="nav-number">12.</span> <span class="nav-text">BFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪类和伪元素"><span class="nav-number">13.</span> <span class="nav-text">伪类和伪元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动配置前缀的工具AutoPrefixer"><span class="nav-number">14.</span> <span class="nav-text">自动配置前缀的工具AutoPrefixer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resize"><span class="nav-number">15.</span> <span class="nav-text">resize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css3与flash的优劣势"><span class="nav-number">16.</span> <span class="nav-text">css3与flash的优劣势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax与flash"><span class="nav-number">17.</span> <span class="nav-text">ajax与flash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#position-sticky粘性布局"><span class="nav-number">18.</span> <span class="nav-text">position: sticky粘性布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局"><span class="nav-number">19.</span> <span class="nav-text">布局</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#居中问题："><span class="nav-number">1.</span> <span class="nav-text">居中问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#左边栏固定，右边自适应"><span class="nav-number">2.</span> <span class="nav-text">左边栏固定，右边自适应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grid是网络布局"><span class="nav-number">3.</span> <span class="nav-text">grid是网络布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瀑布流布局"><span class="nav-number">4.</span> <span class="nav-text">瀑布流布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#outline"><span class="nav-number">5.</span> <span class="nav-text">outline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#border-collapse"><span class="nav-number">6.</span> <span class="nav-text">border-collapse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字体：px、pt、em、rem"><span class="nav-number">7.</span> <span class="nav-text">字体：px、pt、em、rem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html内部是float元素，外部div高度为0的解决办法"><span class="nav-number">8.</span> <span class="nav-text">html内部是float元素，外部div高度为0的解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父子margin合并"><span class="nav-number">9.</span> <span class="nav-text">父子margin合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神秘的hasLayout"><span class="nav-number">10.</span> <span class="nav-text">神秘的hasLayout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC"><span class="nav-number">11.</span> <span class="nav-text">BFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪类和伪元素"><span class="nav-number">12.</span> <span class="nav-text">伪类和伪元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动配置前缀的工具AutoPrefixer"><span class="nav-number">13.</span> <span class="nav-text">自动配置前缀的工具AutoPrefixer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resize"><span class="nav-number">14.</span> <span class="nav-text">resize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css3与flash的优劣势"><span class="nav-number">15.</span> <span class="nav-text">css3与flash的优劣势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax与flash"><span class="nav-number">16.</span> <span class="nav-text">ajax与flash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#position-sticky粘性布局"><span class="nav-number">17.</span> <span class="nav-text">position: sticky粘性布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局"><span class="nav-number">18.</span> <span class="nav-text">布局</span></a></li></ol></div>
             
 
           </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="小程序," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="我还在认识自己的路上">
+<meta name="description" content="微信小程序的架构分为app-service和page-frame，分别运行于不同的线程。 所有JS运行在app-service线程里，每个页面各自的WXML/WXSS运行在page-frame中。app-service与page-frame之间通过桥协议通信（包括setData调用、canvas指令和各种DOM事件），涉及消息序列化、跨线程通信与evaluateJavascript。 好处是分开了">
+<meta name="keywords" content="小程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录一个小程序">
 <meta property="og:url" content="http://yoursite.com/2018/10/29/记录一个小程序/index.html">
 <meta property="og:site_name" content="寻 觅">
-<meta property="og:description" content="我还在认识自己的路上">
+<meta property="og:description" content="微信小程序的架构分为app-service和page-frame，分别运行于不同的线程。 所有JS运行在app-service线程里，每个页面各自的WXML/WXSS运行在page-frame中。app-service与page-frame之间通过桥协议通信（包括setData调用、canvas指令和各种DOM事件），涉及消息序列化、跨线程通信与evaluateJavascript。 好处是分开了">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-29T11:32:02.836Z">
+<meta property="og:updated_time" content="2018-11-13T02:16:05.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一个小程序">
-<meta name="twitter:description" content="我还在认识自己的路上">
+<meta name="twitter:description" content="微信小程序的架构分为app-service和page-frame，分别运行于不同的线程。 所有JS运行在app-service线程里，每个页面各自的WXML/WXSS运行在page-frame中。app-service与page-frame之间通过桥协议通信（包括setData调用、canvas指令和各种DOM事件），涉及消息序列化、跨线程通信与evaluateJavascript。 好处是分开了">
 
 
 
@@ -340,7 +341,13 @@
       
 
       
-        
+        <h5 id="微信小程序的架构"><a href="#微信小程序的架构" class="headerlink" title="微信小程序的架构"></a>微信小程序的架构</h5><p>分为app-service和page-frame，分别运行于不同的线程。</p>
+<p>所有JS运行在app-service线程里，每个页面各自的WXML/WXSS运行在page-frame中。app-service与page-frame之间通过桥协议通信（包括setData调用、canvas指令和各种DOM事件），涉及消息序列化、跨线程通信与evaluateJavascript。</p>
+<p>好处是分开了业务主线程和显示界面，即便业务主线程繁忙，也不会阻塞用户在page-frame上的交互；一个小程序可以有多个page-frame（webview），页面间切换动画比spa更流畅。</p>
+<p>坏处是在page-frame上无法调用业务JS；跨线程通信的成本很高，不适合需要频繁通信的场景；业务JS无法直接控制DOM。</p>
+<p>针对微信小程序的缺点，推出了WXS。</p>
+<p>是在page-frame中运行的js，可以对view数据做一些变换。对性能的贡献：与WXML在同一个线程中运行，避免跨线程通信的开销。</p>
+
       
     </div>
     
@@ -354,6 +361,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小程序/" rel="tag"># 小程序</a>
+          
+        </div>
       
 
       
@@ -373,6 +386,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/15/ES6之Array-from/" rel="prev" title="ES6之Array.from">
+                ES6之Array.from <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -434,8 +451,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -465,7 +491,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -476,7 +502,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -515,6 +541,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#微信小程序的架构"><span class="nav-number">1.</span> <span class="nav-text">微信小程序的架构</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
