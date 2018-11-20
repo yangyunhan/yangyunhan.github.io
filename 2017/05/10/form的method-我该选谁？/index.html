@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1、是啥 form元素的method属性用来指定发送form的http方法。 使用get时，form数据集被附加到form元素的action属性所制定的url后面，生成url：user.do?loginId=abc，get仅仅是拼接一个URL，然后直接向服务区请求数据，需要提交给服务器的数据集包含在URL中。并且，如果在action的值中为url地址增加参数，后台无法接受这个参数，只能得到表单中的">
+<meta name="description" content="form的method是啥&amp;emsp;&amp;emsp;form元素的method属性用来指定发送form的http方法，可能的值是post、get。本质上是要讨论http方法的区别。 ​    使用get方法时，form数据集被附加到form元素的action属性所制定的URL后面。并且，如果在action的值中为URL地址增加参数，后台无法接受这个参数，只能得到表单中的参数，所以可能会缺失数据； ​">
 <meta property="og:type" content="article">
 <meta property="og:title" content="form的method,我该选谁？">
 <meta property="og:url" content="http://yoursite.com/2017/05/10/form的method-我该选谁？/index.html">
 <meta property="og:site_name" content="寻 觅">
-<meta property="og:description" content="1、是啥 form元素的method属性用来指定发送form的http方法。 使用get时，form数据集被附加到form元素的action属性所制定的url后面，生成url：user.do?loginId=abc，get仅仅是拼接一个URL，然后直接向服务区请求数据，需要提交给服务器的数据集包含在URL中。并且，如果在action的值中为url地址增加参数，后台无法接受这个参数，只能得到表单中的">
+<meta property="og:description" content="form的method是啥&amp;emsp;&amp;emsp;form元素的method属性用来指定发送form的http方法，可能的值是post、get。本质上是要讨论http方法的区别。 ​    使用get方法时，form数据集被附加到form元素的action属性所制定的URL后面。并且，如果在action的值中为URL地址增加参数，后台无法接受这个参数，只能得到表单中的参数，所以可能会缺失数据； ​">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-11T17:04:59.722Z">
+<meta property="og:updated_time" content="2018-11-20T09:44:26.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="form的method,我该选谁？">
-<meta name="twitter:description" content="1、是啥 form元素的method属性用来指定发送form的http方法。 使用get时，form数据集被附加到form元素的action属性所制定的url后面，生成url：user.do?loginId=abc，get仅仅是拼接一个URL，然后直接向服务区请求数据，需要提交给服务器的数据集包含在URL中。并且，如果在action的值中为url地址增加参数，后台无法接受这个参数，只能得到表单中的">
+<meta name="twitter:description" content="form的method是啥&amp;emsp;&amp;emsp;form元素的method属性用来指定发送form的http方法，可能的值是post、get。本质上是要讨论http方法的区别。 ​    使用get方法时，form数据集被附加到form元素的action属性所制定的URL后面。并且，如果在action的值中为URL地址增加参数，后台无法接受这个参数，只能得到表单中的参数，所以可能会缺失数据； ​">
 
 
 
@@ -362,58 +362,78 @@
       
 
       
-        <p>1、是啥</p>
-<p>form元素的method属性用来指定发送form的http方法。</p>
-<p>使用get时，form数据集被附加到form元素的action属性所制定的url后面，生成url：user.do?loginId=abc，get仅仅是拼接一个URL，然后直接向服务区请求数据，需要提交给服务器的数据集包含在URL中。并且，如果在action的值中为url地址增加参数，后台无法接受这个参数，只能得到表单中的参数，所以可能会缺失数据；<br>使用post时，form数据集被包装在请求的body中并被发送，生成url: user.do，post会把form的数据集，即login=abc这个键值对包装在请求的body中，发给服务器，然后向服务器请求数据，在action的值中为url地址增加参数，后台可以接收，即post方法接收action参数和表单参数。</p>
-<p>2、还有啥区别</p>
+        <h5 id="form的method是啥"><a href="#form的method是啥" class="headerlink" title="form的method是啥"></a><code>form</code>的<code>method</code>是啥</h5><p>&emsp;&emsp;<code>form</code>元素的<code>method</code>属性用来指定发送form的http方法，可能的值是<code>post</code>、<code>get</code>。本质上是要讨论<strong>http方法的区别</strong>。</p>
+<p>​    使用<code>get</code>方法时，<code>form</code>数据集被附加到<code>form</code>元素的<code>action</code>属性所制定的<code>URL</code>后面。并且，如果在<code>action</code>的值中为<code>URL</code>地址增加参数，后台无法接受这个参数，只能得到表单中的参数，所以可能会缺失数据；</p>
+<p>​    使用<code>post</code>方法时，<code>form</code>数据集被包装在请求的<code>body</code>中并被发送。并且，如果在<code>action</code>的值中为<code>URL</code>地址增加参数，后台可以接收，即<code>post</code>方法接收<code>action</code>参数和表单参数。</p>
+<p>​    这个属性的值可以被<code>&lt;button&gt;</code>、<code>&lt;input&gt;</code>标签元素的<code>formmethod</code>属性重写。</p>
+<h5 id="有啥区别"><a href="#有啥区别" class="headerlink" title="有啥区别"></a>有啥区别</h5><ol>
+<li><p>安全性</p>
+<p><code>get</code>：提交信息显示在<code>URL</code>上，进而出现在浏览器的历史记录中，格式是<code>?key=value&amp;key=value</code>；</p>
+<p><code>post</code>: 将表单内容放置到<code>HTML</code>表头<code>header</code>中一起传送给服务器端，提交信息看不到，相对<code>get</code>来说更加安全；</p>
+</li>
+</ol>
+<ol>
+<li><p>编码</p>
+<p><code>get</code>: 只能向服务器发送<code>ASCLL</code>字符；<code>post</code>可以发送整个ISO 10646中的字符。</p>
+</li>
+</ol>
+<ol>
+<li><p>提交数据的长度</p>
+<p><code>get</code>方法传输的数据量小，url的大小一般在2KB左右，超出浏览器的限制时，提交<code>form</code>不会有反应。</p>
+<p><code>post</code>方法传输的数据量相对较大，等待服务器来读取数据。为了避免对服务器用大量数据进行恶意攻击，也有一定的数据量限制，大多数服务器限制在64k大小。</p>
+</li>
+</ol>
+<ol>
+<li><p>引用</p>
+<p>可用<code>URL</code>引用一个<code>get</code>的结果页面；<code>post</code>则不能。</p>
+</li>
+</ol>
+<ol>
+<li><p>幂等性</p>
+<p><small>http幂等性：一次或多次请求某个资源应该具有相同的副作用。</small></p>
+<p>get方法幂等；post方法不幂等。</p>
+</li>
+</ol>
+<h5 id="烧脑场景：get页面与post页面"><a href="#烧脑场景：get页面与post页面" class="headerlink" title="烧脑场景：get页面与post页面"></a>烧脑场景：<code>get</code>页面与<code>post</code>页面</h5><p><small>    说明：输入内容的页面和没输入内容的页面是两种东西。</small></p>
+<p>假设进入有表单的页面，它的URL是<code>http://www.haha.com</code>：</p>
+<ol>
+<li><p><strong>没填写表单</strong>，分享给朋友，朋友看到的内容和我看到的一模一样。</p>
+</li>
+<li><p><strong>在表单中填写名字，没有提交</strong>，URL还是<code>http://www.haha.com</code>，此时有两种情况：</p>
 <ul>
-<li>安全性</li>
+<li><p>表单<code>method</code>是<code>post</code>，将URL分享给朋友，朋友看到的是和我不一样的页面。（页面表单里没有我的名字，此外一模一样。）</p>
+</li>
+<li><p>表单<code>method</code>是<code>get</code>，将URL分享给朋友，朋友看到的是和我不一样的页面。（GET能本地缓存，某些应用里，关闭网页后再次进入，可以看到没发布的内容。如果清除了浏览器的cookie和网站记录再次进入，则看不到未发布的内容。实例是QQ空间网页版的说说。）</p>
+</li>
 </ul>
-<p>get：提交信息显示在URL上，进而出现在浏览器的历史记录中，格式是<code>variable?value&amp;variable?value...</code>——更安全；</p>
-<p>post: 将表单内容放置到HTML表头header中一起传送给服务器端交由action属性所指的程序处理，该程序会通过标准输入（stdin）方式，将表单数据读出处理；</p>
+</li>
+<li><p><strong>提交表单</strong>，两种情况：</p>
 <ul>
-<li>编码</li>
+<li><p>表单<code>method</code>是<code>post</code>，URL变成了<code>http://www.haha.com/nimei.php</code>。此时页面被刷新，数据被提交服务器脚本返回一个新页面。此时就算<code>后退</code>到<code>www.haha.com</code>也看不到原来输入了内容的那个表单了；把这个网页分享给朋友，朋友是看不到我的页面（这个页面必须是提交相同的数据后才能看到），这也是为什么登陆微博后，直接复制地址栏的URL发给别人，别人看不到这个网页的原因。</p>
+</li>
+<li><p>表单的<code>method</code>是<code>get</code>，URL变成了<code>http://www.haha.com/nimei.php?name=&quot;haha&quot;&amp;..</code>。此时页面被刷新，同样得到一个新页面。如果<code>后退</code>，你能看到原来输入了内容的表单；你可以保存为书签，关闭后再次打开能看到保存书签时的网页（因为URL里有你发给服务器脚本的所有数据，就相当于再次发送给服务器脚本相同的数据，返回的页面自然也就一样——服务器脚本处理这些数据得到的结果还是一样的话）；把这个页面分享给朋友，朋友打开后能看到一摸一样的页面。</p>
+</li>
 </ul>
-<p>get: 只能向服务器发送ASCLL字符，post可以发送整个ISO 10646中的字符。</p>
-<p>enctype属性有区别，该属性有两个值，默认为application/x-www-form-urlencoded（在发送前编码所有字符）；另一个是multipart/form-data（用于文件上传）只能用于post.</p>
-<ul>
-<li>提交数据的长度</li>
-</ul>
-<p>IE限制URL长度为2083个字符，超出限制，提交form不会有反应——get方式受限。</p>
-<p>Get 方式传输的数据量非常小，一般限制在 2 KB 左右，但是执行效率却比 Post 方法好；而 Post 方式传递的数据量相对较大，它是等待服务器来读取数据，不过也有字节限制，这是为了避免对服务器用大量数据进行恶意攻击，根据微软方面的说法，微软对用 Request.Form() 可接收的最大数据有限制，IIS 4 中为 80 KB 字节，IIS 5 中为 100 KB 字节。</p>
-<ul>
-<li>引用</li>
-</ul>
-<p>可用URL引用一个get的结果页面，post的结果不能。</p>
-<p>3、选谁</p>
-<ul>
-<li>当且仅当form是幂等的时候，使用get。（幂等：多次相同的请求产生的副作用，和一次请求的副作用相同。） </li>
-</ul>
-<ul>
-<li>如果提交请求纯粹只是从服务器端获取数据而不是进行其他操作，并且多次提交不会有明显的副作用，应该使用get。比如：搜索引擎的查询(<a href="http://www.google.com/search?q=abc)和分页(user.do?page=1)；如果提交这个请求会产生其他操作和影响，就应该使用post。" target="_blank" rel="noopener">http://www.google.com/search?q=abc)和分页(user.do?page=1)；如果提交这个请求会产生其他操作和影响，就应该使用post。</a> </li>
-</ul>
-<p>比如：修改服务器上数据库中的数据；发送一封邮件；删除一个文件等</p>
-<ul>
-<li>若符合下列任一情况，则用post方法： </li>
-</ul>
+</li>
+</ol>
+<h5 id="选谁"><a href="#选谁" class="headerlink" title="选谁"></a>选谁</h5><ul>
+<li><p>若符合下列任一情况，则用post方法： </p>
 <p>a.请求的结果有持续性的副作用，例如：数据库内添加新的数据行。 </p>
 <p>b.若使用get方法，则表单上收集的数据可能让URL过长。 </p>
 <p>c.要传送的数据不是采用ASCII编码。</p>
-<ul>
-<li>若符合下列任一情况，则用get方法： </li>
-</ul>
+</li>
+<li><p>若符合下列任一情况，则用get方法： </p>
 <p>a.请求是为了查找资源，html表单数据仅用来搜索。 </p>
 <p>b.请求结果无持续性的副作用。 </p>
 <p>c.收集的数据及html表单内的输入字段名称的总长不超过1024个字符。 </p>
-<p>4、还有点小迷糊</p>
-<ul>
-<li>[浏览器差异] </li>
+</li>
 </ul>
-<p>IE6:URL长度限制为2083个字符；post之后，刷新页面不会自动重新post数据，会出现警告。 </p>
-<p>IE7和IE6相同。 </p>
-<p>Firefox：刷新页面不会自动重新post数据会出现警告。</p>
-<ul>
-<li>对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。Request从几个集合取数据是有顺序的，从前到后的顺序依次是 QueryString,Form,最后是ServerVariables。Request对象按照这样的顺序依次搜索这几个集合中的变量，如果有符合的就中止，后面的就不管了。</li>
+<h5 id="再说说form的enctype属性"><a href="#再说说form的enctype属性" class="headerlink" title="再说说form的enctype属性"></a>再说说<code>form</code>的<code>enctype</code>属性</h5><p>​    <code>post</code>方法有该属性，默认为<code>application/x-www-form-urlencoded</code>（在发送前编码所有字符）；<code>&lt;input&gt;</code>标签的<code>type</code>属性是<code>multipart/form-data</code>（用于文件上传）;<code>text/plain</code>Html5中的类型。</p>
+<h5 id="参考材料："><a href="#参考材料：" class="headerlink" title="参考材料："></a>参考材料：</h5><ul>
+<li><p><a href="https://www.zhihu.com/question/28586791" target="_blank" rel="noopener">https://www.zhihu.com/question/28586791</a></p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form</a></p>
+</li>
 </ul>
 
       
@@ -513,8 +533,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -594,6 +623,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#form的method是啥"><span class="nav-number">1.</span> <span class="nav-text">form的method是啥</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#有啥区别"><span class="nav-number">2.</span> <span class="nav-text">有啥区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#烧脑场景：get页面与post页面"><span class="nav-number">3.</span> <span class="nav-text">烧脑场景：get页面与post页面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#选谁"><span class="nav-number">4.</span> <span class="nav-text">选谁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再说说form的enctype属性"><span class="nav-number">5.</span> <span class="nav-text">再说说form的enctype属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考材料："><span class="nav-number">6.</span> <span class="nav-text">参考材料：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
