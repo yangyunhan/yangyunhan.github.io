@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。 1、css:wh">
+<meta name="description" content="​    把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。 1、c">
 <meta name="keywords" content="conclusion">
 <meta property="og:type" content="article">
 <meta property="og:title" content="做网站的那些tips">
 <meta property="og:url" content="http://yoursite.com/2017/07/08/做网站的那些tips/index.html">
 <meta property="og:site_name" content="寻 觅">
-<meta property="og:description" content="把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。 1、css:wh">
+<meta property="og:description" content="​    把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。 1、c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-11T17:10:36.930Z">
+<meta property="og:updated_time" content="2018-11-26T02:49:30.214Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="做网站的那些tips">
-<meta name="twitter:description" content="把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。 1、css:wh">
+<meta name="twitter:description" content="​    把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。 1、c">
 
 
 
@@ -363,9 +363,9 @@
       
 
       
-        <p>把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。</p>
-<p>1、css:white-space:如何处理元素内的空白<br>可能的值：<br>normal：默认，空白被忽略<br>pre：空白被保留<br>nowrap：文本不换行，在同一行继续，直到遇到<br>标签<br>pre-wrap：保留空白符序列，正常换行<br>pre-line：合并空白符序列，但保留换行符<br>inherit：从父元素继承white-space的值</p>
-<p>应用：与width、text-overflow、overflow一起使文本在一行内显示，超出则加省略号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;如果描述超出100像素，则会隐藏，添加省略号&lt;/p&gt;</div><div class="line">p&#123;width: 100px;overflow: hidden;white-space: nowrap;text-overflow:ellopsis;&#125;</div></pre></td></tr></table></figure></p>
+        <p>​    把《锋利的jQuery》第八章的实例做了一遍，感觉交互效果的逻辑需要锻炼，现在只有个大体的印象，出现问题还只能对照原代码，自己不好发现；很多细节的地方没用过，也不会用；知道的不多，不会利用更加便捷的方式；有一个地方是坑吧，jquery.js文件有不同的版本，所以支持的对象不一定一样；不同浏览器不同的效果，我觉得这个很难发现和总结。。下面是实践过程中自己遇到的明显不足的小知识点。。</p>
+<p>1、<code>css:white-space</code> ：如何处理元素内的空白<br>可能的值：<br>normal：默认，空白被忽略<br>pre：空白被保留<br>nowrap：文本不换行，在同一行继续，直到遇到<code>&lt;br&gt;</code>标签<br>pre-wrap：保留空白符序列，正常换行<br>pre-line：合并空白符序列，但保留换行符<br>inherit：从父元素继承white-space的值</p>
+<p>应用：与width、text-overflow、overflow一起使文本在一行内显示，超出则加省略号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;如果描述超出100像素，则会隐藏，添加省略号&lt;/p&gt;</div><div class="line">p&#123;</div><div class="line">	width: 100px;</div><div class="line">	overflow: hidden;</div><div class="line">	white-space: nowrap;</div><div class="line">	text-overflow:ellipsis;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>支持低版本的opera的办法：o-text-overflow: ellipsis;</p>
 <p>关联：word-wrap:允许长单词或URL地址换行到下一行<br>可能的值：<br>normal：只在允许的断字点换行（浏览器保持默认处理）<br>break-word：在长单词或URL地址内部进行换行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p.test&#123;word-wrap:break-word;&#125;</div></pre></td></tr></table></figure></p>
 <p>注意点：</p>
@@ -462,8 +462,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/18/小公举/" rel="prev" title="小公举">
-                小公举 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/28/tips-of-irlab-s-website/" rel="prev" title="tips of irlab's website">
+                tips of irlab's website <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -546,7 +546,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,7 +568,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
