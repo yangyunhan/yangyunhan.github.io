@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="寻 觅">
 <meta property="og:description" content="间歇性遗忘的知识之一了，做个记录吧。。 setTimeout中123456789101112131415var num = 0;function Obj()&amp;#123;    this.num = 1;    this.getNum = function()&amp;#123;        console.log(this.num);    &amp;#125;;    this.getNumLater = f">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-30T02:11:27.562Z">
+<meta property="og:updated_time" content="2018-12-10T09:42:55.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="this笔记">
 <meta name="twitter:description" content="间歇性遗忘的知识之一了，做个记录吧。。 setTimeout中123456789101112131415var num = 0;function Obj()&amp;#123;    this.num = 1;    this.getNum = function()&amp;#123;        console.log(this.num);    &amp;#125;;    this.getNumLater = f">
@@ -390,8 +390,43 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ul.on(<span class="string">'click'</span>, <span class="string">'li'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>​    jQuery文档表示，对于直接事件而言，this代表绑定事件的元素；对于代理事件而言，this则代表了与selector相匹配的元素。</p>
 <h5 id="强制指定this的值"><a href="#强制指定this的值" class="headerlink" title="强制指定this的值"></a>强制指定this的值</h5><p>自己写call/apply指定</p>
-<p><a href="https://www.cnblogs.com/zsqos/p/6188835.html" target="_blank" rel="noopener">https://www.cnblogs.com/zsqos/p/6188835.html</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/23804247" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/23804247</a></p>
+<h5 id="用规范解读this"><a href="#用规范解读this" class="headerlink" title="用规范解读this"></a>用规范解读this</h5><p>​    this是执行上下文中的一个属性（其他两个属性包括变量对象和作用域链）。规范中，将ECMAScript的类型分为语言类型和规范类型。语言类型是开发者直接来操作的，规范类型是用算法描述语言解决和语言类型的，即语言底层行为逻辑。与this指向有密切关联的是Reference类型。</p>
+<p>​    Reference由三部分构成：</p>
+<ul>
+<li><code>base value</code>：属性所在的对象或<code>EnvironmentRecord</code></li>
+<li><code>referenced name</code>：属性的名字</li>
+<li><code>strict reference</code>：严格模式</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</div><div class="line"><span class="comment">//对应的Reference是</span></div><div class="line"><span class="keyword">var</span> fooReference = &#123;</div><div class="line">    <span class="attr">base</span>: EnvironmentRecord,</div><div class="line">    <span class="attr">name</span>: <span class="string">'foo'</span>,</div><div class="line">    <span class="attr">strict</span>: <span class="literal">false</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">    <span class="attr">bar</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">foo.bar() <span class="comment">//foo</span></div><div class="line"><span class="comment">//bar对应的Reference是：</span></div><div class="line"><span class="keyword">var</span> BarReference = &#123;</div><div class="line">    <span class="attr">base</span>: foo,</div><div class="line">    <span class="attr">propertyName</span>: <span class="string">'bar'</span>,</div><div class="line">    <span class="attr">strict</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    规范中提供了获取Reference组成部分的方法，<code>GetBase</code>：返回Reference的base value；<code>IsPropertyReference</code>：如果base value是一个对象，就返回true；<code>GetValue</code>：返回对象属性真正的值，是具体的值，而不再是一个<code>Reference</code>。</p>
+<p>​    确定this的步骤：</p>
+<ol>
+<li>计算<code>MemberExpression</code>的结果，赋值给ref；</li>
+<li>判断ref是不是一个Reference类型<ul>
+<li>如果ref是Reference，并且IsPropertyReference(ref)是true，this为GetBase(ref)</li>
+<li>如果ref是Reference，并且base value是Environment Record，this为ImplicitThisValue(ref)，返回undefined</li>
+<li>如果ref不是Reference，this为undefined</li>
+</ul>
+</li>
+</ol>
+<p>​    MemberExpression类型都有什么：</p>
+<ul>
+<li>PrimaryExpression原始表达式</li>
+<li>FunctionExpression函数定义表达式</li>
+<li>MemberExpression[Expression]属性访问表达式</li>
+<li>MemberExpression.IdentifierName属性访问表达式</li>
+<li>new MemberExpression Arguments对象创建表达式</li>
+</ul>
+<p>&emsp;&emsp;简单理解为MemberExpression是()左边的部分。之后就看规范如何处理各种MemberExpression，返回的结果是不是一个Reference类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> value = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">    <span class="attr">value</span>: <span class="number">2</span>,</div><div class="line">    <span class="attr">bar</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">foo.bar()</div><div class="line"><span class="comment">/*</span></div><div class="line">* MemberExpression: foo.bar.</div><div class="line">* var Reference = &#123;</div><div class="line">* 	base: foo,</div><div class="line">* 	name: 'bar',</div><div class="line">* 	strict: false</div><div class="line">* &#125;;</div><div class="line">* 因为base value是一个对象，所以IsPropertyReference(ref)结果是true</div><div class="line">* 确定this：this = GetBase(ref)</div><div class="line">*/</div><div class="line">(foo.bar)()</div><div class="line"><span class="comment">/**</span></div><div class="line">* MemberExpression: foo.bar</div><div class="line">* 分析与结果相同</div><div class="line">*/</div><div class="line">(foo.bar = foo.bar)()</div><div class="line"><span class="comment">/**</span></div><div class="line">* MemberExpression: foo.bar = foo.bar</div><div class="line">* 赋值运算符使用了GetValue，返回的值不是Reference类型</div><div class="line">* this = undefined，隐式转换为全局对象</div><div class="line">*/</div><div class="line">(<span class="literal">false</span> || foo.bar)()</div><div class="line"><span class="comment">/**</span></div><div class="line">* MemberExpression: false || foo.bar</div><div class="line">* 逻辑运算符使用了GetValue，返回的值不是Reference类型</div><div class="line">* this = undefined，隐式转换为全局对象</div><div class="line">*/</div><div class="line">(foo.bar, foo.bar)()</div><div class="line"><span class="comment">/**</span></div><div class="line">* MemberExpression: foo.bar, foo.bar</div><div class="line">* 逗号操作符使用了GetValue，返回的值不是Reference类型</div><div class="line">* this = undefined，隐式转换为全局对象</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line">foo()</div><div class="line"><span class="comment">/**</span></div><div class="line">* MemberExpression: foo</div><div class="line">* var fooReference = &#123;</div><div class="line">* 	base: EnvironmentRecord,</div><div class="line">* 	name: 'foo',</div><div class="line">* 	strict: false</div><div class="line">* &#125;</div><div class="line">* base value不是对象类型，IsPropertyReference(ref)结果是false</div><div class="line">* 调用ImplicitThisValue(ref)，返回undefined</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>参考材料：</p>
+<ul>
+<li><p><a href="https://www.cnblogs.com/zsqos/p/6188835.html" target="_blank" rel="noopener">https://www.cnblogs.com/zsqos/p/6188835.html</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/23804247" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/23804247</a></p>
+</li>
+<li><a href="https://github.com/mqyqingfeng/Blog/issues/7" target="_blank" rel="noopener">https://github.com/mqyqingfeng/Blog/issues/7</a></li>
+</ul>
 
       
     </div>
@@ -431,6 +466,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/30/相等之严格与不严格/" rel="prev" title="相等之严格与不严格">
+                相等之严格与不严格 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -521,7 +560,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -543,7 +582,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -592,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#setTimeout中"><span class="nav-number">1.</span> <span class="nav-text">setTimeout中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三种函数调用"><span class="nav-number">2.</span> <span class="nav-text">三种函数调用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Event-Handler中"><span class="nav-number">3.</span> <span class="nav-text">Event Handler中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#强制指定this的值"><span class="nav-number">4.</span> <span class="nav-text">强制指定this的值</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#setTimeout中"><span class="nav-number">1.</span> <span class="nav-text">setTimeout中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三种函数调用"><span class="nav-number">2.</span> <span class="nav-text">三种函数调用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Event-Handler中"><span class="nav-number">3.</span> <span class="nav-text">Event Handler中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#强制指定this的值"><span class="nav-number">4.</span> <span class="nav-text">强制指定this的值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用规范解读this"><span class="nav-number">5.</span> <span class="nav-text">用规范解读this</span></a></li></ol></div>
             
 
           </div>
