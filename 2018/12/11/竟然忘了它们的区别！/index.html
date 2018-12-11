@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="执行时间上：$(document).ready(function(){})是dom结构加载完后就会执行，更早； window.onload必须等到页面内所有元素加载到浏览器中后才执行，更晚； 编写个数上：window.onload不能同时编写多个，有多个，只有最后一个执行，覆盖前面的； $(document).ready(function(){})可编写多个，每个都会执行； 简写方式：window">
+<meta name="description" content="​    在做leetcode的题目，遇到数组遍历，用了forEach，发现没达到我预期的效果，别人的解决方案是用map。纳尼？forEach和map我竟然对他们的区别模糊不清了？记下来吧。 ​    还原题目：反转字符串中每个单词的字符顺序 ​    思路：用forEach遍历字符串转换后的数组，改变数组的值。结果我上来就写个 1234567var reverseWords = function">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="document.ready与window.onload">
-<meta property="og:url" content="http://yoursite.com/2018/11/15/document-ready与window-onload/index.html">
+<meta property="og:title" content="竟然忘了它们的区别！">
+<meta property="og:url" content="http://yoursite.com/2018/12/11/竟然忘了它们的区别！/index.html">
 <meta property="og:site_name" content="寻 觅">
-<meta property="og:description" content="执行时间上：$(document).ready(function(){})是dom结构加载完后就会执行，更早； window.onload必须等到页面内所有元素加载到浏览器中后才执行，更晚； 编写个数上：window.onload不能同时编写多个，有多个，只有最后一个执行，覆盖前面的； $(document).ready(function(){})可编写多个，每个都会执行； 简写方式：window">
+<meta property="og:description" content="​    在做leetcode的题目，遇到数组遍历，用了forEach，发现没达到我预期的效果，别人的解决方案是用map。纳尼？forEach和map我竟然对他们的区别模糊不清了？记下来吧。 ​    还原题目：反转字符串中每个单词的字符顺序 ​    思路：用forEach遍历字符串转换后的数组，改变数组的值。结果我上来就写个 1234567var reverseWords = function">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-15T07:23:04.417Z">
+<meta property="og:updated_time" content="2018-12-11T09:18:57.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="document.ready与window.onload">
-<meta name="twitter:description" content="执行时间上：$(document).ready(function(){})是dom结构加载完后就会执行，更早； window.onload必须等到页面内所有元素加载到浏览器中后才执行，更晚； 编写个数上：window.onload不能同时编写多个，有多个，只有最后一个执行，覆盖前面的； $(document).ready(function(){})可编写多个，每个都会执行； 简写方式：window">
+<meta name="twitter:title" content="竟然忘了它们的区别！">
+<meta name="twitter:description" content="​    在做leetcode的题目，遇到数组遍历，用了forEach，发现没达到我预期的效果，别人的解决方案是用map。纳尼？forEach和map我竟然对他们的区别模糊不清了？记下来吧。 ​    还原题目：反转字符串中每个单词的字符顺序 ​    思路：用forEach遍历字符串转换后的数组，改变数组的值。结果我上来就写个 1234567var reverseWords = function">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/15/document-ready与window-onload/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/11/竟然忘了它们的区别！/"/>
 
 
 
 
 
-  <title>document.ready与window.onload | 寻 觅</title>
+  <title>竟然忘了它们的区别！ | 寻 觅</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/15/document-ready与window-onload/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/11/竟然忘了它们的区别！/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yingwan">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">document.ready与window.onload</h1>
+          <h1 class="post-title" itemprop="name headline">竟然忘了它们的区别！</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-15T15:00:50+08:00">
-                2018-11-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-11T16:28:47+08:00">
+                2018-12-11
               </time>
             
 
@@ -303,28 +303,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/skill/" itemprop="url" rel="index">
-                    <span itemprop="name">skill</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -333,9 +311,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/15/document-ready与window-onload/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/11/竟然忘了它们的区别！/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/15/document-ready与window-onload/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/11/竟然忘了它们的区别！/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -363,13 +341,20 @@
       
 
       
-        <h5 id="执行时间上："><a href="#执行时间上：" class="headerlink" title="执行时间上："></a>执行时间上：</h5><p>$(document).ready(function(){})是dom结构加载完后就会执行，<strong>更早</strong>；</p>
-<p>window.onload必须等到页面内所有元素加载到浏览器中后才执行，<strong>更晚</strong>；</p>
-<h5 id="编写个数上："><a href="#编写个数上：" class="headerlink" title="编写个数上："></a>编写个数上：</h5><p>window.onload不能同时编写多个，有多个，<strong>只有最后一个执行</strong>，覆盖前面的；</p>
-<p>$(document).ready(function(){})可编写多个，<strong>每个都会执行</strong>；</p>
-<h5 id="简写方式："><a href="#简写方式：" class="headerlink" title="简写方式："></a>简写方式：</h5><p>window.onload没有简写方式；</p>
-<p>$(document).ready(function(){})可以简写为$(function(){})；</p>
-<p>jquery中有关于页面加载的方法load，是在元素的onload事件中绑定一个处理函数，会在元素的内容加载完毕后触发。js中的window.onload = function(){}等同于jquery中的$(window).load(function(){})。</p>
+        <p>​    在做<code>leetcode</code>的题目，遇到数组遍历，用了<code>forEach</code>，发现没达到我预期的效果，别人的解决方案是用<code>map</code>。纳尼？<code>forEach</code>和<code>map</code>我竟然对他们的区别模糊不清了？记下来吧。</p>
+<p>​    还原题目：反转字符串中每个单词的字符顺序</p>
+<p>​    思路：用<code>forEach</code>遍历字符串转换后的数组，改变数组的值。结果我上来就写个</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> sArr = s.split(<span class="string">' '</span>);</div><div class="line">    sArr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> item.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> sArr.join(<span class="string">' '</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    发现啥都没变，然后我改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> sArr = s.split(<span class="string">' '</span>);</div><div class="line">    sArr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">        item = item.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> sArr.join(<span class="string">' '</span>)</div><div class="line">&#125;<span class="comment">//改变数组的方式不对</span></div><div class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> sArr = s.split(<span class="string">' '</span>);</div><div class="line">    sArr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> item = item.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> sArr.join(<span class="string">' '</span>)</div><div class="line">&#125;<span class="comment">//改变数组的方式不对</span></div><div class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> sArr = s.split(<span class="string">' '</span>), <span class="keyword">var</span> result;</div><div class="line">    result = sArr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> item.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> sArr.join(<span class="string">' '</span>)</div><div class="line">&#125;<span class="comment">//不返回值</span></div></pre></td></tr></table></figure>
+<p>​    然后我在错误的路上越走越远，所以，来总结下<code>forEach</code>。它不返回值，只能返回<code>undefined</code>。它可能改变原数组的值，但是应该写成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> sArr = s.split(<span class="string">' '</span>);</div><div class="line">    sArr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>)</span>&#123;</div><div class="line">        sArr[index] = item.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> sArr.join(<span class="string">' '</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> sArr = s.split(<span class="string">' '</span>);</div><div class="line">    sArr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> sArr[index] = item.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> sArr.join(<span class="string">' '</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    <code>forEach</code>仅仅是针对每一个元素执行提供的函数，<strong>不返回执行结果，而是undefined</strong>。</p>
+<p>​    再来，用<code>map</code>来实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> s.split(<span class="string">' '</span>).map(<span class="function"><span class="params">w</span> =&gt;</span> w.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)).join(<span class="string">' '</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    很简洁啊。具体看看，map会创建一个新的数组，新数组中每个元素都调用数组中每个元素执行函数得来，最后返回这个新的数组，所以是<strong>一定要有return</strong>的，而<strong>不必做赋值操作</strong>，可以把结果<strong>赋值给其他变量</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> c = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">var</span> d = c.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> item * <span class="number">2</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>​    其实<code>for</code>循环就可以做到的题目，那么来比较下他们三个的执行速度好了。结果显示<code>for</code>最快，<code>forEach</code>最慢。实操比较：<a href="https://jsperf.com/map-vs-foreach-test-code" target="_blank" rel="noopener">https://jsperf.com/map-vs-foreach-test-code</a>。</p>
 
       
     </div>
@@ -400,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/15/ES6之Array-from/" rel="next" title="ES6之Array.from">
-                <i class="fa fa-chevron-left"></i> ES6之Array.from
+              <a href="/2018/12/09/操作符vs代码质感/" rel="next" title="操作符vs代码质感">
+                <i class="fa fa-chevron-left"></i> 操作符vs代码质感
               </a>
             
           </div>
@@ -409,10 +394,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/26/HTTP家族的发展与壮大/" rel="prev" title="HTTP家族的发展与壮大">
-                HTTP家族的发展与壮大 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -474,17 +455,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -564,22 +536,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#执行时间上："><span class="nav-number">1.</span> <span class="nav-text">执行时间上：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编写个数上："><span class="nav-number">2.</span> <span class="nav-text">编写个数上：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#简写方式："><span class="nav-number">3.</span> <span class="nav-text">简写方式：</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -737,9 +693,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/11/15/document-ready与window-onload/';
-          this.page.identifier = '2018/11/15/document-ready与window-onload/';
-          this.page.title = 'document.ready与window.onload';
+          this.page.url = 'http://yoursite.com/2018/12/11/竟然忘了它们的区别！/';
+          this.page.identifier = '2018/12/11/竟然忘了它们的区别！/';
+          this.page.title = '竟然忘了它们的区别！';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
