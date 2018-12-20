@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="js," />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -79,22 +79,18 @@
 
 
 
-<meta name="description" content="​    Any good foundation is laid brick by brick, so don’t expect that you’ll immediately understand it all the first pass through. ​">
-<meta name="keywords" content="js">
+<meta name="description" content="原来一直对闭包的目的理解有点费劲，从外部获取局部变量。 123456function f1()&amp;#123;    var n = 999;    function f2()&amp;#123;        alert(n);    &amp;#125;&amp;#125;  f2可以读取f1中的局部变量，只要把f2作为返回值，就可以在f1外部读取它的内部变量。  我总是很疑惑，这叫在f1外部读取？？？为啥不直接在f1内">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="相等之严格与不严格">
-<meta property="og:url" content="http://yoursite.com/2018/11/30/相等之严格与不严格/index.html">
+<meta property="og:title" content="闭包">
+<meta property="og:url" content="http://yoursite.com/2018/12/20/闭包/index.html">
 <meta property="og:site_name" content="寻 觅">
-<meta property="og:description" content="​    Any good foundation is laid brick by brick, so don’t expect that you’ll immediately understand it all the first pass through. ​">
+<meta property="og:description" content="原来一直对闭包的目的理解有点费劲，从外部获取局部变量。 123456function f1()&amp;#123;    var n = 999;    function f2()&amp;#123;        alert(n);    &amp;#125;&amp;#125;  f2可以读取f1中的局部变量，只要把f2作为返回值，就可以在f1外部读取它的内部变量。  我总是很疑惑，这叫在f1外部读取？？？为啥不直接在f1内">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/相等之严格与不严格/D:/软件/blog/source/_posts/相等之严格与不严格/相等比较.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/相等之严格与不严格/D:/软件/blog/source/_posts/相等之严格与不严格/toNumber解释.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/相等之严格与不严格/D:/软件/blog/source/_posts/相等之严格与不严格/==规则.jpg">
-<meta property="og:updated_time" content="2018-12-08T14:06:07.770Z">
+<meta property="og:updated_time" content="2018-12-20T08:31:54.745Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相等之严格与不严格">
-<meta name="twitter:description" content="​    Any good foundation is laid brick by brick, so don’t expect that you’ll immediately understand it all the first pass through. ​">
-<meta name="twitter:image" content="http://yoursite.com/2018/11/30/相等之严格与不严格/D:/软件/blog/source/_posts/相等之严格与不严格/相等比较.jpg">
+<meta name="twitter:title" content="闭包">
+<meta name="twitter:description" content="原来一直对闭包的目的理解有点费劲，从外部获取局部变量。 123456function f1()&amp;#123;    var n = 999;    function f2()&amp;#123;        alert(n);    &amp;#125;&amp;#125;  f2可以读取f1中的局部变量，只要把f2作为返回值，就可以在f1外部读取它的内部变量。  我总是很疑惑，这叫在f1外部读取？？？为啥不直接在f1内">
 
 
 
@@ -124,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/30/相等之严格与不严格/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/20/闭包/"/>
 
 
 
 
 
-  <title>相等之严格与不严格 | 寻 觅</title>
+  <title>闭包 | 寻 觅</title>
   
 
 
@@ -267,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/相等之严格与不严格/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yingwan">
@@ -284,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">相等之严格与不严格</h1>
+          <h1 class="post-title" itemprop="name headline">闭包</h1>
         
 
         <div class="post-meta">
@@ -296,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-30T11:49:36+08:00">
-                2018-11-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T15:34:18+08:00">
+                2018-12-20
               </time>
             
 
@@ -315,9 +311,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/30/相等之严格与不严格/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/20/闭包/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/30/相等之严格与不严格/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/20/闭包/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -345,48 +341,31 @@
       
 
       
-        <p>​    Any good foundation is laid brick by brick, so don’t expect that you’ll immediately understand it all the first pass through.</p>
-<p>​                                                                                              —— You Don’t Know JS: Up &amp; Going </p>
-<p>​    只知道<code>==</code>存在临时类型转化过程，<code>===</code>则需要在类型和值都相等时才成立。那<code>==</code>存在的意义是什么？</p>
-<p>​    事实上<code>==</code>的确会有副作用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">valueOf</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;x = <span class="number">2</span>; <span class="keyword">return</span> <span class="number">0</span>;&#125;&#125;</div><div class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>, x) <span class="comment">// true, 2</span></div></pre></td></tr></table></figure>
-<p>​    还会产生异常</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">valueOf</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;&#125;, <span class="attr">toString</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;&#125;&#125;</div><div class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>) <span class="comment">//Error: Cannot convert object to primitive value</span></div></pre></td></tr></table></figure>
-<p>​    关于所有数据类型的完整比较图如下：</p>
-<p>​    红色：===；橙色：==；黄色：&lt;= 和 &gt;= 同时成立，==不成立；蓝色：只有&gt;=；绿色：只有&lt;=</p>
-<p><img src="/2018/11/30/相等之严格与不严格/D:/软件\blog\source\_posts\相等之严格与不严格\相等比较.jpg" alt=""></p>
-<p>​    隐藏的类型转化，可能会带来违反直觉的结果。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="string">''</span> == <span class="string">'0'</span>           <span class="comment">// false，字符串比较，需要一致</span></div><div class="line"><span class="number">0</span> == <span class="string">''</span>             <span class="comment">// true，''转化为数字0</span></div><div class="line"><span class="number">0</span> == <span class="string">'0'</span>            <span class="comment">// true，'0'转化为数字0</span></div><div class="line"><span class="literal">false</span> == <span class="string">'false'</span>    <span class="comment">// false，false转化为数字0，'false'转化为数字1</span></div><div class="line"><span class="literal">false</span> == <span class="string">'0'</span>        <span class="comment">// true，false转化为数字0，'0'转化为数字0</span></div><div class="line"><span class="literal">false</span> == <span class="literal">undefined</span>  <span class="comment">// false，false转化为数字0，undefined转化为数字NaN</span></div><div class="line"><span class="literal">false</span> == <span class="literal">null</span>       <span class="comment">// false，false转化为数字0，在与null进行“相等”比较的时候不转化，在进行大小比较的时候才转化为0；还有一种看法是不符合规则中的前11条，所以到最后12条，返回false。</span></div><div class="line"><span class="literal">null</span> == <span class="literal">undefined</span>   <span class="comment">// true，规则中的规定</span></div><div class="line"><span class="string">' \t\r\n '</span> == <span class="number">0</span>     <span class="comment">// true，'\t\r\n'数学值被转换为0</span></div></pre></td></tr></table></figure>
-<p><img src="/2018/11/30/相等之严格与不严格/D:/软件\blog\source\_posts\相等之严格与不严格\toNumber解释.png" alt=""></p>
-<p>​    </p>
-<p>​    To boil down a whole lot of details to a few simple takeaways, and help you know whether to use <code>==</code> or <code>===</code> in various situations, here are my simple rules:</p>
-<p>(将一大推细节归结为几个简单的小贴士。。。)</p>
+        <p>原来一直对闭包的目的理解有点费劲，从外部获取局部变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> n = <span class="number">999</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(n);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>f2可以读取f1中的局部变量，只要把f2作为返回值，就可以在f1外部读取它的内部变量。</p>
+</blockquote>
+<p>我总是很疑惑，这叫在f1外部读取？？？为啥不直接在f1内部通过return赋值呢？？？</p>
+<p>讨论区给出解答：</p>
+<blockquote>
+<p>如果直接<code>return n</code>，那么每次调用f1时，都会声明n，且n无法保留状态值；而闭包的方式则是n一直被保存在内存中，不会重复声明。</p>
+</blockquote>
+<h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>f2就是闭包，廖雪峰老师对它的定义就是“能够读取其他函数内部变量的函数/定义在一个函数内部的函数”。</p>
+<p>冴羽老师给出的定义“闭包是指那些能够访问自由变量的函数，自由变量指在函数中使用的，既不是函数参数也不是函数的局部变量的变量”。从实践角度看，闭包的构成：</p>
 <ul>
-<li>如果比较的一边的值是<code>true</code>或<code>false</code>，使用<code>===</code>；</li>
-<li>如果比较的一边是几个特殊值之一，如<code>0</code>，<code>&quot;&quot;</code>，<code>[]</code>，使用<code>==</code>，而不是<code>===</code>；</li>
-<li>其他情况，可以安全使用<code>==</code>，不仅安全，还可以简化代码，提高可读性。</li>
-<li>两个对象相比较时，不管是<code>==</code>还是<code>===</code> ，观察的是是否指向同一个引用，而不是其中的值。</li>
+<li>即使创建它的上下文已经销毁，仍然存在</li>
+<li>在代码中引用了自由变量</li>
 </ul>
-<p>​    ‘You Don’t know JS’一书中，作者给出建议，不要一慨而论的抛弃使用<code>==</code>，<code>==</code>有它简化代码的优势，但前提是我们了解<code>==</code>的运行机制。</p>
-<p><img src="/2018/11/30/相等之严格与不严格/D:/软件\blog\source\_posts\相等之严格与不严格\==规则.jpg" alt=""></p>
-<p>​    我自己的总结：</p>
-<ul>
-<li><p>能够明确两边的类型是一致的，使用<code>===</code>，否则用<code>==</code>；</p>
-</li>
-<li><p>当两边的类型不一致时（基本类型），都试图将两边的值转化为数字类型，即0/1的比较；</p>
-</li>
-<li><p>当一边是基本类型，一边是对象时，先调用对象的valueOf方法转化为基本类型，不能转再调用toString方法进行比较；</p>
-</li>
+<h5 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h5><ul>
+<li>可以读取函数内部的变量</li>
+<li>让这些变量的值始终保存在内存中</li>
 </ul>
-<p>​    一元操作符可以发生强制转化：</p>
-<p>​    1. “” + a == “” + b. 转化成字符串进行比较</p>
-<p>​    2. +a == +b. 转化成数字进行比较</p>
-<p>​    3. !a == !b. 转成成布尔值（非值）进行比较，!!a将a转换成其对应的布尔值</p>
-<ul>
-<li><a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">https://dorey.github.io/JavaScript-Equality-Table/</a></li>
-<li><a href="http://jsfiddle.net/26Lf0a0L/" target="_blank" rel="noopener">http://jsfiddle.net/26Lf0a0L/</a></li>
-<li><a href="https://www.zhihu.com/question/31442029" target="_blank" rel="noopener">https://www.zhihu.com/question/31442029</a></li>
+<h5 id="使用注意点"><a href="#使用注意点" class="headerlink" title="使用注意点"></a>使用注意点</h5><ul>
+<li>变量被保存在内存中，消耗大。在退出函数时，将不使用的局部变量全部删除</li>
+<li>闭包会在父函数外部，改变父函数内部变量的值</li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1</span></div><div class="line"><span class="keyword">var</span> name = <span class="string">"The Window"</span>;</div><div class="line"></div><div class="line">　　<span class="keyword">var</span> object = &#123;</div><div class="line">　　　　<span class="attr">name</span> : <span class="string">"My Object"</span>,</div><div class="line"></div><div class="line">　　　　<span class="attr">getNameFunc</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　　　<span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">　　　　　　&#125;;</div><div class="line"></div><div class="line">　　　　&#125;</div><div class="line"></div><div class="line">　　&#125;;</div><div class="line"></div><div class="line">　　alert(object.getNameFunc()());</div><div class="line"><span class="comment">//2</span></div><div class="line"><span class="keyword">var</span> name = <span class="string">"The Window"</span>;</div><div class="line"></div><div class="line">　　<span class="keyword">var</span> object = &#123;</div><div class="line">　　　　<span class="attr">name</span> : <span class="string">"My Object"</span>,</div><div class="line"></div><div class="line">　　　　<span class="attr">getNameFunc</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　<span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">　　　　　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　　　<span class="keyword">return</span> that.name;</div><div class="line">　　　　　　&#125;;</div><div class="line"></div><div class="line">　　　　&#125;</div><div class="line"></div><div class="line">　　&#125;;</div><div class="line"></div><div class="line">　　alert(object.getNameFunc()());</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -404,7 +383,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag"># js</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
         </div>
       
@@ -417,8 +396,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/26/this笔记/" rel="next" title="this笔记">
-                <i class="fa fa-chevron-left"></i> this笔记
+              <a href="/2018/12/13/FE-I-promise-I-will-like-you/" rel="next" title="FE, I __promise__ I will like you">
+                <i class="fa fa-chevron-left"></i> FE, I __promise__ I will like you
               </a>
             
           </div>
@@ -426,10 +405,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/07/要IIFE有何用/" rel="prev" title="要IIFE有何用">
-                要IIFE有何用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,8 +466,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -572,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用途"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用注意点"><span class="nav-number">3.</span> <span class="nav-text">使用注意点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -729,9 +729,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/11/30/相等之严格与不严格/';
-          this.page.identifier = '2018/11/30/相等之严格与不严格/';
-          this.page.title = '相等之严格与不严格';
+          this.page.url = 'http://yoursite.com/2018/12/20/闭包/';
+          this.page.identifier = '2018/12/20/闭包/';
+          this.page.title = '闭包';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
