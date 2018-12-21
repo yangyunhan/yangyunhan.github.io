@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="函数防抖：概念：​    在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。 场景场景1：假设我们网站有个搜索框，用户输入文本我们会自动联想匹配出一些结果供用户选择。我们可能首先想到的做法就是监听keypress事件，然后异步去查询结果。这个方法本身是没错的，但是如果用户快速的输入了一连串的字符，假设是10个字符，那么就会在瞬间触发了10次的请求，这无疑不是我们想要的。我们想要的是">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="限制你的两种方式：防抖（进电梯）与节流（龙头滴水）">
+<meta property="og:url" content="http://yoursite.com/2018/12/21/限制你的两种方式：防抖（进电梯）与节流（龙头滴水）/index.html">
+<meta property="og:site_name" content="寻 觅">
+<meta property="og:description" content="函数防抖：概念：​    在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。 场景场景1：假设我们网站有个搜索框，用户输入文本我们会自动联想匹配出一些结果供用户选择。我们可能首先想到的做法就是监听keypress事件，然后异步去查询结果。这个方法本身是没错的，但是如果用户快速的输入了一连串的字符，假设是10个字符，那么就会在瞬间触发了10次的请求，这无疑不是我们想要的。我们想要的是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-21T08:26:48.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="限制你的两种方式：防抖（进电梯）与节流（龙头滴水）">
+<meta name="twitter:description" content="函数防抖：概念：​    在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。 场景场景1：假设我们网站有个搜索框，用户输入文本我们会自动联想匹配出一些结果供用户选择。我们可能首先想到的做法就是监听keypress事件，然后异步去查询结果。这个方法本身是没错的，但是如果用户快速的输入了一连串的字符，假设是10个字符，那么就会在瞬间触发了10次的请求，这无疑不是我们想要的。我们想要的是">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/21/限制你的两种方式：防抖（进电梯）与节流（龙头滴水）/"/>
+
+
+
+
+
+  <title>限制你的两种方式：防抖（进电梯）与节流（龙头滴水） | 寻 觅</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">寻 觅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">活成什么样子才算是见过世面</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/限制你的两种方式：防抖（进电梯）与节流（龙头滴水）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yingwan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatars.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="寻 觅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">限制你的两种方式：防抖（进电梯）与节流（龙头滴水）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T16:19:21+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/skill/" itemprop="url" rel="index">
+                    <span itemprop="name">skill</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/21/限制你的两种方式：防抖（进电梯）与节流（龙头滴水）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/21/限制你的两种方式：防抖（进电梯）与节流（龙头滴水）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="函数防抖："><a href="#函数防抖：" class="headerlink" title="函数防抖："></a>函数防抖：</h4><h5 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h5><p>​    在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。</p>
+<h5 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h5><p>场景1：假设我们网站有个搜索框，用户输入文本我们会自动联想匹配出一些结果供用户选择。我们可能首先想到的做法就是监听keypress事件，然后异步去查询结果。这个方法本身是没错的，但是如果用户快速的输入了一连串的字符，假设是10个字符，那么就会在瞬间触发了10次的请求，这无疑不是我们想要的。我们想要的是用户停止输入的时候才去触发查询的请求，这时候函数防抖可以帮到我们。</p>
+<p>场景2： 如果有人进电梯（触发事件），那电梯将在10秒钟后出发（执行事件监听器），这时如果又有人进电梯了（在10秒内再次触发该事件），我们又得等10秒再出发（重新计时）。</p>
+<h5 id="js中应用场景："><a href="#js中应用场景：" class="headerlink" title="js中应用场景："></a>js中应用场景：</h5><p>​    •   给按钮加函数防抖防止表单多次提交。</p>
+<p>​    •   对于输入框连续输入进行AJAX验证时，用函数防抖能有效减少请求次数。</p>
+<p>​    •   判断scroll是否滑到底部，滚动事件+函数防抖</p>
+<p>总的来说，适合多次事件一次响应的情况。</p>
+<p>这篇文章实例讲的很清楚，有基础和优化版本，就是把概念弄反了，应该是函数防抖。(<a href="http://www.alloyteam.com/2012/11/javascript-throttle/comment-page-2/" target="_blank" rel="noopener">http://www.alloyteam.com/2012/11/javascript-throttle/comment-page-2/</a>)</p>
+<h5 id="代码基础版："><a href="#代码基础版：" class="headerlink" title="代码基础版："></a>代码基础版：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, context, delay</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> context = context || <span class="keyword">this</span>;</div><div class="line">    clearTimeout(func.id);</div><div class="line">    func.id = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        func.call(context)</div><div class="line">    &#125;, delay)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    这个版本如果一直执行页面的滚动操作，则函数永远不会执行。所以优化就是增加一个参数，要一定的时间必须执行一次。</p>
+<p>优化版本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> debounce = <span class="function"><span class="keyword">function</span>(<span class="params">func, delay, mustRunDelay</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">var</span> start;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>, curr = +<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">        <span class="keyword">if</span>(!start) start = curr;</div><div class="line">        <span class="keyword">if</span>(curr-start &gt; mustRunDelay)&#123;</div><div class="line">            func.call(context)</div><div class="line">            start = curr</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                func.call(context)</div><div class="line">            &#125;, delay)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125; </div><div class="line"><span class="comment">//如果是函数表达式的声明，需要把函数写在调用的前面，因为变量提升，只是未声明的变量。</span></div></pre></td></tr></table></figure>
+<p>具体的demo：<a href="https://github.com/yangyunhan/Programing-exercises/blob/master/debounce/index.html" target="_blank" rel="noopener">https://github.com/yangyunhan/Programing-exercises/blob/master/debounce/index.html</a></p>
+<h4 id="函数节流："><a href="#函数节流：" class="headerlink" title="函数节流："></a>函数节流：</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>​    规定一个单位时间，在这个单位时间内，只能有一次触发事件的回调函数执行，如果在同一个单位时间内某事件被触发多次，只有一次能生效。</p>
+<h5 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h5><p>场景1: 我们网站经常会有这样的需求，就是滚动浏览器滚动条的时候，更新页面上的某些布局内容或者去调用后台的某接口查询内容。同样的，如果不对函数调用的频率加以限制的话，那么可能我们滚动一次滚动条就会产生N次的调用了。但是这次的情况跟上面的有所不同，我们不是要在每完成等待某个时间后去执行某函数，而是要每间隔某个时间去执行某函数，避免函数的过多执行。</p>
+<p>场景2:我们知道目前的一种说法是当 1 秒内连续播放 24 张以上的图片时，在人眼的视觉中就会形成一个连贯的动画，所以在电影的播放（以前是，现在不知道）中基本是以每秒 24 张的速度播放的，为什么不 100 张或更多是因为 24 张就可以满足人类视觉需求的时候，100 张就会显得很浪费资源。</p>
+<h5 id="js中的应用场景："><a href="#js中的应用场景：" class="headerlink" title="js中的应用场景："></a>js中的应用场景：</h5><p>​    •   游戏中的刷新率</p>
+<p>​    •   DOM元素拖拽</p>
+<p>​    •   Canvas画笔功能</p>
+<p>总的来说，适合大量事件按时间做平均分配触发。</p>
+<h5 id="代码基础版：-1"><a href="#代码基础版：-1" class="headerlink" title="代码基础版："></a>代码基础版：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, delay</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> last = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> curr = +<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">        <span class="keyword">if</span>(!last || curr - last &gt; delay)&#123;</div><div class="line">            func();</div><div class="line">            last = curr;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>demo: <a href="https://github.com/yangyunhan/Programing-exercises/blob/master/throttle/index.js" target="_blank" rel="noopener">https://github.com/yangyunhan/Programing-exercises/blob/master/throttle/index.js</a></p>
+<h5 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h5><ul>
+<li><p><a href="https://juejin.im/post/5a35ed25f265da431d3cc1b1" target="_blank" rel="noopener">https://juejin.im/post/5a35ed25f265da431d3cc1b1</a></p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000002764479" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002764479</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/20/闭包/" rel="next" title="闭包">
+                <i class="fa fa-chevron-left"></i> 闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatars.jpg"
+                alt="Yingwan" />
+            
+              <p class="site-author-name" itemprop="name">Yingwan</p>
+              <p class="site-description motion-element" itemprop="description">我还在认识自己的路上</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yangyunhan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="1205385190@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-yhuanny@gmail.com"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数防抖："><span class="nav-number">1.</span> <span class="nav-text">函数防抖：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念："><span class="nav-number">1.1.</span> <span class="nav-text">概念：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景"><span class="nav-number">1.2.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#js中应用场景："><span class="nav-number">1.3.</span> <span class="nav-text">js中应用场景：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码基础版："><span class="nav-number">1.4.</span> <span class="nav-text">代码基础版：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数节流："><span class="nav-number">2.</span> <span class="nav-text">函数节流：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用场景"><span class="nav-number">2.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#js中的应用场景："><span class="nav-number">2.3.</span> <span class="nav-text">js中的应用场景：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码基础版：-1"><span class="nav-number">2.4.</span> <span class="nav-text">代码基础版：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考："><span class="nav-number">2.5.</span> <span class="nav-text">参考：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yingwan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/12/21/限制你的两种方式：防抖（进电梯）与节流（龙头滴水）/';
+          this.page.identifier = '2018/12/21/限制你的两种方式：防抖（进电梯）与节流（龙头滴水）/';
+          this.page.title = '限制你的两种方式：防抖（进电梯）与节流（龙头滴水）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
